@@ -79,16 +79,3 @@ theme: hexo-theme-huhu
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
-
-#https://github.com/alexbruno/hexo-generator-json-content
-jsonContent:
-  dateFormat: YYYY/MM/DD
-  pages: false
-  posts:
-    tags: true
-    title: true
-    date: true
-    text: true
-    permalink: true
-    photos: true
-  file: content.json
