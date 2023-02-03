@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 大帝的博客
 subtitle:
 description:
 keywords:
-author: John Doe
-language:
-timezone:
+author: chenzd123456@hotmail.com
+language: zh-CN
+timezone: 
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://dadis-blog.vercel.app
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
