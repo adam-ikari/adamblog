@@ -1,5 +1,5 @@
 ---
-title: 我的第一篇Hexo博客
+title: 我的第一篇 Hexo 博客
 ---
 
 第一篇博客不知道些什么，先分享一下我的网盘吧。
@@ -12,4 +12,3 @@ title: 我的第一篇Hexo博客
 
 再分享一下 [vercel](https://vercel.com/) 这个托管网站吧。
 介绍就懒得写了，自己 Google 吧。
-
