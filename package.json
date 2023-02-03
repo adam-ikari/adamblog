@@ -20,6 +20,10 @@
   },
   "scripts": {
     "dev": "hexo server -p $PORT",
-    "build": "hexo generate"
+    "build": "hexo generate",
+    "draft": "hexo new draft $TITLE",
+    "post": "hexo new post $TITLE",
+    "publish": "hexo publish post $TITLE",
+    "page": "hexo new page $PAGE"
   }
 }
