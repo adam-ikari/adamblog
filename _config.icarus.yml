@@ -146,7 +146,6 @@ widgets:
     type: links
     links:
       大帝的网盘: "https://public.dadilive.top/"
-
   - position: left
     type: categories
   - position: left
