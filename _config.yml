@@ -5,7 +5,7 @@ keywords: null
 author: chenzd123456@hotmail.com
 language: zh-CN
 timezone: null
-url: 'https://dadis-blog.vercel.app'
+url: 'https://blog.dadilive.top'
 root: /
 permalink: ':year/:month/:day/:title/'
 permalink_defaults: null
