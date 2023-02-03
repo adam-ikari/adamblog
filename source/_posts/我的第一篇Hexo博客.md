@@ -6,7 +6,7 @@ tags: 随便写点什么
 
 第一篇博客不知道些什么，先分享一下我的网盘吧。
 
-这就是我的网盘了 -> [大帝的网盘](https://public-xess.vercel.app/)
+这就是我的网盘了 -> [大帝的网盘](https://public.dadilive.top)
 
 空间不大，主要目的方便分享一些文件。
 
