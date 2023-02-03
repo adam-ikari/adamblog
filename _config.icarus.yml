@@ -65,7 +65,7 @@ article:
   highlight:
     theme: atom-one-light
     clipboard: true
-    fold: unfolded
+    fold: folded
   readtime: true
   update_time: true
   licenses:
@@ -144,7 +144,7 @@ widgets:
   - position: left
     type: links
     links:
-      暂无: ""
+      大帝的网盘: "https://public.dadilive.top/"
 
   - position: left
     type: categories
