@@ -1,12 +1,13 @@
 version: 5.1.0
 variant: default
-logo: ""
+logo:
+  text: 大帝的博客
 head:
   favicon: /img/favicon.svg
   manifest:
-    name:
-    short_name:
-    start_url:
+    name: 大帝的博客
+    short_name: 大帝的博客
+    start_url: https://blog.dadilive.top
     theme_color:
     background_color:
     display: standalone
@@ -42,10 +43,10 @@ head:
 navbar:
   menu:
     首页 / Home: /
-    文章 / Archives: /archives
+    归档 / Archives: /archives
     分类 / Categories: /categories
     标签 / Tags: /tags
-    # 关于 / About: /about
+    关于 / About: /about
   # links:
   #     Download on GitHub:
   #         icon: fab fa-github
