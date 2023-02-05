@@ -42,11 +42,11 @@ head:
   rss:
 navbar:
   menu:
-    首页 / Home: /
-    归档 / Archives: /archives
-    分类 / Categories: /categories
-    标签 / Tags: /tags
-    关于 / About: /about
+    首页 : /
+    分类 : /categories
+    标签 : /tags
+    归档 : /archives
+    关于我 : /about-me
   # links:
   #     Download on GitHub:
   #         icon: fab fa-github
