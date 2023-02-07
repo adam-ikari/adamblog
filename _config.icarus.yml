@@ -205,6 +205,6 @@ plugins:
   twitter_conversion_tracking:
     pixel_id:
 providers:
-  cdn: jsdelivr
-  fontcdn: google
-  iconcdn: fontawesome
+  cdn: loli
+  fontcdn: loli
+  iconcdn: loli
