@@ -42,11 +42,11 @@ head:
   rss:
 navbar:
   menu:
-    首页 : /
-    分类 : /categories
-    标签 : /tags
-    归档 : /archives
-    关于我 : /about-me
+    首页: /
+    分类: /categories
+    标签: /tags
+    归档: /archives
+    关于我: /about-me
   # links:
   #     Download on GitHub:
   #         icon: fab fa-github
@@ -66,7 +66,7 @@ article:
   highlight:
     theme: atom-one-light
     clipboard: true
-    fold: folded
+    fold: unfolded
   readtime: true
   update_time: true
   licenses:
@@ -108,7 +108,7 @@ donates:
 # install_url: ''
 sidebar:
   left:
-    sticky: false
+    sticky: true
   right:
     sticky: true
 widgets:
@@ -142,12 +142,8 @@ widgets:
     index: true
     collapsed: true
     depth: 3
-  - position: left
-    type: links
-    links:
-      大帝的网盘: "https://public.dadilive.top/"
-  - position: left
-    type: categories
+  # - position: left
+  #   type: categories
   - position: left
     type: recent_posts
   - position: left
@@ -157,6 +153,10 @@ widgets:
     order_by: name
     amount:
     show_count: true
+  - position: left
+    type: links
+    links:
+      大帝的网盘: "https://public.dadilive.top/"
   # -
   #     position: left
   #     type: subscribe_email
