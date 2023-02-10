@@ -15,8 +15,6 @@ tags:
 
 Android 媒体库(MediaProvider)实际上是个 Provider。
 
-_关于 Provider，以后会在《Android 的四大组件》的文章中介绍。_
-
 **Android 4.4** 以后，当**系统启动完成**、**SD 卡插拔**或者**接收到 `Intent.ACTION_MEDIA_SCANNER_SCAN_FILE` 广播**时，系统会扫描文件系统中的数据，将新增和删除的文件信息更新到这个 MediaProvider 中。其他应用如果要使用，直接读取这个 MediaProvider 就可以直接取得系统中媒体文件的信息。
 
 <!--more-->
