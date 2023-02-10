@@ -5,7 +5,8 @@ categories:
   - Java
 date: 2019-09-18 00:00:00
 tags:
-  - Java Android 
+  - Java
+  - Android 
 ---
 
 
