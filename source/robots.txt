@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://blog.dadilive.top/sitemap.xml
+Sitemap: https://blog.dadilive.top/baidusitemap.xml
