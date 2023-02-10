@@ -7,7 +7,7 @@ language: zh-CN
 timezone: Asia/Shanghai
 url: "https://blog.dadilive.top"
 root: /
-permalink: ":year/:month/:day/:title/"
+permalink: ":year:month:day/:title/"
 permalink_defaults: null
 source_dir: source
 public_dir: public
@@ -45,3 +45,20 @@ pagination_dir: page
 theme: icarus
 deploy:
   type: null
+# 开启压缩
+neat_enable: true
+neat_html:
+  enable: true
+  exclude:
+neat_css:
+  enable: true
+  exclude:
+    - '**/*.min.css'
+neat_js:
+  enable: true
+  mangle: true
+  output:
+  compress:
+  exclude:
+    - '**/*.min.js'
+    - '**/index.js'
