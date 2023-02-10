@@ -85,7 +85,7 @@ search:
 comment:
     type: gitalk
     client_id: 74e4ce8e4ef6e3ce09fe
-    client_secret: 0390d19eefb95b83cd8f30028db80e036a097341
+    client_secret: 7a95150ac516ab0b3773f09b761a80cc3b6f9b36
     repo: https://github.com/chenzd123456/dadis-blog.git
     owner: chenzd123456
     admin:
