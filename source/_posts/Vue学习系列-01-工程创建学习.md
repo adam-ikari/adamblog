@@ -1,30 +1,32 @@
 ---
-title: vue学习系列-01-工程创建学习
+title: Vue学习系列-01-工程创建学习
 toc: true
 categories:
   - 前端
 date: 2023-02-22 10:28:57
 tags:
   - Vue
-  - Vue 学习系列
+  - Vue学习系列
   - Web
   - 前端
 cover: covers/Vue学习系列.png
 ---
 
+=> [**《Vue学习系列》**](/tags/Vue学习系列/)
+
 ## 前言
 
-开始 vue 的学习。后面会陆续的更新一些学习 vue 过程中的理解和记录。
+开始 Vue 的学习。后面会陆续的更新一些学习 Vue 过程中的理解和记录。
 
 <!--more-->
 
-接下来的 vue 工程创建参考了官网的文档:[《快速上手 | Vue.js 》](https://cn.vuejs.org/guide/quick-start.html)
+接下来的 Vue 工程创建参考了官网的文档:[《快速上手 | Vue.js 》](https://cn.vuejs.org/guide/quick-start.html)
 
 ## 阅读方法
 
 > 这样在引用块中的文字表示引用官网文档的内容
 
-## 创建 vue 工程
+## 创建 Vue 工程
 
 > 创建的项目将使用基于 Vite 的构建设置，并允许我们使用 Vue 的单文件组件 (SFC)。
 > 确保你安装了最新版本的 Node.js，然后在命令行中运行以下命令 (不要带上 > 符号)：
@@ -32,7 +34,7 @@ cover: covers/Vue学习系列.png
 我用的 node.js 版本是 18，运行下面的命令将使用 vite 创建的是 vue3 的工程。
 
 ```shell
-npm init vue@latest
+npm init Vue@latest
 ```
 
 > 这一指令将会安装并执行 create-vue，它是 Vue 官方的项目脚手架工具。你将会看到一些诸如 TypeScript 和测试支持之类的可选功能提示：
@@ -84,11 +86,11 @@ npm init vue@latest
 
     集成 ESLint 代码质量检查
 
-![创建 vue 工程的过程](Vue%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97-01-%E5%B7%A5%E7%A8%8B%E5%88%9B%E5%BB%BA%E5%AD%A6%E4%B9%A0/%E5%88%9B%E5%BB%BAVue%E5%B7%A5%E7%A8%8B%E8%BF%87%E7%A8%8B.JPG)
+![创建 Vue 工程的过程](Vue%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97-01-%E5%B7%A5%E7%A8%8B%E5%88%9B%E5%BB%BA%E5%AD%A6%E4%B9%A0/%E5%88%9B%E5%BB%BAVue%E5%B7%A5%E7%A8%8B%E8%BF%87%E7%A8%8B.JPG)
 
 我创建的时候选择了集成 Vue Router、Pinia、Vitest、eslint 和 Prettier。
 
-## 分析一下创建的 vue 工程
+## 分析一下创建的 Vue 工程
 
 先看看工程的目录结构。
 
@@ -99,31 +101,31 @@ npm init vue@latest
 ├── public
 │   └── favicon.ico
 ├── src
-│   ├── App.vue
+│   ├── App.Vue
 │   ├── assets
 │   │   ├── base.css
 │   │   ├── logo.svg
 │   │   └── main.css
 │   ├── components
-│   │   ├── HelloWorld.vue
-│   │   ├── TheWelcome.vue
-│   │   ├── WelcomeItem.vue
+│   │   ├── HelloWorld.Vue
+│   │   ├── TheWelcome.Vue
+│   │   ├── WelcomeItem.Vue
 │   │   ├── __tests__
 │   │   │   └── HelloWorld.spec.js
 │   │   └── icons
-│   │       ├── IconCommunity.vue
-│   │       ├── IconDocumentation.vue
-│   │       ├── IconEcosystem.vue
-│   │       ├── IconSupport.vue
-│   │       └── IconTooling.vue
+│   │       ├── IconCommunity.Vue
+│   │       ├── IconDocumentation.Vue
+│   │       ├── IconEcosystem.Vue
+│   │       ├── IconSupport.Vue
+│   │       └── IconTooling.Vue
 │   ├── main.js
 │   ├── router
 │   │   └── index.js
 │   ├── stores
 │   │   └── counter.js
 │   └── views
-│       ├── AboutView.vue
-│       └── HomeView.vue
+│       ├── AboutView.Vue
+│       └── HomeView.Vue
 └── vite.config.js
 ```
 
@@ -136,17 +138,17 @@ npm init vue@latest
   // ...
   "dependencies": {
     "pinia": "^2.0.28",
-    "vue": "^3.2.45",
-    "vue-router": "^4.1.6"
+    "Vue": "^3.2.45",
+    "Vue-router": "^4.1.6"
   },
   // ...
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
-    "@vitejs/plugin-vue": "^4.0.0",
-    "@vue/eslint-config-prettier": "^7.0.0",
-    "@vue/test-utils": "^2.2.6",
+    "@vitejs/plugin-Vue": "^4.0.0",
+    "@Vue/eslint-config-prettier": "^7.0.0",
+    "@Vue/test-utils": "^2.2.6",
     "eslint": "^8.22.0",
-    "eslint-plugin-vue": "^9.3.0",
+    "eslint-plugin-Vue": "^9.3.0",
     "jsdom": "^20.0.3",
     "prettier": "^2.7.1",
     "vite": "^4.0.0",
@@ -156,7 +158,7 @@ npm init vue@latest
 }
 ```
 
-可以看到工程依赖了 pinia2、vue3 和 vue-router4。pinia2 和 vue-router4 以后再专门学习。
+可以看到工程依赖了 pinia2、vue3 和 Vue-router4。pinia2 和 Vue-router4 以后再专门学习。
 
 工程的开发依赖主要是 vite、eslint 、prettier 和 vitest。
 
@@ -170,7 +172,7 @@ npm init vue@latest
     "build": "vite build", // <= 构建工程，构建后的结果输出到工程的 ./dist 目录下
     "preview": "vite preview", // <= 预览构建到 ./dist 目录下的页面的效果，就不需要另外准备一个 http 服务了
     "test:unit": "vitest --environment jsdom --root src/", // <= 运行单体测试
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore" // <= 运行代码检查
+    "lint": "eslint . --ext .Vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore" // <= 运行代码检查
   }
   // ...
 }
@@ -182,35 +184,35 @@ npm init vue@latest
 
 ### src 文件夹
 
-src 文件夹放 vue 工程的源码，包括 vue 组件，图片资源，需要打包到一起的 js 代码和 css 样式。
+src 文件夹放 Vue 工程的源码，包括 Vue 组件，图片资源，需要打包到一起的 js 代码和 css 样式。
 
 ```
 ─ src
-  ├── App.vue
+  ├── App.Vue
   ├── assets  <= 放 css、svg 、图片等要使用 vite 打包的资源
   │   ├── base.css
   │   ├── logo.svg
   │   └── main.css
-  ├── components  <= 放 vue 组件
-  │   ├── HelloWorld.vue
-  │   ├── TheWelcome.vue
-  │   ├── WelcomeItem.vue
-  │   ├── __tests__  <= 放 vue 组件的单体测试代码
+  ├── components  <= 放 Vue 组件
+  │   ├── HelloWorld.Vue
+  │   ├── TheWelcome.Vue
+  │   ├── WelcomeItem.Vue
+  │   ├── __tests__  <= 放 Vue 组件的单体测试代码
   │   │   └── HelloWorld.spec.js
   │   └── icons
-  │       ├── IconCommunity.vue
+  │       ├── IconCommunity.Vue
   │       ├── IconDocumentation.v
-  │       ├── IconEcosystem.vue
-  │       ├── IconSupport.vue
-  │       └── IconTooling.vue
-  ├── main.js <= vue 工程入口js文件
+  │       ├── IconEcosystem.Vue
+  │       ├── IconSupport.Vue
+  │       └── IconTooling.Vue
+  ├── main.js <= Vue 工程入口js文件
   ├── router <= 放路由的配置文件
   │   └── index.js
-  ├── stores <= 放 vue store 的文件, 相当于 mvvm 模型中的 model。
+  ├── stores <= 放 Vue store 的文件, 相当于 mvvm 模型中的 model。
   │   └── counter.js
   └── views <= 放路由的页面
-      ├── AboutView.vue
-      └── HomeView.vue
+      ├── AboutView.Vue
+      └── HomeView.Vue
 ```
 
 ## 安装工程依赖
@@ -224,7 +226,7 @@ npm install
 
 ## 启动开发服务
 
-开发 vue 项目的时候需要有个开发服务用于预览工程部署后的效果，做到所见即所得。
+开发 Vue 项目的时候需要有个开发服务用于预览工程部署后的效果，做到所见即所得。
 
 ```shell
 npm run dev
