@@ -6,17 +6,19 @@ categories:
 date: 2023-02-22 10:28:57
 tags:
   - Vue
-  - web
-  - Vue学习系列
+  - Vue 学习系列
+  - Web
+  - 前端
+cover: covers/Vue学习系列.png
 ---
 
 ## 前言
 
 开始 vue 的学习。后面会陆续的更新一些学习 vue 过程中的理解和记录。
 
-接下来的 vue 工程创建参考了官网的文档:[《快速上手 | Vue.js 》](https://cn.vuejs.org/guide/quick-start.html)
-
 <!--more-->
+
+接下来的 vue 工程创建参考了官网的文档:[《快速上手 | Vue.js 》](https://cn.vuejs.org/guide/quick-start.html)
 
 ## 阅读方法
 
@@ -82,7 +84,7 @@ npm init vue@latest
 
     集成 ESLint 代码质量检查
 
-![创建 vue 工程的过程](%E5%88%9B%E5%BB%BAvue%E5%B7%A5%E7%A8%8B%E8%BF%87%E7%A8%8B.JPG)
+![创建 vue 工程的过程](Vue%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97-01-%E5%B7%A5%E7%A8%8B%E5%88%9B%E5%BB%BA%E5%AD%A6%E4%B9%A0/%E5%88%9B%E5%BB%BAVue%E5%B7%A5%E7%A8%8B%E8%BF%87%E7%A8%8B.JPG)
 
 我创建的时候选择了集成 Vue Router、Pinia、Vitest、eslint 和 Prettier。
 
