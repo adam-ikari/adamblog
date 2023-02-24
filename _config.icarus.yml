@@ -153,8 +153,8 @@ widgets:
   - position: left
     type: toc
     index: true
-    collapsed: true
-    depth: 3
+    collapsed: false
+    depth: 5
   # - position: left
   #   type: categories
   - position: left
