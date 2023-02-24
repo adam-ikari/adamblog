@@ -1,5 +1,7 @@
 ---
 title: {{ title }}
+keywords:
+description:
 date: {{ date }}
 toc: false
 tags:

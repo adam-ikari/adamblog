@@ -63,3 +63,7 @@ neat_js:
   exclude:
     - "**/*.min.js"
     - "**/index.js"
+sitemap: 
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml

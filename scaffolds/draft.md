@@ -1,5 +1,7 @@
 ---
 title: {{ title }}
+keywords:
+description:
 toc: false
 tags:
 categories:
