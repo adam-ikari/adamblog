@@ -188,6 +188,7 @@ widgets:
   #     verification_code: ''
 plugins:
   animejs: false
+  progressbar: false
   back_to_top: true
   baidu_analytics:
     tracking_id:
@@ -209,9 +210,8 @@ plugins:
   hotjar:
     site_id:
   katex: false
-  mathjax: false
-  outdated_browser: false
-  progressbar: true
+  mathjax: true
+  outdated_browser: true
   statcounter:
     project:
     security:
