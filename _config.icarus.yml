@@ -91,7 +91,7 @@ comment:
     admin:
         - chenzd123456
     per_page: 20                    # 可选填
-    distraction_free_mode: false    # 可选填
+    distraction_free_mode: true    # 可选填
     pager_direction: last           # 可选填
     create_issue_manually: false    # 可选填
     # proxy:                          # 可选填
