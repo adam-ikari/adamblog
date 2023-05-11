@@ -236,7 +236,7 @@ const emit = defineEmits([
 
 这样就可以在`<script setup>`中使用JS语法来声明props和emitted events了。
 
-## 如何在<script setup>中使用生命周期钩子？
+## 如何在\<script setup\>中使用生命周期钩子？
 
 在`<script setup>`中，你可以像在普通的`setup()`函数中一样，使用生命周期钩子函数。你需要从`vue`模块导入它们，然后在`<script setup>`内部调用它们。例如：
 
@@ -259,3 +259,19 @@ onUnmounted(() => {
 ```
 
 注意，你不能在`<script setup>`内部定义自己的函数来作为生命周期钩子。你必须使用从`vue`模块导入的函数。这是因为`<script setup>`内部的代码会被编译为组件的`setup()`函数的内容，而生命周期钩子必须在`setup()`函数中调用。
+
+## \<script setup\>的局限性
+虽然\<script setup\>提供了很多便利，但它也有一些局限性，需要我们注意：
+
+\<script setup\>不能与\<script\>共存。如果你需要在同一个组件中使用两种语法，你可以将\<script setup\>放在一个子组件中，然后在父组件中导入它。
+\<script setup\>不能使用src属性。你必须将代码直接写在\<script setup\>标签内部。
+\<script setup\>不能在函数内部使用defineProps()和defineEmits()。这些函数必须在\<script setup\>的顶层调用。
+\<script setup\>不能在函数内部定义自己的生命周期钩子。你必须使用从vue模块导入的生命周期钩子函数，并在\<script setup\>的顶层调用它们。
+\<script setup\>不能使用模板字符串插值。你必须使用普通的字符串拼接或者模板字面量。
+\<script setup\>的注意事项
+除了上述的局限性，还有一些注意事项，可以帮助我们更好地使用\<script setup\>：
+
+\<script setup\>内部的代码会被编译为组件的setup()函数的内容。这意味着与普通的\<script\>不同，它只在组件第一次导入时执行一次，\<script setup\>内部的代码会在每次创建组件实例时执行。
+\<script setup\>内部声明的变量、函数和导入都会被暴露给模板。如果你想隐藏一些内部实现细节，你可以使用下划线前缀来标记它们，例如：_internalValue。这样它们就不会被暴露给模板或者父组件了。
+\<script setup\>内部声明的变量、函数和导入都会被视为响应式依赖。如果你想避免不必要的渲染更新，你可以使用常量前缀来标记它们，例如：const __UNREF__ = 1。这样它们就不会被收集为响应式依赖了。
+\<script setup\>内部声明的变量、函数和导入都会被视为组件选项。如果你想避免与Vue保留的选项名冲突，你可以使用大写字母或者其他符号来命名它们，例如：const $foo = 'bar'或者const FOO = 'bar'。
