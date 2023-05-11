@@ -10,8 +10,12 @@ tags:
 cover:
 ---
 
+整理了一下Vue知识点的思维导图。
+
+<!--more-->
+
 {% markmap 1080px 3 %}
-# Vue 学习思维导图
+# Vue 思维导图
 
 ## 前置知识点
 - HTML
