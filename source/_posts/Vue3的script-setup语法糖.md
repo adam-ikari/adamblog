@@ -23,15 +23,7 @@ cover:
 - 更好的运行时性能（模板被编译为在同一作用域内的渲染函数，没有中间代理）
 - 更好的IDE类型推断性能（语言服务器从代码中提取类型的工作量更少）
 
-教程的大纲如下：
-
-1. 介绍\<script setup\>的基本语法和特点
-2. 展示如何在\<script setup\>中使用响应式状态、组件、动态组件和生命周期钩子
-3. 演示如何在\<script setup\>中使用TypeScript和自定义类型
-4. 解释如何在\<script setup\>中使用ref sugar和defineProps/defineEmits
-5. 介绍\<script setup\>的局限性和注意事项
-
-教程的第一部分可以这样写：
+<!-- more -->
 
 # 使用\<script setup\>编写Vue单文件组件
 
