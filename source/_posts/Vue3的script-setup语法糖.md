@@ -1,12 +1,18 @@
 ---
-title: Vue学习系列 -- Vue3 的 script setup 语法糖
+title: Vue学习系列 -- 告别繁琐，从Vue3的script setup语法糖开始
 toc: true
 categories:
   - 前端开发
 date: 2023-05-11 13:57:45
-keywords:
-description:
-tags:
+keywords: 
+  - Vue3
+  - script setup
+description: 使用Vue3的script setup语法糖进行前端开发，优化开发体验，告别繁琐。
+tags: 
+  - Vue3
+  - script setup
+  - 前端开发
+  - 优化开发体验
 cover:
 ---
 
