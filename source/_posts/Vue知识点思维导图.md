@@ -2,7 +2,7 @@
 title: Vue知识点思维导图
 toc: false
 categories:
-  - Vue 思维导图
+  - 前端
 date: 2023-05-11 10:45:07
 keywords: Vue 思维导图
 description: Vue知识点思维导图
