@@ -1,6 +1,5 @@
 ---
-title: {{ title }} | 大帝的博客
-keywords:
+title: {{ title }}
 description:
 toc: false
 tags:

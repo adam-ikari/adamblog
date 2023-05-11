@@ -13,7 +13,7 @@ tags:
   - Node.js技巧
 keywords: JavaScript, 代码规范, 优化, 前端开发, Web开发, Node.js
 description: 本博客讨论了JavaScript代码规范的最佳实践，以及如何通过优化代码来提高性能并减少错误。
-cover:
+cover: covers/code.jpg
 ---
 
 本文转载自 standardjs.com

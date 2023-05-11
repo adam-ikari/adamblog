@@ -1,5 +1,5 @@
 ---
-title: 【文档翻译】Lisp 的根源 - Lisp编程语言的起源、进化与魅力 | 大帝的博客
+title: 【文档翻译】Lisp 的根源 - Lisp编程语言的起源、进化与魅力
 toc: true
 categories:
   - 文档翻译
