@@ -1,11 +1,11 @@
 ---
-title: vuex介绍
+title: Vuex介绍
 toc: false
 categories:
   - 前端
 date: 2023-05-11 10:11:59
-keywords: vuex vue
-description: vuex介绍
+keywords: Vuex Vue
+description: Vuex介绍
 tags:
 cover:
 ---
