@@ -1,5 +1,5 @@
 ---
-title: {{ title }}
+title: {{ title }} | 大帝的博客
 keywords:
 description:
 date: {{ date }}
