@@ -1,17 +1,19 @@
 ---
-title: JavaScript代码规范
+title: JavaScript代码规范之道
 toc: false
 categories:
-  - 还没有分类
+  - 前端开发
 date: 2023-02-24 11:35:52
 tags:
-  - JavaScript
-  - 代码规范
-  - JavaScript代码规范
-  - Web
-  - 前端
-  - Node.js
-cover:
+  - 前端开发
+  - JavaScript编程之美
+  - 代码优化艺术
+  - Web开发艺术
+  - 前端之道
+  - Node.js技巧
+keywords: JavaScript, 代码规范, 优化, 前端开发, Web开发, Node.js
+description: 本博客讨论了JavaScript代码规范的最佳实践，以及如何通过优化代码来提高性能并减少错误。
+cover: 美丽的JavaScript代码规范之道
 ---
 
 本文转载自 standardjs.com

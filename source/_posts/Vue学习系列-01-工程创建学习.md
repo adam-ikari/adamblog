@@ -1,14 +1,15 @@
 ---
-title: Vue学习系列-01-工程创建学习
+title: Vue学习系列：01 工程创建学习
 toc: true
 categories:
-  - 前端
-date: 2023-02-22 10:28:57
+  - 前端开发
+date: 2023-02-22
 tags:
   - Vue
-  - Vue学习系列
-  - Web
-  - 前端
+  - Vue学习
+  - Web开发
+keywords: Vue学习, 前端开发, 工程创建
+description: 本篇博客将为你讲解Vue学习系列的第一篇文章——工程创建学习，帮助你了解如何创建一个Vue项目。
 cover: covers/Vue学习系列.png
 ---
 
