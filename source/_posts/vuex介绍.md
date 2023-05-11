@@ -24,6 +24,8 @@ Vuex是一个专为Vue.js应用程序开发的状态管理模式。它集中式�
 
 ![Vuex Architecture](https://vuex.vuejs.org/vuex.png)
 
+> 这个图是一个关于Vuex的概念图，它展示了Vue组件、Vuex store和后端服务器之间的数据流动。Vue组件可以通过dispatch action来触发Vuex store中的mutation，从而改变state。Vue组件也可以通过getters来获取Vuex store中的state。Vuex store可以通过调用API来与后端服务器进行通信，从而获取或更新数据。
+
 ## Vuex的核心概念
 
 - **State（状态）**：在Vuex中，状态存储在一个单一的state对象中，当状态发生变化时，视图会进行相应的更新。
