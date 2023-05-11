@@ -6,7 +6,11 @@ categories:
 date: 2023-05-11 10:45:07
 keywords: Vue思维导图，Vue知识点
 description: 总结了有关Vue.js的核心知识点的思维导图，可帮助您更快地学习Vue。
-tags: Vue.js，前端开发，Vue
+tags:
+  - Vue.js
+  - 前端开发
+  - Vue
+  - Web开发
 cover:
 ---
 
