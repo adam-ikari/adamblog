@@ -102,8 +102,8 @@ donates:
   # -
   #     type: afdian
   #     url: ''
-  - type: alipay
-    qrcode: ""
+  # - type: alipay
+  #   qrcode: ""
   # -
   #     type: buymeacoffee
   #     url: ''
@@ -114,8 +114,8 @@ donates:
   #     type: paypal
   #     business: ''
   #     currency_code: USD
-  - type: wechat
-    qrcode: ""
+  # - type: wechat
+  #   qrcode: ""
 # share:
 # type: sharethis
 # install_url: ''
@@ -169,7 +169,7 @@ widgets:
   - position: left
     type: links
     links:
-      大帝的网盘: "https://public.dadilive.top/"
+      # 大帝的网盘: "https://public.dadilive.top/"
   # -
   #     position: left
   #     type: subscribe_email
