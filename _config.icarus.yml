@@ -209,7 +209,7 @@ plugins:
     tracking_id:
   hotjar:
     site_id:
-  katex: false
+  katex: true
   mathjax: true
   outdated_browser: true
   statcounter:
