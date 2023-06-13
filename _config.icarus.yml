@@ -210,7 +210,7 @@ plugins:
   hotjar:
     site_id:
   katex: true
-  mathjax: true
+  mathjax: false
   outdated_browser: true
   statcounter:
     project:
