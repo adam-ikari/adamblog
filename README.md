@@ -1,21 +1,14 @@
-![Hexo Logo](https://github.com/vercel/vercel/blob/main/packages/frameworks/logos/hexo.svg)
+# 大帝的博客
 
-# Hexo Example
+## TODO
 
-This directory is a brief example of a [Hexo](https://hexo.io/) site that can be deployed to Vercel with zero configuration.
+### Vue 学习系列
 
-## Deploy Your Own
+- [ ] Vue3 (进行中)
+- [ ] Pinia
+- [ ] Vue Router 4
 
-Deploy your own Hexo project with Vercel.
+### 个人建站
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/hexo&template=hexo)
-
-_Live Example: https://hexo-template.vercel.app_
-
-### How We Created This Example
-
-To get started with Hexo for deployment with Vercel, you can use the [Hexo CLI](https://hexo.io/docs/index.html#Installation) to initialize the project:
-
-```shell
-$ hexo init project-name
-```
+- [ ] 使用 Vercel 建站
+- [ ] Cloudflare 介绍

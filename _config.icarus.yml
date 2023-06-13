@@ -42,11 +42,11 @@ head:
   rss:
 navbar:
   menu:
-    首页 : /
-    分类 : /categories
-    标签 : /tags
-    归档 : /archives
-    关于我 : /about-me
+    首页: /
+    分类: /categories
+    标签: /tags
+    归档: /archives
+    关于我: /about-me
   # links:
   #     Download on GitHub:
   #         icon: fab fa-github
@@ -66,7 +66,7 @@ article:
   highlight:
     theme: atom-one-light
     clipboard: true
-    fold: folded
+    fold: unfolded
   readtime: true
   update_time: true
   licenses:
@@ -82,9 +82,22 @@ article:
 search:
   type: insight
   index_pages: true
-# comment:
-#     type: disqus
-#     shortname: ''
+comment:
+    type: gitalk
+    client_id: 74e4ce8e4ef6e3ce09fe
+    client_secret: 7a95150ac516ab0b3773f09b761a80cc3b6f9b36
+    repo: dadis-blog
+    owner: chenzd123456
+    admin:
+        - chenzd123456
+    per_page: 20                    # 可选填
+    distraction_free_mode: true    # 可选填
+    pager_direction: last           # 可选填
+    create_issue_manually: false    # 可选填
+    # proxy:                          # 可选填
+    # flip_move_options:              # 可选填
+    enable_hotkey: true             # 可选填
+    language: zh-CN                 # 可选填
 donates:
   # -
   #     type: afdian
@@ -108,7 +121,7 @@ donates:
 # install_url: ''
 sidebar:
   left:
-    sticky: false
+    sticky: true
   right:
     sticky: true
 widgets:
@@ -140,14 +153,10 @@ widgets:
   - position: left
     type: toc
     index: true
-    collapsed: true
-    depth: 3
-  - position: left
-    type: links
-    links:
-      大帝的网盘: "https://public.dadilive.top/"
-  - position: left
-    type: categories
+    collapsed: false
+    depth: 5
+  # - position: left
+  #   type: categories
   - position: left
     type: recent_posts
   - position: left
@@ -157,6 +166,10 @@ widgets:
     order_by: name
     amount:
     show_count: true
+  - position: left
+    type: links
+    links:
+      大帝的网盘: "https://public.dadilive.top/"
   # -
   #     position: left
   #     type: subscribe_email
@@ -174,7 +187,8 @@ widgets:
   #     action_url: ''
   #     verification_code: ''
 plugins:
-  animejs: true
+  animejs: false
+  progressbar: false
   back_to_top: true
   baidu_analytics:
     tracking_id:
@@ -196,15 +210,14 @@ plugins:
   hotjar:
     site_id:
   katex: false
-  mathjax: false
-  outdated_browser: false
-  progressbar: true
+  mathjax: true
+  outdated_browser: true
   statcounter:
     project:
     security:
   twitter_conversion_tracking:
     pixel_id:
 providers:
-  cdn: loli
-  fontcdn: loli
-  iconcdn: loli
+  cdn: jsdelivr
+  fontcdn: ustc
+  iconcdn: fontawesome

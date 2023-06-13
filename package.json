@@ -3,20 +3,28 @@
   "version": "0.0.0",
   "private": true,
   "hexo": {
-    "version": "5.4.0"
+    "version": "5.4.2"
   },
   "dependencies": {
     "hexo": "^5.3.0",
+    "hexo-asset-image": "git+https://github.com/chenzd123456/hexo-asset-image.git",
+    "hexo-clean-css": "^2.0.0",
     "hexo-generator-archive": "^1.0.0",
+    "hexo-generator-baidu-sitemap": "^0.1.9",
     "hexo-generator-category": "^1.0.0",
     "hexo-generator-index": "^2.0.0",
+    "hexo-generator-sitemap": "^3.0.1",
     "hexo-generator-tag": "^1.0.0",
+    "hexo-html-minifier": "^1.0.0",
+    "hexo-markmap": "^1.1.7",
+    "hexo-neat": "^1.0.9",
     "hexo-renderer-ejs": "^1.0.0",
     "hexo-renderer-inferno": "^0.1.3",
     "hexo-renderer-marked": "^3.3.0",
     "hexo-renderer-stylus": "^2.0.1",
     "hexo-server": "^2.0.0",
-    "hexo-theme-icarus": "^5.1.1"
+    "hexo-theme-icarus": "^5.1.1",
+    "hexo-uglify": "^2.0.0"
   },
   "scripts": {
     "dev": "hexo server -p $PORT",
@@ -25,6 +33,7 @@
     "draft": "hexo new draft $TITLE",
     "post": "hexo new post $TITLE",
     "publish": "hexo publish post $TITLE",
-    "page": "hexo new page $PAGE"
+    "page": "hexo new page $PAGE",
+    "clean": "hexo clean"
   }
 }
