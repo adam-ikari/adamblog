@@ -166,10 +166,10 @@ widgets:
     order_by: name
     amount:
     show_count: true
-  - position: left
-    type: links
-    links:
-      大帝的网盘: "https://public.dadilive.top/"
+  # - position: left
+  #   type: links
+  #   links:
+  #     大帝的网盘: "https://public.dadilive.top/"
   # -
   #     position: left
   #     type: subscribe_email
