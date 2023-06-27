@@ -1,5 +1,5 @@
 version: 5.1.0
-variant: cyberpunk
+variant: default
 logo:
   text: 大帝的博客
 head:
