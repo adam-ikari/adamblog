@@ -1,12 +1,12 @@
 version: 5.1.0
 variant: default
 logo:
-  text: 大帝的博客
+  text: 赛博哲学
 head:
   favicon: /img/favicon.svg
   manifest:
-    name: 大帝的博客
-    short_name: 大帝的博客
+    name: 赛博哲学
+    short_name: 赛博哲学
     start_url: https://blog.dadilive.top
     theme_color:
     background_color:
