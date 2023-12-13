@@ -33,7 +33,8 @@ cover: covers/新玩具M5STACK的CARDPUTER的折腾记录.jpg
 CardPuter 是 基于 esp32s3 的一款开发套件，有显示屏、键盘、麦克风、扬声器、实体键盘、红外发射器、TF 卡槽等外设，自带电池。
 
 <!-- more -->
-![cardputer info](%E6%96%B0%E7%8E%A9%E5%85%B7M5STACK%E7%9A%84CARDPUTER%E7%9A%84%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95(%E4%B8%80)_%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E7%AF%87/cardputer_info.jpg)
+
+![cardputer info](<%E6%96%B0%E7%8E%A9%E5%85%B7M5STACK%E7%9A%84CARDPUTER%E7%9A%84%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95(%E4%B8%80)_%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E7%AF%87/cardputer_info.jpg>)
 
 ## 搭建 CardPuter 开发环境
 
@@ -41,7 +42,7 @@ CardPuter 是 基于 esp32s3 的一款开发套件，有显示屏、键盘、麦
 
 ### 安装准备
 
-esp-idf 依赖以下软件包。请根据使用的 Linux 发行版本，选择合适的安装命令。
+esp-idf 依赖以下系统软件包。请根据使用的 Linux 发行版本，选择合适的安装命令。
 
 我是 ubuntu 系统，其他系统请参考官方文档
 
@@ -70,7 +71,7 @@ cd ~/esp/esp-idf
 git checkout v4.4.6
 ```
 
-### 设置 ESP 工具
+### 使用 esp-idf 工具安装器安装依赖包
 
 运行 `install.sh`
 
