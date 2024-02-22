@@ -219,5 +219,5 @@ plugins:
     pixel_id:
 providers:
   cdn: jsdelivr
-  fontcdn: ustc
+  fontcdn: loli
   iconcdn: fontawesome
