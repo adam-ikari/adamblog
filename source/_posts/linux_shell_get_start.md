@@ -1,21 +1,24 @@
 ---
-title: 入门 Linux 命令教程
+title: 入门 Linux 命令教程（一）
 keywords:
 description:
 date: 2024-02-22 00:18:00
 toc: true
 tags:
-  - linux
+  - Linux
+  - Termial 
+  - shell
 categories:
-  - linux
-  - tui
-  - termial
+  - Linux
+
 cover:
 ---
 
 ## 介绍
 
 Linux 是一种开源的操作系统，广泛应用于服务器和嵌入式设备。掌握基本的 Linux 命令对于使用和管理 Linux 系统至关重要。本教程将介绍一些常用的入门 Linux 命令，帮助您快速上手。
+
+<!-- more -->
 
 ## 常用命令
 
