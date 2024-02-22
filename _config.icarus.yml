@@ -218,6 +218,6 @@ plugins:
   twitter_conversion_tracking:
     pixel_id:
 providers:
-  cdn: jsdelivr
+  cdn: loli
   fontcdn: loli
-  iconcdn: fontawesome
+  iconcdn: loli
