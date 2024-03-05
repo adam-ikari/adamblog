@@ -1,12 +1,12 @@
 version: 5.1.0
 variant: default
 logo:
-  text: 大帝的博客
+  text: Adam的博客
 head:
   favicon: /img/favicon.svg
   manifest:
-    name: 大帝的博客
-    short_name: 大帝的博客
+    name: Adam的博客
+    short_name: Adam的博客
     start_url: https://blog.dadilive.top
     theme_color:
     background_color:
@@ -127,8 +127,8 @@ sidebar:
 widgets:
   - position: left
     type: profile
-    author: 大帝
-    author_title: 一个软件工程师
+    author: Adam
+    author_title: 一个摸鱼工程师
     # location: Your location
     avatar: /images/avataaars.svg
     avatar_rounded: true
@@ -169,7 +169,7 @@ widgets:
   # - position: left
   #   type: links
   #   links:
-  #     大帝的网盘: "https://public.dadilive.top/"
+  #     Adam的网盘: "https://public.dadilive.top/"
   # -
   #     position: left
   #     type: subscribe_email
