@@ -58,19 +58,18 @@ tags:
 | 国际版 2.0.1 | https://info.update.sony.net/PA001/NW-A300Series_0000/contents/0004/NW-A300Series_0000_V2_01_00_NW_WM_FW.UPG |
 | 国际版 2.0.2 | https://info.update.sony.net/PA001/NW-A300Series_0000/contents/0005/NW-A300Series_0000_V2_02_00_NW_WM_FW.UPG |
 
-> [!tip]
-> 取得固件下载地址方法
->
-> 直接从设备信息文件中获取最新固件地址和版本（以我手头的 A306 举例）
->
-> 国行：
->
-> ```shell
-> curl -s https://info.update.sony.net/PA001/NW-A300Series_0003/info/info.xml | grep "Distribution "
-> ```
->
-> 国际：
->
-> ```shell
-> curl -s https://info.update.sony.net/PA001/NW-A300Series_0000/info/info.xml | grep "Distribution "
-> ```
+### 取得固件下载地址方法
+
+直接从设备信息文件中获取最新固件地址和版本（以我手头的 NW-A306 举例）
+
+国行：
+
+```shell
+curl -s https://info.update.sony.net/PA001/NW-A300Series_0003/info/info.xml | grep "Distribution "
+```
+
+国际：
+
+```shell
+curl -s https://info.update.sony.net/PA001/NW-A300Series_0000/info/info.xml | grep "Distribution "
+```
