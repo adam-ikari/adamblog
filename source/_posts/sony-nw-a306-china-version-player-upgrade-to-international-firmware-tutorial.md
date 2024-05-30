@@ -3,7 +3,6 @@ title: 索尼NW-A306播放器国行版升级国际版固件教程
 toc: false
 categories:
   - HIFI
-date: 2024-04-28 17:00:00
 tags:
   - HIFI
   - NW-A306
@@ -13,6 +12,8 @@ tags:
   - Sony
   - 索尼
   - 谷歌服务
+abbrlink: f80c826
+date: 2024-04-28 17:00:00
 ---
 
 ## 升级国际版固件

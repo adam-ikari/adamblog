@@ -3,17 +3,16 @@ title: VSCode SSH 远程开发教程
 toc: true
 categories:
   - tools
-date: 2024-02-22 18:44:47
 keywords:
   - VSCode
   - SSH Remote
-
-description:
 tags:
   - Tools
   - VSCode
   - SSH Remote
-
+abbrlink: c9c2d418
+date: 2024-02-22 18:44:47
+description:
 cover:
 ---
 

@@ -9,7 +9,6 @@ keywords:
   - esp32系列
   - esp32s3
 description: 新玩具 M5Stack 的 CardPuter 的折腾记录(一) —— 开发环境搭建篇
-date: 2023-12-13 11:21:00
 toc: true
 tags:
   - 嵌入式
@@ -22,6 +21,8 @@ tags:
 categories:
   - 开发套件
 cover: covers/新玩具M5STACK的CARDPUTER的折腾记录.jpg
+abbrlink: 36b48fbf
+date: 2023-12-13 11:21:00
 ---
 
 ## 前言
