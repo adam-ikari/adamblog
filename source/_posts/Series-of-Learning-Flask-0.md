@@ -3,11 +3,12 @@ title: Flask 学习系列 (零)
 toc: true
 categories:
   - 后端
+cover: covers/Series-of-Learning-Flask.png
+abbrlink: 25eb9c8f
 date: 2023-08-13 17:21:57
 keywords:
 description:
 tags:
-cover: covers/Series-of-Learning-Flask.png
 ---
 
 ## 前言

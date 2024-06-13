@@ -3,7 +3,6 @@ title: Vuex介绍
 toc: false
 categories:
   - 前端
-date: 2023-05-11 10:11:59
 keywords: Vuex Vue Vue.js
 description: Vuex介绍
 tags:
@@ -11,6 +10,8 @@ tags:
   - Vuex
   - Vue
   - Vue.js
+abbrlink: '42373710'
+date: 2023-05-11 10:11:59
 cover:
 ---
 

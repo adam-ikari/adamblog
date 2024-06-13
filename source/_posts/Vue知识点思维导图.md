@@ -3,7 +3,6 @@ title: Vue知识点思维导图——如何更快学习Vue
 toc: true
 categories:
   - 前端开发
-date: 2023-05-11 10:45:07
 keywords: Vue思维导图，Vue知识点
 description: 总结了有关Vue.js的核心知识点的思维导图，可帮助您更快地学习Vue。
 tags:
@@ -11,6 +10,8 @@ tags:
   - 前端开发
   - Vue
   - Web开发
+abbrlink: a37082d2
+date: 2023-05-11 10:45:07
 cover:
 ---
 

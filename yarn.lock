@@ -1888,7 +1888,7 @@ encodeurl@~1.0.2:
   resolved "https://registry.npmmirror.com/encodeurl/-/encodeurl-1.0.2.tgz"
   integrity sha512-TPJXq8JqFaVYm2CWmPvnP2Iyo4ZSM7/QKcSmuMLDObfpH5fi7RUGmd/rTDf+rut/saiDiQEeVTNgAmJEdAOx0w==
 
-entities@^1.1.1, entities@~1.1.1:
+entities@^1.1.1, entities@^1.1.2, entities@~1.1.1:
   version "1.1.2"
   resolved "https://registry.npmmirror.com/entities/-/entities-1.1.2.tgz"
   integrity sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w==
@@ -2197,11 +2197,12 @@ hexo-abbrlink@^2.2.1:
     hexo-front-matter "^1.0.0"
     hexo-fs "^3.1.0"
 
-"hexo-asset-image@git+https://github.com/chenzd123456/hexo-asset-image.git":
-  version "0.0.3"
-  resolved "git+ssh://git@github.com/chenzd123456/hexo-asset-image.git#6c88c98214765112d148850a646ddca379fcdcfe"
+"hexo-asset-image@github:chenzd123456/hexo-asset-image-master":
+  version "1.0.0"
+  resolved "git+ssh://git@github.com/chenzd123456/hexo-asset-image-master.git#c1a70617e380aa413f282b343f7ac34dcdba5706"
   dependencies:
     cheerio "^0.19.0"
+    entities "^1.1.2"
 
 hexo-bunyan@^1.0.0:
   version "1.0.0"

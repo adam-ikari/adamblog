@@ -3,10 +3,11 @@ title: NonNull用法
 toc: false
 categories:
   - Java
-date: 2019-09-18 00:00:00
 tags:
   - Java
-  - Android 
+  - Android
+abbrlink: a4941a90
+date: 2019-09-18 00:00:00
 ---
 
 

@@ -3,10 +3,11 @@ title: Android媒体库更新问题
 toc: false
 categories:
   - Android
-date: 2019-09-21 00:00:00
 tags:
   - Android
   - MediaProvider
+abbrlink: dde550d4
+date: 2019-09-21 00:00:00
 ---
 
 > 这篇博文是从本人过去的 github pages 博客迁移过来，时间上会比较古老。
