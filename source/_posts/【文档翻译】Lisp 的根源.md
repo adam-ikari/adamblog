@@ -3,7 +3,6 @@ title: 【文档翻译】Lisp 的根源 - Lisp 编程语言的起源、进化与
 toc: true
 categories:
   - 文档翻译
-date: 2023-03-13 13:54:28
 keywords:
   - Lisp
   - Lisp 之根
@@ -11,13 +10,18 @@ keywords:
   - The Roots of Lisp
   - 文档翻译
   - 程序语言与编程哲学
-description: 本文介绍了 Lisp 编程语言的起源、核心思想以及其发展历程。原文作者 Paul Graham 向我们展现了Lisp如何通过简单的数据结构（列表）和基本函数来创造一种简洁而强大的编程语言。他还阐述了 Lisp 的宏、闭包和动态作用域等特性。本文将帮助读者深入理解 Lisp 这门编程语言的本质和魅力。
+description: >-
+  本文介绍了 Lisp 编程语言的起源、核心思想以及其发展历程。原文作者 Paul Graham
+  向我们展现了Lisp如何通过简单的数据结构（列表）和基本函数来创造一种简洁而强大的编程语言。他还阐述了 Lisp
+  的宏、闭包和动态作用域等特性。本文将帮助读者深入理解 Lisp 这门编程语言的本质和魅力。
 tags:
   - Lisp
   - Lisp 之根
   - Lisp 的根源
   - The Roots of Lisp
   - 文档翻译
+abbrlink: f47def09
+date: 2023-03-13 13:54:28
 cover:
 ---
 

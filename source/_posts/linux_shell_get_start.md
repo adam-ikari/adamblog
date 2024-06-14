@@ -1,16 +1,16 @@
 ---
 title: 入门 Linux 命令教程（一）
-keywords:
-description:
-date: 2024-02-22 00:18:00
 toc: true
 tags:
   - Linux
-  - Termial 
+  - Termial
   - shell
 categories:
   - Linux
-
+abbrlink: 41398a17
+date: 2024-02-22 00:18:00
+keywords:
+description:
 cover:
 ---
 

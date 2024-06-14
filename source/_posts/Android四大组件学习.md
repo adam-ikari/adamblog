@@ -3,9 +3,10 @@ title: Android四大组件学习
 toc: true
 categories:
   - Android
-date: 2019-09-19 00:00:00
 tags:
   - Android
+abbrlink: 4d768d4c
+date: 2019-09-19 00:00:00
 ---
 
 > 这篇博文是从本人过去的 github pages 博客迁移过来，时间上会比较古老。
