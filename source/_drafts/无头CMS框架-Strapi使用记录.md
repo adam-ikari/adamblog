@@ -3,7 +3,7 @@ title: 无头CMS框架-Strapi使用记录
 toc: false
 categories:
   - 还没有分类
-abbrlink: '222e2642'
+abbrlink: "222e2642"
 date: 2024-06-13 11:15:08
 keywords:
 description:
@@ -75,25 +75,29 @@ Strapi 使用 `1337` 作为默认端口。
 
 Strapi 支持 RESTful API 和 GraphQL API。
 
-#### 用户注册
+### 用户相关 API
+
+#### 注册
+
+注册一个新用户
 
 **RESTful：**
 
-HTTP 方法:
-
-`POST`
-
-路径:
+请求 URL:
 
 `/api/auth/local/register`
 
-请求体：
+请求方法:
 
-| 字段     | 类型   |
-| -------- | ------ |
-| username | string |
-| email    | string |
-| password | string |
+`POST`
+
+请求体参数：
+
+| 字段     | 类型   | 是否必须 |
+| -------- | ------ | -------- |
+| username | string | 是       |
+| email    | string | 是       |
+| password | string | 是       |
 
 例如
 
@@ -182,6 +186,8 @@ HTTP 方法:
   }
 }
 ```
+
+### 内容 API
 
 #### 创建内容
 
