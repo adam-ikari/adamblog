@@ -1,6 +1,6 @@
 ---
 title: 45个 GIT 经典操作场景，专治不会合代码
-toc: false
+toc: true
 categories:
   - 程序员软技能
 date: 2024-06-14 15:16:29
