@@ -6,7 +6,7 @@ categories:
 keywords: Vuex Vue Vue.js
 description: Vuex介绍
 tags:
-  - 前端开发
+  - 前端
   - Vuex
   - Vue
   - Vue.js
