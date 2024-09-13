@@ -3,18 +3,19 @@ title: Element Plus 全局注册图标并使用别名
 toc: false
 categories:
   - 前端
-date: 2024-09-05 12:03:12
 keywords:
   - Web
   - 前端
   - Element Plus
   - Vue3
-description:
 tags:
   - Web
   - 前端
   - Element Plus
   - Vue3
+abbrlink: 40ddb3a9
+date: 2024-09-05 12:03:12
+description:
 cover:
 ---
 
