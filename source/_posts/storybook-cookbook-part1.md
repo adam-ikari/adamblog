@@ -40,6 +40,8 @@ Storybook 不仅提供了独立的开发环境，丰富的插件生态和自动�
 
 ## 简介
 
+![Storybook Logo](storybook-cookbook-part1/storybook-logo.png)
+
 Storybook 是一个开源工具，用于开发和测试 UI 组件。它支持多种前端框架，包括 React、Vue 和 Angular 等。
 
 使用 Storybook 有很多好处：
