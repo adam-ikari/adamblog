@@ -32,6 +32,8 @@ description:
 
 在现代前端开发中，组件化开发已经成为主流，而如何高效地开发、测试和展示这些组件则是每个开发者都需要面对的挑战。项目中需要一款框架能够帮助开发者在独立环境中开发和测试组件，同时还能生成详细的文档，方便团队协作。经过一番研究和尝试，我发现了 Storybook 这款强大的工具。
 
+![Storybook Logo](storybook-cookbook-part1/storybook-logo.png)
+
 <!-- more -->
 
 Storybook 不仅提供了独立的开发环境，丰富的插件生态和自动化文档生成机制使我在开发过程中可以将精力完全集中于优化组件本身，而非应用的依赖关系和需求。
@@ -39,8 +41,6 @@ Storybook 不仅提供了独立的开发环境，丰富的插件生态和自动�
 我计划用三篇连载的教程来详细讲解——如何将 Storybook 集成到 Vue3 工程、如何在 Storybook 中使用 Vue3 插件、以及如何编写 Vue3 组件的 Story。
 
 ## 简介
-
-![Storybook Logo](storybook-cookbook-part1/storybook-logo.png)
 
 Storybook 是一个开源工具，用于开发和测试 UI 组件。它支持多种前端框架，包括 React、Vue 和 Angular 等。
 
