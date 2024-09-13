@@ -1,5 +1,5 @@
 ---
-title: Storybook 食用指南 Part 1 - vite + vue3 工程篇（上）
+title: Storybook 食用指南 Part 1 - Vue3 工程篇（上）
 toc: false
 categories:
   - 前端
@@ -26,13 +26,13 @@ description:
 
 ## 前言
 
-在现代前端开发中，组件化开发已经成为主流，而如何高效地开发、测试和展示这些组件则是每个开发者都需要面对的挑战。作为一名前端开发者，我一直在寻找一种工具，能够帮助我在独立环境中开发和测试组件，同时还能生成详细的文档，方便团队协作。经过一番研究和尝试，我发现了 Storybook 这款强大的工具。
+在现代前端开发中，组件化开发已经成为主流，而如何高效地开发、测试和展示这些组件则是每个开发者都需要面对的挑战。项目中需要一款框架能够帮助开发者在独立环境中开发和测试组件，同时还能生成详细的文档，方便团队协作。经过一番研究和尝试，我发现了 Storybook 这款强大的工具。
 
 <!-- more -->
 
-Storybook 不仅提供了一个独立的开发环境，还拥有丰富的插件支持和自动化文档生成功能。这些特性使得我在开发过程中能够更加专注于组件本身，而不必担心应用程序的依赖关系和需求。Storybook 直观的界面和强大的功能也大大提高了团队的协作效率。
+Storybook 不仅提供了独立的开发环境，丰富的插件生态和自动化文档生成机制使我在开发过程中可以将精力完全集中于优化组件本身，而非应用的依赖关系和需求。
 
-Vite + Vue3 的工程我预计会写上中下三篇教程(如何将 Storybook 集成到 Vite + Vue3 工程、 如何在 Storybook 使用工程中使用的 Vue3 插件、 如何编写 Vue3 组件的 Story)。
+我计划用三篇连载的教程来详细讲解——如何将 Storybook 集成到 Vue3 工程、如何在 Storybook 中使用 Vue3 插件、以及如何编写 Vue3 组件的 Story。
 
 ## 简介
 
@@ -48,9 +48,9 @@ Storybook 是一个开源工具，用于开发和测试 UI 组件。它支持多
 - **测试和调试**：你可以在 Storybook 中轻松地进行视觉测试和调试，确保组件在各种情况下都能正常工作。
 - **提高生产力**：通过在 Storybook 中开发和测试组件，你可以减少在实际应用中调试的时间，从而提高整体开发效率。
 
-## 如何将 Storybook 集成到 vite + vue3 工程
+## 如何将 Storybook 集成到 Vue3 工程
 
-### 步骤 1：创建 Vite + Vue 3 项目
+### 步骤 1：创建 Vue 3 项目
 
 首先，创建一个新的 Vite + Vue 3 项目。如果你已经有一个现有的项目，可以跳过这一步。
 
@@ -100,7 +100,7 @@ const config = {
 export default config;
 ```
 
-> 为了让本篇教程行文更流畅，本篇不会占用篇幅分析配置的内容。挖个坑在 Storybook 配置篇中详细分析。
+> 为了让本教程更连贯，我们将留到后续教程中详细分析配置内容。
 
 ### 步骤 4：创建组件 story 文件
 
@@ -110,7 +110,7 @@ export default config;
 
 在 src/stories 或者 src/stories 的子目录下创建一个文件，名字需要是 `xxxx.stories.js` ， 如果是 ts 工程那就叫`xxxx.stories.ts`。
 
-> 这里讲的是 Vue3 的工程，如果是 React 工程，名字可以是`xxxx.stories.jsx`或者 `xxxx.stories.ts`。
+> 本篇说明的是如何在 Vue3 的工程中集成 Storybook，如果是 React 工程，名字可以是`xxxx.stories.jsx`或者 `xxxx.stories.ts`。
 >
 > 关于 React 工程的 Storybook 用法，留到 React 篇再讲吧。
 
@@ -171,14 +171,14 @@ export const Second = {
 npm run storybook
 ```
 
-启动之后会看到如下 log。
-打开 log 中显示的 URL，通常是 `http://localhost:6006`。
-
-> 如果端口被占用，按下 y 会使用下一个可用端口
+看到如下 log 说明 Storybook 已经成功启动。
 
 ![storybook start log](storybook-cookbook-part1/storybook-start-log.png)
 
-在浏览器中会看到这样的画面：
+> 如果端口被占用，按下 y 会使用下一个可用端口
+
+运行成功后，会在本地启动一个服务： URL 通常是`http://localhost:6006`。
+使用浏览器打开 URL 中会看到这样的画面：
 
 ![alt text](storybook-cookbook-part1/storybook-view.png)
 
