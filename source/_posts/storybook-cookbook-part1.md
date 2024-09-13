@@ -77,8 +77,6 @@ npx storybook@latest init
 ```js
 // main.js
 
-/** @type { import('@storybook/vue3-vite').StorybookConfig } */
-
 const config = {
   stories: [
     "../src/stories/**/*.mdx",
