@@ -32,7 +32,7 @@ description:
 
 Storybook 不仅提供了一个独立的开发环境，还拥有丰富的插件支持和自动化文档生成功能。这些特性使得我在开发过程中能够更加专注于组件本身，而不必担心应用程序的依赖关系和需求。Storybook 直观的界面和强大的功能也大大提高了团队的协作效率。
 
-Vite + Vue3 的工程我预计会写上中下三篇教程(Storybook 集成到 Vite + Vue3 工程、 在 Storybook 使用工程中使用的 Vue3 插件、 如何编写 Vue3 组件的 Story)。
+Vite + Vue3 的工程我预计会写上中下三篇教程(如何将 Storybook 集成到 Vite + Vue3 工程、 如何在 Storybook 使用工程中使用的 Vue3 插件、 如何编写 Vue3 组件的 Story)。
 
 ## 简介
 
@@ -48,7 +48,7 @@ Storybook 是一个开源工具，用于开发和测试 UI 组件。它支持多
 - **测试和调试**：你可以在 Storybook 中轻松地进行视觉测试和调试，确保组件在各种情况下都能正常工作。
 - **提高生产力**：通过在 Storybook 中开发和测试组件，你可以减少在实际应用中调试的时间，从而提高整体开发效率。
 
-## Storybook 集成到 vite + vue3 工程
+## 如何将 Storybook 集成到 vite + vue3 工程
 
 ### 步骤 1：创建 Vite + Vue 3 项目
 
