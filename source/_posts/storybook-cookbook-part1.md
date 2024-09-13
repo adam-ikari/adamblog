@@ -1,14 +1,18 @@
 ---
-title: Storybook 食用指南 Part 1 - Vue3 系列（上篇）| 如何将 Storybook 集成到 Vue3 工程
+title: Storybook 食用指南 Part 1 - 如何将 Storybook 集成到 Vue3 工程
 toc: false
 categories:
   - 前端
 keywords:
   - Storybook
   - 前端
+  - Storybook 食用指南
+  - Storybook Vue3 工程系列(上篇)
 tags:
   - Storybook
   - 前端
+  - Storybook 食用指南
+  - Storybook Vue3 工程系列(上篇)
 cover:
 abbrlink: 903c5d2c
 date: 2024-09-09 13:36:27
