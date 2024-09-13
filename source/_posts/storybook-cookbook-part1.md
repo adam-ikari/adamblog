@@ -1,5 +1,5 @@
 ---
-title: Storybook 食用指南 Part 1 - Vue3 工程篇（上）
+title: Storybook 食用指南 Part 1 - Vue3 系列（上篇）| 如何将 Storybook 集成到 Vue3 工程
 toc: false
 categories:
   - 前端
