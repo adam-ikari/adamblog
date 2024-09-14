@@ -74,7 +74,7 @@ npm install
 npx storybook@latest init
 ```
 
-运行完这个命令，会在 Storybook 下添加很多
+运行完这个命令，会在工程下生成很多文件，我们接下来分析。
 
 ### 步骤 3：配置 Storybook
 
