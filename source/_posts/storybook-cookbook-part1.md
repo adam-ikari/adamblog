@@ -167,7 +167,7 @@ export const Second = {
 };
 ```
 
-### 启动 Storybook
+### 步骤 5：启动 Storybook
 
 在终端运行命令：
 
@@ -188,7 +188,7 @@ npm run storybook
 
 这就说明工程中已经成功集成了 Storybook。
 
-### 总结
+## 总结
 
 本篇教程说明了如何在一个 Vite + Vue3 的工程中集成 Storybook。
 
