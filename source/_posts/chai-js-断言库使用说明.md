@@ -42,7 +42,7 @@ true.should.be.true;
 assert(true, "True is true");
 ```
 
-Chai 的主要优点是其易于使用和灵活性。它支持插件，并且对多种环境有良好的兼容性，包括 Node.js, 浏览器, and 各种 JavaScript 构建工具（如 Browserify, Webpack）。
+Chai 的主要优点是其易于使用和灵活性。它支持插件，并且对多种环境有良好的兼容性，包括 Node.js, 浏览器, 和各种 JavaScript 构建工具（如 Browserify, Webpack）。
 
 通过使用不同类型的断言，你可以选择适合你测试风格的类型。对于更复杂的用例，Chai 提供了友好的错误消息，帮助你快速理解测试失败的原因。
 
