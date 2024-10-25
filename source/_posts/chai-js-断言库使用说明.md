@@ -1,5 +1,5 @@
 ---
-title: chai.js 断言库使用说明
+title: chai.js 断言库使用说明 (Expect 风格写法)
 toc: true
 categories:
   - 前端
