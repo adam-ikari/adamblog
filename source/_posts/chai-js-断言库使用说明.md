@@ -19,7 +19,7 @@ cover:
   [1] 这是注的内容
 -->
 
-## 1. 简介
+## 简介
 
 Chai.js 是一个非常流行的 JavaScript 断言库，主要用于配合如 Mocha, Jest 等测试框架编写用户端或服务端的 JavaScript 测试。它提供了 BDD（Behavior-Driven Development，行为驱动开发） 和 TDD（Test-Driven Development，测试驱动开发）两种样式的断言，即 `expect`，`should`, `assert` 三种。
 
@@ -45,11 +45,11 @@ Chai 的主要优点是其易于使用和灵活性。它支持插件，并且对
 
 通过使用不同类型的断言，你可以选择适合你测试风格的类型。对于更复杂的用例，Chai 提供了友好的错误消息，帮助你快速理解测试失败的原因。
 
-## 2. Expect 风格写法
+## Expect 风格写法
 
 以下指南介绍了如何使用 Expect 风格编写各种类型的断言。
 
-### 2.1. 引入 Expect
+### 引入 Expect
 
 在测试文件头部，使用 ES6 模块导入语法引入 Chai 库的 Expect 风格：
 
@@ -57,7 +57,7 @@ Chai 的主要优点是其易于使用和灵活性。它支持插件，并且对
 import { expect } from "chai";
 ```
 
-### 2.2. 等于
+### 等于
 
 检查两个值是否相等：
 
@@ -67,7 +67,7 @@ expect(42).to.equal(42);
 expect(1).to.not.equal(true);
 ```
 
-### 2.3. 深度相等
+### 深度相等
 
 如果你要检查两个对象或数组的值是否相同：
 
@@ -76,7 +76,7 @@ expect({ foo: "bar" }).to.deep.equal({ foo: "bar" });
 expect([1, 2, 3]).to.deep.equal([1, 2, 3]);
 ```
 
-### 2.4. 包含
+### 包含
 
 例子：检查数组是否包含某个元素或字符串包含一段字串：
 
@@ -85,7 +85,7 @@ expect([1, 2, 3]).to.include(2);
 expect("foobar").to.contain("foo");
 ```
 
-### 2.5. 大于、大于等于、小于、小于等于
+### 大于、大于等于、小于、小于等于
 
 ```javascript
 expect(10).to.be.above(5);
@@ -94,7 +94,7 @@ expect(10).to.be.below(20);
 expect(10).to.be.at.most(20);
 ```
 
-### 2.6. 判断属性是否存在
+### 判断属性是否存在
 
 检查对象中是否存在某个属性：
 
@@ -102,7 +102,7 @@ expect(10).to.be.at.most(20);
 expect({ a: 1 }).to.have.property("a");
 ```
 
-### 2.7. 包含键
+### 包含键
 
 假设你要检查一个对象是否包含一个或者多个键：
 
@@ -111,7 +111,7 @@ expect({ a: 1, b: 2, c: 3 }).to.include.keys("a", "b");
 expect({ x: 1, y: 2, z: 3 }).to.not.include.keys("p", "q");
 ```
 
-### 2.8. 类型
+### 类型
 
 检查值的类型：
 
@@ -122,7 +122,7 @@ expect(null).to.be.a("null");
 expect(undefined).to.be.a("undefined");
 ```
 
-### 2.9. 不为空
+### 不为空
 
 检查一个值是否为空
 
@@ -131,7 +131,7 @@ expect("Hello").to.not.be.empty;
 expect([]).to.be.empty;
 ```
 
-### 2.10. 类型和类型的属性
+### 类型和类型的属性
 
 希望类型是某个特定的结构的时候可以用`property`和`a`或`an`联合使用。
 
@@ -142,7 +142,7 @@ expect({ tea: { temperature: "hot", name: "chai" } })
   .that.is.a("string");
 ```
 
-### 2.11. 用'.throw'测试可能出错的函数
+### 用'.throw'测试可能出错的函数
 
 假设你测试一个可能抛出错误的函数，你可以使用 `throw` 结构：
 
@@ -157,14 +157,14 @@ expect(badFn).to.throw(TypeError);
 expect(badFn).to.throw(TypeError, "salmon");
 ```
 
-## 3. 其他
+## 其他
 
 这只是 Chai.js Expect 风格断言更多的用法教程，详细信息请参考 [Chai.js Expect API 文档](http://chaijs.com/api/bdd/)。
 
-## 4. 注
+## 注
 
 无
 
-## 5. 参考
+## 参考
 
 无
