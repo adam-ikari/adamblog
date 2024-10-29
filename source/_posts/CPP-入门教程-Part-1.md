@@ -2,7 +2,7 @@
 title: C++入门教程 Part 1
 toc: true
 categories:
-  - 还没有分类
+  - C++
 abbrlink: e663d694
 date: 2024-10-29 16:26:05
 keywords:

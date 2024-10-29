@@ -2,7 +2,8 @@
 title: CPP 入门教程 Part 2
 toc: true
 categories:
-  - 还没有分类
+  - C++
+abbrlink: 210bfae
 date: 2024-10-29 17:14:34
 keywords:
 description:
