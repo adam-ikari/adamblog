@@ -19,10 +19,6 @@ cover:
   [1] 这是注的内容
 -->
 
-## 前言
-
-<!-- more -->
-
 ## C++ 程序结构
 
 我们分析一下上一章的 Hello World 程序。
@@ -35,6 +31,8 @@ int main() {
     return 0;
 }
 ```
+
+<!-- more -->
 
 `#include <iostream>`: 这是一个预处理指令，用于包含标准输入输出流库`<iostream>`，允许我们使用`std::cout`来输出数据。
 
