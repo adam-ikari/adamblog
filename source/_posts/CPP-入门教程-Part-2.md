@@ -149,22 +149,24 @@ char letter1;
 
 下表列出了 C++ 中的保留字。这些保留字不能作为常量名、变量名或其他标识符名称。
 
-asm else new this
-auto enum operator throw
-bool explicit private true
-break export protected try
-case extern public typedef
-catch false register typeid
-char float reinterpret_cast typename
-class for return union
-const friend short unsigned
-const_cast goto signed using
-continue if sizeof virtual
-default inline static void
-delete int static_cast volatile
-do long struct wchar_t
-double mutable switch while
-dynamic_cast namespace template
+| 关键字       |           |                  |          |
+| ------------ | --------- | ---------------- | -------- |
+| asm          | else      | new              | this     |
+| auto         | enum      | operator         | throw    |
+| bool         | explicit  | private          | true     |
+| break        | export    | protected        | try      |
+| case         | extern    | public           | typedef  |
+| catch        | false     | register         | typeid   |
+| char         | float     | reinterpret_cast | typename |
+| class        | for       | return           | union    |
+| const        | friend    | short            | unsigned |
+| const_cast   | goto      | signed           | using    |
+| continue     | if        | sizeof           | virtual  |
+| default      | inline    | static           | void     |
+| delete       | int       | static_cast      | volatile |
+| do           | long      | struct           | wchar_t  |
+| double       | mutable   | switch           | while    |
+| dynamic_cast | namespace | template         |          |
 
 ### 空格
 
