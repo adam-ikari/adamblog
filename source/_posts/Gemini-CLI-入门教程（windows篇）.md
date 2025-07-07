@@ -54,6 +54,31 @@ Gemini CLI 是一个 Node.js 包，因此需要先安装 Node.js 环境。
 
     如果您能看到版本号输出（例如 `v20.11.0` 和 `10.2.4`），则说明安装成功。
 
+4.  **修改 npm 源（大陆使用者需要本步骤）**
+
+因为网络原因，为了更顺利的安装 Gemini CLI,需要修改 npm 源。
+
+这里推荐使用 chsrc 工具
+
+4.1. **安装 chsrc**
+
+在终端接着输入下面的命令安装 chsrc 工具
+
+```powershell
+winget install RubyMetric.chsrc
+```
+
+等待数分钟后提示安装成功。
+接着可以输入命令
+
+```powershell
+chsrc set npm
+```
+
+出现下面的画面说明 npm 换源成功了
+
+![alt text](Gemini-CLI-入门教程（windows篇）/chsrc.png)
+
 ## 2. 安装 Gemini CLI
 
 环境准备完成您可以通过 npm 全局安装 Gemini CLI。
@@ -128,7 +153,7 @@ gemini
 
 例如：查询北京未来十五天的天气写入 markdown 文件。
 
-此时 Gemini CLI 会使用搜索引擎查询天气，然后讲结果写入文件。
+此时 Gemini CLI 会使用搜索引擎查询天气，然后将查询结果写入文件。
 
 ![alt text](Gemini-CLI-入门教程（windows篇）/gemini-cli_example1.png)
 
