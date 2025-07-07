@@ -1,6 +1,41 @@
-# Gemini CLI 教程（Windows 篇）
+---
+title: Gemini CLI 入门教程（Windows 篇）
+toc: false
+categories:
+  - AI
+tags:
+  - Gemini CLI
+  - Gemini
+  - AI
+abbrlink: 58cdf05b
+date: "2025-07-07 12:16"
+keywords:
+description:
+cover:
+---
 
 本教程将指导您如何在 Windows 操作系统上安装和使用 Google Gemini CLI。Gemini CLI 是一个命令行工具，可让您直接在终端中与 Gemini 模型进行交互。
+
+<!-- more -->
+
+## 目录
+
+- [目录](#目录)
+- [1. 环境准备](#1-环境准备)
+  - [安装 Node.js](#安装-nodejs)
+- [2. 安装 Gemini CLI](#2-安装-gemini-cli)
+- [3. 登录与授权](#3-登录与授权)
+  - [方式一：使用 Google 账号登录（推荐）](#方式一使用-google-账号登录推荐)
+  - [方式二：使用 API 密钥](#方式二使用-api-密钥)
+- [4. 基本使用](#4-基本使用)
+  - [基础文本交互](#基础文本交互)
+  - [结合文件内容进行交互](#结合文件内容进行交互)
+- [5. 进阶使用技巧](#5-进阶使用技巧)
+  - [对话模式（聊天）](#对话模式聊天)
+  - [流式输出](#流式输出)
+  - [结合管道 (Piping) 使用](#结合管道-piping-使用)
+  - [分析图片内容 (Vision)](#分析图片内容-vision)
+- [6. 切换模型](#6-切换模型)
 
 ## 1. 环境准备
 
@@ -133,7 +168,7 @@ gemini chat -f "path/to/your/file.txt"
 
 ### 流式输出
 
-默认情况下，Gemini 会在完全生成好答案后一次性输出。对于耗时较长的请求，您可以开启流式输出，让答案像打字机一��逐字显示。
+默认情况下，Gemini 会在完全生成好答案后一次性输出。对于耗时较长的请求，您可以开启流式输出，让答案像打字机一 �� 逐字显示。
 
 使用 `--stream` 参数即可：
 
@@ -177,7 +212,7 @@ gemini prompt "图片里的这个地标叫什么名字？它有什么历史背�
 
 ## 6. 切换模型
 
-Gemini CLI 默认使用 `gemini-1.5-flash` 模型。如果您想使用其它模型（���如 `gemini-pro`），可以使用 `--model` 参数进行切换。
+Gemini CLI 默认使用 `gemini-1.5-flash` 模型。如果您想使用其它模型（如 `gemini-pro`），可以使用 `--model` 参数进行切换。
 
 ```bash
 gemini prompt "用 gemini-pro 模型回答这个问题" --model gemini-pro

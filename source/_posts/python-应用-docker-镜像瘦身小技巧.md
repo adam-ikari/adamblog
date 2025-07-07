@@ -3,6 +3,7 @@ title: python 应用 docker 镜像瘦身小技巧
 toc: false
 categories:
   - 还没有分类
+abbrlink: 170c469f
 date: 2025-03-05 17:03:47
 keywords:
 description:

@@ -3,14 +3,15 @@ title: NAT测试工具
 toc: false
 categories:
   - 开源项目
-date: 2025-04-14 20:34:44
-keywords: NAT, STUN, Python, GUI
+keywords: 'NAT, STUN, Python, GUI'
 description: pystun3-gui是一个基于Python的NAT类型检测工具，提供图形界面，方便用户快速检测网络NAT类型。
 tags:
   - Python
   - 网络工具
   - 开源项目
-cover: 
+abbrlink: 1f3fcd90
+date: 2025-04-14 20:34:44
+cover:
 ---
 
 ## 前言
