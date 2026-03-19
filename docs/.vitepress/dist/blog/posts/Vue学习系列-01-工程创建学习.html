@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Vue学习系列：01 工程创建学习 | Adam的博客</title>
+    <meta name="description" content="本博客主要作用是记录自己折(muo)腾(yu)的各种技术，以上！">
+    <meta name="generator" content="VitePress v1.6.4">
+    <link rel="preload stylesheet" href="/assets/style.TK5tuJ9a.css" as="style">
+    <link rel="preload stylesheet" href="/vp-icons.css" as="style">
+    
+    <script type="module" src="/assets/app.CH0Sl_ET.js"></script>
+    <link rel="preload" href="/assets/inter-roman-latin.Di8DUHzh.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="modulepreload" href="/assets/chunks/theme.B6Mh9uhK.js">
+    <link rel="modulepreload" href="/assets/chunks/framework.SW4JcFcZ.js">
+    <link rel="modulepreload" href="/assets/blog_posts_Vue学习系列-01-工程创建学习.md.qows14R-.lean.js">
+    <script id="check-dark-mode">(()=>{const e=localStorage.getItem("vitepress-theme-appearance")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();</script>
+    <script id="check-mac-os">document.documentElement.classList.toggle("mac",/Mac|iPhone|iPod|iPad/i.test(navigator.platform));</script>
+  </head>
+  <body>
+    <div id="app"><div class="Layout" data-v-5d98c3a5><!--[--><!--]--><!--[--><span tabindex="-1" data-v-0b0ada53></span><a href="#VPContent" class="VPSkipLink visually-hidden" data-v-0b0ada53>Skip to content</a><!--]--><!----><header class="VPNav" data-v-5d98c3a5 data-v-ae24b3ad><div class="VPNavBar" data-v-ae24b3ad data-v-6aa21345><div class="wrapper" data-v-6aa21345><div class="container" data-v-6aa21345><div class="title" data-v-6aa21345><div class="VPNavBarTitle" data-v-6aa21345 data-v-1168a8e4><a class="title" href="/" data-v-1168a8e4><!--[--><!--]--><!----><span data-v-1168a8e4>Adam的博客</span><!--[--><!--]--></a></div></div><div class="content" data-v-6aa21345><div class="content-body" data-v-6aa21345><!--[--><!--]--><div class="VPNavBarSearch search" data-v-6aa21345><!----></div><!----><!----><div class="VPNavBarAppearance appearance" data-v-6aa21345 data-v-6c893767><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-6c893767 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div><!----><div class="VPFlyout VPNavBarExtra extra" data-v-6aa21345 data-v-bb2aa2f0 data-v-cf11d7a2><button type="button" class="button" aria-haspopup="true" aria-expanded="false" aria-label="extra navigation" data-v-cf11d7a2><span class="vpi-more-horizontal icon" data-v-cf11d7a2></span></button><div class="menu" data-v-cf11d7a2><div class="VPMenu" data-v-cf11d7a2 data-v-b98bc113><!----><!--[--><!--[--><!----><div class="group" data-v-bb2aa2f0><div class="item appearance" data-v-bb2aa2f0><p class="label" data-v-bb2aa2f0>Appearance</p><div class="appearance-action" data-v-bb2aa2f0><button class="VPSwitch VPSwitchAppearance" type="button" role="switch" title aria-checked="false" data-v-bb2aa2f0 data-v-5337faa4 data-v-1d5665e3><span class="check" data-v-1d5665e3><span class="icon" data-v-1d5665e3><!--[--><span class="vpi-sun sun" data-v-5337faa4></span><span class="vpi-moon moon" data-v-5337faa4></span><!--]--></span></span></button></div></div></div><!----><!--]--><!--]--></div></div></div><!--[--><!--]--><button type="button" class="VPNavBarHamburger hamburger" aria-label="mobile navigation" aria-expanded="false" aria-controls="VPNavScreen" data-v-6aa21345 data-v-e5dd9c1c><span class="container" data-v-e5dd9c1c><span class="top" data-v-e5dd9c1c></span><span class="middle" data-v-e5dd9c1c></span><span class="bottom" data-v-e5dd9c1c></span></span></button></div></div></div></div><div class="divider" data-v-6aa21345><div class="divider-line" data-v-6aa21345></div></div></div><!----></header><div class="VPLocalNav empty fixed" data-v-5d98c3a5 data-v-a6f0e41e><div class="container" data-v-a6f0e41e><!----><div class="VPLocalNavOutlineDropdown" style="--vp-vh:0px;" data-v-a6f0e41e data-v-8a42e2b4><button data-v-8a42e2b4>Return to top</button><!----></div></div></div><!----><div class="VPContent" id="VPContent" data-v-5d98c3a5 data-v-1428d186><div class="VPDoc has-aside" data-v-1428d186 data-v-39a288b8><!--[--><!--]--><div class="container" data-v-39a288b8><div class="aside" data-v-39a288b8><div class="aside-curtain" data-v-39a288b8></div><div class="aside-container" data-v-39a288b8><div class="aside-content" data-v-39a288b8><div class="VPDocAside" data-v-39a288b8 data-v-3f215769><!--[--><!--]--><!--[--><!--]--><nav aria-labelledby="doc-outline-aria-label" class="VPDocAsideOutline" data-v-3f215769 data-v-a5bbad30><div class="content" data-v-a5bbad30><div class="outline-marker" data-v-a5bbad30></div><div aria-level="2" class="outline-title" id="doc-outline-aria-label" role="heading" data-v-a5bbad30>On this page</div><ul class="VPDocOutlineItem root" data-v-a5bbad30 data-v-b933a997><!--[--><!--]--></ul></div></nav><!--[--><!--]--><div class="spacer" data-v-3f215769></div><!--[--><!--]--><!----><!--[--><!--]--><!--[--><!--]--></div></div></div></div><div class="content" data-v-39a288b8><div class="content-container" data-v-39a288b8><!--[--><!--]--><main class="main" data-v-39a288b8><div style="position:relative;" class="vp-doc _blog_posts_Vue%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97-01-%E5%B7%A5%E7%A8%8B%E5%88%9B%E5%BB%BA%E5%AD%A6%E4%B9%A0" data-v-39a288b8><div><p>=&gt; <a href="/tags/Vue学习系列/"><strong>《Vue学习系列》</strong></a></p><h2 id="前言" tabindex="-1">前言 <a class="header-anchor" href="#前言" aria-label="Permalink to &quot;前言&quot;">​</a></h2><p>开始 Vue 的学习。后面会陆续的更新一些学习 Vue 过程中的理解和记录。</p><p>接下来的 Vue 工程创建参考了官网的文档:<a href="https://cn.vuejs.org/guide/quick-start.html" target="_blank" rel="noreferrer">《快速上手 | Vue.js 》</a></p><h2 id="阅读方法" tabindex="-1">阅读方法 <a class="header-anchor" href="#阅读方法" aria-label="Permalink to &quot;阅读方法&quot;">​</a></h2><blockquote><p>这样在引用块中的文字表示引用官网文档的内容</p></blockquote><h2 id="创建-vue-工程" tabindex="-1">创建 Vue 工程 <a class="header-anchor" href="#创建-vue-工程" aria-label="Permalink to &quot;创建 Vue 工程&quot;">​</a></h2><blockquote><p>创建的项目将使用基于 Vite 的构建设置，并允许我们使用 Vue 的单文件组件 (SFC)。 确保你安装了最新版本的 Node.js，然后在命令行中运行以下命令 (不要带上 &gt; 符号)：</p></blockquote><p>我用的 node.js 版本是 18，运行下面的命令将使用 vite 创建的是 vue3 的工程。</p><div class="language-shell"><button title="Copy Code" class="copy"></button><span class="lang">shell</span><pre class="shiki github-light vp-code" tabindex="0"><code><span class="line"><span style="color:#6F42C1;">npm</span><span style="color:#032F62;"> init</span><span style="color:#032F62;"> Vue@latest</span></span></code></pre></div><blockquote><p>这一指令将会安装并执行 create-vue，它是 Vue 官方的项目脚手架工具。你将会看到一些诸如 TypeScript 和测试支持之类的可选功能提示：</p><div class="language-shell"><button title="Copy Code" class="copy"></button><span class="lang">shell</span><pre class="shiki github-light vp-code" tabindex="0"><code><span class="line"><span style="color:#6F42C1;">✔</span><span style="color:#032F62;"> Project</span><span style="color:#032F62;"> name:</span><span style="color:#032F62;"> …</span><span style="color:#D73A49;"> &lt;</span><span style="color:#032F62;">your-project-nam</span><span style="color:#24292E;">e</span><span style="color:#D73A49;">&gt;</span></span>
+<span class="line"><span style="color:#6F42C1;">✔</span><span style="color:#032F62;"> Add</span><span style="color:#032F62;"> TypeScript?</span><span style="color:#032F62;"> …</span><span style="color:#032F62;"> No</span><span style="color:#032F62;"> /</span><span style="color:#032F62;"> Yes</span></span>
+<span class="line"><span style="color:#6F42C1;">✔</span><span style="color:#032F62;"> Add</span><span style="color:#032F62;"> JSX</span><span style="color:#032F62;"> Support?</span><span style="color:#032F62;"> …</span><span style="color:#032F62;"> No</span><span style="color:#032F62;"> /</span><span style="color:#032F62;"> Yes</span></span>
+<span class="line"><span style="color:#6F42C1;">✔</span><span style="color:#032F62;"> Add</span><span style="color:#032F62;"> Vue</span><span style="color:#032F62;"> Router</span><span style="color:#032F62;"> for</span><span style="color:#032F62;"> Single</span><span style="color:#032F62;"> Page</span><span style="color:#032F62;"> Application</span><span style="color:#032F62;"> development?</span><span style="color:#032F62;"> …</span><span style="color:#032F62;"> No</span><span style="color:#032F62;"> /</span><span style="color:#032F62;"> Yes</span></span>
+<span class="line"><span style="color:#6F42C1;">✔</span><span style="color:#032F62;"> Add</span><span style="color:#032F62;"> Pinia</span><span style="color:#032F62;"> for</span><span style="color:#032F62;"> state</span><span style="color:#032F62;"> management?</span><span style="color:#032F62;"> …</span><span style="color:#032F62;"> No</span><span style="color:#032F62;"> /</span><span style="color:#032F62;"> Yes</span></span>
+<span class="line"><span style="color:#6F42C1;">✔</span><span style="color:#032F62;"> Add</span><span style="color:#032F62;"> Vitest</span><span style="color:#032F62;"> for</span><span style="color:#032F62;"> Unit</span><span style="color:#032F62;"> testing?</span><span style="color:#032F62;"> …</span><span style="color:#032F62;"> No</span><span style="color:#032F62;"> /</span><span style="color:#032F62;"> Yes</span></span>
+<span class="line"><span style="color:#6F42C1;">✔</span><span style="color:#032F62;"> Add</span><span style="color:#032F62;"> Cypress</span><span style="color:#032F62;"> for</span><span style="color:#032F62;"> both</span><span style="color:#032F62;"> Unit</span><span style="color:#032F62;"> and</span><span style="color:#032F62;"> End-to-End</span><span style="color:#032F62;"> testing?</span><span style="color:#032F62;"> …</span><span style="color:#032F62;"> No</span><span style="color:#032F62;"> /</span><span style="color:#032F62;"> Yes</span></span>
+<span class="line"><span style="color:#6F42C1;">✔</span><span style="color:#032F62;"> Add</span><span style="color:#032F62;"> ESLint</span><span style="color:#032F62;"> for</span><span style="color:#032F62;"> code</span><span style="color:#032F62;"> quality?</span><span style="color:#032F62;"> …</span><span style="color:#032F62;"> No</span><span style="color:#032F62;"> /</span><span style="color:#032F62;"> Yes</span></span>
+<span class="line"><span style="color:#6F42C1;">✔</span><span style="color:#032F62;"> Add</span><span style="color:#032F62;"> Prettier</span><span style="color:#032F62;"> for</span><span style="color:#032F62;"> code</span><span style="color:#032F62;"> formatting?</span><span style="color:#032F62;"> …</span><span style="color:#032F62;"> No</span><span style="color:#032F62;"> /</span><span style="color:#032F62;"> Yes</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6F42C1;">Scaffolding</span><span style="color:#032F62;"> project</span><span style="color:#032F62;"> in</span><span style="color:#032F62;"> ./</span><span style="color:#D73A49;">&lt;</span><span style="color:#032F62;">your-project-nam</span><span style="color:#24292E;">e</span><span style="color:#D73A49;">&gt;</span><span style="color:#032F62;">...</span></span>
+<span class="line"><span style="color:#6F42C1;">Done.</span></span></code></pre></div><p>如果不确定是否要开启某个功能，你可以直接按下回车键选择 No。</p></blockquote><p>具体的选项：</p><pre><code>✔ Add TypeScript? … No / Yes
+
+集成 TypeScript 支持
+
+✔ Add JSX Support? … No / Yes
+
+集成 JSX 支持
+
+✔ Add Vue Router for Single Page Application development? … No / Yes
+
+集成 Vue Router
+
+✔ Add Pinia for state management? … No / Yes
+
+集成 Pinia（Pinia 是 vue3 推荐使用的一个状态管理插件，替代了以前的 vuex）
+
+✔ Add Vitest for Unit Testing? … No / Yes
+
+集成 Vitest 用于单元测试
+
+✔ Add an End-to-End Testing Solution? › No
+
+集成一个端到端的测试解决方案。
+
+✔ Add ESLint for code quality? … No / Yes
+
+集成 ESLint 代码质量检查
+</code></pre><p><img src="/assets/%E5%88%9B%E5%BB%BAVue%E5%B7%A5%E7%A8%8B%E8%BF%87%E7%A8%8B.fWsqjYGQ.jpg" alt="创建 Vue 工程的过程"></p><p>我创建的时候选择了集成 Vue Router、Pinia、Vitest、eslint 和 Prettier。</p><h2 id="分析一下创建的-vue-工程" tabindex="-1">分析一下创建的 Vue 工程 <a class="header-anchor" href="#分析一下创建的-vue-工程" aria-label="Permalink to &quot;分析一下创建的 Vue 工程&quot;">​</a></h2><p>先看看工程的目录结构。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki github-light vp-code" tabindex="0"><code><span class="line"><span>├── README.md</span></span>
+<span class="line"><span>├── index.html</span></span>
+<span class="line"><span>├── package.json</span></span>
+<span class="line"><span>├── public</span></span>
+<span class="line"><span>│   └── favicon.ico</span></span>
+<span class="line"><span>├── src</span></span>
+<span class="line"><span>│   ├── App.Vue</span></span>
+<span class="line"><span>│   ├── assets</span></span>
+<span class="line"><span>│   │   ├── base.css</span></span>
+<span class="line"><span>│   │   ├── logo.svg</span></span>
+<span class="line"><span>│   │   └── main.css</span></span>
+<span class="line"><span>│   ├── components</span></span>
+<span class="line"><span>│   │   ├── HelloWorld.Vue</span></span>
+<span class="line"><span>│   │   ├── TheWelcome.Vue</span></span>
+<span class="line"><span>│   │   ├── WelcomeItem.Vue</span></span>
+<span class="line"><span>│   │   ├── __tests__</span></span>
+<span class="line"><span>│   │   │   └── HelloWorld.spec.js</span></span>
+<span class="line"><span>│   │   └── icons</span></span>
+<span class="line"><span>│   │       ├── IconCommunity.Vue</span></span>
+<span class="line"><span>│   │       ├── IconDocumentation.Vue</span></span>
+<span class="line"><span>│   │       ├── IconEcosystem.Vue</span></span>
+<span class="line"><span>│   │       ├── IconSupport.Vue</span></span>
+<span class="line"><span>│   │       └── IconTooling.Vue</span></span>
+<span class="line"><span>│   ├── main.js</span></span>
+<span class="line"><span>│   ├── router</span></span>
+<span class="line"><span>│   │   └── index.js</span></span>
+<span class="line"><span>│   ├── stores</span></span>
+<span class="line"><span>│   │   └── counter.js</span></span>
+<span class="line"><span>│   └── views</span></span>
+<span class="line"><span>│       ├── AboutView.Vue</span></span>
+<span class="line"><span>│       └── HomeView.Vue</span></span>
+<span class="line"><span>└── vite.config.js</span></span></code></pre></div><h3 id="package-json-文件" tabindex="-1">package.json 文件 <a class="header-anchor" href="#package-json-文件" aria-label="Permalink to &quot;package.json 文件&quot;">​</a></h3><p>分析一下 package.json 文件的内容</p><div class="language-json"><button title="Copy Code" class="copy"></button><span class="lang">json</span><pre class="shiki github-light vp-code" tabindex="0"><code><span class="line"><span style="color:#24292E;">{</span></span>
+<span class="line"><span style="color:#6A737D;">  // ...</span></span>
+<span class="line"><span style="color:#005CC5;">  &quot;dependencies&quot;</span><span style="color:#24292E;">: {</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;pinia&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;^2.0.28&quot;</span><span style="color:#24292E;">,</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;Vue&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;^3.2.45&quot;</span><span style="color:#24292E;">,</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;Vue-router&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;^4.1.6&quot;</span></span>
+<span class="line"><span style="color:#24292E;">  },</span></span>
+<span class="line"><span style="color:#6A737D;">  // ...</span></span>
+<span class="line"><span style="color:#005CC5;">  &quot;devDependencies&quot;</span><span style="color:#24292E;">: {</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;@rushstack/eslint-patch&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;^1.1.4&quot;</span><span style="color:#24292E;">,</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;@vitejs/plugin-Vue&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;^4.0.0&quot;</span><span style="color:#24292E;">,</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;@Vue/eslint-config-prettier&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;^7.0.0&quot;</span><span style="color:#24292E;">,</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;@Vue/test-utils&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;^2.2.6&quot;</span><span style="color:#24292E;">,</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;eslint&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;^8.22.0&quot;</span><span style="color:#24292E;">,</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;eslint-plugin-Vue&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;^9.3.0&quot;</span><span style="color:#24292E;">,</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;jsdom&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;^20.0.3&quot;</span><span style="color:#24292E;">,</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;prettier&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;^2.7.1&quot;</span><span style="color:#24292E;">,</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;vite&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;^4.0.0&quot;</span><span style="color:#24292E;">,</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;vitest&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;^0.25.6&quot;</span></span>
+<span class="line"><span style="color:#24292E;">  }</span></span>
+<span class="line"><span style="color:#6A737D;">  // ...</span></span>
+<span class="line"><span style="color:#24292E;">}</span></span></code></pre></div><p>可以看到工程依赖了 pinia2、vue3 和 Vue-router4。pinia2 和 Vue-router4 以后再专门学习。</p><p>工程的开发依赖主要是 vite、eslint 、prettier 和 vitest。</p><p>分析一下脚本。</p><div class="language-json"><button title="Copy Code" class="copy"></button><span class="lang">json</span><pre class="shiki github-light vp-code" tabindex="0"><code><span class="line"><span style="color:#24292E;">{</span></span>
+<span class="line"><span style="color:#6A737D;">  // ...</span></span>
+<span class="line"><span style="color:#005CC5;">  &quot;scripts&quot;</span><span style="color:#24292E;">: {</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;dev&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;vite&quot;</span><span style="color:#24292E;">, </span><span style="color:#6A737D;">// &lt;= 启动开发服务，做到所见即所得</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;build&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;vite build&quot;</span><span style="color:#24292E;">, </span><span style="color:#6A737D;">// &lt;= 构建工程，构建后的结果输出到工程的 ./dist 目录下</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;preview&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;vite preview&quot;</span><span style="color:#24292E;">, </span><span style="color:#6A737D;">// &lt;= 预览构建到 ./dist 目录下的页面的效果，就不需要另外准备一个 http 服务了</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;test:unit&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;vitest --environment jsdom --root src/&quot;</span><span style="color:#24292E;">, </span><span style="color:#6A737D;">// &lt;= 运行单体测试</span></span>
+<span class="line"><span style="color:#005CC5;">    &quot;lint&quot;</span><span style="color:#24292E;">: </span><span style="color:#032F62;">&quot;eslint . --ext .Vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore&quot;</span><span style="color:#6A737D;"> // &lt;= 运行代码检查</span></span>
+<span class="line"><span style="color:#24292E;">  }</span></span>
+<span class="line"><span style="color:#6A737D;">  // ...</span></span>
+<span class="line"><span style="color:#24292E;">}</span></span></code></pre></div><h3 id="public-文件夹" tabindex="-1">public 文件夹 <a class="header-anchor" href="#public-文件夹" aria-label="Permalink to &quot;public 文件夹&quot;">​</a></h3><p>这个文件夹下的内容会拷贝到生成的./dist/public 文件夹下，适合放一些静态文件和传统的 html 文件中 script 标签导入的 js 文件。</p><h3 id="src-文件夹" tabindex="-1">src 文件夹 <a class="header-anchor" href="#src-文件夹" aria-label="Permalink to &quot;src 文件夹&quot;">​</a></h3><p>src 文件夹放 Vue 工程的源码，包括 Vue 组件，图片资源，需要打包到一起的 js 代码和 css 样式。</p><div class="language-"><button title="Copy Code" class="copy"></button><span class="lang"></span><pre class="shiki github-light vp-code" tabindex="0"><code><span class="line"><span>─ src</span></span>
+<span class="line"><span>  ├── App.Vue</span></span>
+<span class="line"><span>  ├── assets  &lt;= 放 css、svg 、图片等要使用 vite 打包的资源</span></span>
+<span class="line"><span>  │   ├── base.css</span></span>
+<span class="line"><span>  │   ├── logo.svg</span></span>
+<span class="line"><span>  │   └── main.css</span></span>
+<span class="line"><span>  ├── components  &lt;= 放 Vue 组件</span></span>
+<span class="line"><span>  │   ├── HelloWorld.Vue</span></span>
+<span class="line"><span>  │   ├── TheWelcome.Vue</span></span>
+<span class="line"><span>  │   ├── WelcomeItem.Vue</span></span>
+<span class="line"><span>  │   ├── __tests__  &lt;= 放 Vue 组件的单体测试代码</span></span>
+<span class="line"><span>  │   │   └── HelloWorld.spec.js</span></span>
+<span class="line"><span>  │   └── icons</span></span>
+<span class="line"><span>  │       ├── IconCommunity.Vue</span></span>
+<span class="line"><span>  │       ├── IconDocumentation.v</span></span>
+<span class="line"><span>  │       ├── IconEcosystem.Vue</span></span>
+<span class="line"><span>  │       ├── IconSupport.Vue</span></span>
+<span class="line"><span>  │       └── IconTooling.Vue</span></span>
+<span class="line"><span>  ├── main.js &lt;= Vue 工程入口js文件</span></span>
+<span class="line"><span>  ├── router &lt;= 放路由的配置文件</span></span>
+<span class="line"><span>  │   └── index.js</span></span>
+<span class="line"><span>  ├── stores &lt;= 放 Vue store 的文件, 相当于 mvvm 模型中的 model。</span></span>
+<span class="line"><span>  │   └── counter.js</span></span>
+<span class="line"><span>  └── views &lt;= 放路由的页面</span></span>
+<span class="line"><span>      ├── AboutView.Vue</span></span>
+<span class="line"><span>      └── HomeView.Vue</span></span></code></pre></div><h2 id="安装工程依赖" tabindex="-1">安装工程依赖 <a class="header-anchor" href="#安装工程依赖" aria-label="Permalink to &quot;安装工程依赖&quot;">​</a></h2><p>在项目被创建后，通过以下步骤安装依赖</p><div class="language-shell"><button title="Copy Code" class="copy"></button><span class="lang">shell</span><pre class="shiki github-light vp-code" tabindex="0"><code><span class="line"><span style="color:#005CC5;">cd</span><span style="color:#D73A49;"> &lt;</span><span style="color:#032F62;">your-project-nam</span><span style="color:#24292E;">e</span><span style="color:#D73A49;">&gt;</span></span>
+<span class="line"><span style="color:#6F42C1;">npm</span><span style="color:#032F62;"> install</span></span></code></pre></div><h2 id="启动开发服务" tabindex="-1">启动开发服务 <a class="header-anchor" href="#启动开发服务" aria-label="Permalink to &quot;启动开发服务&quot;">​</a></h2><p>开发 Vue 项目的时候需要有个开发服务用于预览工程部署后的效果，做到所见即所得。</p><div class="language-shell"><button title="Copy Code" class="copy"></button><span class="lang">shell</span><pre class="shiki github-light vp-code" tabindex="0"><code><span class="line"><span style="color:#6F42C1;">npm</span><span style="color:#032F62;"> run</span><span style="color:#032F62;"> dev</span></span></code></pre></div><h2 id="构建工程" tabindex="-1">构建工程 <a class="header-anchor" href="#构建工程" aria-label="Permalink to &quot;构建工程&quot;">​</a></h2><div class="language-shell"><button title="Copy Code" class="copy"></button><span class="lang">shell</span><pre class="shiki github-light vp-code" tabindex="0"><code><span class="line"><span style="color:#6F42C1;">npm</span><span style="color:#032F62;"> run</span><span style="color:#032F62;"> build</span></span></code></pre></div><blockquote><p>此命令会在 ./dist 文件夹中为你的应用创建一个生产环境的构建版本。关于将应用上线生产环境的更多内容，请阅读<a href="https://cn.vuejs.org/guide/best-practices/production-deployment.html" target="_blank" rel="noreferrer">生产环境部署指南</a>。</p></blockquote><h2 id="参考" tabindex="-1">参考 <a class="header-anchor" href="#参考" aria-label="Permalink to &quot;参考&quot;">​</a></h2><p>快速上手 | Vue.js ：<a href="https://cn.vuejs.org/guide/quick-start.html" target="_blank" rel="noreferrer">https://cn.vuejs.org/guide/quick-start.html</a></p></div></div></main><footer class="VPDocFooter" data-v-39a288b8 data-v-e257564d><!--[--><!--]--><!----><!----></footer><!--[--><!--]--></div></div></div><!--[--><!--]--></div></div><!----><!--[--><!--]--></div></div>
+    <script>window.__VP_HASH_MAP__=JSON.parse("{\"about_index.md\":\"DrVLfUQN\",\"archives_index.md\":\"sHEXXf_N\",\"blog_index.md\":\"RTj0h-kH\",\"blog_posts_45个-git-经典操作场景，专治不会合代码.md\":\"wfN-mT-A\",\"blog_posts_android四大组件学习.md\":\"CnXGzCJy\",\"blog_posts_android媒体库更新问题.md\":\"Bd1HzI6o\",\"blog_posts_chai-js-断言库使用说明.md\":\"Q_z38268\",\"blog_posts_cpp-入门教程-part-1.md\":\"B4UDXUKe\",\"blog_posts_cpp-入门教程-part-2.md\":\"BFdDWRcR\",\"blog_posts_element-plus-register-all-icon-with-alias-globally.md\":\"BaKRWT0M\",\"blog_posts_gemini-cli-入门教程（windows篇）.md\":\"-_vcml4W\",\"blog_posts_javascript代码规范.md\":\"BUUr-p21\",\"blog_posts_linux_shell_get_start.md\":\"CSCi8Z6A\",\"blog_posts_nat测试工具.md\":\"BjVCtDfY\",\"blog_posts_nonnull用法.md\":\"B6i6wsSt\",\"blog_posts_python-应用-docker-镜像瘦身小技巧.md\":\"CkNYtc2d\",\"blog_posts_series-of-learning-flask-0.md\":\"DQ3ATXn2\",\"blog_posts_sony-nw-a306-china-version-player-upgrade-to-international-firmware-tutorial.md\":\"DjERYmyP\",\"blog_posts_storybook-cookbook-part1.md\":\"CoI_OMks\",\"blog_posts_vscode-ssh-remote-tutorial.md\":\"CK3xHAff\",\"blog_posts_vuex介绍.md\":\"Dn8_rH61\",\"blog_posts_vue学习系列-01-工程创建学习.md\":\"qows14R-\",\"blog_posts_vue学习系列-vue3的script-setup语法糖.md\":\"5xNVIAxt\",\"blog_posts_vue知识点思维导图.md\":\"DbSp7-qd\",\"blog_posts_【文档翻译】lisp 的根源.md\":\"Cox_TWJP\",\"blog_posts_【文档翻译】指南：编写可测试代码（总纲）.md\":\"D1FL3el3\",\"blog_posts_前端知识大纲.md\":\"DjOyiR8P\",\"blog_posts_在离线环境使用-nvm-windows-安装和管理-node-js.md\":\"Cj1ulGRK\",\"blog_posts_新玩具m5stack的cardputer的折腾记录(一)_开发环境搭建篇.md\":\"C2DefLX8\",\"categories_index.md\":\"CZd0_AWU\",\"index.md\":\"CloO2SSp\",\"posts_45个-git-经典操作场景，专治不会合代码.md\":\"CxeS5kyE\",\"posts_android四大组件学习.md\":\"BB2d86Vw\",\"posts_android媒体库更新问题.md\":\"DKNXw-t_\",\"posts_chai-js-断言库使用说明.md\":\"DYNPC9-n\",\"posts_cpp-入门教程-part-1.md\":\"CsIZGKCC\",\"posts_cpp-入门教程-part-2.md\":\"CM8TV19U\",\"posts_element-plus-register-all-icon-with-alias-globally.md\":\"COerlPZm\",\"posts_gemini-cli-入门教程（windows篇）.md\":\"B2YqoOYS\",\"posts_javascript代码规范.md\":\"1tEKhuNd\",\"posts_linux_shell_get_start.md\":\"DvV93vXB\",\"posts_nat测试工具.md\":\"BX61tt6U\",\"posts_nonnull用法.md\":\"BIgAZige\",\"posts_python-应用-docker-镜像瘦身小技巧.md\":\"C6dOdsJY\",\"posts_series-of-learning-flask-0.md\":\"BccQLjk-\",\"posts_sony-nw-a306-china-version-player-upgrade-to-international-firmware-tutorial.md\":\"wcPI360z\",\"posts_storybook-cookbook-part1.md\":\"Cx1WS7WN\",\"posts_vscode-ssh-remote-tutorial.md\":\"YEPpgyF7\",\"posts_vuex介绍.md\":\"JrhujJsr\",\"posts_vue学习系列-01-工程创建学习.md\":\"TXvoAnMc\",\"posts_vue学习系列-vue3的script-setup语法糖.md\":\"DSNGHL9S\",\"posts_vue知识点思维导图.md\":\"BAyaq1kz\",\"posts_【文档翻译】lisp 的根源.md\":\"ie52AF_e\",\"posts_【文档翻译】指南：编写可测试代码（总纲）.md\":\"Sw0OM41a\",\"posts_前端知识大纲.md\":\"DW3OA2Uc\",\"posts_在离线环境使用-nvm-windows-安装和管理-node-js.md\":\"C1DKokj7\",\"posts_新玩具m5stack的cardputer的折腾记录(一)_开发环境搭建篇.md\":\"nz4C62eV\",\"tags_index.md\":\"BeDmgeKi\"}");window.__VP_SITE_DATA__=JSON.parse("{\"lang\":\"zh-CN\",\"dir\":\"ltr\",\"title\":\"Adam的博客\",\"description\":\"本博客主要作用是记录自己折(muo)腾(yu)的各种技术，以上！\",\"base\":\"/\",\"head\":[],\"router\":{\"prefetchLinks\":true},\"appearance\":true,\"themeConfig\":{},\"locales\":{},\"scrollOffset\":134,\"cleanUrls\":false}");</script>
+    
+  </body>
+</html>
