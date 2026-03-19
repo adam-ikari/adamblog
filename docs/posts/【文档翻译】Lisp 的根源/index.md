@@ -18,7 +18,7 @@ categories:
 
 《Lisp 的根源》是一个介绍 Lisp 编程语言的起源和核心思想的文章，由 Paul Graham 所著。Lisp 是由 John McCarthy 基于 λ 演算和递归函数的理论，用一种简单的数据结构——列表和几个核心函数创造出来的一门简洁且强大的编程语言。本文不仅展示了如何用 Lisp 实现其编译器和解释器，同时也说明了 Lisp 的一些重要特性如宏、闭包和动态作用域，目的在于让读者深入了解 Lisp 的本质和魅力。
 
-![Lisp 漫画](./assets/Lisp%E7%9A%84%E6%A0%B9%E6%BA%90.jpg)
+![Lisp 漫画](./Lisp%E7%9A%84%E6%A0%B9%E6%BA%90.jpg)
 
 <!-- more -->
 

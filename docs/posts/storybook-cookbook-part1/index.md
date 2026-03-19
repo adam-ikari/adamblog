@@ -25,7 +25,7 @@ categories:
 
 在现代前端开发中，组件化开发已经成为主流，而如何高效地开发、测试和展示这些组件则是每个开发者都需要面对的挑战。项目中需要一款框架能够帮助开发者在独立环境中开发和测试组件，同时还能生成详细的文档，方便团队协作。经过一番研究和尝试，我发现了 Storybook 这款强大的工具。
 
-![Storybook Logo](./assets/storybook-logo.png)
+![Storybook Logo](./storybook-logo.png)
 
 <!-- more -->
 
@@ -170,14 +170,14 @@ npm run storybook
 
 看到如下 log 说明 Storybook 已经成功启动。
 
-![Storybook 启动日志](./assets/storybook-start-log.png)
+![Storybook 启动日志](./storybook-start-log.png)
 
 > 如果端口被占用，按下 y 会使用下一个可用端口
 
 运行成功后，会在本地启动一个服务： URL 通常是`http://localhost:6006`。
 使用浏览器打开 URL 中会看到这样的画面：
 
-![Storybook 使用画面](./assets/storybook-view.png)
+![Storybook 使用画面](./storybook-view.png)
 
 这就说明工程中已经成功集成了 Storybook。
 

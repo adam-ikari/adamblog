@@ -86,7 +86,7 @@ npm init Vue@latest
 
     集成 ESLint 代码质量检查
 
-![创建 Vue 工程的过程](./assets/%E5%88%9B%E5%BB%BAVue%E5%B7%A5%E7%A8%8B%E8%BF%87%E7%A8%8B.JPG)
+![创建 Vue 工程的过程](./%E5%88%9B%E5%BB%BAVue%E5%B7%A5%E7%A8%8B%E8%BF%87%E7%A8%8B.JPG)
 
 我创建的时候选择了集成 Vue Router、Pinia、Vitest、eslint 和 Prettier。
 
