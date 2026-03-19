@@ -25,7 +25,7 @@ CardPuter 是 基于 esp32s3 的一款开发套件，有显示屏、键盘、麦
 
 <!-- more -->
 
-![cardputer info](/public/新玩具M5STACK的CARDPUTER的折腾记录(一)_开发环境搭建篇/cardputer_info.jpg)
+![cardputer info](/新玩具M5STACK的CARDPUTER的折腾记录(一)_开发环境搭建篇/cardputer_info.jpg)
 
 ## 搭建 CardPuter 开发环境
 
