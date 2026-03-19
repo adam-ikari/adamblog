@@ -36,9 +36,7 @@ export default defineConfig({
         {
           text: '文章列表',
           items: [
-            { text: '所有文章', link: '/posts/' },
-            { text: '2024年', link: '/posts/17-Gemini-CLI-入门教程（windows篇）.md' },
-            { text: '2023年', link: '/posts/12-python-应用-docker-镜像瘦身小技巧.md' }
+            { text: '所有文章', link: '/posts/' }
           ]
         }
       ],
