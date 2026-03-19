@@ -35,6 +35,13 @@
     "post": "hexo new post $TITLE",
     "publish": "hexo publish post $TITLE",
     "page": "hexo new page $PAGE",
-    "clean": "hexo clean"
+    "clean": "hexo clean",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.1",
+    "vitepress": "^1.6.4"
   }
 }
