@@ -6,8 +6,9 @@ export default defineConfig({
   title: "Adam的博客",
   description: "本博客主要作用是记录自己折(muo)腾(yu)的各种技术，以上！",
   base: process.env.BASE_URL || "/",
+  root: "/home/zhaodi-chen/project/dadis-blog/docs",
   vite: {
-    plugins: [blogPlugin()],
+    plugins: [blogPlugin({ postsDir: "blog/posts" })],
   },
   appearance: true,
   lastUpdated: true,
