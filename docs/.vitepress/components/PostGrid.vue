@@ -17,20 +17,45 @@ const postsPerPage = 9
 // 获取所有文章
 onMounted(async () => {
   const modules = import.meta.glob('../../posts/*/index.md', { eager: true })
+  console.log('[PostGrid] 加载到的模块数量:', Object.keys(modules).length)
+
   posts.value = Object.values(modules)
     .map((mod: any) => {
       const frontmatter = mod.default?.frontmatter || {}
-      const url = mod.default?.relativePath.replace('index.md', '') || ''
-      return {
+      const relativePath = mod.default?.relativePath || ''
+
+      // 修复 URL 生成逻辑：确保正确处理不同的相对路径格式
+      let url = relativePath.replace('index.md', '').replace(/^\.\.\/\.\.\/posts\//, 'posts/')
+
+      // 如果路径以 docs/ 开头，移除它
+      if (url.startsWith('docs/')) {
+        url = url.substring(5)
+      }
+
+      // 确保路径以 / 开头
+      if (!url.startsWith('/')) {
+        url = '/' + url
+      }
+
+      // 移除尾部斜杠（可选，根据需要）
+      url = url.replace(/\/$/, '')
+
+      const post: Post = {
         title: frontmatter.title || '无标题',
-        url: '/' + url,
+        url: url,
         date: frontmatter.date || '',
         category: frontmatter.categories?.[0] || '',
         excerpt: frontmatter.description || '',
         tags: frontmatter.tags || []
       }
+
+      console.log('[PostGrid] 处理文章:', post.title, 'URL:', post.url, '原始路径:', relativePath)
+
+      return post
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+
+  console.log('[PostGrid] 最终加载的文章数量:', posts.value.length)
 })
 
 // 计算总页数
