@@ -16,7 +16,7 @@ const postsPerPage = 9
 
 // 获取所有文章
 onMounted(async () => {
-  const modules = import.meta.glob('/posts/*/index.md', { eager: true })
+  const modules = import.meta.glob('../../posts/*/index.md', { eager: true })
   posts.value = Object.values(modules)
     .map((mod: any) => {
       const frontmatter = mod.default?.frontmatter || {}
