@@ -6,7 +6,7 @@ hero:
   text: "技术记录与分享"
   tagline: "记录学习过程中的点滴，分享技术探索的乐趣"
   image:
-    src: /images/avataaars.svg
+    src: /images/avataaars.png
     alt: Adam
 
   actions:
