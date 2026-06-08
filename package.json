@@ -9,5 +9,8 @@
   },
   "devDependencies": {
     "vitepress": "^1.6.3"
+  },
+  "dependencies": {
+    "@sugarat/theme": "^0.5.23"
   }
 }
