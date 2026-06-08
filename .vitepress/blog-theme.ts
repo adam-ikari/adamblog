@@ -2,8 +2,8 @@
 import { getThemeConfig } from '@sugarat/theme/node'
 
 const blogTheme = getThemeConfig({
-  // 搜索 - 默认开启pagefind离线全文搜索
-  search: false, // 使用 VitePress 内置搜索
+  // 搜索 - 启用 pagefind 离线全文搜索
+  // search: false,
 
   // 页脚
   footer: {

@@ -4,10 +4,11 @@
   "type": "module",
   "scripts": {
     "dev": "vitepress dev",
-    "build": "vitepress build",
+    "build": "vitepress build && pagefind --site .vitepress/dist",
     "preview": "vitepress preview"
   },
   "devDependencies": {
+    "pagefind": "^1.5.2",
     "vitepress": "^1.6.3"
   },
   "dependencies": {
