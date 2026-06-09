@@ -61,15 +61,18 @@ node --version   # 应输出 v18.x.x 或更高
 npm --version
 ```
 
-### Anthropic API Key
+### 国内大模型 API
 
-你需要一个 Anthropic API Key 才能使用 Claude Code。获取方式：
+由于 Anthropic 官方 API 在国内使用困难，本教程推荐以下国产替代方案：
 
-1. 访问 [Anthropic Console](https://console.anthropic.com/)
-2. 注册或登录账号
-3. 在 API Keys 页面创建新的 Key
+| 提供商 | Base URL | 特点 |
+|--------|----------|------|
+| 讯飞 Coding Plan | `https://spark-api-open.xf-yun.com/v1` | 国内首选，稳定可靠 |
+| DeepSeek | `https://api.deepseek.com` | 性价比高，响应快 |
+| OpenRouter | `https://openrouter.ai/api/v1` | 多模型聚合平台 |
+| SiliconFlow | `https://api.siliconflow.cn/v1` | 国内平台，多模型可选 |
 
-如果你通过 Claude Pro/Max 订阅使用，也可以选择 OAuth 认证方式，无需单独的 API Key。
+选择其中一个提供商，注册账号并获取 API Key。
 
 ## 安装 Claude Code
 
@@ -107,29 +110,37 @@ claude --version
 
 ### 登录认证
 
-Claude Code 支持两种认证方式。
+Claude Code 支持通过环境变量配置 API 认证。
 
-#### 方式一：API Key 认证
+#### 配置国内 API
 
-将 API Key 设置为环境变量：
+将国内 API 的 Base URL 和 API Key 设置为环境变量：
 
 ```bash
-# 添加到 shell 配置文件
-echo 'export ANTHROPIC_API_KEY="your-api-key-here"' >> ~/.bashrc
+# 以讯飞 Coding Plan 为例
+echo 'export ANTHROPIC_BASE_URL="https://spark-api-open.xf-yun.com/v1"' >> ~/.bashrc
+echo 'export ANTHROPIC_API_KEY="your-spark-api-key"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-也可以在启动 Claude Code 后通过交互式方式输入 API Key。
-
-#### 方式二：OAuth 认证
-
-如果你有 Claude Pro/Max 订阅，可以使用 OAuth 登录：
+也可以使用其他提供商：
 
 ```bash
-claude
+# DeepSeek
+echo 'export ANTHROPIC_BASE_URL="https://api.deepseek.com"' >> ~/.bashrc
+echo 'export ANTHROPIC_API_KEY="your-deepseek-api-key"' >> ~/.bashrc
+
+# OpenRouter
+echo 'export ANTHROPIC_BASE_URL="https://openrouter.ai/api/v1"' >> ~/.bashrc
+echo 'export ANTHROPIC_API_KEY="your-openrouter-api-key"' >> ~/.bashrc
+
+# SiliconFlow
+echo 'export ANTHROPIC_BASE_URL="https://api.siliconflow.cn/v1"' >> ~/.bashrc
+echo 'export ANTHROPIC_API_KEY="your-siliconflow-api-key"' >> ~/.bashrc
+source ~/.bashrc
 ```
 
-首次启动时选择 OAuth 登录方式，浏览器会自动打开认证页面，完成授权后即可使用。
+> **注意：** `ANTHROPIC_BASE_URL` 和 `ANTHROPIC_API_KEY` 是 Claude Code 识别的环境变量名，虽然名称中包含 "ANTHROPIC"，但实际指向的是国内 API 提供商。
 
 ### 基本设置
 
@@ -468,7 +479,7 @@ Hooks 允许你在特定事件触发时执行自定义脚本，在 `.claude/sett
 
 在使用 Claude Code 的过程中，你可能会遇到以下场景：
 
-- 同时使用多个 AI 提供商（Anthropic 官方、OpenRouter、DeepSeek 等）
+- 同时使用多个 AI 提供商（讯飞、DeepSeek、OpenRouter 等）
 - 工作账户和个人账户需要频繁切换
 - API 额度耗尽时需要快速切换到备用提供商
 - 不同项目需要不同的模型配置
@@ -509,11 +520,11 @@ cc-switch add <profile-name>
 
 **1. 工作/个人账户切换**
 
-提前配置好两个 Profile（工作用 Anthropic 官方、个人用 OpenRouter），一条命令即可切换。
+提前配置好两个 Profile（工作用讯飞、个人用 DeepSeek），一条命令即可切换。
 
 **2. API 额度耗尽时切换提供商**
 
-当 Anthropic 官方 API 额度用完，可以快速切换到 OpenRouter 或 DeepSeek 继续工作。
+当讯飞 API 额度用完，可以快速切换到 DeepSeek 或 OpenRouter 继续工作。
 
 **3. 不同项目使用不同模型**
 
@@ -531,13 +542,16 @@ cc-switch add <profile-name>
 
 **解决方案**：
 
-1. 检查 API Key 是否正确设置：
+1. 检查 API Key 和 Base URL 是否正确设置：
 
 ```bash
+echo $ANTHROPIC_BASE_URL
 echo $ANTHROPIC_API_KEY
 ```
 
-2. 确认 API Key 没有过期或被撤销，在 [Anthropic Console](https://console.anthropic.com/) 中查看
+2. 确认 API Key 没有过期或被撤销，在对应提供商的控制台中查看
+
+3. 检查 `ANTHROPIC_BASE_URL` 是否包含 `/v1` 后缀（不同提供商要求不同）
 
 3. 如果使用 OAuth 登录，尝试重新认证：
 

@@ -166,14 +166,14 @@ cc-switch use ollama
 macOS 用户经常同时拥有工作账户和个人账户。使用 @aravhawk/cc-switch 创建两个 Profile，一条命令即可切换：
 
 ```bash
-# 创建工作配置 Profile
-cc-switch --create work --template anthropic --api-key sk-ant-work-xxxxx
+# 创建讯飞配置 Profile
+cc-switch --create work --template spark --api-key your-spark-api-key
 
 # 切换到工作 Profile
 cc-switch work
 
-# 创建个人配置 Profile
-cc-switch --create personal --template anthropic --api-key sk-ant-personal-xxxxx
+# 创建 DeepSeek 配置 Profile
+cc-switch --create personal --template deepseek --api-key your-deepseek-api-key
 
 # 切换到个人 Profile
 cc-switch personal
@@ -275,7 +275,8 @@ macOS 默认使用 zsh，环境变量配置写入 `~/.zshrc`：
 
 ```bash
 # macOS：添加到 ~/.zshrc
-echo 'export ANTHROPIC_API_KEY="your-api-key-here"' >> ~/.zshrc
+echo 'export ANTHROPIC_BASE_URL="https://spark-api-open.xf-yun.com/v1"' >> ~/.zshrc
+echo 'export ANTHROPIC_API_KEY="your-spark-api-key"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
@@ -283,7 +284,8 @@ Windows WSL2 默认使用 bash，配置写入 `~/.bashrc`：
 
 ```bash
 # Windows WSL2：添加到 ~/.bashrc
-echo 'export ANTHROPIC_API_KEY="your-api-key-here"' >> ~/.bashrc
+echo 'export ANTHROPIC_BASE_URL="https://spark-api-open.xf-yun.com/v1"' >> ~/.bashrc
+echo 'export ANTHROPIC_API_KEY="your-spark-api-key"' >> ~/.bashrc
 source ~/.bashrc
 ```
 

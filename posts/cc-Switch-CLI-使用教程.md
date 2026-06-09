@@ -191,17 +191,17 @@ cc-switch use deepseek
 
 ### 场景一：在工作和个人账户之间切换
 
-如果你有一个公司的 Anthropic API Key 和一个个人 Key，可以创建两个 Profile：
+如果你有一个讯飞的 API Key 和一个 DeepSeek 的 Key，可以创建两个 Profile：
 
 ```bash
-# 创建工作配置 Profile
-cc-switch --create work --template anthropic --api-key sk-ant-work-xxxxx
+# 创建讯飞配置 Profile
+cc-switch --create work --template spark --api-key your-spark-api-key
 
 # 切换到工作 Profile
 cc-switch work
 
-# 创建个人配置 Profile
-cc-switch --create personal --template anthropic --api-key sk-ant-personal-xxxxx
+# 创建 DeepSeek 配置 Profile
+cc-switch --create personal --template deepseek --api-key your-deepseek-api-key
 
 # 切换到个人 Profile
 cc-switch personal
