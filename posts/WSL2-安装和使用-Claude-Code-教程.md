@@ -465,7 +465,7 @@ Hooks 允许你在特定事件触发时执行自定义脚本，在 `.claude/sett
 - API 额度耗尽时需要快速切换到备用提供商
 - 不同项目需要不同的模型配置
 
-手动修改 `settings.json` 来切换配置既繁琐又容易出错。**cc-Switch** 是一个专门为 Claude Code 设计的配置切换工具，可以一键切换不同的提供商和账户。
+手动修改 `settings.json` 来切换配置既繁琐又容易出错。**cc-Switch** 是一个专门为 Claude Code 设计的命令行配置切换工具，通过简单的命令即可切换不同的提供商和账户。
 
 ### 安装 cc-Switch
 
@@ -479,13 +479,23 @@ npm install -g @adithya-13/cc-switch
 
 ### 基本使用
 
-安装后，在终端中运行：
+cc-Switch 是一个命令行工具，安装后直接在终端中使用：
 
 ```bash
-cc-switch
+# 查看当前配置
+cc-switch current
+
+# 切换到指定 Profile
+cc-switch use <profile-name>
+
+# 列出所有可用 Profile
+cc-switch list
+
+# 添加新的 Profile
+cc-switch add <profile-name>
 ```
 
-会出现交互式菜单，让你选择要切换到的配置 Profile。选择后自动更新 Claude Code 的 `settings.json`，无需手动编辑。
+切换后自动更新 Claude Code 的 `settings.json`，无需手动编辑配置文件。
 
 ### 典型场景
 
