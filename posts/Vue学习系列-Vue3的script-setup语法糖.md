@@ -7,6 +7,7 @@ tags: [Vue3, script setup, 前端, 优化开发体验]
 date: 2023-05-11
 ---
 
+# Vue学习系列 -- 告别繁琐，从Vue3的script setup语法糖开始
 \<script setup\>是一种编译时的语法糖，用于在单文件组件（SFC）中使用组合式API。它是推荐的语法，如果你同时使用SFC和组合式API。它提供了一些优点，比如：
 
 - 代码更简洁，减少了样板代码

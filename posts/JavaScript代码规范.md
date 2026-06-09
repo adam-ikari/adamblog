@@ -7,6 +7,7 @@ description: 本博客讨论了JavaScript代码规范的最佳实践，以及如
 date: 2023-02-24
 ---
 
+# JavaScript代码规范之道
 本文转载自 standardjs.com
 
 [![js-standard-style](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)

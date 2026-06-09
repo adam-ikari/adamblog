@@ -7,6 +7,7 @@ category: 开发套件
 date: 2023-12-13
 ---
 
+# 新玩具 M5Stack 的 CardPuter 的折腾记录(一) —— 开发环境搭建篇
 ## 前言
 
 最近一段时间特别迷恋有实体键盘的设备，所以入手了 M5 Stack 家的 CardPuter 开发套件

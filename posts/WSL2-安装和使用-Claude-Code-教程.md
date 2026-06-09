@@ -5,6 +5,7 @@ tags: [Claude Code, WSL2, AI编程, CLI工具]
 date: 2026-06-08
 ---
 
+# WSL2 安装和使用 Claude Code 教程
 ## 前言
 
 Claude Code 是 Anthropic 官方推出的 CLI 编程助手，它直接运行在终端中，能够理解你的项目上下文，帮你编写代码、调试问题、执行 Shell 命令、操作文件等。与传统的 AI 编程助手不同，Claude Code 不是一个 IDE 插件，而是一个独立的命令行工具，可以与任何开发工作流无缝集成。

@@ -5,6 +5,7 @@ tags: [Windows 11, WSL2, Linux, 系统配置]
 date: 2026-06-08
 ---
 
+# Windows 11 配置 WSL2 完整教程
 ## 前言
 
 WSL2（Windows Subsystem for Linux 2）是微软推出的第二代 Windows 子系统，它提供了一个真正的 Linux 内核环境，让开发者可以在 Windows 上原生运行 Linux 应用程序。

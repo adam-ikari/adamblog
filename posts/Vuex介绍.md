@@ -6,6 +6,7 @@ tags: [前端, Vuex, Vue, Vue.js]
 date: 2023-05-11
 ---
 
+# Vuex介绍
 Vuex 是 Vue.js 中非常常用的状态管理库，因此，学习 Vuex 对于 Vue.js 开发非常重要。下面是一个 Vuex 的学习指南，旨在使编程初学者更容易理解。
 
 

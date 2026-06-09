@@ -5,6 +5,7 @@ tags: [Gemini CLI, Gemini, AI]
 date: 2025-07-07
 ---
 
+# Gemini CLI 入门教程（Windows 篇）
 本教程将指导您如何在 Windows 操作系统上安装和使用 Google Gemini CLI。Gemini CLI 是一个命令行工具，可让您直接在终端中与 Gemini 模型进行交互。
 
 

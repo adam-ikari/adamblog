@@ -5,6 +5,7 @@ tags: [Claude Code, cc-Switch, CLI工具, AI编程]
 date: 2026-06-08
 ---
 
+# cc-Switch CLI 使用教程
 ## 前言
 
 在使用 Claude Code 的过程中，很多开发者会遇到一个常见问题：当你同时使用多个 AI 提供商（如 Anthropic 官方、OpenRouter、DeepSeek、Kimi 等），或者需要在不同的 API Key 之间切换时，每次都要手动编辑 `~/.claude/settings.json`，不仅繁琐，还容易出错。当 Claude Code 的使用额度在会话中途耗尽时，手动切换提供商更是打断工作流。
