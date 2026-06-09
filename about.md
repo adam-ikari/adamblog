@@ -1,6 +1,7 @@
 ---
 title: 关于我
 layout: page
+publish: false
 ---
 
 <div class="about-page">
