@@ -5,6 +5,11 @@ const blogTheme = getThemeConfig({
   // 搜索 - 启用 pagefind 离线全文搜索
   // search: false,
 
+  // 推荐文章配置
+  recommend: {
+    sort: 'filename',
+  },
+
   // 页脚
   footer: {
     copyright: 'Copyright © 2024-present Adam',

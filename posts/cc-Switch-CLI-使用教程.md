@@ -3,6 +3,13 @@ title: cc-Switch CLI 使用教程
 category: AI工具
 tags: [Claude Code, cc-Switch, CLI工具, AI编程]
 date: 2026-06-08
+recommend: ['series-windows-ai', 3]
+series:
+  - id: series-windows-ai
+    name: Windows 11 AI 工具系列
+    order: 3
+    prev: /posts/WSL2-安装和使用-Claude-Code-教程
+    next:
 ---
 
 # cc-Switch CLI 使用教程
