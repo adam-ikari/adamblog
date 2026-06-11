@@ -1,5 +1,6 @@
 ---
 title: macOS 配置国产大模型 API 系列
+description: macOS 上配置 Claude Code 和讯飞、DeepSeek 等国产大模型 API 的完整教程
 date: 2026-06-09
 category: 技术探索
 tags: [macOS, Claude-Code, 国产API, 系列]

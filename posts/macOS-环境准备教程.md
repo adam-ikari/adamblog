@@ -1,5 +1,6 @@
 ---
 title: macOS 开发环境准备教程
+description: 在 macOS 上配置开发环境，安装 Homebrew、Node.js、终端和 Git
 category: 系统配置
 tags: [macOS, Homebrew, Node.js, 开发环境]
 date: 2026-06-09

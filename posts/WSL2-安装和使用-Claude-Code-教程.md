@@ -1,5 +1,6 @@
 ---
 title: WSL2 安装和使用 Claude Code 教程
+description: 在 WSL2 环境下安装和使用 Claude Code，配置国产大模型 API
 category: AI工具
 tags: [Claude Code, WSL2, AI编程, CLI工具]
 date: 2026-06-08

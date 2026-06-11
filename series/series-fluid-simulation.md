@@ -1,5 +1,6 @@
 ---
 title: 流体仿真系列
+description: 从 Python 环境到 AI 辅助编写流体仿真代码的完整系列
 date: 2026-06-09
 category: 技术探索
 tags: [流体仿真, Python, AI, 系列]

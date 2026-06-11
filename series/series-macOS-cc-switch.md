@@ -1,5 +1,6 @@
 ---
 title: macOS 配置 cc-Switch 系列
+description: macOS 上安装配置 cc-Switch，实现 Claude Code 多提供商一键切换
 date: 2026-06-09
 category: 技术探索
 tags: [macOS, cc-Switch, Claude-Code, 系列]

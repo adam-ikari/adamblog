@@ -1,5 +1,6 @@
 ---
 title: AI 编程工具系列
+description: AI 编程工具系列总索引，汇总 macOS/Windows 上配置 Claude Code 和国产大模型 API 的教程
 date: 2026-06-09
 category: 技术探索
 tags: [AI, Claude-Code, 系列]
