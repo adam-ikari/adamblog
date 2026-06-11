@@ -31,6 +31,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '系列', items: [
+        { text: 'AI 编程工具（总索引）', link: '/series-ai' },
         { text: 'macOS 配置国产大模型 API', link: '/series-macOS-claude' },
         { text: 'macOS 配置 cc-Switch', link: '/series-macOS-cc-switch' },
         { text: '流体仿真系列', link: '/series-fluid-simulation' },
