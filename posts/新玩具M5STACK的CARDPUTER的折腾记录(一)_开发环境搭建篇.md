@@ -89,7 +89,7 @@ cd ~/esp/esp-idf
 
 出现这段文字就是设置 ESP 开发环境成功了
 
-```term
+```bash
 Done! You can now compile esp-idf projects.
 Go to the project directory and run:
 
@@ -129,7 +129,7 @@ git clone https://github.com/m5stack/M5Cardputer-UserDemo.git
 >
 > 如果克隆总是失败可以使用下面的加速链接下载源码包
 >
-> ```url
+> ```text
 > https://cache.dadilive.top/main.zip?url=aHR0cHM6Ly9naXRodWIuY29tL201c3RhY2svTTVDYXJkcHV0ZXItVXNlckRlbW8vYXJjaGl2ZS9yZWZzL2hlYWRzL21haW4uemlw
 > ```
 
@@ -145,7 +145,7 @@ idf build
 
 终端出现下面的文字就代表编译成功了
 
-```term
+```bash
 Project build complete. To flash, run this command:
 /home/zhaodi-chen/.espressif/python_env/idf4.4_py3.10_env/bin/python ../../esp/esp-idf/components/esptool_py/esptool/esptool.py -p (PORT) -b 460800 --before default_reset --after hard_reset --chip esp32s3  write_flash --flash_mode dio --flash_size detect --flash_freq 80m 0x0 build/bootloader/bootloader.bin 0x8000 build/partition_table/partition-table.bin 0x10000 build/cardputer.bin
 or run 'idf.py -p (PORT) flash'

@@ -95,7 +95,7 @@ $ git push -f [remote] [branch]
 
 如果你还没有推到远程, 把 Git 重置(reset)到你最后一次提交前的状态就可以了(同时保存暂存的变化):
 
-```auto
+```text
 (my-branch*)$ git reset --soft HEAD@{1}
 ```
 
@@ -485,7 +485,7 @@ oh noes, deleted my branch!
 
 在这时候你应该想起了`reflog`, 一个升级版的日志，它存储了仓库(repo)里面所有动作的历史。
 
-```auto
+```text
 (main)$ git reflog
 69204cd HEAD@{0}: checkout: moving from my-branch to main
 4e3cd85 HEAD@{1}: commit: foo.txt added
@@ -702,7 +702,7 @@ Newer, awesomer features
 
 如果你看到的是这样:
 
-```auto
+```text
 noop
 ```
 

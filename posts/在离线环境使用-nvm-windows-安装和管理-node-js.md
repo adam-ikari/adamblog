@@ -49,7 +49,7 @@ tags: 前端 nvm 离线安装
 
    打开命令行，输入 `nvm -v`，如果显示 nvm 的版本号，说明安装成功。
 
-   ```powersehll
+   ```powershell
    nvm -v
    # 返回 nvm 版本号
    # 1.2.2

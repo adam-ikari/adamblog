@@ -45,7 +45,7 @@ date: 2024-02-22
 
    例如:
 
-   ```input
+   ```text
    ssh user_name@host_domain:22 -A
    ```
 
