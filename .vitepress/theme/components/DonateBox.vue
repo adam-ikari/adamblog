@@ -7,7 +7,6 @@ const copied = ref(false)
 const wallets = [
   { name: 'Feather Wallet', desc: '轻量桌面钱包（推荐）', url: 'https://featherwallet.org' },
   { name: 'Cake Wallet', desc: '移动端钱包（iOS/Android）', url: 'https://cakewallet.com' },
-  { name: 'Monero GUI', desc: '官方桌面钱包（全节点）', url: 'https://www.getmonero.org/downloads/' },
 ]
 
 function copyAddress() {
