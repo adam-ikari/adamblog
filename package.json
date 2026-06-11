@@ -12,6 +12,7 @@
     "vitepress": "^1.6.3"
   },
   "dependencies": {
-    "@sugarat/theme": "^0.5.23"
+    "@sugarat/theme": "^0.5.23",
+    "markdown-it-mathjax3": "^4.3.2"
   }
 }
