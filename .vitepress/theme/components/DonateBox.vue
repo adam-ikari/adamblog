@@ -17,19 +17,31 @@ function copyAddress() {
       <span class="donate-icon">☕</span>
       <span class="donate-title">请我喝杯咖啡</span>
     </div>
-    <p class="donate-desc">如果你觉得文章有帮助，欢迎用 Monero (XMR) 打赏，完全匿名，无需注册。</p>
-    <div class="donate-content">
-      <div class="donate-qr">
-        <img src="/images/xmr-donate.png" alt="Monero Donate QR Code" />
-        <span class="donate-label">扫码打赏 XMR</span>
-      </div>
-      <div class="donate-address">
-        <span class="address-label">Monero 地址：</span>
-        <div class="address-box">
-          <code class="address-text">{{ xmrAddress }}</code>
-          <button class="copy-btn" @click="copyAddress">
-            {{ copied ? '✓ 已复制' : '复制' }}
-          </button>
+    <p class="donate-desc">如果你觉得文章有帮助，欢迎打赏支持。推荐使用 Monero (XMR)，完全匿名，无需注册。</p>
+
+    <div class="donate-methods">
+      <!-- Monero -->
+      <div class="donate-method">
+        <div class="method-header">
+          <span class="method-name">Monero (XMR)</span>
+          <span class="method-tag">推荐 · 匿名</span>
+        </div>
+        <div class="method-body">
+          <div class="donate-qr">
+            <img src="/images/xmr-donate.png" alt="Monero Donate QR Code" />
+          </div>
+          <div class="method-info">
+            <a :href="'monero:' + xmrAddress" class="donate-link">
+              打开钱包打赏 →
+            </a>
+            <div class="address-row">
+              <code class="address-text">{{ xmrAddress }}</code>
+              <button class="copy-btn" @click="copyAddress">
+                {{ copied ? '✓' : '复制' }}
+              </button>
+            </div>
+            <p class="method-note">扫码或点击链接直接打开 Monero 钱包打赏，也可复制地址手动转账。</p>
+          </div>
         </div>
       </div>
     </div>
@@ -68,55 +80,91 @@ function copyAddress() {
   margin-bottom: 1rem;
 }
 
-.donate-content {
+.donate-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.donate-method {
+  padding: 0.75rem;
+  border-radius: 6px;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+}
+
+.method-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.method-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--vp-c-text-1);
+}
+
+.method-tag {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  font-weight: 500;
+}
+
+.method-body {
   display: flex;
   align-items: flex-start;
-  gap: 1.5rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
-.donate-qr {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-}
-
 .donate-qr img {
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
   border-radius: 4px;
   image-rendering: pixelated;
 }
 
-.donate-label {
-  font-size: 0.75rem;
-  color: var(--vp-c-text-2);
-}
-
-.donate-address {
+.method-info {
   flex: 1;
   min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.address-label {
-  font-size: 0.8rem;
-  color: var(--vp-c-text-2);
-  display: block;
-  margin-bottom: 0.4rem;
+.donate-link {
+  display: inline-block;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 4px;
+  background: var(--vp-c-brand-1);
+  color: var(--vp-c-bg) !important;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  width: fit-content;
 }
 
-.address-box {
+.donate-link:hover {
+  opacity: 0.85;
+}
+
+.address-row {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .address-text {
   display: block;
-  font-size: 0.7rem;
-  padding: 0.5rem 0.75rem;
-  background: var(--vp-c-bg);
+  font-size: 0.65rem;
+  padding: 0.35rem 0.6rem;
+  background: var(--vp-c-bg-soft);
   border: 1px solid var(--vp-c-divider);
   border-radius: 4px;
   word-break: break-all;
@@ -126,18 +174,25 @@ function copyAddress() {
 }
 
 .copy-btn {
-  padding: 0.4rem 0.75rem;
-  font-size: 0.8rem;
-  border: 1px solid var(--vp-c-brand-1);
+  padding: 0.35rem 0.6rem;
+  font-size: 0.75rem;
+  border: 1px solid var(--vp-c-divider);
   border-radius: 4px;
-  background: var(--vp-c-brand-1);
-  color: var(--vp-c-bg);
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
   cursor: pointer;
   white-space: nowrap;
-  transition: opacity 0.2s;
+  transition: all 0.2s;
 }
 
 .copy-btn:hover {
-  opacity: 0.85;
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+}
+
+.method-note {
+  font-size: 0.75rem;
+  color: var(--vp-c-text-3);
+  margin: 0;
 }
 </style>
