@@ -51,7 +51,7 @@ node --version   # 应输出 v18.x.x 或更高
 
 | 提供商 | 模型 | 特点 | API 兼容性 |
 |--------|------|------|-----------|
-| **讯飞 Coding Plan** | 星火大模型 | 国产，中文能力强，编程专用 | OpenAI 兼容 |
+| **讯飞 Coding Plan** | 星火/GLM 5.1/DeepSeek V4 等 | 多模型，中文能力强，编程专用 | OpenAI 兼容 |
 | **DeepSeek** | DeepSeek-V3/Coder | 性价比高，代码能力强 | OpenAI 兼容 |
 | **OpenRouter** | 多模型聚合 | 可访问 Claude/GPT 等多种模型 | OpenAI 兼容 |
 | **硅基流动 (SiliconFlow)** | 多模型 | 国内访问友好，价格实惠 | OpenAI 兼容 |
@@ -121,7 +121,7 @@ source ~/.zshrc
 
 #### 讯飞 Coding Plan
 
-讯飞星火提供专为编程场景优化的大模型服务：
+讯飞 Coding Plan 提供多种大模型服务，包括星火、GLM 5.1、DeepSeek V4 等：
 
 ```bash
 # 设置 API 地址和密钥

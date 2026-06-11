@@ -67,7 +67,7 @@ npm --version
 
 | 提供商 | Base URL | 特点 |
 |--------|----------|------|
-| 讯飞 Coding Plan | `https://spark-api-open.xf-yun.com/v1` | 国内首选，稳定可靠 |
+| 讯飞 Coding Plan | `https://spark-api-open.xf-yun.com/v1` | 多模型（星火/GLM 5.1/DeepSeek V4 等），国内首选 |
 | DeepSeek | `https://api.deepseek.com` | 性价比高，响应快 |
 | OpenRouter | `https://openrouter.ai/api/v1` | 多模型聚合平台 |
 | SiliconFlow | `https://api.siliconflow.cn/v1` | 国内平台，多模型可选 |
