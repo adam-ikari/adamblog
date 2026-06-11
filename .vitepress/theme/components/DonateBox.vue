@@ -5,9 +5,9 @@ const xmrAddress = '44YiYqoKSQhMSs1okCBbxJi876t4hEEozGuioN5snRvdG6m1NkAyRHZFFjD8
 const copied = ref(false)
 
 const wallets = [
-  { name: 'MyMonero', desc: '网页钱包，无需下载', url: 'https://mymonero.com' },
+  { name: 'Feather Wallet', desc: '轻量桌面钱包（推荐）', url: 'https://featherwallet.org' },
   { name: 'Cake Wallet', desc: '移动端钱包（iOS/Android）', url: 'https://cakewallet.com' },
-  { name: 'Monero GUI', desc: '桌面端钱包（全节点）', url: 'https://www.getmonero.org/downloads/' },
+  { name: 'Monero GUI', desc: '官方桌面钱包（全节点）', url: 'https://www.getmonero.org/downloads/' },
 ]
 
 function copyAddress() {
