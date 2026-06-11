@@ -4,6 +4,12 @@ import { ref } from 'vue'
 const xmrAddress = '44YiYqoKSQhMSs1okCBbxJi876t4hEEozGuioN5snRvdG6m1NkAyRHZFFjD8Ka61NH7pL5aFKaAf2VX1WdW8W8pwBh2cK6k'
 const copied = ref(false)
 
+const wallets = [
+  { name: 'MyMonero', desc: '网页钱包，无需下载', url: 'https://mymonero.com' },
+  { name: 'Cake Wallet', desc: '移动端钱包（iOS/Android）', url: 'https://cakewallet.com' },
+  { name: 'Monero GUI', desc: '桌面端钱包（全节点）', url: 'https://www.getmonero.org/downloads/' },
+]
+
 function copyAddress() {
   navigator.clipboard.writeText(xmrAddress)
   copied.value = true
@@ -17,31 +23,37 @@ function copyAddress() {
       <span class="donate-icon">☕</span>
       <span class="donate-title">请我喝杯咖啡</span>
     </div>
-    <p class="donate-desc">如果你觉得文章有帮助，欢迎打赏支持。推荐使用 Monero (XMR)，完全匿名，无需注册。</p>
+    <p class="donate-desc">如果你觉得文章有帮助，欢迎用 Monero (XMR) 打赏，完全匿名，无需注册。</p>
 
-    <div class="donate-methods">
-      <!-- Monero -->
-      <div class="donate-method">
-        <div class="method-header">
-          <span class="method-name">Monero (XMR)</span>
-          <span class="method-tag">推荐 · 匿名</span>
+    <div class="donate-method">
+      <div class="method-header">
+        <span class="method-name">Monero (XMR)</span>
+        <span class="method-tag">匿名</span>
+      </div>
+      <div class="method-body">
+        <div class="donate-qr">
+          <img src="/images/xmr-donate.png" alt="Monero Donate QR Code" />
         </div>
-        <div class="method-body">
-          <div class="donate-qr">
-            <img src="/images/xmr-donate.png" alt="Monero Donate QR Code" />
-          </div>
-          <div class="method-info">
-            <a :href="'monero:' + xmrAddress" class="donate-link">
-              打开钱包打赏 →
-            </a>
-            <div class="address-row">
-              <code class="address-text">{{ xmrAddress }}</code>
-              <button class="copy-btn" @click="copyAddress">
-                {{ copied ? '✓' : '复制' }}
-              </button>
+        <div class="method-info">
+          <!-- 钱包链接 -->
+          <div class="wallet-links">
+            <span class="wallet-label">打开钱包打赏：</span>
+            <div class="wallet-list">
+              <a v-for="w in wallets" :key="w.name" :href="w.url" target="_blank" rel="noopener" class="wallet-link">
+                {{ w.name }}
+                <span class="wallet-desc">{{ w.desc }}</span>
+              </a>
             </div>
-            <p class="method-note">扫码或点击链接直接打开 Monero 钱包打赏，也可复制地址手动转账。</p>
           </div>
+          <!-- 地址 -->
+          <div class="address-row">
+            <span class="address-label">收款地址：</span>
+            <code class="address-text">{{ xmrAddress }}</code>
+            <button class="copy-btn" @click="copyAddress">
+              {{ copied ? '✓' : '复制' }}
+            </button>
+          </div>
+          <p class="method-note">选择钱包 → 粘贴地址 → 输入金额 → 发送。手机可扫码直接打赏。</p>
         </div>
       </div>
     </div>
@@ -78,12 +90,6 @@ function copyAddress() {
   font-size: 0.85rem;
   color: var(--vp-c-text-2);
   margin-bottom: 1rem;
-}
-
-.donate-methods {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
 
 .donate-method {
@@ -131,33 +137,59 @@ function copyAddress() {
 
 .method-info {
   flex: 1;
-  min-width: 200px;
+  min-width: 220px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
 
-.donate-link {
-  display: inline-block;
-  padding: 0.4rem 0.85rem;
-  font-size: 0.85rem;
+.wallet-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
+}
+
+.wallet-list {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.wallet-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.8rem;
   font-weight: 500;
   border-radius: 4px;
   background: var(--vp-c-brand-1);
   color: var(--vp-c-bg) !important;
   text-decoration: none;
   transition: opacity 0.2s;
-  width: fit-content;
+  gap: 0.15rem;
 }
 
-.donate-link:hover {
+.wallet-link:hover {
   opacity: 0.85;
+}
+
+.wallet-desc {
+  font-size: 0.6rem;
+  font-weight: 400;
+  opacity: 0.8;
 }
 
 .address-row {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+}
+
+.address-label {
+  font-size: 0.75rem;
+  color: var(--vp-c-text-2);
+  white-space: nowrap;
 }
 
 .address-text {
