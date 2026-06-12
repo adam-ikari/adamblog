@@ -4,6 +4,7 @@ description: AI 编程工具系列总索引，汇总 macOS/Windows 上配置 Cla
 date: 2026-06-09
 category: 技术探索
 tags: [AI, Claude-Code, 系列]
+recommend: false
 top: 999
 ---
 
