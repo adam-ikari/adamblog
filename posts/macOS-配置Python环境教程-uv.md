@@ -4,7 +4,6 @@ description: 使用 uv 在 macOS 上配置 Python 环境，管理版本和项目
 category: 开发工具
 tags: [macOS, uv, Python, 版本管理]
 date: 2026-06-09
-recommend: ['series-fluid-simulation', 1]
 series:
   - id: series-fluid-simulation
     name: 流体仿真系列

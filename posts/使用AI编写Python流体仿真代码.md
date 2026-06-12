@@ -4,7 +4,6 @@ description: 使用 Claude Code AI 辅助编写 Python 流体仿真代码实战
 category: 技术探索
 tags: [流体仿真, Claude Code, Python, AI编程]
 date: 2026-06-09
-recommend: ['series-fluid-simulation', 3]
 series:
   - id: series-fluid-simulation
     name: 流体仿真系列
