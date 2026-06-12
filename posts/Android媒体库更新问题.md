@@ -1,5 +1,6 @@
 ---
 title: Android媒体库更新问题
+description: Android MediaProvider 媒体库更新机制解析，系统扫描时机、触发条件和常见问题排查
 category: Android
 tags: [Android, MediaProvider]
 date: 2019-09-21

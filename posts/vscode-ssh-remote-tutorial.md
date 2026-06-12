@@ -1,5 +1,6 @@
 ---
 title: VSCode SSH 远程开发教程
+description: 使用 VSCode Remote-SSH 扩展进行远程开发，配置 SSH 连接、免密登录和远程调试的完整指南
 category: tools
 tags: [Tools, VSCode, SSH Remote]
 date: 2024-02-22

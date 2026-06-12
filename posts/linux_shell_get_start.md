@@ -1,5 +1,6 @@
 ---
 title: 入门 Linux 命令教程（一）
+description: Linux 常用入门命令教程，涵盖文件操作、权限管理、进程控制等基础命令，帮助新手快速上手 Linux 系统
 tags: [Linux, Termial, shell]
 category: Linux
 date: 2024-02-22

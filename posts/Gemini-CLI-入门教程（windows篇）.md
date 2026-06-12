@@ -1,5 +1,6 @@
 ---
 title: Gemini CLI 入门教程（Windows 篇）
+description: 在 Windows 上安装和使用 Google Gemini CLI，通过命令行与 Gemini AI 模型交互
 category: AI
 tags: [Gemini CLI, Gemini, AI]
 date: 2025-07-07

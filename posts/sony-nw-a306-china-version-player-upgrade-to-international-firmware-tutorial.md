@@ -1,5 +1,6 @@
 ---
 title: 索尼NW-A306播放器国行版升级国际版固件教程
+description: 索尼 NW-A306 国行版升级国际版固件教程，获取 Google 框架和完整功能的操作指南（2.x.x 固件后已失效）
 category: HIFI
 tags: [HIFI, NW-A306, 播放器, 国际版, 升级, Sony, 索尼, 谷歌服务]
 date: 2024-04-28

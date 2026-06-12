@@ -15,7 +15,8 @@ interface SeriesInfo {
 const seriesList = computed(() => {
   const series = frontmatter.value.series
   if (!series || !Array.isArray(series)) return []
-  return series as SeriesInfo[]
+  // 只显示第一个系列，避免多系列文章出现双层导航
+  return [series[0]] as SeriesInfo[]
 })
 
 // 计算每个系列的总文章数（基于 seriesList 中的最大 order）

@@ -1,5 +1,6 @@
 ---
 title: python 应用 docker 镜像瘦身小技巧
+description: Python 应用 Docker 镜像瘦身技巧，通过多阶段构建、精简基础镜像等方法减小镜像体积
 category: 还没有分类
 date: 2025-03-05
 tags:

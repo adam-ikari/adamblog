@@ -1,7 +1,7 @@
 ---
 title: Flask 学习系列 (零)
+description: Flask 后端开发学习系列开篇，介绍 Flask 框架特点、环境搭建和基础项目结构
 category: 后端
-
 date: 2023-08-13
 tags:
 ---

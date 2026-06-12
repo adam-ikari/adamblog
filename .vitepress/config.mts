@@ -19,10 +19,14 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['meta', { name: 'theme-color', content: '#3eaf7c' }],
     ['meta', { name: 'author', content: 'Adam' }],
-    ['style', {}, `.sidebar .recommend, .sidebar .recommend-container, .VPSidebar .recommend-container { display: none !important; }`],
   ],
 
   themeConfig: {
+    // 禁用主题推荐文章侧边栏，避免与自定义 SeriesNav 重复
+    blog: {
+      recommend: false,
+    },
+
     outline: {
       level: [2, 3],
       label: '目录'

@@ -1,5 +1,6 @@
 ---
 title: CPP 入门教程 Part 2
+description: C++ 入门教程第二部分，深入讲解面向对象编程、类与对象、继承和多态等进阶主题
 category: C++
 date: 2024-10-29
 tags:

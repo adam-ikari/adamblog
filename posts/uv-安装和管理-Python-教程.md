@@ -1,5 +1,6 @@
 ---
 title: 使用 uv 安装和管理 Python
+description: 使用 uv 工具管理 Python 版本、虚拟环境和依赖，替代 pyenv、venv 和 pip 的一站式解决方案
 category: 开发工具
 tags: [uv, Python, 版本管理, 包管理, 开发工具]
 date: 2026-06-08

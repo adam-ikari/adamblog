@@ -1,5 +1,6 @@
 ---
 title: Element Plus 全局注册图标并使用别名
+description: Element Plus 全局注册所有图标组件并配置别名，简化 Vue3 项目中图标使用的最佳实践
 category: 前端
 tags: [Web, 前端, Element Plus, Vue3]
 date: 2024-09-05

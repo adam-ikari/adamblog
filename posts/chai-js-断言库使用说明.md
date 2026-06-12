@@ -1,5 +1,6 @@
 ---
 title: chai.js 断言库使用说明 (Expect 风格写法)
+description: chai.js 断言库 Expect 风格使用指南，涵盖常用断言方法和测试代码编写技巧
 category: 前端
 date: 2024-10-25
 tags:

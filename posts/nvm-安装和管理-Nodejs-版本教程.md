@@ -1,5 +1,6 @@
 ---
 title: 使用 nvm 安装和管理 Node.js 版本
+description: 使用 nvm 在同一台机器上安装多个 Node.js 版本并快速切换，解决项目间的版本兼容问题
 category: 开发工具
 tags: [nvm, Node.js, 版本管理, 开发工具]
 date: 2026-06-08

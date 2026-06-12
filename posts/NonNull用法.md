@@ -1,5 +1,6 @@
 ---
 title: NonNull用法
+description: Lombok @NonNull 注解用法详解，自动生成空引用检查代码，简化 Java 参数校验
 category: Java
 tags: [Java, Android]
 date: 2019-09-18

@@ -1,5 +1,6 @@
 ---
 title: Android四大组件学习
+description: Android 四大组件（Activity、Service、BroadcastReceiver、ContentProvider）学习笔记与使用场景解析
 category: Android
 tags: [Android]
 date: 2019-09-19

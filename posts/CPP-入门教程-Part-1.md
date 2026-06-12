@@ -1,5 +1,6 @@
 ---
 title: C++入门教程 Part 1
+description: C++ 入门教程第一部分，涵盖基础语法、数据类型、控制结构和函数等核心概念
 category: C++
 date: 2024-10-29
 tags:
