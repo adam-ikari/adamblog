@@ -5,8 +5,10 @@ const blogTheme = getThemeConfig({
   // 搜索 - 启用 pagefind 离线全文搜索
   // search: false,
 
-  // 推荐文章配置 - 禁用，避免与 SeriesNav 形成双层
-  recommend: false,
+  // 推荐文章配置 - 启用，显示相关文章推荐
+  recommend: {
+    sort: 'filename',
+  },
 
   // 页脚
   footer: {

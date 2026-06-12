@@ -22,11 +22,6 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    // 禁用主题推荐文章侧边栏，避免与自定义 SeriesNav 重复
-    blog: {
-      recommend: false,
-    },
-
     outline: {
       level: [2, 3],
       label: '目录'
