@@ -3,6 +3,7 @@ title: macOS 配置 cc-Switch 教程
 description: 在 macOS 上安装配置 cc-Switch，实现 Claude Code 多提供商一键切换
 category: AI工具
 tags: [macOS, cc-Switch, Claude Code, CLI工具]
+recommend: false
 date: 2026-06-09
 series:
   - id: series-macOS-claude

@@ -3,6 +3,7 @@ title: macOS 安装和配置 Claude Code 教程
 description: 在 macOS 上安装 Claude Code 并配置讯飞 Coding Plan、DeepSeek 等国产大模型 API
 category: AI工具
 tags: [macOS, Claude Code, AI编程, CLI工具, 国产大模型]
+recommend: false
 date: 2026-06-09
 series:
   - id: series-macOS-claude

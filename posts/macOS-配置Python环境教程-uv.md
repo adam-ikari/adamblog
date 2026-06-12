@@ -3,6 +3,7 @@ title: macOS 配置 Python 环境（uv 教程）
 description: 使用 uv 在 macOS 上配置 Python 环境，管理版本和项目
 category: 开发工具
 tags: [macOS, uv, Python, 版本管理]
+recommend: false
 date: 2026-06-09
 series:
   - id: series-fluid-simulation
