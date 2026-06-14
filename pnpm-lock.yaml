@@ -4,13 +4,18 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@sugarat/theme':
+    hash: 3495d6a6526d9efd367d4e976b826ebb23a7e8c21ac03fd8760de99e33e1a320
+    path: patches/@sugarat__theme.patch
+
 importers:
 
   .:
     dependencies:
       '@sugarat/theme':
         specifier: ^0.5.23
-        version: 0.5.23(@element-plus/icons-vue@2.3.2(vue@3.5.38))(element-plus@2.14.2(vue@3.5.38))(pagefind@1.5.2)(vite@5.4.21)(vitepress@1.6.4(@algolia/client-search@5.54.0)(async-validator@4.2.5)(markdown-it-mathjax3@4.3.2)(postcss@8.5.15)(search-insights@2.17.3))(vue@3.5.38)
+        version: 0.5.23(patch_hash=3495d6a6526d9efd367d4e976b826ebb23a7e8c21ac03fd8760de99e33e1a320)(@element-plus/icons-vue@2.3.2(vue@3.5.38))(element-plus@2.14.2(vue@3.5.38))(pagefind@1.5.2)(vite@5.4.21)(vitepress@1.6.4(@algolia/client-search@5.54.0)(async-validator@4.2.5)(markdown-it-mathjax3@4.3.2)(postcss@8.5.15)(search-insights@2.17.3))(vue@3.5.38)
       markdown-it-mathjax3:
         specifier: ^4.3.2
         version: 4.3.2
@@ -470,6 +475,12 @@ packages:
     resolution: {integrity: sha512-FV9m/7NmeCmSHDD5j4+4pNI8Cp3aW+JvLoXcTUo0IqyjSfAZJ8dIUmijx1qaJsIiU+Hosw6xM5KijAWRJCSgNg==}
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [ia32]
+    os: [win32]
+
+  '@img/sharp-win32-x64@0.34.5':
+    resolution: {integrity: sha512-+29YMsqY2/9eFEiW93eqWnuLcWcufowXewwSNIT6UwZdUUCrM3oFjMWH/Z6/TMmb4hlFenmfAVbpWeup2jryCw==}
+    engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
+    cpu: [x64]
     os: [win32]
 
   '@jridgewell/sourcemap-codec@1.5.5':
@@ -2183,6 +2194,9 @@ snapshots:
   '@img/sharp-win32-ia32@0.34.5':
     optional: true
 
+  '@img/sharp-win32-x64@0.34.5':
+    optional: true
+
   '@jridgewell/sourcemap-codec@1.5.5': {}
 
   '@lit-labs/ssr-dom-shim@1.6.0': {}
@@ -2342,7 +2356,7 @@ snapshots:
       cross-spawn: 7.0.6
       gray-matter: 4.0.3
 
-  '@sugarat/theme@0.5.23(@element-plus/icons-vue@2.3.2(vue@3.5.38))(element-plus@2.14.2(vue@3.5.38))(pagefind@1.5.2)(vite@5.4.21)(vitepress@1.6.4(@algolia/client-search@5.54.0)(async-validator@4.2.5)(markdown-it-mathjax3@4.3.2)(postcss@8.5.15)(search-insights@2.17.3))(vue@3.5.38)':
+  '@sugarat/theme@0.5.23(patch_hash=3495d6a6526d9efd367d4e976b826ebb23a7e8c21ac03fd8760de99e33e1a320)(@element-plus/icons-vue@2.3.2(vue@3.5.38))(element-plus@2.14.2(vue@3.5.38))(pagefind@1.5.2)(vite@5.4.21)(vitepress@1.6.4(@algolia/client-search@5.54.0)(async-validator@4.2.5)(markdown-it-mathjax3@4.3.2)(postcss@8.5.15)(search-insights@2.17.3))(vue@3.5.38)':
     dependencies:
       '@element-plus/icons-vue': 2.3.2(vue@3.5.38)
       '@giscus/vue': 3.1.1(vue@3.5.38)
@@ -3475,6 +3489,7 @@ snapshots:
       '@img/sharp-wasm32': 0.34.5
       '@img/sharp-win32-arm64': 0.34.5
       '@img/sharp-win32-ia32': 0.34.5
+      '@img/sharp-win32-x64': 0.34.5
 
   shebang-command@2.0.0:
     dependencies:

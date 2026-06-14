@@ -1,0 +1,15 @@
+diff --git a/src/components/BlogSidebar.vue b/src/components/BlogSidebar.vue
+index 66b9e205dfc1a39bffce0127bda6e405ecc87992..8008db305b0e4681b90b4a58ca77b16f3a2e71de 100644
+--- a/src/components/BlogSidebar.vue
++++ b/src/components/BlogSidebar.vue
+@@ -12,7 +12,9 @@ const sidebarStyle = computed(() =>
+ 
+ <template>
+   <div v-if="show" class="sidebar" :class="{ card: sidebarStyle === 'card' }" data-pagefind-ignore="all">
+-    <BlogRecommendArticle />
++    <ClientOnly>
++      <BlogRecommendArticle />
++    </ClientOnly>
+   </div>
+ </template>
+ 
