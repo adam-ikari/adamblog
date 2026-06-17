@@ -8,8 +8,7 @@ export default {
   extends: BlogTheme,
   Layout: () => {
     return h(BlogTheme.Layout, null, {
-      'doc-before': () => h(SeriesNav),
-      'doc-after': () => h(DonateBox),
+      'doc-after': () => h('div', null, [h(SeriesNav), h(DonateBox)]),
     })
   },
   enhanceApp({ app }) {
