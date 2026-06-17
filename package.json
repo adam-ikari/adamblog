@@ -2,6 +2,7 @@
   "name": "blog",
   "version": "1.0.0",
   "type": "module",
+  "packageManager": "pnpm@9.15.0",
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build && pagefind --site .vitepress/dist",
