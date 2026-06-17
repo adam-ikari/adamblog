@@ -8,6 +8,11 @@
     "build": "vitepress build && pagefind --site .vitepress/dist",
     "preview": "vitepress preview"
   },
+  "pnpm": {
+    "patchedDependencies": {
+      "@sugarat/theme": "patches/@sugarat__theme.patch"
+    }
+  },
   "devDependencies": {
     "pagefind": "^1.5.2",
     "vitepress": "^1.6.3"
