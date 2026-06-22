@@ -7,6 +7,9 @@ import { blogTheme } from './blog-theme'
 const SITE_URL = 'https://adamblog.thiz.top'
 const SITE_NAME = 'Adam的博客'
 
+// 收集系列数据
+const seriesMap = new Map<string, { name: string; articles: { title: string; link: string; order: number }[] }>()
+
 export default defineConfig({
   // 继承博客主题(@sugarat/theme)
   extends: blogTheme,
@@ -75,6 +78,37 @@ export default defineConfig({
     const isHome = relativePath === 'index.md'
     const isPost = relativePath.startsWith('posts/')
     const isSeries = relativePath.startsWith('series/')
+
+    // 收集系列数据
+    const series = pageData.frontmatter?.series
+    if (series && isPost) {
+      const seriesList = Array.isArray(series) ? series : [series]
+      const link = '/' + relativePath.replace(/\.md$/, '')
+      const title = pageData.title || pageData.frontmatter?.title || '未命名文章'
+
+      for (const s of seriesList) {
+        if (!s.id || !s.name) continue
+
+        if (!seriesMap.has(s.id)) {
+          seriesMap.set(s.id, { name: s.name, articles: [] })
+        }
+
+        const data = seriesMap.get(s.id)!
+        if (!data.articles.find(a => a.link === link)) {
+          data.articles.push({ title, link, order: s.order || 0 })
+        }
+      }
+    }
+
+    // 为系列列表页面注入系列数据
+    if (relativePath === 'series/index.md') {
+      const seriesList = Array.from(seriesMap.entries()).map(([id, data]) => ({
+        id,
+        name: data.name,
+        articles: data.articles.sort((a, b) => a.order - b.order)
+      }))
+      pageData.frontmatter.seriesList = seriesList
+    }
 
     // 生成规范 URL
     const canonicalPath = relativePath
@@ -145,6 +179,19 @@ export default defineConfig({
         'url': SITE_URL,
       }
       head.push(['script', { type: 'application/ld+json' }, JSON.stringify(jsonLd)])
+    }
+  },
+
+  buildEnd(siteConfig) {
+    // 构建结束时，将系列数据注入到主题配置
+    const seriesList = Array.from(seriesMap.entries()).map(([id, data]) => ({
+      id,
+      name: data.name,
+      articles: data.articles.sort((a, b) => a.order - b.order)
+    }))
+
+    if (siteConfig.site?.themeConfig) {
+      siteConfig.site.themeConfig.seriesList = seriesList
     }
   },
 })

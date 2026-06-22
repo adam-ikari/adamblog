@@ -2,6 +2,7 @@ import BlogTheme from '@sugarat/theme'
 import { h } from 'vue'
 import SeriesNav from './components/SeriesNav.vue'
 import SeriesCardList from './components/SeriesCardList.vue'
+import DynamicSeriesList from './components/DynamicSeriesList.vue'
 import DonateBox from './components/DonateBox.vue'
 
 export default {
@@ -13,5 +14,6 @@ export default {
   },
   enhanceApp({ app }) {
     app.component('SeriesCardList', SeriesCardList)
+    app.component('DynamicSeriesList', DynamicSeriesList)
   },
 }
