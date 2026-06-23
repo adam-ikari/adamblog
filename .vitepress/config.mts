@@ -48,6 +48,16 @@ export default defineConfig({
     editLink: {
       pattern: 'https://github.com/adam-ikari/adamblog/edit/main/:path',
       text: '在 GitHub 上编辑此页'
+    },
+
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: `Copyright © 2024-${new Date().getFullYear()} Adam`
+    },
+
+    docFooter: {
+      prev: '上一篇',
+      next: '下一篇'
     }
   },
 

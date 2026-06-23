@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@sugarat/theme": "^0.5.23",
+    "@waffo/pancake-ts": "^0.11.0",
     "markdown-it-mathjax3": "^4.3.2"
   }
 }

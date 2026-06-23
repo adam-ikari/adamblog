@@ -68,6 +68,9 @@ function copyAddress() {
           >
             前往 Waffo 打赏 →
           </a>
+          <p class="waffo-legal">
+            打赏即表示同意 <a href="/terms" target="_blank">服务条款</a> 和 <a href="/privacy" target="_blank">隐私政策</a>。
+          </p>
         </div>
       </div>
     </div>
@@ -259,6 +262,17 @@ function copyAddress() {
 
 .waffo-btn:hover {
   opacity: 0.85;
+}
+
+.waffo-legal {
+  font-size: 0.7rem;
+  color: var(--vp-c-text-3);
+  margin: 0;
+}
+
+.waffo-legal a {
+  color: var(--vp-c-text-2);
+  text-decoration: underline;
 }
 
 /* QR */
