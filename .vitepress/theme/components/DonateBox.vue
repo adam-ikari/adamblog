@@ -61,7 +61,7 @@ function copyAddress() {
             通过 <a href="https://www.waffo.ai/" target="_blank" rel="noopener">Waffo Pancake</a> 全球收款平台打赏，支持微信支付、支付宝、银联、Visa、Mastercard 等多种方式。
           </p>
           <a
-            href="https://pancake.waffo.ai/store/ai任务平台-ixkishy2/checkout/cs_95655650-4d27-b91a-9a3a-be3cc256d2a1"
+            href="/api/donate"
             target="_blank"
             rel="noopener"
             class="waffo-btn"
