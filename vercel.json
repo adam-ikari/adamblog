@@ -3,10 +3,5 @@
   "outputDirectory": ".vitepress/dist",
   "installCommand": "pnpm install --frozen-lockfile",
   "framework": null,
-  "cleanUrls": true,
-  "functions": {
-    "api/donate.ts": {
-      "runtime": "nodejs22.x"
-    }
-  }
+  "cleanUrls": true
 }
