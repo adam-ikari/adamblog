@@ -10,7 +10,7 @@ series:
     name: macOS 配置 Claude Code 系列
     order: 3
     prev: /posts/macOS-安装和配置-Claude-Code-教程
-    next:
+    next: /posts/macOS-国产模型提供商选型指南
   - id: series-macOS-cc-switch
     name: macOS 配置 cc-Switch 系列
     order: 2
@@ -22,7 +22,7 @@ series:
 
 ## 前言
 
-在使用 Claude Code 时，很多开发者会同时使用多个 AI 提供商（Anthropic 官方、OpenRouter、DeepSeek、Kimi 等），或者需要在不同的 API Key 之间切换。每次手动编辑 `~/.claude/settings.json` 不仅繁琐，还容易出错——尤其是当 API 额度在会话中途耗尽时，手动切换更是打断工作流。
+在使用 Claude Code 时，很多开发者会同时使用多个 AI 提供商（DeepSeek、讯飞、硅基流动、Kimi、Anthropic 官方、OpenRouter 等），或者需要在不同的 API Key 之间切换。尤其是**接入国产模型后，常常会同时配几家**——这家额度耗尽了切到那家、这个模型写代码好用那个模型便宜。每次手动编辑 `~/.claude/settings.json` 不仅繁琐，还容易出错：改错认证字段、漏改 Base URL、忘了重启会话，都会让 Claude Code 直接罢工。
 
 **cc-Switch** 是一个命令行配置切换工具，专门为 Claude Code 设计。它让你用一条命令在多个配置之间快速切换，无需手动编辑配置文件，也无需重启终端。目前社区中有两个主要实现：
 
@@ -162,6 +162,59 @@ cc-switch use ollama
 
 ## macOS 上的使用场景
 
+### 场景零：在多个国产模型之间切换（本系列核心）
+
+接入国产模型后，最常见的需求就是**在几家之间来回切**：DeepSeek 写代码顺手但额度耗尽了，切到讯飞 Coding Plan 顶上；想试试硅基流动的免费额度；或者国际模型经 OpenRouter 临时用一下。这正是 cc-Switch 最该出场的地方。
+
+下面分别用两个工具演示切换国产模型，注意配置里都用 **`ANTHROPIC_AUTH_TOKEN`**（国产模型走 Bearer 认证，详见 [配置详解](/posts/macOS-Claude-Code-配置详解)）。
+
+**用 @aravhawk/cc-switch（Profile 模式）切换国产模型：**
+
+每个国产模型一份完整 Profile，切 Profile 就是整体替换 settings.json：
+
+```bash
+# 用模板创建各国产模型 Profile（--api-key 填你的真实 Key）
+cc-switch --create deepseek --template deepseek --api-key sk-deepseek-xxx
+cc-switch --create xunfei  --template spark    --api-key your-spark-xxx
+cc-switch --create silicon --template siliconflow --api-key sk-silicon-xxx
+
+# 切到 DeepSeek
+cc-switch deepseek
+
+# DeepSeek 额度耗尽，切到讯飞
+cc-switch xunfei
+
+# 看看当前用的是谁
+cc-switch --current
+```
+
+如果模板没覆盖某家（比如智谱、通义），用手动方式：先 `cc-switch --create <name>` 建空 Profile，再编辑对应的 Profile 文件填入正确的 `ANTHROPIC_BASE_URL` + `ANTHROPIC_AUTH_TOKEN` + `ANTHROPIC_MODEL`，之后就能一条命令切换。
+
+**用 @adithya-13/cc-switch（Provider 模式）切换国产模型：**
+
+内置 DeepSeek 等 Provider，切换只更新 API 地址和密钥，不动其他配置：
+
+```bash
+# 添加各提供商（交互式向导会问你 Base URL / Key / 模型）
+cc-switch add deepseek
+cc-switch add siliconflow
+
+# 切到 DeepSeek
+cc-switch use deepseek
+
+# 切到硅基流动
+cc-switch use siliconflow
+
+# 确认当前生效的提供商和配置
+cc-switch status
+cc-switch doctor
+```
+
+::: tip 两套工具怎么选
+- 同时管理「模型 + 权限 + MCP」整套配置、不同项目用不同套 → **@aravhawk（Profile 模式）**
+- 只是想在几家国产模型 API 之间快速换 Key/地址 → **@adithya-13（Provider 模式）**，更轻
+:::
+
 ### 场景一：工作/个人账户切换
 
 macOS 用户经常同时拥有工作账户和个人账户。使用 @aravhawk/cc-switch 创建两个 Profile，一条命令即可切换：
@@ -275,9 +328,9 @@ Windows 的 NTFS 文件系统不支持 Unix 权限模型，WSL2 中通过 chmod 
 macOS 默认使用 zsh，环境变量配置写入 `~/.zshrc`：
 
 ```bash
-# macOS：添加到 ~/.zshrc
+# macOS：添加到 ~/.zshrc（国产模型用 AUTH_TOKEN 走 Bearer 认证）
 echo 'export ANTHROPIC_BASE_URL="https://spark-api-open.xf-yun.com/v1"' >> ~/.zshrc
-echo 'export ANTHROPIC_API_KEY="your-spark-api-key"' >> ~/.zshrc
+echo 'export ANTHROPIC_AUTH_TOKEN="your-spark-api-key"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
@@ -286,7 +339,7 @@ Windows WSL2 默认使用 bash，配置写入 `~/.bashrc`：
 ```bash
 # Windows WSL2：添加到 ~/.bashrc
 echo 'export ANTHROPIC_BASE_URL="https://spark-api-open.xf-yun.com/v1"' >> ~/.bashrc
-echo 'export ANTHROPIC_API_KEY="your-spark-api-key"' >> ~/.bashrc
+echo 'export ANTHROPIC_AUTH_TOKEN="your-spark-api-key"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
