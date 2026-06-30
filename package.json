@@ -11,6 +11,9 @@
   "pnpm": {
     "patchedDependencies": {
       "@sugarat/theme": "patches/@sugarat__theme.patch"
+    },
+    "overrides": {
+      "vite": "6.4.3"
     }
   },
   "devDependencies": {
