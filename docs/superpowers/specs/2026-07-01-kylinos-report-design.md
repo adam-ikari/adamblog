@@ -23,7 +23,7 @@
 
 把"麒麟家族"的真实血缘讲清楚，是本报告的核心价值。
 
-## 文章结构（9 章）
+## 文章结构（10 章）
 
 | 章 | 标题 | 内容 | 事实来源 |
 |---|---|---|---|
@@ -36,6 +36,7 @@
 | 七 | 不可变文件系统 | 不可变(immutable)架构趋势、只读系统目录、原子更新；与 Fedora Silverblue/SteamOS 类比；麒麟/openKylin 在此方向的具体实现 | 待核验 ⚠️ |
 | 八 | 应用生态 | deb/rpm 传统包、玲珑(linglong)沙箱包、麒麟应用商店、安卓应用兼容；生态痛点 | 待核验 ⚠️ |
 | 九 | 客观评价与局限 | 专有许可、社区生态薄、软件兼容痛点、与 UOS/Deepin 对比 | 维基+分析 |
+| 十 | 内核源码深挖 | openKylin 开源内核仓库(gitee/GitCode)、基于 Linux 6.6 LTS、19 分支、国产CPU适配分支(兆芯/intel)、河流代号(黄河/尼罗/长江)、Kconfig.kylin 定制；商业版专有补丁不可得 | 官方仓库 ✅ |
 
 ## 已核验的关键事实
 
@@ -49,6 +50,16 @@
 - UKUI = Ultimate Kylin User Interface，Qt 编写，fork 自 MATE，稳定版 4.0（2023），类 Win7 视觉，轻量
 - 支持架构：x86-64、ARM（信创扩展龙芯/飞腾/鲲鹏等，标注以官方为准）
 - 商业版 Kylin 本体为专有软件；openKylin 为开源
+
+### 内核源码（openKylin 开源内核，可深挖）
+
+- 仓库 `gitee.com/openkylin/kernel`，已迁移至 GitCode（gitcode.com/openkylin/linux）继续维护
+- 许可证 GPL-2.0 WITH Linux-syscall-note（标准 Linux 内核）
+- 主要基于 **Linux 6.6 LTS**，同时维护 6.1、5.15，有 6.12、7.0 开发线
+- 约 19 个分支，国产 CPU 适配分支：`linux-zhaoxin-5.15`（兆芯）、`sandbox/intel/`（Intel）
+- openKylin 发行版分支以河流命名：`openkylin/huanghe`（黄河）、`openkylin/nile`（尼罗）、`openkylin/yangtze`（长江）
+- 定制文件：`Kconfig.kylin`、`Makefile.kylin`（麒麟专属内核配置/构建规则）
+- 商业版银河麒麟的专有内核补丁不公开，不可得——深挖限于开源 openKylin 内核
 
 ## 写作原则
 
@@ -72,4 +83,4 @@ date: 2026-07-01
 
 - 不做实际安装/真机体验（环境限制 + 用户未亲历）
 - 不挂系列（单篇独立）
-- 不深挖具体内核补丁/源码（超出"调查报告"深度）
+- 不深挖具体内核补丁的逐行代码细节（点到仓库、分支、定制文件层面即可，不做逐 commit 考古）
