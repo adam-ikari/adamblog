@@ -36,7 +36,7 @@
 | 七 | 不可变文件系统 | 不可变(immutable)架构趋势、只读系统目录、原子更新；与 Fedora Silverblue/SteamOS 类比；麒麟/openKylin 在此方向的具体实现 | 待核验 ⚠️ |
 | 八 | 应用生态 | deb/rpm 传统包、玲珑(linglong)沙箱包、麒麟应用商店、安卓应用兼容；生态痛点 | 待核验 ⚠️ |
 | 九 | 客观评价与局限 | 专有许可、社区生态薄、软件兼容痛点、与 UOS/Deepin 对比 | 维基+分析 |
-| 十 | 内核源码深挖 | openKylin 开源内核仓库(gitee/GitCode)、基于 Linux 6.6 LTS、19 分支、国产CPU适配分支(兆芯/intel)、河流代号(黄河/尼罗/长江)、Kconfig.kylin 定制；商业版专有补丁不可得 | 官方仓库 ✅ |
+| 十 | 内核源码深挖 | openKylin 开源内核仓库(gitee/GitCode)、基于 Linux 6.6 LTS、19 分支、国产CPU适配分支(兆芯/intel)、河流代号(黄河/尼罗/长江)、Kconfig.kylin 定制；**与主线 Linux 的差别**：定制文件(Kconfig.kylin/Makefile.kylin/MAINTAINERS-DIR)、新增 CONFIG 选项(如 CONFIG_DRM_MWV207)、`ok` 后缀版本号方案、Debian 风格打包；逐补丁差异标注"需 diff upstream 可知，不逐条列举"；商业版专有补丁不可得 | 官方仓库 ✅ |
 
 ## 已核验的关键事实
 
@@ -59,6 +59,13 @@
 - 约 19 个分支，国产 CPU 适配分支：`linux-zhaoxin-5.15`（兆芯）、`sandbox/intel/`（Intel）
 - openKylin 发行版分支以河流命名：`openkylin/huanghe`（黄河）、`openkylin/nile`（尼罗）、`openkylin/yangtze`（长江）
 - 定制文件：`Kconfig.kylin`、`Makefile.kylin`（麒麟专属内核配置/构建规则）
+- **与主线 Linux 的差别**（可从仓库实据看到）：
+  - 上游不存在的定制文件：`Kconfig.kylin`、`Makefile.kylin`、`MAINTAINERS-DIR`
+  - 新增上游没有的 CONFIG 选项，如 PR #70 `Add CONFIG_DRM_MWV207=m`（启用特定显示驱动，疑国产 GPU 相关）
+  - `ok` 后缀版本号方案：`dev/6.6.0-15.0ok10`、`build/6.6.0-23.0ok2`
+  - Debian 风格内核打包：`debian/`、`debian.master/` 目录
+  - 提交量远超上游 6.6（126 万+ 提交，含大量 openKylin 额外提交）
+- 逐补丁差异需 `git diff upstream` 才能详列，Gitee 仓库已转只读归档——本文点到结构性差异，不逐条列举补丁
 - 商业版银河麒麟的专有内核补丁不公开，不可得——深挖限于开源 openKylin 内核
 
 ## 写作原则
