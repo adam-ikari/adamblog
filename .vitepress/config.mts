@@ -62,7 +62,7 @@ export default defineConfig({
   },
 
   srcDir: '.',
-  srcExclude: ['node_modules', 'convert.mjs', 'fix-paths.mjs'],
+  srcExclude: ['node_modules', 'convert.mjs', 'fix-paths.mjs', 'docs'],
 
   lastUpdated: true,
 
