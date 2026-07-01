@@ -111,13 +111,18 @@ export default defineConfig({
     }
 
     // 为系列列表页面注入系列数据
+    // 注意：transformPageData 按文件处理顺序调用，处理到 series/index.md 时
+    // seriesMap 可能尚未收集到 posts 数据（顺序不可控）。因此仅当动态收集到
+    // 数据时才覆盖；否则保留 series/index.md frontmatter 里静态维护的 seriesList。
     if (relativePath === 'series/index.md') {
-      const seriesList = Array.from(seriesMap.entries()).map(([id, data]) => ({
-        id,
-        name: data.name,
-        articles: data.articles.sort((a, b) => a.order - b.order)
-      }))
-      pageData.frontmatter.seriesList = seriesList
+      if (seriesMap.size > 0) {
+        const seriesList = Array.from(seriesMap.entries()).map(([id, data]) => ({
+          id,
+          name: data.name,
+          articles: data.articles.sort((a, b) => a.order - b.order)
+        }))
+        pageData.frontmatter.seriesList = seriesList
+      }
     }
 
     // 生成规范 URL

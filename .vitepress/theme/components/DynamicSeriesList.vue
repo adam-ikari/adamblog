@@ -14,10 +14,14 @@ interface SeriesInfo {
   articles: SeriesArticle[]
 }
 
-const { frontmatter } = useData()
+const { theme, frontmatter } = useData()
 
+// 优先读 frontmatter.seriesList（series/index.md 静态维护，可靠），
+// themeConfig.seriesList 作兜底（buildEnd 注入，受构建时机影响可能为空）
 const seriesList = computed(() => {
-  return (frontmatter.value?.seriesList as SeriesInfo[] | undefined) || []
+  return (frontmatter.value?.seriesList as SeriesInfo[] | undefined)
+    || (theme.value?.seriesList as SeriesInfo[] | undefined)
+    || []
 })
 </script>
 
