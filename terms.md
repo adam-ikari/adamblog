@@ -1,10 +1,7 @@
 ---
 title: 服务条款
 description: Adam博客的服务条款
-date: 2026-06-22
-category: 法律
-tags: [服务条款]
-recommend: false
+publish: false
 ---
 
 # 服务条款
@@ -46,4 +43,5 @@ recommend: false
 ## 8. 联系方式
 
 如有任何问题，请联系：
+- 客服邮箱：[adam@moemail.app](mailto:adam@moemail.app)
 - GitHub Issues: [https://github.com/adam-ikari/adamblog](https://github.com/adam-ikari/adamblog)

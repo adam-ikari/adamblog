@@ -1,10 +1,7 @@
 ---
 title: 隐私政策
 description: Adam博客的隐私政策
-date: 2026-06-22
-category: 法律
-tags: [隐私政策]
-recommend: false
+publish: false
 ---
 
 # 隐私政策
@@ -61,4 +58,5 @@ recommend: false
 ## 9. 联系方式
 
 如有隐私相关问题，请联系：
+- 客服邮箱：[adam@moemail.app](mailto:adam@moemail.app)
 - GitHub Issues: [https://github.com/adam-ikari/adamblog](https://github.com/adam-ikari/adamblog)

@@ -51,7 +51,7 @@ export default defineConfig({
     },
 
     footer: {
-      message: 'Released under the MIT License.',
+      message: 'Released under the MIT License. · <a href="/terms">服务条款</a> · <a href="/privacy">隐私政策</a> · 客服邮箱：<a href="mailto:adam@moemail.app">adam@moemail.app</a>',
       copyright: `Copyright © 2024-${new Date().getFullYear()} Adam`
     },
 
