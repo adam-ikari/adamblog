@@ -18,24 +18,24 @@ Android 四大组件包括：
 - Content Provider
 - Broadcast receiver
 
-从四大组件来看，Google 把应用抽象成了**UI 逻辑**、**后台逻辑**、**持久化**和**应用间通讯**四个部分。
+这四个组件其实是 Google 把一个应用拆开的方式：UI 逻辑、后台逻辑、持久化、应用间通讯，各管一摊。理清这四个抽象，再看 Android 应用就不会觉得乱。
 
 
 
 ## Activity
 
-Activity 就是用户最能直观感受到的一个部分，负责 UI 的显示和 UI 的逻辑。
+Activity 是用户最能直观感受到的部分，UI 的显示和它背后的逻辑都归它管。
 
 ## Serivce
 
-为了不阻塞前台 UI 的显示，应用大部分的后台逻辑都应该放到 Serivce 部分。
+为了不把前台 UI 卡住，应用里那些要在后台跑的逻辑就交给 Service。
 
 ## Content Provider
 
-Provider 是一种简化的数据持久层，可以被多个应用访问。
+Provider 是个简化版的数据持久层，特点是可以被多个应用访问。
 
 ## Broadcast receiver
 
-Broadcast receiver 是广播的接受者，可以接受系统广播，也可以接受指定应用的自定义广播。
+Broadcast receiver 是广播的接收端，既能收系统广播，也能收指定应用发出的自定义广播。
 
-广播是一种简单的进程间通讯的方式。
+说到底，广播本身是一种很轻量的进程间通讯方式。

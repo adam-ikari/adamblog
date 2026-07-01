@@ -16,14 +16,14 @@ series:
 # cc-Switch CLI 使用教程
 ## 前言
 
-在使用 Claude Code 的过程中，很多开发者会遇到一个常见问题：当你同时使用多个 AI 提供商（如 Anthropic 官方、OpenRouter、DeepSeek、Kimi 等），或者需要在不同的 API Key 之间切换时，每次都要手动编辑 `~/.claude/settings.json`，不仅繁琐，还容易出错。当 Claude Code 的使用额度在会话中途耗尽时，手动切换提供商更是打断工作流。
+用 Claude Code 时间一长，很多人会同时挂好几个 AI 提供商（Anthropic 官方、OpenRouter、DeepSeek、Kimi 等），或者在几个 API Key 之间来回切。每切一次都要手动编辑 `~/.claude/settings.json`，繁琐不说，还容易写错。更烦的是额度在会话中途耗尽——手忙脚乱去切提供商，工作流直接被打断。
 
-**cc-Switch** 就是为了解决这个问题而生的 CLI 工具。它让你可以用一条命令在多个 Claude Code 配置之间快速切换，无需手动编辑配置文件，也无需重启终端。目前社区中有多个 cc-Switch 实现，本文主要介绍功能最完善的两个版本：
+**cc-Switch** 就是冲着这个来的。它让你用一条命令在多套 Claude Code 配置之间快速切换，不用手改配置文件，也不用重启终端。社区里有好几个实现，本文挑功能最完善的两个讲：
 
 - **@aravhawk/cc-switch** — 配置文件 Profile 管理器，适合管理多套完整的 settings.json 配置
 - **@adithya-13/cc-switch** — 提供商快速切换器，适合在 Anthropic、OpenRouter、DeepSeek 等提供商之间一键切换
 
-此外还有 **@imvhb/cc-switch-mcp-server**，可以作为 MCP Server 集成到 Claude Code 中使用。
+另外还有 **@imvhb/cc-switch-mcp-server**，能作为 MCP Server 集成到 Claude Code 里用。
 
 > **注意：** cc-Switch 是社区开发的第三方工具，非 Anthropic 官方产品。本文内容基于 npm 上的包信息和 GitHub 仓库文档整理，具体功能请以官方仓库最新版本为准。
 
@@ -97,7 +97,7 @@ npm install -g @imvhb/cc-switch-mcp-server
 
 ### @aravhawk/cc-switch — Profile 管理模式
 
-这个版本的核心概念是 **Profile（配置档案）**。每个 Profile 保存了一份完整的 `settings.json` 副本，切换 Profile 就是替换 `~/.claude/settings.json` 的内容。
+这个版本的核心概念是 **Profile（配置档案）**。每个 Profile 存一份完整的 `settings.json` 副本，切换 Profile 就是把 `~/.claude/settings.json` 的内容整体替换掉。
 
 **工作原理：**
 
@@ -114,7 +114,7 @@ npm install -g @imvhb/cc-switch-mcp-server
 cc-switch
 ```
 
-交互式菜单提供创建、切换、删除、重命名 Profile 等操作，适合不熟悉命令行参数的用户。
+交互式菜单提供创建、切换、删除、重命名 Profile 这些操作，不想记命令行参数的直接用它。
 
 ### @adithya-13/cc-switch — 提供商切换模式
 
@@ -192,7 +192,7 @@ cc-switch use deepseek
 
 ### 场景一：在工作和个人账户之间切换
 
-如果你有一个讯飞的 API Key 和一个 DeepSeek 的 Key，可以创建两个 Profile：
+手头有一个讯飞的 API Key 和一个 DeepSeek 的 Key，就给它们各建一个 Profile：
 
 ```bash
 # 创建讯飞配置 Profile
@@ -265,7 +265,7 @@ cc-switch --create my-custom-config
 
 ### 场景五：管理多个项目的不同配置
 
-不同项目可能需要不同的 Claude Code 配置（如不同的权限设置、MCP Server 配置等）：
+不同项目可能要不同的 Claude Code 配置（权限设置、MCP Server 配置之类的）：
 
 ```bash
 # 为前端项目创建 Profile
@@ -345,14 +345,9 @@ cc-switch use pro
 
 ## 总结
 
-cc-Switch 解决了 Claude Code 多配置管理的痛点，让开发者可以：
+cc-Switch 解决的就是 Claude Code 多配置管理的麻烦——不用再手改 settings.json，一条命令切完，切换时还会自动存好当前配置，不怕丢。它内置了 Anthropic、OpenRouter、DeepSeek、Kimi、Ollama 这些主流提供商，也支持自定义。
 
-- **一键切换** — 无需手动编辑 settings.json，一条命令完成配置切换
-- **安全可靠** — 切换时自动保存当前配置，不会丢失任何设置
-- **多提供商支持** — 支持 Anthropic、OpenRouter、DeepSeek、Kimi、Ollama 等主流提供商
-- **灵活扩展** — 支持自定义提供商和配置模板
-
-如果你经常在多个 AI 提供商或多个 Claude Code 配置之间切换，cc-Switch 是一个值得加入工具链的效率工具。建议根据你的使用场景选择合适的版本：
+按场景挑版本就行：
 
 | 需求 | 推荐版本 |
 |------|----------|

@@ -14,7 +14,7 @@ date: 2023-02-24
 
 这是 JavaScript [standard](https://github.com/standard/standard) 代码规范的全文。
 
-掌握本规范的最好方法是安装并在自己的代码中使用它。
+掌握这份规范最好的办法，就是装到自己的项目里用起来。
 
 
 
@@ -1304,7 +1304,7 @@ date: 2023-02-24
   window.alert('hi');  // ✗ avoid
   ```
 
-* 不要使用 `(`, `[`, or `` ` `` 等作为一行的开始。在没有分号的情况下代码压缩后会导致报错，而坚持这一规范则可避免出错。
+* 不要使用 `(`, `[`, or `` ` `` 等作为一行的开始。在没有分号的情况下代码压缩后会报错，坚持这条规范就能避免出错。
 
   eslint: [`no-unexpected-multiline`](http://eslint.org/docs/rules/no-unexpected-multiline)
 
@@ -1338,7 +1338,7 @@ date: 2023-02-24
 
   备注：上面的写法只能说聪明过头了。
 
-  相比更加可读易懂的代码，那些看似投巧的写法是不可取的。
+  相比可读易懂的代码，那些看似取巧的写法并不值得。
 
   譬如：
 
@@ -1362,7 +1362,7 @@ date: 2023-02-24
 
 * [JavaScript 中的分号多余吗？- YouTube][3]
 
-当前主流的代码压缩方案都是基于词法（AST-based）进行的，所以在处理无分号的代码时完全没有压力（何况 JavaScript 中分号本来就不是强制的）。
+当前主流的代码压缩方案都是基于词法（AST-based）的，处理无分号的代码毫无压力——何况 JavaScript 里分号本来就不是强制的。
 
 ##### 一段摘抄自 *["An Open Letter to JavaScript Leaders Regarding Semicolons"][1]* 这篇文章的内容
 

@@ -17,23 +17,21 @@ series:
 
 ## 前言
 
-Claude Code 是 Anthropic 官方推出的 CLI 编程助手，它直接运行在终端中，能够理解你的项目上下文，帮你编写代码、调试问题、执行 Shell 命令、操作文件等。
+Claude Code 是 Anthropic 官方出的 CLI 编程助手，跑在终端里，能读懂你的项目上下文，帮你写代码、调试、执行 Shell 命令、操作文件。
 
-**但是，Claude 官方订阅（Claude Pro/Max）和 Anthropic API 在国内使用存在很大困难**：网络访问不稳定、支付方式受限、API 调用延迟高等问题让很多开发者望而却步。
-
-好消息是，Claude Code 支持通过 OpenAI 兼容 API 接入第三方提供商，这意味着我们可以使用**国产大模型 API** 作为替代方案，享受同样强大的 AI 编程体验。本文将重点介绍如何在国内环境下配置和使用 Claude Code。
+但 Claude 官方订阅和 Anthropic API 在国内用起来挺折腾：网络不稳、支付受限、调用延迟高，劝退了不少人。好在 Claude Code 支持通过 OpenAI 兼容 API 接第三方提供商，可以直接拿**国产大模型 API** 顶上，体验并不差。这篇就讲在国内环境下怎么把它配上、用起来。
 
 ## 前提条件
 
 ### Node.js 18+ 已安装
 
-Claude Code 依赖 Node.js 18 或更高版本。检查当前版本：
+Claude Code 依赖 Node.js 18 或更高版本。先看一眼当前版本：
 
 ```bash
 node --version
 ```
 
-如果版本低于 18 或未安装，推荐使用 nvm 安装（详见 [macOS 开发环境准备教程](/posts/macOS-环境准备教程)）：
+版本低于 18 或根本没装，推荐用 nvm 装（详见 [macOS 开发环境准备教程](/posts/macOS-环境准备教程)）：
 
 ```bash
 # 安装 nvm
@@ -48,7 +46,7 @@ node --version   # 应输出 v18.x.x 或更高
 
 ### 大模型 API Key
 
-由于 Anthropic 官方 API 在国内使用困难，本教程推荐以下国产替代方案：
+Anthropic 官方 API 在国内不好用，下面这几家国产替代都是 OpenAI 兼容格式，可以直接接进 Claude Code：
 
 | 提供商 | 模型 | 特点 | API 兼容性 |
 |--------|------|------|-----------|
@@ -57,7 +55,7 @@ node --version   # 应输出 v18.x.x 或更高
 | **OpenRouter** | 多模型聚合 | 可访问 Claude/GPT 等多种模型 | OpenAI 兼容 |
 | **硅基流动 (SiliconFlow)** | 多模型 | 国内访问友好，价格实惠 | OpenAI 兼容 |
 
-> 💡 所有这些提供商都支持 OpenAI 兼容 API 格式，可以直接接入 Claude Code。
+> 💡 这些提供商都支持 OpenAI 兼容 API 格式，接进 Claude Code 没有额外适配成本。
 
 ## 安装 Claude Code
 
@@ -85,7 +83,7 @@ claude --version
 
 ## 配置国产大模型 API
 
-这是本文的核心部分。Claude Code 支持通过环境变量或 `settings.json` 配置第三方 API 提供商。
+这是本文的核心。Claude Code 支持通过环境变量或 `settings.json` 配第三方 API 提供商，两种都行。
 
 ### 方式一：通过环境变量配置
 
@@ -109,7 +107,7 @@ source ~/.zshrc
 
 ### 方式二：通过 settings.json 配置
 
-相比于环境变量，更推荐把配置写进 `~/.claude/settings.json` 的 `env` 块。这样配置集中管理，且不会污染整个 Shell 环境：
+相比环境变量，更推荐把配置写进 `~/.claude/settings.json` 的 `env` 块。配置集中在一处，也不污染整个 Shell 环境：
 
 ```json
 {
@@ -121,19 +119,19 @@ source ~/.zshrc
 ```
 
 ::: warning 注意认证字段的区别
-第三方 API 网关（DeepSeek、讯飞、硅基流动、OpenRouter 等）几乎都使用 **Bearer Token** 认证，因此必须用 `ANTHROPIC_AUTH_TOKEN`，它会以 `Authorization: Bearer <key>` 形式发送。
+第三方 API 网关（DeepSeek、讯飞、硅基流动、OpenRouter 等）几乎都走 **Bearer Token** 认证，所以必须用 `ANTHROPIC_AUTH_TOKEN`，它会被拼成 `Authorization: Bearer <key>` 发出去。
 
-- `ANTHROPIC_AUTH_TOKEN` —— 发送为 `Authorization: Bearer <值>`，**接入第三方网关用这个**
-- `ANTHROPIC_API_KEY` —— 发送为 `X-Api-Key` 头，这是 Anthropic 官方 API 的格式，第三方网关通常不认
+- `ANTHROPIC_AUTH_TOKEN` —— 发送为 `Authorization: Bearer <值>`，**接第三方网关用这个**
+- `ANTHROPIC_API_KEY` —— 发送为 `X-Api-Key` 头，这是 Anthropic 官方 API 的格式，第三方网关多半不认
 
-如果你用 `ANTHROPIC_API_KEY` 接第三方网关，多半会收到 401 认证失败。详细说明见 [Claude Code 配置详解](/posts/macOS-Claude-Code-配置详解)，常见报错排查见 [常见报错排查](/posts/macOS-Claude-Code-报错排查)。
+要是你拿 `ANTHROPIC_API_KEY` 去接第三方网关，大概率会收到 401。详细说明见 [Claude Code 配置详解](/posts/macOS-Claude-Code-配置详解)，常见报错排查见 [常见报错排查](/posts/macOS-Claude-Code-报错排查)。
 :::
 
 ### 各提供商详细配置
 
 #### 讯飞 Coding Plan
 
-讯飞 Coding Plan 提供多种大模型服务，包括星火、GLM 5.1、DeepSeek V4 等：
+讯飞 Coding Plan 一个套餐能切多种模型，包括星火、GLM 5.1、DeepSeek V4 等：
 
 ```bash
 # 设置 API 地址和密钥
@@ -149,7 +147,7 @@ source ~/.zshrc
 
 #### DeepSeek
 
-DeepSeek 是目前最受欢迎的国产编程大模型之一，代码能力出色：
+DeepSeek 是目前最火的国产编程大模型之一，代码能力在线，价格也便宜：
 
 ```bash
 echo 'export ANTHROPIC_BASE_URL="https://api.deepseek.com"' >> ~/.zshrc
@@ -164,7 +162,7 @@ source ~/.zshrc
 
 #### OpenRouter
 
-OpenRouter 聚合了多种模型，可以通过它访问 Claude、GPT 等国际模型：
+OpenRouter 是个聚合层，通过它可以用上 Claude、GPT 等国际模型：
 
 ```bash
 echo 'export ANTHROPIC_BASE_URL="https://openrouter.ai/api/v1"' >> ~/.zshrc
@@ -176,7 +174,7 @@ source ~/.zshrc
 
 #### 硅基流动 (SiliconFlow)
 
-国内访问友好，支持多种开源模型：
+国内访问友好，接了不少开源模型：
 
 ```bash
 echo 'export ANTHROPIC_BASE_URL="https://api.siliconflow.cn/v1"' >> ~/.zshrc
@@ -186,7 +184,7 @@ source ~/.zshrc
 
 ### 使用 cc-Switch 快速切换提供商
 
-当你同时配置了多个提供商时，手动修改环境变量很麻烦。推荐使用 **cc-Switch** 命令行工具一键切换：
+配了好几家提供商之后，手动改环境变量就嫌麻烦了。推荐用 **cc-Switch** 命令行工具一键切换：
 
 ```bash
 # 安装 cc-Switch
@@ -263,7 +261,7 @@ claude --resume
 
 ### CLAUDE.md 项目说明文件
 
-`CLAUDE.md` 放在项目根目录下，Claude Code 每次启动时都会自动读取。使用 `/init` 命令自动生成，或手动创建：
+`CLAUDE.md` 放在项目根目录，Claude Code 每次启动都会自动读取。可以用 `/init` 命令生成，也可以手动建：
 
 ```markdown
 # 项目说明
@@ -281,7 +279,7 @@ claude --resume
 
 ### .claude/settings.json 配置
 
-项目级别的配置文件位于 `.claude/settings.json`：
+项目级别的配置在 `.claude/settings.json`：
 
 ```json
 {
@@ -313,11 +311,7 @@ claude --resume
 | 代理配置 | 系统代理自动生效 | 需手动配置转发 |
 | OAuth 流程 | 原生流畅 | 可能有跳转问题 |
 
-macOS 的优势：
-- 无需虚拟化层，文件 I/O 性能更好
-- 项目可放在任意目录，无跨文件系统问题
-- 系统通知集成更好（可用 `osascript`）
-- 代理配置更简单，直接使用系统代理
+macOS 的好处是少了一层虚拟化，文件 I/O 更快，项目放哪都行，没有跨文件系统的坑。系统通知集成也顺（可以用 `osascript`），代理直接走系统代理。
 
 ## 常见问题
 
@@ -366,7 +360,7 @@ echo $ANTHROPIC_AUTH_TOKEN
 
 ## 总结
 
-通过配置国产大模型 API，你可以在国内流畅地使用 Claude Code 进行 AI 辅助编程。核心要点：
+配好国产大模型 API，国内流畅用 Claude Code 辅助编程就没问题了。核心就这几步：
 
 - **安装 Claude Code**：`npm install -g @anthropic-ai/claude-code`
 - **配置国产 API**：设置 `ANTHROPIC_BASE_URL` 和 `ANTHROPIC_API_KEY` 环境变量

@@ -11,21 +11,21 @@ date: 2019-09-21
 
 ## 简介
 
-Android 媒体库(MediaProvider)实际上是个 Provider。
+Android 媒体库（MediaProvider）说到底就是一个 Provider。
 
-**Android 4.4** 以后，当**系统启动完成**、**SD 卡插拔**或者**接收到 `Intent.ACTION_MEDIA_SCANNER_SCAN_FILE` 广播**时，系统会扫描文件系统中的数据，将新增和删除的文件信息更新到这个 MediaProvider 中。其他应用如果要使用，直接读取这个 MediaProvider 就可以直接取得系统中媒体文件的信息。
+**Android 4.4** 之后，遇到这几种情况——**系统启动完成**、**SD 卡插拔**，或者收到 **`Intent.ACTION_MEDIA_SCANNER_SCAN_FILE` 广播**——系统就会扫一遍文件系统，把新增和删除的文件信息同步进这个 MediaProvider。别的应用要用到媒体文件，直接读它就行，不必自己去翻目录。
 
 
 
 ## 背景
 
-笔者遇到的问题是开发的拍照应用在拍照之后，MediaProvider 没有更新新增的照片文件，图库中也看不到新增的照片。
+事情起因是这样：我做的拍照应用，拍完照之后 MediaProvider 没把新照片收进去，图库里自然也看不到。
 
 ## 调查过程
 
-从触发更新 MediaProvider 的条件来看，拍照之后应该发送广播`Intent.ACTION_MEDIA_SCANNER_SCAN_FILE`通知系统去更新 MediaProvider，而开发的相机应用没有进行这个动作。
+对照一下触发 MediaProvider 更新的那几个条件，拍照之后应该主动发一条 `Intent.ACTION_MEDIA_SCANNER_SCAN_FILE` 广播，通知系统去更新。而我的相机应用恰恰漏了这一步。
 
-笔者写了一个类用来发送`Intent.ACTION_MEDIA_SCANNER_SCAN_FILE`广播：
+于是我写了个类，专门负责发这条广播：
 
 ```java
 public class MediaUtils {
@@ -65,10 +65,10 @@ public class MediaUtils {
 }
 ```
 
-在拍照`Activity`取得`MediaUtils`的实例并调用`setContext`方法传入`Activity`本身。
+在拍照 `Activity` 里拿到 `MediaUtils` 实例，调 `setContext` 把 Activity 自己传进去。
 
-在拍照之后取得 MediaUtils 的实例并调用`updateMedia`方法将新增照片的路径传入，相册里就可以显示新增的照片了。
+拍完照之后再取一次实例，调 `updateMedia` 把新照片的路径喂给它，相册里就能看到这张照片了。
 
 ## 结论
 
-如果想要应用产生的图片或者视频被其他应用找到并使用，必须要发送`Intent.ACTION_MEDIA_SCANNER_SCAN_FILE`广播。
+一句话：想让应用产生的图片或视频被别的应用找到、用上，就得主动发 `Intent.ACTION_MEDIA_SCANNER_SCAN_FILE` 这条广播。

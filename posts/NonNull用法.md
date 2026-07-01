@@ -9,14 +9,14 @@ date: 2019-09-18
 # NonNull用法
 > 这篇博文是从本人过去的 github pages 博客迁移过来，时间上会比较古老。
 
-在编程中经常会需要对传入的参数做空引用检查。传统的做法是使用一连串的if语句对入参做检查，代码冗长又破坏整体感。
+在编程中经常会需要对传入的参数做空引用检查。传统做法是一连串 if 把入参挨个查一遍，代码冗长，还把整体结构打散了。
 
 
 
-可以使用@NonNull在方法或构造函数的参数上，让lombok为您生成null-check语句。
-*@NonNull在Java库lombok v0.11.10中引入,而Android可以通过androidx.annotation库导入。*
+可以用 `@NonNull` 标在方法或构造函数的参数上，让 lombok 帮你把 null-check 那段代码生成出来。
+*@NonNull 在 Java 库 lombok v0.11.10 中引入，Android 这边可以通过 androidx.annotation 库导入。*
 
-写一个例子：
+写个例子：
 
 ```java
 public class Foo {

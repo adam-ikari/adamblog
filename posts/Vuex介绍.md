@@ -7,33 +7,33 @@ date: 2023-05-11
 ---
 
 # Vuex介绍
-Vuex 是 Vue.js 中非常常用的状态管理库，因此，学习 Vuex 对于 Vue.js 开发非常重要。下面是一个 Vuex 的学习指南，旨在使编程初学者更容易理解。
+Vuex 是 Vue.js 里最常用的状态管理库，学 Vue 绕不开它。下面这份指南面向刚入门的开发者，尽量把概念讲清楚。
 
 
 
 ## 什么是 Vuex?
 
-Vuex 是一个专为 Vue.js 应用程序开发的状态管理模式。它集中式地存储了所有组件的状态，并以相应的规则保证状态以一种可预测的方式发生变化。
+Vuex 是专门为 Vue.js 应用设计的状态管理模式。它把所有组件的状态集中存储在一个地方，并用一套规则保证状态以可预测的方式变化。
 
-在简单的应用中，管理状态不需要使用 Vuex，但是，它适用于中大型的单页应用程序，尤其是涉及到多个组件共享状态时。
+简单的应用其实用不着 Vuex。但应用一旦变大，尤其多个组件要共享状态时，它的价值就显现出来了。
 
 下面是一个示例 Vuex 架构图：
 
 ![Vuex Architecture](https://vuex.vuejs.org/vuex.png)
 
-> 这个图是一个关于 Vuex 的概念图，它展示了 Vue 组件、Vuex store 和后端服务器之间的数据流动。Vue 组件可以通过 dispatch action 来触发 Vuex store 中的 mutation，从而改变 state。Vue 组件也可以通过 getters 来获取 Vuex store 中的 state。Vuex store 可以通过调用 API 来与后端服务器进行通信，从而获取或更新数据。
+> 这张是 Vuex 的概念图，展示了 Vue 组件、Vuex store 和后端服务器之间的数据流动。组件可以通过 dispatch action 触发 store 里的 mutation，从而改变 state；也可以通过 getters 读取 state。store 则通过调用 API 和后端服务器通信，获取或更新数据。
 
 ## Vuex 的核心概念
 
-- **State（状态）**：在 Vuex 中，状态存储在一个单一的 state 对象中，当状态发生变化时，视图会进行相应的更新。
+- **State（状态）**：所有状态存在一个单一的 state 对象里，状态变了，视图跟着更新。
 
-- **Getter（获取器）**：Getter 是一个用于从 store 读取状态值的计算属性。
+- **Getter（获取器）**：从 store 读取状态值的计算属性。
 
-- **Mutation（变化）**：Mutation 是一个更改 store 状态的同步操作。多个 Mutation 之间可能存在状态依赖关系，并按照特定的顺序执行。
+- **Mutation（变化）**：更改 store 状态的同步操作。多个 Mutation 之间可能有依赖关系，按特定顺序执行。
 
-- **Action（动作）**：Action 是提交 mutation 的异步操作。Action 可以包含任意异步操作。Action 和 Mutation 是相互独立的，但是通常使得 Action 调用 Mutation 来更新状态。
+- **Action（动作）**：提交 mutation 的异步操作，可以包含任意异步逻辑。Action 和 Mutation 是独立的，但通常是 Action 调用 Mutation 来更新状态。
 
-- **Module（模块）**：当不同状态有不同的子模块进行管理时，可以使用模块来组织代码。
+- **Module（模块）**：当不同状态由不同子模块管理时，用模块来组织代码。
 
 ## 安装和使用 Vuex
 
@@ -93,18 +93,18 @@ export default {
 </script>
 ```
 
-这里仅提供了一个简单的例子，更多的 Vuex 用法可以参考官方文档：[Vuex 文档](https://vuex.vuejs.org/)。
+这里只给了一个最简单的例子，更多用法参考官方文档：[Vuex 文档](https://vuex.vuejs.org/)。
 
 ## 工程中的使用方式
 
-一般来说，一个工程中会有一个专门的文件夹来存放 vuex 相关的代码，例如 store 或者 src/store。在这个文件夹中，你可以有以下几种组织方式：
+实际工程里一般会专门留一个文件夹放 vuex 相关代码，比如 `store` 或 `src/store`。常见的组织方式有三种：
 
-- 单文件模式：将所有的 state，mutations，actions 和 getters 都写在一个 index.js 文件中，然后在 main.js 中导入并注册 store 实例。这种方式适合小型或简单的应用程序，但是当你的状态管理逻辑变得复杂时，这个文件会变得很长很难维护。
-- 拆分模式：将 state，mutations，actions 和 getters 分别写在不同的文件中，例如 state.js，mutations.js 等，然后在 index.js 中导入并合并成一个 store 对象，再在 main.js 中注册 store 实例。这种方式可以让你的代码更加模块化和清晰，但是你需要频繁地在不同的文件之间切换和查找。
-- 模块模式：将不同的功能或业务逻辑划分为不同的模块，每个模块都有自己的 state，mutations，actions 和 getters，然后在 index.js 中导入并注册这些模块，再在 main.js 中注册 store 实例。这种方式可以让你的代码更加结构化和可维护，但是你需要注意命名空间的问题，以避免不同模块之间的冲突。
+- 单文件模式：state、mutations、actions、getters 全写在一个 index.js 里，再在 main.js 中导入并注册 store 实例。适合小型或简单应用，但状态逻辑一复杂，这个文件会变得又长又难维护。
+- 拆分模式：把 state、mutations、actions、getters 分别写在不同文件里（state.js、mutations.js 等），在 index.js 中导入合并成一个 store，再到 main.js 注册。代码更模块化、更清晰，代价是要在多个文件之间来回切换查找。
+- 模块模式：按功能或业务把状态拆成不同模块，每个模块自带 state、mutations、actions、getters，在 index.js 导入注册，再到 main.js 注册。结构最清楚、最好维护，但要注意命名空间，避免不同模块之间冲突。
 
-无论你选择哪种方式，你都需要在你的组件中通过 this.\$store 来访问 store 实例，并通过 this.\$store.commit 或 this.\$store.dispatch 来触发状态变化。你也可以使用 mapState，mapMutations，mapActions 和 mapGetters 等辅助函数来简化你的代码。
+不管选哪种，组件里都是通过 `this.$store` 访问 store 实例，用 `this.$store.commit` 或 `this.$store.dispatch` 触发状态变化。也可以用 mapState、mapMutations、mapActions、mapGetters 这些辅助函数简化代码。
 
 ## 总结
 
-学习 Vuex 需要一些 Vue.js 的基础。但只要掌握了上述的 Vuex 的核心概念，就可以开始编写更具有结构性和可维护性的 Vue.js 应用了，同时也可以有效地提高开发效率。
+学 Vuex 需要一点 Vue.js 基础。掌握上面几个核心概念后，就能写出结构更清晰、更易维护的 Vue.js 应用，开发效率也会跟着上来。

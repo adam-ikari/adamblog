@@ -7,7 +7,8 @@ date: 2025-07-07
 ---
 
 # Gemini CLI 入门教程（Windows 篇）
-本教程将指导您如何在 Windows 操作系统上安装和使用 Google Gemini CLI。Gemini CLI 是一个命令行工具，可让您直接在终端中与 Gemini 模型进行交互。
+
+Google 的 Gemini CLI 是个命令行工具，让你在终端里直接跟 Gemini 模型对话。这篇讲的是在 Windows 上怎么把它装起来、用起来。
 
 
 
@@ -25,37 +26,37 @@ date: 2025-07-07
 
 ## 1. 环境准备
 
-在使用 Gemini CLI 之前，您需要确保您的系统可以正常访问 Google 网站，并已经安装了 Node.js 和 npm。
+动手之前，先确认两件事：系统能正常访问 Google，Node.js 和 npm 已经装好了。
 
 ### 安装 Node.js
 
-Gemini CLI 是一个 Node.js 包，因此需要先安装 Node.js 环境。
+Gemini CLI 本身是个 Node.js 包，得先有 Node.js 环境。
 
 1.  **下载 Node.js**:
-    访问 [Node.js 官方网站](https://nodejs.org/en/download/)。建议下载 **LTS (长期支持)** 版本的 Windows 安装包 (`.msi`)。
+    访问 [Node.js 官方网站](https://nodejs.org/en/download/)，建议下载 **LTS（长期支持）** 版本的 Windows 安装包 (`.msi`)。
 
 2.  **安装 Node.js**:
-    双击下载的 `.msi` 文件，按照安装向导的提示完成安装。请确保在安装过程中勾选了 "Add to PATH" 选项，这样 `node` 和 `npm` 命令才可以在任何终端位置被识别。
+    双击下载的 `.msi` 文件，按向导提示装完。注意安装时勾上 "Add to PATH"，这样 `node` 和 `npm` 命令在任何终端位置才能用。
 
 3.  **验证安装**:
-    安装完成后，打开您的终端（推荐使用 **Windows Terminal**，也可以使用 PowerShell 或命令提示符, 可以在开始菜单中找到这三个快捷方式），输入以下命令来验证 Node.js 和 npm 是否安装成功：
+    装完打开终端（推荐 **Windows Terminal**，PowerShell 或命令提示符也行，开始菜单里都能找到），输入：
 
     ```bash
     node -v
     npm -v
     ```
 
-    如果您能看到版本号输出（例如 `v20.11.0` 和 `10.2.4`），则说明安装成功。
+    能看到版本号输出（比如 `v20.11.0` 和 `10.2.4`），就说明装好了。
 
 4.  **修改 npm 源（大陆使用者需要本步骤）**
 
-因为网络原因，为了更顺利的安装 Gemini CLI,需要修改 npm 源。
+大陆网络下，直接装 Gemini CLI 容易卡，得先把 npm 源换掉。
 
-这里推荐使用 chsrc 工具
+推荐用 chsrc 工具来换。
 
 4.1. **安装 chsrc**
 
-在终端接着输入下面的命令安装 chsrc 工具
+在终端接着输入下面的命令安装 chsrc 工具：
 
 ```powershell
 winget install RubyMetric.chsrc
@@ -74,85 +75,73 @@ chsrc set npm
 
 ## 2. 安装 Gemini CLI
 
-环境准备完成您可以通过 npm 全局安装 Gemini CLI。
-
-在终端中运行以下命令：
+环境准备就绪，就可以用 npm 全局安装了：
 
 ```bash
 npm install -g @google/gemini-cli
 ```
 
-`-g` 参数表示全局安装，这样您就可以在系统的任何路径下使用 `gemini` 命令。
+`-g` 表示全局安装，装完之后在任何路径下都能用 `gemini` 命令。
 
-安装完成后，可以通过以下命令验证 Gemini CLI 是否安装成功：
+装完可以用下面这条验证一下：
 
 ```bash
 gemini --version
 ```
 
-或者查看帮助文档：
+或者看看帮助：
 
 ```bash
 gemini help
 ```
 
-输入 gemini 可以启动 Gemini CLI 工具。此时屏幕上会显示主题选项，通过上下键选择喜欢的主题，按下`Enter`键即可。
+直接输入 `gemini` 就能启动。第一次会弹出主题选择，上下键挑个顺眼的，按 `Enter` 确定。
 
 ## 3. 登录与授权
 
-接下来的步骤需要授权。
-
-Gemini CLI 支持两种授权方式：通过 Google 账号（OAuth 2.0）登录或使用 API 密钥。
+接下来这一步要授权。Gemini CLI 支持两种方式：用 Google 账号走 OAuth 2.0 登录，或者直接用 API 密钥。
 
 ### 方式一：使用 Google 账号登录（推荐）
 
-这是最简单直接的方式，适合大多数个人用户。
-
-下终端中使用上下键选择 Google 账号登录，按下回车。
-此时会自动大开浏览器进入 Google 账户登录页面，按照引导登录 Google 账号即可（需要保证网络畅通），登录之后就可以使用 Gemini CLI 了。
+最简单，适合大多数个人用户。在终端里用上下键选 Google 账号登录，回车确认。它会自动打开浏览器跳到 Google 登录页，跟着引导登录就行（期间网络得畅通），登完就能用了。
 
 ### 方式二：使用 API 密钥（可选）
 
-如果您在无法打开浏览器的环境（例如服务器、CI/CD 流水线）中使用，或者偏好使用 API 密钥，可以选择此方式。
+如果是在没法开浏览器的环境（服务器、CI/CD 流水线），或者你更习惯用 API 密钥，就走这条。
 
 1.  **获取 API 密钥**:
-
-    访问 [Google AI Studio](https://aistudio.google.com/app/apikey) (原 MakerSuite)。登录您的 Google 账号，然后点击 "Create API key" 创建一个新的密钥。
+    访问 [Google AI Studio](https://aistudio.google.com/app/apikey)（原 MakerSuite），登录 Google 账号后点 "Create API key" 创建一个新密钥。
 
 2.  **复制 API 密钥**:
-
-    将生成的一长串字符复制下来。请务必妥善保管此密钥，不要泄露给他人。
+    把生成的那一长串字符复制下来。这东西别泄露给别人。
 
 3.  **配置 API 密钥**:
-    在 Windows 的环境变量配置中加 GEMINI_API_KEY，值是上一步得到的密钥。
+    在 Windows 的环境变量里加一项 `GEMINI_API_KEY`，值就是上一步拿到的密钥。
 
 ## 4. 基本使用
 
-授权完成后，您就可以开始使用 Gemini CLI 了。
+授权过了，就能开始用了。
 
-在需要使用 Gemini CLI 的文件夹，按住 shift 的同时按下鼠标右键，在打开的右键菜单中选择在终端中打开。
+在要用 Gemini CLI 的文件夹里，按住 shift 同时点鼠标右键，从右键菜单里选“在终端中打开”。
 ![alt text](/posts/Gemini-CLI-入门教程（windows篇）/open_terminal_at_explorer.png)
 
-此时在终端中打开了 Powershell 命令行工具，此时输入 Gemini
+此时终端里打开的是 PowerShell，输入 `gemini`：
+
 ![alt text](/posts/Gemini-CLI-入门教程（windows篇）/terminal.png)
 
 ```powershell
 gemini
 ```
 
-此时便可以在终端中输入自然语言的指令让 Gemini 操作电脑。
+回车后，就能在终端里用自然语言指挥 Gemini 操作电脑了。
 
 ![alt text](/posts/Gemini-CLI-入门教程（windows篇）/gemini_cli_logo.png)
 
-例如：查询北京未来十五天的天气写入 markdown 文件。
-
-此时 Gemini CLI 会使用搜索引擎查询天气，然后将查询结果写入文件。
+比如让它查北京未来十五天的天气，再写进 markdown 文件。它会自己去搜天气，然后把结果整理进文件。
 
 ![alt text](/posts/Gemini-CLI-入门教程（windows篇）/gemini-cli_example1.png)
 
-此时多了一个 `beijing_weather_forecast.md` 文件
-
-文件内容是
+这时候目录下就多了一个 `beijing_weather_forecast.md`，内容长这样：
 
 ```markdown
 # 北京未来 15 天天气预报
@@ -185,5 +174,4 @@ gemini
 
 ## 总结
 
-通过 Gemini CLI 工具，打通了 AI 电脑操作的最后一步，未来的操作系统势必是与 AI 深度结合。
-人机交互从命令到图形界面最终又再次回到了命令操作，未来基于 AI 的操作系统必然是自然语言与图形界面结合的方式。
+装完用上一圈，会发现 Gemini CLI 把"用自然语言让电脑干活"这件事推进到了终端里。从前命令行是给会敲命令的人用的，现在你只要能把需求说清楚，它就替你去查、去写、去整理。当然它现在还远谈不上完美，复杂任务该出错还是会出错，但方向已经摆在这儿了。

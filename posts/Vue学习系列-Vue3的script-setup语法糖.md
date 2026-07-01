@@ -8,18 +8,13 @@ date: 2023-05-11
 ---
 
 # Vue学习系列 -- 告别繁琐，从Vue3的script setup语法糖开始
-\<script setup\>是一种编译时的语法糖，用于在单文件组件（SFC）中使用组合式API。它是推荐的语法，如果你同时使用SFC和组合式API。它提供了一些优点，比如：
-
-- 代码更简洁，减少了样板代码
-- 可以使用纯TypeScript声明props和emitted events
-- 更好的运行时性能（模板被编译为在同一作用域内的渲染函数，没有中间代理）
-- 更好的IDE类型推断性能（语言服务器从代码中提取类型的工作量更少）
+`<script setup>` 是一种编译时的语法糖，用来在单文件组件（SFC）中使用组合式 API。如果你同时用 SFC 和组合式 API，这是官方推荐的写法。它能少写不少样板代码，运行时性能也更好——模板会被编译成同作用域内的渲染函数，没有中间代理；IDE 的类型推断也更快，因为语言服务器从代码里提取类型的工作量少了。
 
 
 
 # 使用\<script setup\>编写Vue单文件组件
 
-Vue单文件组件（SFC）是一种特殊的文件格式，允许我们在一个文件中封装一个Vue组件的模板、逻辑和样式。这是一个简单的SFC示例：
+Vue 单文件组件（SFC）是一种特殊的文件格式，把一个组件的模板、逻辑和样式封装在同一个文件里。一个最简单的 SFC 长这样：
 
 ```vue
 <script>
@@ -44,20 +39,15 @@ export default {
 </style>
 ```
 
-我们可以看到，Vue SFC是HTML、CSS和JavaScript这三种经典技术的自然延伸。`<template>`、`<script>`和`<style>`块将一个组件的视图、逻辑和样式封装和放置在同一个文件中。
+可以看出，Vue SFC 是 HTML、CSS、JavaScript 三件套的自然延伸——`<template>`、`<script>`、`<style>` 三个块分别放视图、逻辑和样式，全部收在一个文件里。
 
-如果你使用过Vue 2.x，你可能已经熟悉了这种写法。但是，在Vue 3.x中，有了一个新的选择：`<script setup>`。
+如果你用过 Vue 2.x，对这种写法应该不陌生。但 Vue 3.x 多了一个选择：`<script setup>`。
 
 ## 什么是\<script setup\>？
 
-`<script setup>`是一种编译时的语法糖，用于在单文件组件中使用组合式API。它是推荐的语法，如果你同时使用SFC和组合式API。它提供了一些优点，比如：
+`<script setup>` 是编译时的语法糖，用来在单文件组件里使用组合式 API。这是官方推荐的写法——前提是你同时用 SFC 和组合式 API。它的好处前面提过：样板代码更少、运行时性能更好、IDE 类型推断更快。
 
-- 代码更简洁，减少了样板代码
-- 可以使用纯TypeScript声明props和emitted events
-- 更好的运行时性能（模板被编译为在同一作用域内的渲染函数，没有中间代理）
-- 更好的IDE类型推断性能（语言服务器从代码中提取类型的工作量更少）
-
-要使用这种语法，只需在`<script>`标签上添加`setup`属性：
+要启用它，只要在 `<script>` 标签上加个 `setup` 属性：
 
 ```vue
 <script setup>
@@ -65,11 +55,11 @@ console.log('hello script setup')
 </script>
 ```
 
-`<script setup>`内部的代码会被编译为组件的`setup()`函数的内容。这意味着与普通的`<script>`不同，它只在组件第一次导入时执行一次，`<script setup>`内部的代码会在每次创建组件实例时执行。
+`<script setup>` 内部的代码会被编译成组件 `setup()` 函数的内容。这里有个关键区别：普通的 `<script>` 只在组件第一次导入时执行一次，而 `<script setup>` 里的代码每次创建组件实例时都会执行。
 
 ## 如何在\<script setup\>中使用数据和方法？
 
-当使用`<script setup>`时，任何在`<script setup>`内部声明的顶层绑定（包括变量、函数声明和导入）都可以直接在模板中使用：
+用 `<script setup>` 时，内部声明的顶层绑定（变量、函数声明、import）都可以直接在模板里用：
 
 ```vue
 <script setup>
@@ -87,7 +77,7 @@ function log() {
 </template>
 ```
 
-导入的模块也可以在模板中直接使用。这意味着你可以直接使用一个导入的辅助函数，而不需要通过`methods`选项暴露它：
+import 进来的模块也能直接在模板里用。这意味着你可以直接用某个导入的辅助函数，不必再通过 `methods` 选项暴露它：
 
 ```vue
 <script setup>
@@ -101,7 +91,7 @@ import { capitalize } from './helpers'
 
 ## 如何在\<script setup\>中使用响应式状态？
 
-响应式状态需要使用响应式API显式地创建。类似于从`setup()`函数返回的值，refs在模板中引用时会自动解包：
+响应式状态需要用响应式 API 显式创建。和 `setup()` 函数返回的值一样，ref 在模板里引用时会自动解包：
 
 ```vue
 <script setup>
@@ -115,7 +105,7 @@ const count = ref(0)
 </template>
 ```
 
-你也可以使用`reactive()`创建一个响应式对象：
+也可以用 `reactive()` 创建一个响应式对象：
 
 ```vue
 <script setup>
@@ -135,7 +125,7 @@ const state = reactive({
 
 ## 如何在\<script setup\>中使用组件？
 
-`<script setup>`内部的值也可以直接作为自定义组件的标签名使用：
+`<script setup>` 里的值也可以直接当成自定义组件的标签名用：
 
 ```vue
 <script setup>
@@ -147,11 +137,11 @@ import MyComponent from './MyComponent.vue'
 </template>
 ```
 
-把`MyComponent`当作一个变量来引用。如果你用过JSX，这里的思维模型是类似的。模板中的短横线形式`<my-component>`也可以工作，但是强烈推荐使用帕斯卡命名法的组件标签，以保持一致性。它也有助于区分原生的自定义元素。
+这里把 `MyComponent` 当成一个变量来引用。用过 JSX 的话，这个心智模型是一样的。模板里写短横线形式 `<my-component>` 也能跑，但还是推荐用帕斯卡命名的组件标签，保持一致性的同时，也方便和原生自定义元素区分开。
 
 ## 如何在\<script setup\>中使用动态组件？
 
-由于组件是作为变量引用的，而不是注册在字符串键下，所以我们应该使用动态`:is`绑定来在`<script setup>`中使用动态组件：
+因为组件是作为变量引用的，而不是注册在字符串键下，所以动态组件要用 `:is` 绑定：
 
 ```vue
 <script setup>
@@ -165,13 +155,11 @@ import Bar from './Bar.vue'
 </template>
 ```
 
-注意组件可以作为变量在三元表达式中使用。
-
-教程的第二部分可以这样写：
+注意组件可以作为变量用在三元表达式里。
 
 # 使用TypeScript和自定义类型
 
-如果你想在`<script setup>`中使用TypeScript，你需要将标签属性改为`lang="ts"`：
+要在 `<script setup>` 里用 TypeScript，把标签属性改成 `lang="ts"`：
 
 ```vue
 <script setup lang="ts">
@@ -179,11 +167,11 @@ import Bar from './Bar.vue'
 </script>
 ```
 
-这样就可以享受TypeScript带来的类型检查和自动补全等特性了。
+这样就能用上 TypeScript 的类型检查和自动补全了。
 
 ## 如何在\<script setup\>中声明props和emitted events？
 
-要声明props，你可以使用`defineProps()`函数，它接受一个对象参数，表示props的选项。你可以用字符串或者构造函数来指定每个prop的类型，也可以用对象来指定更多的选项，比如默认值、校验器等。例如：
+声明 props 用 `defineProps()`，它接收一个对象作为 props 的选项。每个 prop 可以用字符串或构造函数指定类型，也可以用对象指定更多选项，比如默认值、校验器：
 
 ```vue
 <script setup>
@@ -210,7 +198,7 @@ const props = defineProps({
 </script>
 ```
 
-要声明emitted events，你可以使用`defineEmits()`函数，它接受一个数组参数，表示emit函数可以触发的事件名。例如：
+声明 emitted events 用 `defineEmits()`，它接收一个数组，列出 emit 函数能触发的事件名：
 
 ```vue
 <script setup>
@@ -224,11 +212,11 @@ const emit = defineEmits([
 </script>
 ```
 
-这样就可以在`<script setup>`中使用JS语法来声明props和emitted events了。
+这样就能在 `<script setup>` 里用 JS 语法声明 props 和 emitted events 了。
 
 ## 如何在\<script setup\>中使用生命周期钩子？
 
-在`<script setup>`中，你可以像在普通的`setup()`函数中一样，使用生命周期钩子函数。你需要从`vue`模块导入它们，然后在`<script setup>`内部调用它们。例如：
+在 `<script setup>` 里，生命周期钩子的用法和普通 `setup()` 函数一样：从 `vue` 模块导入，然后在内部调用：
 
 ```vue
 <script setup>
@@ -248,20 +236,21 @@ onUnmounted(() => {
 </script>
 ```
 
-注意，你不能在`<script setup>`内部定义自己的函数来作为生命周期钩子。你必须使用从`vue`模块导入的函数。这是因为`<script setup>`内部的代码会被编译为组件的`setup()`函数的内容，而生命周期钩子必须在`setup()`函数中调用。
+注意，`<script setup>` 里不能自己定义函数来当生命周期钩子——必须用从 `vue` 模块导入的函数。原因是 `<script setup>` 内部的代码会被编译成 `setup()` 函数的内容，而生命周期钩子必须在 `setup()` 函数里调用。
 
 ## \<script setup\>的局限性
-虽然\<script setup\>提供了很多便利，但它也有一些局限性，需要我们注意：
+`<script setup>` 用起来方便，但也有几条限制要注意：
 
-\<script setup\>不能与\<script\>共存。如果你需要在同一个组件中使用两种语法，你可以将\<script setup\>放在一个子组件中，然后在父组件中导入它。
-\<script setup\>不能使用src属性。你必须将代码直接写在\<script setup\>标签内部。
-\<script setup\>不能在函数内部使用defineProps()和defineEmits()。这些函数必须在\<script setup\>的顶层调用。
-\<script setup\>不能在函数内部定义自己的生命周期钩子。你必须使用从vue模块导入的生命周期钩子函数，并在\<script setup\>的顶层调用它们。
-\<script setup\>不能使用模板字符串插值。你必须使用普通的字符串拼接或者模板字面量。
-\<script setup\>的注意事项
-除了上述的局限性，还有一些注意事项，可以帮助我们更好地使用\<script setup\>：
+- 不能和 `<script>` 共存。如果同一个组件里两种语法都要用，可以把 `<script setup>` 放进子组件，再在父组件里导入。
+- 不能用 `src` 属性，代码必须直接写在 `<script setup>` 标签里。
+- `defineProps()` 和 `defineEmits()` 不能在函数内部调用，必须在 `<script setup>` 的顶层。
+- 生命周期钩子同样不能在函数里定义，要用从 vue 模块导入的钩子函数，并在 `<script setup>` 顶层调用。
+- 不能用模板字符串插值，得用普通字符串拼接或模板字面量。
 
-\<script setup\>内部的代码会被编译为组件的setup()函数的内容。这意味着与普通的\<script\>不同，它只在组件第一次导入时执行一次，\<script setup\>内部的代码会在每次创建组件实例时执行。
-\<script setup\>内部声明的变量、函数和导入都会被暴露给模板。如果你想隐藏一些内部实现细节，你可以使用下划线前缀来标记它们，例如：_internalValue。这样它们就不会被暴露给模板或者父组件了。
-\<script setup\>内部声明的变量、函数和导入都会被视为响应式依赖。如果你想避免不必要的渲染更新，你可以使用常量前缀来标记它们，例如：const __UNREF__ = 1。这样它们就不会被收集为响应式依赖了。
-\<script setup\>内部声明的变量、函数和导入都会被视为组件选项。如果你想避免与Vue保留的选项名冲突，你可以使用大写字母或者其他符号来命名它们，例如：const $foo = 'bar'或者const FOO = 'bar'。
+## \<script setup\>的注意事项
+除了上面的局限，还有几条用的时候容易踩的点：
+
+- `<script setup>` 内部的代码会被编译成 `setup()` 函数的内容，所以每次创建组件实例时都会执行，而不是只在首次导入时执行一次。
+- 内部声明的变量、函数和 import 都会暴露给模板。想藏起一些内部实现，可以用下划线前缀，比如 `_internalValue`，这样就不会暴露给模板或父组件。
+- 这些声明默认会被当作响应式依赖。要避免不必要的渲染更新，可以用常量前缀标记，比如 `const __UNREF__ = 1`，就不会被收集为响应式依赖。
+- 它们也会被当作组件选项。为避免和 Vue 保留的选项名冲突，可以用大写字母或其他符号命名，比如 `const $foo = 'bar'` 或 `const FOO = 'bar'`。

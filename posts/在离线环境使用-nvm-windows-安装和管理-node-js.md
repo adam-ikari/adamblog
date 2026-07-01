@@ -18,7 +18,7 @@ tags: 前端 nvm 离线安装
 
 ## 摘要
 
-本文详细介绍了在离线环境中使用 nvm-windows 安装和管理 Node.js 的步骤。首先，需要提前在有网络的环境中下载 nvm-windows 安装包和所需的 Node.js 版本文件，并将其拷贝到离线环境中。接着，通过运行 `nvm-setup.exe` 完成 nvm-windows 的安装，并手动将 Node.js 版本文件解压到 nvm 的安装目录下。最后，使用 nvm 命令查看、切换和验证已安装的 Node.js 版本。通过本教程，用户可以在无网络的环境中轻松管理多个 Node.js 版本。
+内网、隔离网这类离线环境装 Node.js 是个麻烦事——没网就没法在线拉版本。办法其实不复杂：先在外网把 nvm-windows 安装包和需要的 Node.js 版本包下好、拷进去，跑 `nvm-setup.exe` 装好 nvm，再把 Node.js 版本文件解压到 nvm 的安装目录下，最后用 nvm 命令查看、切换、验证。整个过程不联网，照样能管多个 Node.js 版本。
 
 
 
@@ -28,7 +28,7 @@ tags: 前端 nvm 离线安装
 
 #### 1. 准备工作
 
-在离线环境中安装 nvm-windows 需要提前准备好所需的安装包和 Node.js 版本文件。以下是具体步骤：
+离线装的关键，是把外网该下好的东西提前备齐，再拷进离线机器。具体两样：
 
 1. **下载 nvm-windows 安装包**：
    • 在有网络的环境中，访问 [nvm-windows GitHub 仓库](https://github.com/coreybutler/nvm-windows/releases)，下载最新版本的 `nvm-setup.exe` 安装包。
@@ -98,7 +98,7 @@ tags: 前端 nvm 离线安装
 
 ### 总结
 
-通过以上步骤，你可以在离线环境中成功安装并使用 nvm-windows 来管理多个 Node.js 版本。如果在安装或使用过程中遇到问题，可以参考 nvm-windows 的官方文档或社区支持。
+走完这几步，离线环境里就能用 nvm-windows 管多个 Node.js 版本了。装或用的过程中要是卡住，可以翻翻 nvm-windows 的官方文档或社区。
 
 
 

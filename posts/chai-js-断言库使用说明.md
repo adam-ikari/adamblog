@@ -18,11 +18,11 @@ tags:
 
 ## 简介
 
-Chai.js 是一个非常流行的 JavaScript 断言库，主要用于配合如 Mocha, Jest 等测试框架编写用户端或服务端的 JavaScript 测试。它提供了 BDD（Behavior-Driven Development，行为驱动开发） 和 TDD（Test-Driven Development，测试驱动开发）两种样式的断言，即 `expect`，`should`, `assert` 三种。
+Chai.js 是个用得挺多的 JavaScript 断言库，一般配合 Mocha、Jest 这类测试框架，写前端或后端的测试。它有 BDD（行为驱动开发）和 TDD（测试驱动开发）两种风格，落到代码上就是 `expect`、`should`、`assert` 三种写法。
 
 
 
-`expect` 和 `should` 属于 BDD 风格，他们都是链式语法，所不同的是 `expect` 是直接调用，而 `should` 则是添加在任何 JavaScript 对象上，他们的使用场景都是 BDD。
+`expect` 和 `should` 都属于 BDD 风格，也都是链式语法。区别在于：`expect` 是直接调用，`should` 则是挂到任意 JavaScript 对象上。两者用起来的场景差不多。
 
 ```javascript
 expect(true).to.be.true;
@@ -32,23 +32,21 @@ expect(true).to.be.true;
 true.should.be.true;
 ```
 
-`assert` 是 TDD 风格，它看起来更像一个函数。
+`assert` 是 TDD 风格，写出来更像一个普通函数调用。
 
 ```javascript
 assert(true, "True is true");
 ```
 
-Chai 的主要优点是其易于使用和灵活性。它支持插件，并且对多种环境有良好的兼容性，包括 Node.js, 浏览器, 和各种 JavaScript 构建工具（如 Browserify, Webpack）。
-
-通过使用不同类型的断言，你可以选择适合你测试风格的类型。对于更复杂的用例，Chai 提供了友好的错误消息，帮助你快速理解测试失败的原因。
+Chai 的好处在于好用又灵活，支持插件，Node.js、浏览器、各种构建工具（Browserify、Webpack）都能跑。几种断言挑一种顺手的用就行；遇到复杂用例，它给的错误信息也比较友好，能帮你较快定位测试为什么挂了。
 
 ## Expect 风格写法
 
-以下指南介绍了如何使用 Expect 风格编写各种类型的断言。
+下面挑 Expect 风格展开，看看各类断言怎么写。
 
 ### 引入 Expect
 
-在测试文件头部，使用 ES6 模块导入语法引入 Chai 库的 Expect 风格：
+在测试文件开头，用 ES6 模块语法把 Chai 的 Expect 引进来：
 
 ```javascript
 import { expect } from "chai";
@@ -75,7 +73,7 @@ expect([1, 2, 3]).to.deep.equal([1, 2, 3]);
 
 ### 包含
 
-例子：检查数组是否包含某个元素或字符串包含一段字串：
+检查数组里有没有某个元素，或者字符串里有没有一段子串：
 
 ```javascript
 expect([1, 2, 3]).to.include(2);
@@ -130,7 +128,7 @@ expect([]).to.be.empty;
 
 ### 类型和类型的属性
 
-希望类型是某个特定的结构的时候可以用`property`和`a`或`an`联合使用。
+想确认某个属性是特定结构时，可以把 `property` 和 `a`/`an` 串起来用。
 
 ```javascript
 expect({ tea: { temperature: "hot", name: "chai" } })
@@ -141,7 +139,7 @@ expect({ tea: { temperature: "hot", name: "chai" } })
 
 ### 用'.throw'测试可能出错的函数
 
-假设你测试一个可能抛出错误的函数，你可以使用 `throw` 结构：
+测一个可能抛错的函数，用 `throw`：
 
 ```javascript
 let badFn = function () {
@@ -156,7 +154,7 @@ expect(badFn).to.throw(TypeError, "salmon");
 
 ## 其他
 
-这只是 Chai.js Expect 风格断言更多的用法教程，详细信息请参考 [Chai.js Expect API 文档](http://chaijs.com/api/bdd/)。
+这篇只覆盖了 Expect 风格比较常用的部分。更多用法见 [Chai.js Expect API 文档](http://chaijs.com/api/bdd/)。
 
 ## 注
 

@@ -17,13 +17,13 @@ series:
 
 ## 前言
 
-照着 [安装配置教程](/posts/macOS-安装和配置-Claude-Code-教程) 接好国产模型，不代表一定能一次跑通。认证方式写错、地址后缀不对、模型 ID 填错、上下文太长……任何一个环节出问题都会报错。
+照着 [安装配置教程](/posts/macOS-安装和配置-Claude-Code-教程) 接好国产模型，不代表就一定能一次跑通。认证方式写错、地址后缀不对、模型 ID 填错、上下文太长……哪个环节出岔子都会报错。
 
-这篇文章把接入国产模型时最常见的几类报错整理成一份**排查手册**。每个报错都给出：典型现象 → 可能原因 → 排查步骤 → 解决方案。另外教你一个万能的 `curl` 验证法，能在 Claude Code 之外先把问题定位到。
+这篇把接入国产模型时最常见的几类报错整理成一份**排查手册**。每个报错都按「典型现象 → 可能原因 → 排查步骤 → 解决方案」走一遍，再教你一个万能的 `curl` 验证法——能在 Claude Code 之外先把问题定位到。
 
 ## 万能排查法：先用 curl 验证
 
-在折腾 Claude Code 配置之前，先用 `curl` 直接对提供商 API 发一个最小请求。这能把问题二分：**是 API Key/地址本身的问题，还是 Claude Code 配置的问题**。
+折腾 Claude Code 配置之前，先用 `curl` 直接对提供商 API 发一个最小请求。这一步能把问题二分清楚：**到底是 API Key/地址本身的问题，还是 Claude Code 配置的问题**。
 
 以 DeepSeek 为例：
 
@@ -42,7 +42,7 @@ curl -X POST https://api.deepseek.com/chat/completions \
 - 返回 404 / model not found → 模型 ID 填错
 - 连接超时 → 网络问题
 
-> 💡 注意这里用的是 DeepSeek 的原生 OpenAI 兼容端点（`/chat/completions`）来验证 Key 是否有效，这和 Claude Code 走的 Anthropic 协议端点是两回事，但**验证 Key 有效性足够了**。换提供商时把 URL、模型 ID、Token 换成对应的即可。
+> 💡 这里用的是 DeepSeek 原生的 OpenAI 兼容端点（`/chat/completions`）来验证 Key 有没有效，这跟 Claude Code 走的 Anthropic 协议端点是两回事，但**验证 Key 有效性足够了**。换提供商时把 URL、模型 ID、Token 换成对应的就行。
 
 ## 报错一：401 认证失败 / Unauthorized
 
@@ -82,7 +82,7 @@ grep -E "ANTHROPIC_(API_KEY|AUTH_TOKEN)" ~/.claude/settings.json
 }
 ```
 
-> 如果 `curl` 验证 Key 也返回 401，那是 Key 本身的问题（填错/失效/欠费），去提供商控制台处理，和 Claude Code 无关。
+> 如果 `curl` 验证 Key 也返回 401，那是 Key 本身的问题（填错/失效/欠费），去提供商控制台处理，跟 Claude Code 没关系。
 
 ## 报错二：连接超时 / Connection timeout
 
@@ -236,13 +236,13 @@ ls -la ~/.claude/settings.json
 
 ## 开启调试日志
 
-需要看 Claude Code 实际发出的请求时，可以开调试：
+需要看 Claude Code 实际发出去的请求时，可以开调试：
 
 ```bash
 claude --debug
 ```
 
-或设置环境变量提高日志级别，能看到请求的 URL、认证头（注意 Key 会被脱敏）、响应状态码，对定位 401 / 404 这类问题非常有用。
+或者设环境变量调高日志级别，能看到请求的 URL、认证头（注意 Key 会被脱敏）、响应状态码，定位 401 / 404 这类问题很有用。
 
 ## 常见报错速查表
 
@@ -256,13 +256,13 @@ claude --debug
 
 ## 总结
 
-排查的本质是**二分定位**：先用 `curl` 把「API 侧问题」和「Claude Code 配置问题」分开，再针对后者检查 Base URL / 认证字段 / 模型 ID 这三要素。
+排查说到底就是**二分定位**：先用 `curl` 把「API 侧问题」和「Claude Code 配置问题」分开，再针对后者查 Base URL、认证字段、模型 ID 这三样。
 
-记住这几条，多数报错都能自己搞定：
+记住下面这几条，多数报错自己就能搞定：
 
 - **401 先查是不是用了 `ANTHROPIC_API_KEY`，国产模型要用 `AUTH_TOKEN`**
 - **超时先 curl 测连通性，再查地址和代理**
 - **model not found 就核对模型 ID + 补全档位映射**
 - **改完配置一定重启会话**
 
-下一篇 [实战案例](/posts/macOS-Claude-Code-实战案例) 会用一个真实小项目，把前面所有知识串起来用一遍。
+下一篇 [实战案例](/posts/macOS-Claude-Code-实战案例) 会拿一个真实小项目，把前面这些知识串起来用一遍。

@@ -16,9 +16,9 @@ series:
 # WSL2 安装和使用 Claude Code 教程
 ## 前言
 
-Claude Code 是 Anthropic 官方推出的 CLI 编程助手，它直接运行在终端中，能够理解你的项目上下文，帮你编写代码、调试问题、执行 Shell 命令、操作文件等。与传统的 AI 编程助手不同，Claude Code 不是一个 IDE 插件，而是一个独立的命令行工具，可以与任何开发工作流无缝集成。
+Claude Code 是 Anthropic 出的命令行编程助手，跑在终端里，能读你的项目上下文、写代码、调 bug、跑 Shell、改文件。它不是 IDE 插件，是个独立的命令行工具，跟任何开发流程都能搭上。
 
-在 WSL2 中使用 Claude Code 有天然的优势：Linux 原生环境对 Node.js 和开发工具链的支持更好，文件权限管理更规范，Shell 命令兼容性更强。本文将手把手带你完成从安装到进阶使用的全过程。
+放在 WSL2 里用有天然优势：Linux 原生环境对 Node.js 和工具链支持更顺，文件权限更规范，Shell 命令兼容性也强。这篇就把从装到用的全过程走一遍。
 
 ## 前提条件
 
@@ -478,14 +478,7 @@ Hooks 允许你在特定事件触发时执行自定义脚本，在 `.claude/sett
 
 ## 推荐工具：cc-Switch
 
-在使用 Claude Code 的过程中，你可能会遇到以下场景：
-
-- 同时使用多个 AI 提供商（讯飞、DeepSeek、OpenRouter 等）
-- 工作账户和个人账户需要频繁切换
-- API 额度耗尽时需要快速切换到备用提供商
-- 不同项目需要不同的模型配置
-
-手动修改 `settings.json` 来切换配置既繁琐又容易出错。**cc-Switch** 是一个专门为 Claude Code 设计的命令行配置切换工具，通过简单的命令即可切换不同的提供商和账户。
+用着用着你多半会遇到这种事：同时挂着讯飞、DeepSeek、OpenRouter 几家；工作账户和个人账户要来回切；某家额度突然烧完了得赶紧换备用的；不同项目还想配不同的模型。每次去手改 `settings.json`，既繁琐又容易写错。**cc-Switch** 就是冲着这个来的——一个专门给 Claude Code 用的命令行配置切换工具，一条命令切提供商、切账户。
 
 ### 安装 cc-Switch
 
@@ -628,21 +621,8 @@ autoMemoryReclaim=gradual
 
 ## 总结
 
-Claude Code 是一个强大的 AI 编程助手，在 WSL2 环境下可以充分发挥其能力。通过本教程，你应该已经掌握了：
+走完这篇，Claude Code 在 WSL2 里就算跑起来了：装好了、认证配好了、交互和斜杠命令会用、文件和 Shell 能让它动、项目级配置（CLAUDE.md、settings.json、权限）也理清了，MCP、Hooks、模型切换这些进阶玩法心里有数，常见报错也知道往哪查。
 
-- Claude Code 的安装与认证配置
-- 交互式对话和斜杠命令的使用
-- 文件操作与 Shell 命令执行
-- 项目级配置（CLAUDE.md、settings.json、权限管理）
-- 进阶功能（MCP Server、Hooks、模型切换、快速模式）
-- 常见问题的排查与解决
-
-关键建议：
-
-- **善用 CLAUDE.md**：完善的项目说明能让 Claude Code 更准确地理解你的需求
-- **合理配置权限**：在便利性和安全性之间找到平衡
-- **利用 MCP 扩展能力**：连接 GitHub、数据库等外部工具，让 Claude Code 的能力更上一层楼
-- **使用 cc-Switch 管理多配置**：如果需要频繁切换提供商或账户，cc-Switch 能大幅简化操作
-- **保持 WSL2 环境优化**：项目放在 WSL 文件系统、定期清理资源
+几个值得记住的点：把 CLAUDE.md 写实在，它直接决定 Claude Code 理解你项目的准确度；权限在便利和安全之间找个平衡，别图省事全放开；需要连 GitHub、数据库就上 MCP；要是经常在多个提供商或账户之间切，cc-Switch 能省不少事；项目放 WSL 文件系统里、定期清资源，环境保持清爽。
 
 更多信息和最新文档，请参考 [Claude Code 官方文档](https://docs.anthropic.com/en/docs/claude-code)。

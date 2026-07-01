@@ -24,7 +24,7 @@ series:
 
 在使用 Claude Code 时，很多开发者会同时使用多个 AI 提供商（DeepSeek、讯飞、硅基流动、Kimi、Anthropic 官方、OpenRouter 等），或者需要在不同的 API Key 之间切换。尤其是**接入国产模型后，常常会同时配几家**——这家额度耗尽了切到那家、这个模型写代码好用那个模型便宜。每次手动编辑 `~/.claude/settings.json` 不仅繁琐，还容易出错：改错认证字段、漏改 Base URL、忘了重启会话，都会让 Claude Code 直接罢工。
 
-**cc-Switch** 是一个命令行配置切换工具，专门为 Claude Code 设计。它让你用一条命令在多个配置之间快速切换，无需手动编辑配置文件，也无需重启终端。目前社区中有两个主要实现：
+**cc-Switch** 是个为 Claude Code 设计的命令行配置切换工具，用一条命令在多个配置之间切，不用手改配置文件，也不用重启终端。社区里主要有两个实现：
 
 - **@aravhawk/cc-switch** — 配置文件 Profile 管理器，适合管理多套完整的 settings.json 配置
 - **@adithya-13/cc-switch** — 提供商快速切换器，适合在 Anthropic、OpenRouter、DeepSeek 等提供商之间一键切换
@@ -94,7 +94,7 @@ cc-switch version
 cc-switch
 ```
 
-直接运行即可进入交互式菜单，提供创建、切换、删除、重命名 Profile 等操作。
+直接跑就行，会进入交互式菜单，建、切、删、改名都有。
 
 **命令行方式：**
 
@@ -289,7 +289,7 @@ ollama serve
 
 ## 与 Windows 版本的差异
 
-cc-Switch 在 macOS 和 Windows 上的核心功能一致，但存在以下差异：
+cc-Switch 在 macOS 和 Windows 上的核心功能一致，差别主要在这几处。
 
 ### 配置文件路径
 
@@ -299,11 +299,11 @@ cc-Switch 在 macOS 和 Windows 上的核心功能一致，但存在以下差异
 | cc-Switch Profile 目录 | `~/.cc-switch/profiles/` | `~/.cc-switch/profiles/`（WSL 内） |
 | cc-Switch Key 存储 | `~/.cc-switch/keys.json` | `~/.cc-switch/keys.json`（WSL 内） |
 
-macOS 直接使用 Unix 路径，Windows 用户需要在 WSL2 环境内操作。
+macOS 直接用 Unix 路径；Windows 用户则要在 WSL2 环境里操作。
 
 ### 安装方式
 
-macOS 上 npm 全局安装通常无需额外权限配置。Windows 上如果遇到权限问题，可能需要修改 npm 全局安装路径或使用 sudo。
+macOS 上 npm 全局安装一般不用额外配权限。Windows 上要是遇到权限问题，可能得改 npm 全局路径或用 sudo。
 
 ```bash
 # macOS：直接安装即可
@@ -319,9 +319,9 @@ npm install -g @aravhawk/cc-switch
 
 ### 文件权限
 
-macOS 基于 Unix，`chmod 600` 等权限命令原生支持。@adithya-13/cc-switch 的 `keys.json` 文件权限设置在 macOS 上直接生效，无需额外操作。
+macOS 基于 Unix，`chmod 600` 这类权限命令原生支持。@adithya-13/cc-switch 的 `keys.json` 权限设置在 macOS 上直接生效，不用额外操心。
 
-Windows 的 NTFS 文件系统不支持 Unix 权限模型，WSL2 中通过 chmod 设置的权限仅在 WSL 内有效。
+Windows 的 NTFS 不支持 Unix 权限模型，WSL2 里用 chmod 设的权限只在 WSL 内有效。
 
 ### Shell 集成
 
@@ -353,21 +353,21 @@ export https_proxy=http://127.0.0.1:7890
 export http_proxy=http://127.0.0.1:7890
 ```
 
-Windows WSL2 中代理配置类似，但需要注意 WSL2 的网络架构与宿主机的差异。
+Windows WSL2 里代理配置类似，但要注意 WSL2 的网络架构跟宿主机不一样。
 
 ## 常见问题
 
 ### Q: 两个 cc-switch 包可以同时安装吗？
 
-不可以。它们都注册了 `cc-switch` 全局命令，会产生冲突。请根据需求选择其中一个。如果需要同时使用 Profile 管理和提供商切换功能，建议安装 @aravhawk/cc-switch（它也支持提供商模板），然后手动添加不内置的提供商。
+不行。它们都注册了 `cc-switch` 这个全局命令，会打架。按需求挑一个就行。要是又想管 Profile 又想切提供商，就装 @aravhawk/cc-switch（它也支持提供商模板），不内置的提供商手动加一下。
 
 ### Q: 切换后 Claude Code 需要重启吗？
 
-需要重启当前 Claude Code 会话。切换配置后，退出正在运行的 Claude Code（输入 `/exit` 或按 `Ctrl+C`），然后重新启动 `claude` 即可生效。
+要重启当前会话。切完配置后，把正在跑的 Claude Code 退掉（输入 `/exit` 或按 `Ctrl+C`），再重新 `claude` 启动就生效了。
 
 ### Q: macOS 上安装时报权限错误怎么办？
 
-macOS 上 npm 全局安装一般不会遇到权限问题。如果出现 `EACCES` 错误，说明 npm 全局目录权限不正确：
+macOS 上 npm 全局安装一般碰不到权限问题。要是冒出 `EACCES` 错误，说明 npm 全局目录权限不对：
 
 ```bash
 # 修改 npm 全局安装路径（推荐）
@@ -380,11 +380,11 @@ source ~/.zshrc
 npm install -g @aravhawk/cc-switch
 ```
 
-不建议使用 `sudo npm install -g`，这可能导致文件权限混乱。
+不建议用 `sudo npm install -g`，容易把文件权限搞乱。
 
 ### Q: 切换配置会丢失当前设置吗？
 
-不会。@aravhawk/cc-switch 在切换时会先将当前 settings.json 同步回当前 Profile 目录，确保不会丢失任何配置。@adithya-13/cc-switch 的 Key 存储在独立的 `keys.json` 中，也不影响原有配置。
+不会丢。@aravhawk/cc-switch 切换时会先把当前 settings.json 同步回当前 Profile 目录，保住所有配置。@adithya-13/cc-switch 的 Key 存在独立的 `keys.json` 里，也不影响原有配置。
 
 ### Q: 如何卸载 cc-switch？
 
@@ -414,14 +414,9 @@ cc-switch use pro
 
 ## 总结
 
-cc-Switch 解决了 Claude Code 多配置管理的痛点，让 macOS 上的开发者可以：
+cc-Switch 解决的就是 Claude Code 多配置管理的麻烦。在 macOS 上，你不用再手改 settings.json——一条命令切完，切换时还会自动存好当前配置，不怕丢。它内置了 Anthropic、OpenRouter、DeepSeek、Kimi、Ollama 这些主流提供商，也支持自定义提供商和模板。
 
-- **一键切换** — 无需手动编辑 settings.json，一条命令完成配置切换
-- **安全可靠** — 切换时自动保存当前配置，不会丢失任何设置
-- **多提供商支持** — 支持 Anthropic、OpenRouter、DeepSeek、Kimi、Ollama 等主流提供商
-- **灵活扩展** — 支持自定义提供商和配置模板
-
-根据你的使用场景选择合适的版本：
+按场景挑版本就行：
 
 | 需求 | 推荐版本 |
 |------|----------|

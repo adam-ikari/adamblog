@@ -16,9 +16,7 @@ date: 2024-09-05
   [1] 这是注的内容
 -->
 
-项目中需要动态的配置侧边导航菜单中的图标，所以需要所有的 Element Plus 的图标。
-因为 HTML 标准已经定义了一个名为 menu 的标签，需要使用别名来 menu 渲染图标。
-所以采取了全局注册 Element Plus 的图标并注册别名的方法。
+项目里要动态配置侧边导航菜单的图标，所以需要把 Element Plus 的图标全都拿过来用。但 HTML 标准里已经有一个叫 `menu` 的标签，直接用会冲突，得给它起个别名。最后的做法是全局注册所有图标，并统一加上别名前缀。
 
 
 
@@ -36,10 +34,9 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 ## 使用方法
 
-因为全局注册并使用了别名，使用的时候不需要导入图标，但是需要通过别名来使用图标组件。
-需要在图标组件前面加上`el-icon-`使用。比如 xxx 图标， 那么需要通过 el-icon-xxx 别名使用。
+因为图标是全局注册并带了别名，用的时候不用再 import，直接通过别名引用组件即可。需要在组件名前加上 `el-icon-`，比如某个 `xxx` 图标，就写成 `el-icon-xxx`。
 
-请使用如下的写法。
+写法如下：
 
 ```html
 <el-icon><el-icon-menu /></el-icon>
@@ -47,7 +44,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 <el-icon><el-icon-document /></el-icon>
 ```
 
-对应 Element Plus 的 menu 图标、setting 图标和 document 图标。
+分别对应 Element Plus 的 menu、setting 和 document 图标。
 
 ## 注
 

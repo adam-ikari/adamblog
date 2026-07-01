@@ -9,33 +9,21 @@ date: 2025-04-14
 # NAT测试工具
 ## 前言
 
-在网络应用开发中，了解当前网络的NAT类型对于P2P通信和网络连接性诊断非常重要。pystun3-gui项目提供了一个简单易用的图形界面工具，帮助用户快速检测NAT类型。
+做网络应用开发，搞清楚当前网络的 NAT 类型，对 P2P 通信和连通性诊断都挺关键。pystun3-gui 这个项目做的就是这件事——一个简单的图形界面工具，帮你快速测出 NAT 类型。
 
 ## 简介
 
-pystun3-gui是一个基于Python开发的NAT类型检测工具，它是对pystun3库的图形界面封装。该工具具有以下特点：
-
-1. 简洁的图形用户界面
-2. 支持自定义STUN服务器
-3. 可显示本地IP和公网IP信息
-4. 多线程设计，避免界面卡顿
-5. 跨平台支持（Windows/Linux/MacOS）
+pystun3-gui 是基于 Python 的 NAT 类型检测工具，本质是对 pystun3 库做了一层图形界面封装。界面简洁，支持自定义 STUN 服务器，能同时显示本地 IP 和公网 IP；检测放在多线程里跑，界面不会卡；Windows、Linux、MacOS 都能用。
 
 
 
 ## 主要功能
 
 ### NAT类型检测
-工具可以检测并显示以下信息：
-- 本地IP地址
-- 公网IP地址
-- NAT类型（如Full Cone、Restricted Cone、Port Restricted Cone、Symmetric等）
+工具能检测并显示本地 IP 地址、公网 IP 地址，以及 NAT 类型（Full Cone、Restricted Cone、Port Restricted Cone、Symmetric 等）。
 
 ### 自定义服务器
-用户可以：
-- 使用默认STUN服务器
-- 输入自定义STUN服务器地址和端口
-- 保存常用服务器配置
+服务器这块，既可以用默认的 STUN 服务器，也能自己填地址和端口，常用配置还能存下来下次直接用。
 
 ## 注
 
