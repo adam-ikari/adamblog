@@ -1,11 +1,20 @@
 import { defineConfig } from 'vitepress'
 import mathjax3 from 'markdown-it-mathjax3'
+import { RSSOptions, RssPlugin } from 'vitepress-plugin-rss'
 
 // 导入主题的配置
 import { blogTheme } from './blog-theme'
 
 const SITE_URL = 'https://adamblog.thiz.top'
 const SITE_NAME = 'Adam的博客'
+
+// RSS 订阅源配置
+const RSS: RSSOptions = {
+  title: SITE_NAME,
+  baseUrl: SITE_URL,
+  description: 'Adam的技术博客，分享编程、AI工具、流体仿真、信创等技术实践与学习心得',
+  copyright: `Copyright © 2024-${new Date().getFullYear()} Adam`,
+}
 
 // 收集系列数据
 const seriesMap = new Map<string, { name: string; articles: { title: string; link: string; order: number }[] }>()
@@ -73,6 +82,7 @@ export default defineConfig({
 
   vite: {
     assetsInclude: ['**/*.JPG', '**/*.jpg', '**/*.png', '**/*.gif', '**/**/*.svg', '**/*.webp'],
+    plugins: [RssPlugin(RSS)],
   },
 
   cleanUrls: true,
