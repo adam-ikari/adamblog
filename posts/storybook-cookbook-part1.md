@@ -157,13 +157,13 @@ npm run storybook
 
 看到下面这段 log，就说明 Storybook 启动成功了。
 
-![Storybook 启动日志](/posts/storybook-cookbook-part1/storybook-start-log.png)
+![Storybook 启动日志](/posts/storybook-cookbook-part1/storybook-start-log.webp)
 
 > 如果端口被占用，按 y 会自动用下一个可用端口。
 
 启动成功后会在本地起一个服务，URL 通常是 `http://localhost:6006`。用浏览器打开，会看到这样的画面：
 
-![Storybook 使用画面](/posts/storybook-cookbook-part1/storybook-view.png)
+![Storybook 使用画面](/posts/storybook-cookbook-part1/storybook-view.webp)
 
 到这里，工程里就已经成功集成 Storybook 了。
 
