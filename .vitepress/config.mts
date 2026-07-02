@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 import mathjax3 from 'markdown-it-mathjax3'
 import { RSSOptions, RssPlugin } from 'vitepress-plugin-rss'
+import { imageCompressPlugin } from './plugins/image-compress'
 
 // 导入主题的配置
 import { blogTheme } from './blog-theme'
@@ -82,7 +83,7 @@ export default defineConfig({
 
   vite: {
     assetsInclude: ['**/*.JPG', '**/*.jpg', '**/*.png', '**/*.gif', '**/**/*.svg', '**/*.webp'],
-    plugins: [RssPlugin(RSS)],
+    plugins: [RssPlugin(RSS), imageCompressPlugin()],
   },
 
   cleanUrls: true,
