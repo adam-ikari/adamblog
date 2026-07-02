@@ -4,6 +4,7 @@ import SeriesNav from './components/SeriesNav.vue'
 import SeriesCardList from './components/SeriesCardList.vue'
 import DynamicSeriesList from './components/DynamicSeriesList.vue'
 import DonateBox from './components/DonateBox.vue'
+import './styles.css'
 
 export default {
   extends: BlogTheme,

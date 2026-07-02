@@ -1,0 +1,29 @@
+/**
+ * 站点全局样式覆盖
+ */
+
+/* CJK 字体：用系统字体栈，无网络加载，性能好 */
+:root {
+  --vp-font-family-base: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Source Han Sans SC", "Noto Sans CJK SC", sans-serif;
+  /* 代码字体保持等宽，不受 CJK 字体影响 */
+  --vp-font-family-mono: "JetBrains Mono", "Fira Code", "SFMono-Regular",
+    "Consolas", "Liberation Mono", monospace;
+}
+
+/* 表格横向滚动：宽表格不压缩换行，而是横向滚动 */
+.vp-doc table,
+article table {
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.vp-doc table td,
+.vp-doc table th,
+article table td,
+article table th {
+  white-space: nowrap;
+}

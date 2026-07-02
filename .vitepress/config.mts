@@ -1,5 +1,7 @@
 import { defineConfig } from 'vitepress'
 import mathjax3 from 'markdown-it-mathjax3'
+import markdownItPangu from 'markdown-it-pangu'
+import footnote from 'markdown-it-footnote'
 import { RSSOptions, RssPlugin } from 'vitepress-plugin-rss'
 import { imageCompressPlugin } from './plugins/image-compress'
 
@@ -91,6 +93,8 @@ export default defineConfig({
   markdown: {
     config(md) {
       md.use(mathjax3)
+      md.use(markdownItPangu)
+      md.use(footnote)
     },
   },
 

@@ -20,4 +20,5 @@ recommend: false
   { title: '信创中间件与云平台', desc: '东方通/宝兰德/普元，信创云平台', link: '/posts/信创中间件与云平台', order: 6 },
   { title: '国产办公与应用软件', desc: 'WPS/永中/福昕/中望CAD/OFD 替代进度', link: '/posts/国产办公与应用软件', order: 7 },
   { title: '信创安全：等保与国密', desc: '奇安信/360/深信服，等保2.0、国密、可信计算', link: '/posts/信创安全-等保与国密', order: 8 },
+  { title: '信创外设：打印机与其他', desc: '奔图/航天信息/得力，为何打印机是外设重点，UKey等安全外设', link: '/posts/信创外设-打印机与其他', order: 9 },
 ]" />
