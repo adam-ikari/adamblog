@@ -154,17 +154,20 @@ export default defineConfig({
     const head = pageData.frontmatter.head
 
     // Open Graph
+    const ogImage = `${SITE_URL}/images/avataaars.png`
     head.push(['meta', { property: 'og:title', content: title }])
     head.push(['meta', { property: 'og:description', content: description }])
     head.push(['meta', { property: 'og:url', content: canonicalUrl }])
     head.push(['meta', { property: 'og:site_name', content: SITE_NAME }])
     head.push(['meta', { property: 'og:type', content: isHome ? 'website' : 'article' }])
     head.push(['meta', { property: 'og:locale', content: 'zh_CN' }])
+    head.push(['meta', { property: 'og:image', content: ogImage }])
 
     // Twitter Card
-    head.push(['meta', { name: 'twitter:card', content: 'summary' }])
+    head.push(['meta', { name: 'twitter:card', content: 'summary_large_image' }])
     head.push(['meta', { name: 'twitter:title', content: title }])
     head.push(['meta', { name: 'twitter:description', content: description }])
+    head.push(['meta', { name: 'twitter:image', content: ogImage }])
 
     // Canonical URL
     head.push(['link', { rel: 'canonical', href: canonicalUrl }])
@@ -190,6 +193,7 @@ export default defineConfig({
           '@type': 'WebPage',
           '@id': canonicalUrl,
         },
+        'image': `${SITE_URL}/images/avataaars.png`,
       }
       if (pageData.frontmatter.date) {
         jsonLd.datePublished = pageData.frontmatter.date
