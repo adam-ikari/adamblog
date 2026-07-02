@@ -104,32 +104,38 @@ seriesList:
         order: 4
   - id: xinchuang
     name: 信创专题系列
-    description: 信息技术应用创新全栈调查：CPU、整机、操作系统、数据库、中间件、办公、安全
+    description: 信息技术应用创新全栈调查：整机、操作系统、数据库、中间件、办公、安全、外设、标准、供应链安全
     articles:
       - title: 信创总览：从去 IOE 到自主可控
         link: /posts/信创总览-从去IOE到自主可控
         order: 1
-      - title: 国产 CPU 详解：六条路线
-        link: /posts/国产CPU详解-六条路线
-        order: 2
       - title: 信创 PC 与整机
         link: /posts/信创PC与整机
-        order: 3
+        order: 2
       - title: KylinOS 调查报告
         link: /posts/KylinOS-调查报告
-        order: 4
+        order: 3
       - title: 国产数据库详解
         link: /posts/国产数据库详解
-        order: 5
+        order: 4
       - title: 信创中间件与云平台
         link: /posts/信创中间件与云平台
-        order: 6
+        order: 5
       - title: 国产办公与应用软件
         link: /posts/国产办公与应用软件
-        order: 7
+        order: 6
       - title: 信创安全：等保与可信计算
         link: /posts/信创安全-等保与可信计算
+        order: 7
+      - title: 信创外设：打印机与其他
+        link: /posts/信创外设-打印机与其他
         order: 8
+      - title: 信创国有标准
+        link: /posts/信创国有标准-国密OFD与测评
+        order: 9
+      - title: 信创供应链安全：断供与可控
+        link: /posts/信创供应链安全-断供与可控
+        order: 10
 ---
 
 # 系列文章
