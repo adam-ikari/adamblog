@@ -18,7 +18,7 @@ Android 四大组件包括：
 - Content Provider
 - Broadcast receiver
 
-这四个组件其实是 Google 把一个应用拆开的方式：UI 逻辑、后台逻辑、持久化、应用间通讯，各管一摊。理清这四个抽象，再看 Android 应用就不会觉得乱。
+这四个组件其实是 Google 把一个应用拆开的方式：UI 逻辑、后台逻辑、持久化、应用间通讯，各管一方面。理清这四个抽象，再看 Android 应用就不会觉得乱。
 
 
 

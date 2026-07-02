@@ -127,8 +127,8 @@ seriesList:
       - title: 国产办公与应用软件
         link: /posts/国产办公与应用软件
         order: 7
-      - title: 信创安全：等保与国密
-        link: /posts/信创安全-等保与国密
+      - title: 信创安全：等保与可信计算
+        link: /posts/信创安全-等保与可信计算
         order: 8
 ---
 
