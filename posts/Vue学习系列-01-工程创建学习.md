@@ -80,7 +80,7 @@ npm init Vue@latest
 
     集成 ESLint 代码质量检查
 
-![创建 Vue 工程的过程](/posts/Vue学习系列-01-工程创建学习/创建Vue工程过程.JPG)
+![创建 Vue 工程的过程](./Vue学习系列-01-工程创建学习/创建Vue工程过程.JPG)
 
 我创建时勾选了 Vue Router、Pinia、Vitest、ESLint 和 Prettier。
 

@@ -20,7 +20,7 @@ date: 2024-09-09
 
 做组件化开发有个绕不开的麻烦：组件的开发、测试和展示往往和整个应用搅在一起，改一个按钮的状态还得把整个工程跑起来。我一直想找个工具，能把组件从应用里剥出来，单独开发和测试，最好还能顺带生成文档给团队看。试了一圈，最后落在 Storybook 上。
 
-![Storybook Logo](/posts/storybook-cookbook-part1/storybook-logo.png)
+![Storybook Logo](./storybook-cookbook-part1/storybook-logo.png)
 
 它给你一个独立的开发环境，插件生态够用，文档还能自动生成。这样一来，开发时精力可以全放在组件本身，不用被应用的依赖和需求拖着走。
 
@@ -157,13 +157,13 @@ npm run storybook
 
 看到下面这段 log，就说明 Storybook 启动成功了。
 
-![Storybook 启动日志](/posts/storybook-cookbook-part1/storybook-start-log.webp)
+![Storybook 启动日志](./storybook-cookbook-part1/storybook-start-log.webp)
 
 > 如果端口被占用，按 y 会自动用下一个可用端口。
 
 启动成功后会在本地起一个服务，URL 通常是 `http://localhost:6006`。用浏览器打开，会看到这样的画面：
 
-![Storybook 使用画面](/posts/storybook-cookbook-part1/storybook-view.webp)
+![Storybook 使用画面](./storybook-cookbook-part1/storybook-view.webp)
 
 到这里，工程里就已经成功集成 Storybook 了。
 

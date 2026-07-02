@@ -71,7 +71,7 @@ chsrc set npm
 
 出现下面的画面说明 npm 换源成功了
 
-![alt text](/posts/Gemini-CLI-入门教程（windows篇）/chsrc.webp)
+![alt text](./Gemini-CLI-入门教程（windows篇）/chsrc.webp)
 
 ## 2. 安装 Gemini CLI
 
@@ -123,11 +123,11 @@ gemini help
 授权过了，就能开始用了。
 
 在要用 Gemini CLI 的文件夹里，按住 shift 同时点鼠标右键，从右键菜单里选“在终端中打开”。
-![alt text](/posts/Gemini-CLI-入门教程（windows篇）/open_terminal_at_explorer.webp)
+![alt text](./Gemini-CLI-入门教程（windows篇）/open_terminal_at_explorer.webp)
 
 此时终端里打开的是 PowerShell，输入 `gemini`：
 
-![alt text](/posts/Gemini-CLI-入门教程（windows篇）/terminal.png)
+![alt text](./Gemini-CLI-入门教程（windows篇）/terminal.png)
 
 ```powershell
 gemini
@@ -135,11 +135,11 @@ gemini
 
 回车后，就能在终端里用自然语言指挥 Gemini 操作电脑了。
 
-![alt text](/posts/Gemini-CLI-入门教程（windows篇）/gemini_cli_logo.webp)
+![alt text](./Gemini-CLI-入门教程（windows篇）/gemini_cli_logo.webp)
 
 比如让它查北京未来十五天的天气，再写进 markdown 文件。它会自己去搜天气，然后把结果整理进文件。
 
-![alt text](/posts/Gemini-CLI-入门教程（windows篇）/gemini-cli_example1.webp)
+![alt text](./Gemini-CLI-入门教程（windows篇）/gemini-cli_example1.webp)
 
 这时候目录下就多了一个 `beijing_weather_forecast.md`，内容长这样：
 
