@@ -3,7 +3,7 @@ title: KylinOS 调查报告
 description: 银河麒麟操作系统的来历、技术演进、版本谱系与架构调查报告
 category: 信创
 tags: [KylinOS, 银河麒麟, 国产操作系统, 信创, Linux, UKUI]
-recommend: false
+recommend: true
 date: 2026-07-01
 ---
 

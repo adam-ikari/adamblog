@@ -4,6 +4,7 @@ category: 转载
 description: "45个 GIT 经典操作场景，专治不会合代码"
 tags: git
 date: 2024-06-14
+recommend: true
 ---
 
 # "[转载] 45个 GIT 经典操作场景，专治不会合代码"
