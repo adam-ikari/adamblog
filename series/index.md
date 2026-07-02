@@ -102,6 +102,34 @@ seriesList:
       - title: 流体仿真系列
         link: /series/series-fluid-simulation
         order: 4
+  - id: xinchuang
+    name: 信创专题系列
+    description: 信息技术应用创新全栈调查：CPU、整机、操作系统、数据库、中间件、办公、安全
+    articles:
+      - title: 信创总览：从去 IOE 到自主可控
+        link: /posts/信创总览-从去IOE到自主可控
+        order: 1
+      - title: 国产 CPU 详解：六条路线
+        link: /posts/国产CPU详解-六条路线
+        order: 2
+      - title: 信创 PC 与整机
+        link: /posts/信创PC与整机
+        order: 3
+      - title: KylinOS 调查报告
+        link: /posts/KylinOS-调查报告
+        order: 4
+      - title: 国产数据库详解
+        link: /posts/国产数据库详解
+        order: 5
+      - title: 信创中间件与云平台
+        link: /posts/信创中间件与云平台
+        order: 6
+      - title: 国产办公与应用软件
+        link: /posts/国产办公与应用软件
+        order: 7
+      - title: 信创安全：等保与国密
+        link: /posts/信创安全-等保与国密
+        order: 8
 ---
 
 # 系列文章
