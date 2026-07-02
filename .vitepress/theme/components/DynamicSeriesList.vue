@@ -11,6 +11,7 @@ interface SeriesArticle {
 interface SeriesInfo {
   id: string
   name: string
+  description?: string
   articles: SeriesArticle[]
 }
 
@@ -37,8 +38,11 @@ const seriesList = computed(() => {
         :href="`/series/series-${series.id}`"
         class="series-item"
       >
-        <span class="series-name">{{ series.name }}</span>
-        <span class="series-count">{{ series.articles.length }} 篇</span>
+        <div class="series-head">
+          <span class="series-name">{{ series.name }}</span>
+          <span class="series-count">{{ series.articles.length }} 篇</span>
+        </div>
+        <p v-if="series.description" class="series-desc">{{ series.description }}</p>
       </a>
     </div>
   </div>
@@ -56,17 +60,17 @@ const seriesList = computed(() => {
 }
 
 .series-items {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
 }
 
 .series-item {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
   background: var(--vp-c-bg-soft);
   border: 1px solid var(--vp-c-divider);
   text-decoration: none;
@@ -77,14 +81,35 @@ const seriesList = computed(() => {
 .series-item:hover {
   border-color: var(--vp-c-brand-1);
   background: var(--vp-c-brand-soft);
+  transform: translateY(-2px);
+}
+
+.series-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
 .series-name {
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .series-count {
-  font-size: 0.85rem;
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  color: var(--vp-c-text-2);
+}
+
+.series-desc {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
   color: var(--vp-c-text-2);
 }
 </style>
