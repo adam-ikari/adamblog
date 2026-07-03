@@ -204,6 +204,42 @@ export default defineConfig({
         jsonLd.datePublished = pageData.frontmatter.date
       }
       head.push(['script', { type: 'application/ld+json' }, JSON.stringify(jsonLd)])
+
+      // 面包屑结构化数据：首页 > (系列) > 文章
+      const itemList: any[] = [{
+        '@type': 'ListItem',
+        position: 1,
+        name: SITE_NAME,
+        item: SITE_URL,
+      }]
+      const series = pageData.frontmatter.series
+      const firstSeries = Array.isArray(series) ? series[0] : series
+      if (firstSeries?.id) {
+        itemList.push({
+          '@type': 'ListItem',
+          position: 2,
+          name: firstSeries.name || '系列',
+          item: `${SITE_URL}/series/series-${firstSeries.id}`,
+        })
+        itemList.push({
+          '@type': 'ListItem',
+          position: 3,
+          name: pageData.title,
+          item: canonicalUrl,
+        })
+      } else {
+        itemList.push({
+          '@type': 'ListItem',
+          position: 2,
+          name: pageData.title,
+          item: canonicalUrl,
+        })
+      }
+      head.push(['script', { type: 'application/ld+json' }, JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: itemList,
+      })])
     } else if (isHome) {
       const jsonLd = {
         '@context': 'https://schema.org',
