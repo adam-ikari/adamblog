@@ -4,6 +4,7 @@ import markdownItPangu from 'markdown-it-pangu'
 import footnote from 'markdown-it-footnote'
 import { RSSOptions, RssPlugin } from 'vitepress-plugin-rss'
 import { imageCompressPlugin } from './plugins/image-compress'
+import { relatedPostsPlugin } from './plugins/related-posts'
 
 // 导入主题的配置
 import { blogTheme } from './blog-theme'
@@ -85,7 +86,7 @@ export default defineConfig({
 
   vite: {
     assetsInclude: ['**/*.JPG', '**/*.jpg', '**/*.png', '**/*.gif', '**/**/*.svg', '**/*.webp'],
-    plugins: [RssPlugin(RSS), imageCompressPlugin()],
+    plugins: [RssPlugin(RSS), imageCompressPlugin(), relatedPostsPlugin()],
   },
 
   cleanUrls: true,

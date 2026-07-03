@@ -4,13 +4,14 @@ import SeriesNav from './components/SeriesNav.vue'
 import SeriesCardList from './components/SeriesCardList.vue'
 import DynamicSeriesList from './components/DynamicSeriesList.vue'
 import DonateBox from './components/DonateBox.vue'
+import RelatedPosts from './components/RelatedPosts.vue'
 import './styles.css'
 
 export default {
   extends: BlogTheme,
   Layout: () => {
     return h(BlogTheme.Layout, null, {
-      'doc-after': () => h('div', null, [h(SeriesNav), h(DonateBox)]),
+      'doc-after': () => h('div', null, [h(SeriesNav), h(RelatedPosts), h(DonateBox)]),
     })
   },
   enhanceApp({ app }) {
