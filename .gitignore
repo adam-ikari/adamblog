@@ -9,3 +9,4 @@ waffo-private.pem
 # 项目使用 pnpm，忽略其他包管理器的 lockfile，避免幽灵依赖告警
 package-lock.json
 yarn.lock
+.claude/scheduled_tasks.lock
