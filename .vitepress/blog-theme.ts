@@ -5,10 +5,9 @@ const blogTheme = getThemeConfig({
   // 搜索 - 启用 pagefind 离线全文搜索
   // search: false,
 
-  // 推荐文章配置 - 启用，显示相关文章推荐
-  recommend: {
-    sort: 'filename',
-  },
+  // 推荐文章：禁用主题内置列表，改用自定义 RelatedArticles 组件
+  // （基于构建时 TF-IDF 生成的 related-posts.json，每篇只显示最相关 10 篇）
+  recommend: false,
 
   // 页脚
   footer: {

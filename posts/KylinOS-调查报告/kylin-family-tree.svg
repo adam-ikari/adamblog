@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 610" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
   <defs>
     <linearGradient id="ylGrad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#dbeafe"/>
@@ -48,48 +48,48 @@
   <!-- ===== 三条分支 ===== -->
 
   <!-- 银河麒麟 (中) -->
-  <rect x="300" y="182" width="200" height="135" rx="10" fill="url(#ylGrad)" stroke="#93c5fd" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="300" y="182" width="200" height="148" rx="10" fill="url(#ylGrad)" stroke="#93c5fd" stroke-width="1" filter="url(#shadow)"/>
   <text x="400" y="210" text-anchor="middle" class="node-title" fill="#1e40af">银河麒麟 V10</text>
   <text x="400" y="234" text-anchor="middle" class="node-sub" fill="#3b82f6">KylinOS · 党政信创主力</text>
   <text x="400" y="258" text-anchor="middle" class="branch-label" fill="#d97706">桌面版 + 服务器版</text>
-  <text x="400" y="280" text-anchor="middle" class="anno">Linux 5.10 内核 · 国产化率最高</text>
-  <text x="400" y="300" text-anchor="middle" class="anno">飞腾/鲲鹏/海光/兆芯/龙芯/申威</text>
-  <text x="400" y="320" text-anchor="middle" class="anno" fill="#16a34a">→ 信创采购主力，市场份额第一</text>
+  <text x="400" y="282" text-anchor="middle" class="anno">Linux 5.10 内核 · 国产化率最高</text>
+  <text x="400" y="304" text-anchor="middle" class="anno">飞腾/鲲鹏/海光/兆芯/龙芯/申威</text>
+  <text x="400" y="324" text-anchor="middle" class="anno" fill="#16a34a">→ 信创采购主力，份额第一</text>
 
   <!-- 中标麒麟 (左) -->
-  <rect x="60" y="182" width="210" height="135" rx="10" fill="url(#nsGrad)" stroke="#c4b5fd" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="60" y="182" width="210" height="148" rx="10" fill="url(#nsGrad)" stroke="#c4b5fd" stroke-width="1" filter="url(#shadow)"/>
   <text x="165" y="210" text-anchor="middle" class="node-title" fill="#6d28d9">中标麒麟</text>
   <text x="165" y="234" text-anchor="middle" class="node-sub" fill="#7c3aed">NeoKylin · 前身/过渡品牌</text>
   <text x="165" y="258" text-anchor="middle" class="branch-label" fill="#d97706">已逐步整合进银河</text>
-  <text x="165" y="280" text-anchor="middle" class="anno">早期政府采购体系核心</text>
-  <text x="165" y="300" text-anchor="middle" class="anno">FreeBSD 起点，后迁至 Linux</text>
-  <text x="165" y="320" text-anchor="middle" class="anno" fill="#888">→ 品牌淡化，存量替代中</text>
+  <text x="165" y="282" text-anchor="middle" class="anno">早期政府采购体系核心</text>
+  <text x="165" y="304" text-anchor="middle" class="anno">FreeBSD 起点，后迁至 Linux</text>
+  <text x="165" y="324" text-anchor="middle" class="anno" fill="#888">→ 品牌淡化，存量替代中</text>
 
   <!-- 优麒麟 (右) -->
-  <rect x="530" y="182" width="210" height="135" rx="10" fill="url(#ykGrad)" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="530" y="182" width="210" height="148" rx="10" fill="url(#ykGrad)" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
   <text x="635" y="210" text-anchor="middle" class="node-title" fill="#166534">优麒麟</text>
   <text x="635" y="234" text-anchor="middle" class="node-sub" fill="#16a34a">UbuntuKylin · 社区开源版</text>
   <text x="635" y="258" text-anchor="middle" class="branch-label" fill="#d97706">Ubuntu 衍生，面向消费</text>
-  <text x="635" y="280" text-anchor="middle" class="anno">UKUI 桌面环境（自研）</text>
-  <text x="635" y="300" text-anchor="middle" class="anno">软件商店 · 个人用户</text>
-  <text x="635" y="320" text-anchor="middle" class="anno" fill="#888">→ 社区活跃度一般</text>
+  <text x="635" y="282" text-anchor="middle" class="anno">UKUI 桌面环境（自研）</text>
+  <text x="635" y="304" text-anchor="middle" class="anno">软件商店 · 个人用户</text>
+  <text x="635" y="324" text-anchor="middle" class="anno" fill="#888">→ 社区活跃度一般</text>
 
   <!-- 连接线到 openKylin -->
-  <line x1="300" y1="317" x2="235" y2="385" stroke="#d97706" stroke-width="1.5" stroke-dasharray="5,3"/>
-  <line x1="500" y1="317" x2="565" y2="385" stroke="#d97706" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="300" y1="330" x2="235" y2="400" stroke="#d97706" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="500" y1="330" x2="565" y2="400" stroke="#d97706" stroke-width="1.5" stroke-dasharray="5,3"/>
 
   <!-- ===== openKylin ===== -->
-  <rect x="220" y="389" width="360" height="62" rx="10" fill="url(#okGrad)" stroke="#fca5a5" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="400" y="416" text-anchor="middle" class="node-title" fill="#b91c1c">openKylin</text>
-  <text x="400" y="438" text-anchor="middle" class="node-sub" fill="#dc2626">2022 年开源 · 独立社区治理 · 银河麒麟的上游</text>
-  <text x="400" y="454" text-anchor="middle" class="anno" fill="#666">→ 银河麒麟从 openKylin 取社区贡献，再叠加商业增强层</text>
+  <rect x="220" y="404" width="360" height="76" rx="10" fill="url(#okGrad)" stroke="#fca5a5" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="432" text-anchor="middle" class="node-title" fill="#b91c1c">openKylin</text>
+  <text x="400" y="454" text-anchor="middle" class="node-sub" fill="#dc2626">2022 年开源 · 独立社区治理 · 银河麒麟的上游</text>
+  <text x="400" y="472" text-anchor="middle" class="anno" fill="#666">→ 银河麒麟取社区贡献，再叠加商业增强层</text>
 
   <!-- 箭头 -->
-  <line x1="400" y1="451" x2="400" y2="486" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="400" y1="480" x2="400" y2="510" stroke="#dc2626" stroke-width="1.5" marker-end="url(#arrow)"/>
 
   <!-- ===== 底部：关系说明 ===== -->
-  <rect x="30" y="493" width="740" height="80" rx="8" fill="#f8fafc" stroke="#d1d5db" stroke-width="1"/>
-  <text x="60" y="520" font-size="18" fill="#444">• 银河麒麟 V10 是信创采购主力，桌面版 + 服务器版双线，内核 Linux 5.10，支持六大国产 CPU</text>
-  <text x="60" y="544" font-size="18" fill="#444">• 中标麒麟是前身品牌，已逐步整合进银河；优麒麟 (UbuntuKylin) 走社区开源路线，面向个人用户</text>
-  <text x="60" y="564" font-size="18" fill="#444">• openKylin 2022 年开源，定位为银河麒麟的上游社区，实现"社区开源→商业发行"的循环</text>
+  <rect x="30" y="516" width="740" height="80" rx="8" fill="#f8fafc" stroke="#d1d5db" stroke-width="1"/>
+  <text x="60" y="542" font-size="18" fill="#444">• 银河麒麟 V10 是信创采购主力，桌面版 + 服务器版双线，内核 Linux 5.10，支持六大国产 CPU</text>
+  <text x="60" y="566" font-size="18" fill="#444">• 中标麒麟是前身品牌，已逐步整合进银河；优麒麟 (UbuntuKylin) 走社区开源路线，面向个人用户</text>
+  <text x="60" y="588" font-size="18" fill="#444">• openKylin 2022 年开源，定位为银河麒麟的上游社区，实现"社区开源→商业发行"的循环</text>
 </svg>

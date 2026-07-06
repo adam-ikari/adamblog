@@ -28,9 +28,44 @@ article table th {
   white-space: nowrap;
 }
 
-/* SVG 插图：自然占满内容区宽度 */
+/* SVG 插图：自然占满内容区宽度，浅色背景确保深色主题下可读 */
 .vp-doc img[src$=".svg"] {
   display: block;
   max-width: 100%;
   height: auto;
+  background-color: #ffffff;
+  border-radius: 4px;
+}
+
+/*
+ * 正文插图点击全屏：useImageFullscreen 在 document capture 阶段拦截 img 点击，
+ * 调用浏览器全屏 API 并锁横屏。这里仅做视觉提示与全屏态样式。
+ */
+.vp-doc img {
+  cursor: zoom-in;
+}
+
+/* 全屏态：插图居中、黑底、留白，可滚动查看超大图 */
+.vp-doc img:fullscreen,
+article img:fullscreen {
+  background: #000;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  border-radius: 0;
+  cursor: zoom-out;
+}
+
+.vp-doc img:-webkit-full-screen,
+article img:-webkit-full-screen {
+  background: #000;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  border-radius: 0;
+  cursor: zoom-out;
 }

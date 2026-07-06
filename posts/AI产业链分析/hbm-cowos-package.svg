@@ -100,10 +100,10 @@
   <text x="78" y="514" font-size="17" fill="#555">GPT-3 175B 参数 ≈ 700GB (FP32)，加上优化器状态和中间激活，单卡装不下</text>
 
   <text x="55" y="550" font-size="20" fill="#333">2. 带宽比算力更紧缺</text>
-  <text x="78" y="576" font-size="17" fill="#555">GPU 算得再快，数据喂不进来也是白搭。普通 DDR5 带宽 ≈ 64 GB/s，HBM3e ≈ 8 TB/s</text>
+  <text x="78" y="576" font-size="17" fill="#555">GPU 算得再快，数据喂不进来也是白搭。普通 DDR5 ≈ 64 GB/s，HBM3e ≈ 8 TB/s</text>
 
-  <text x="55" y="612" font-size="20" fill="#333">3. HBM 制造极其复杂 — 8-12 层 DRAM 垂直堆叠，TSV 穿通互连。全球仅 SK 海力士/三星/美光能造</text>
-  <text x="78" y="636" font-size="17" fill="#dc2626">中国目前无法自产 HBM</text>
+  <text x="55" y="612" font-size="20" fill="#333">3. HBM 制造极其复杂</text>
+  <text x="78" y="636" font-size="17" fill="#555">8-12 层 DRAM 垂直堆叠，TSV 穿通互连。全球仅 SK 海力士/三星/美光能造</text>
 
-  <text x="55" y="668" font-size="21" font-weight="700" fill="#dc2626">HBM = 比 GPU 芯片更难替代的瓶颈</text>
+  <text x="55" y="670" font-size="21" font-weight="700" fill="#dc2626">HBM = 比 GPU 芯片更难替代的瓶颈</text>
 </svg>

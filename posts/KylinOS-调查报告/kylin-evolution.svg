@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 590" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
   <defs>
     <linearGradient id="freebsdGrad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#dbeafe"/>
@@ -45,66 +45,61 @@
 
   <circle cx="40" cy="68" r="5" fill="#3b82f6"/>
   <text x="40" y="52" text-anchor="middle" font-size="17" fill="#666">2001</text>
-
   <circle cx="220" cy="68" r="5" fill="#3b82f6"/>
   <text x="220" y="52" text-anchor="middle" font-size="17" fill="#666">2006</text>
-
   <circle cx="440" cy="68" r="7" fill="#d97706"/>
   <text x="440" y="52" text-anchor="middle" font-size="17" fill="#d97706">2014</text>
-
   <circle cx="600" cy="68" r="5" fill="#667eea"/>
   <text x="600" y="52" text-anchor="middle" font-size="17" fill="#666">2022</text>
-
   <circle cx="760" cy="68" r="7" fill="#16a34a"/>
   <text x="760" y="52" text-anchor="middle" font-size="17" fill="#16a34a">2025</text>
 
   <!-- === 阶段一：FreeBSD === -->
-  <rect x="40" y="92" width="330" height="135" rx="10" fill="url(#freebsdGrad)" stroke="#93c5fd" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="40" y="92" width="330" height="140" rx="10" fill="url(#freebsdGrad)" stroke="#93c5fd" stroke-width="1" filter="url(#shadow)"/>
   <text x="205" y="124" text-anchor="middle" class="phase-title" fill="#1e40af">第一次转身：立足 FreeBSD</text>
   <text x="205" y="148" text-anchor="middle" class="phase-sub">863 计划立项 · 国防科大开发</text>
-
   <text x="60" y="176" class="item">• 基于 FreeBSD 5.3 内核</text>
   <text x="60" y="202" class="item">• 2006 年报道首个 B2 安全等级 64 位 OS</text>
   <text x="60" y="228" class="essence">没有自研内核时，借力成熟 BSD 起步</text>
 
   <!-- 箭头 1→2 -->
-  <line x1="370" y1="159" x2="420" y2="159" stroke="#d97706" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="395" y="148" text-anchor="middle" font-size="15" fill="#d97706">切换</text>
+  <line x1="370" y1="162" x2="420" y2="162" stroke="#d97706" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="395" y="150" text-anchor="middle" font-size="15" fill="#d97706">切换</text>
 
   <!-- === 阶段二：Linux === -->
-  <rect x="425" y="92" width="345" height="135" rx="10" fill="url(#linuxGrad)" stroke="#fcd34d" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="425" y="92" width="345" height="140" rx="10" fill="url(#linuxGrad)" stroke="#fcd34d" stroke-width="1" filter="url(#shadow)"/>
   <text x="597" y="124" text-anchor="middle" class="phase-title" fill="#92400e">第二次转身：转向 Linux 内核</text>
   <text x="597" y="148" text-anchor="middle" class="phase-sub">3.0 版本起切至 Linux · 非 Ubuntu 衍生</text>
-
   <text x="445" y="176" class="item">• 直接采用 Linux 内核，不以发行版为上游</text>
   <text x="445" y="202" class="item">• 接入 Linux 驱动与社区生态，兼容面大幅拓宽</text>
   <text x="445" y="228" class="essence">放弃"自证内核"，换取实用生态</text>
 
   <!-- 箭头 2→3 -->
-  <line x1="597" y1="227" x2="597" y2="278" stroke="#16a34a" stroke-width="2" marker-end="url(#arrow)"/>
-  <text x="615" y="258" text-anchor="middle" font-size="15" fill="#16a34a">开源化</text>
+  <line x1="597" y1="232" x2="597" y2="282" stroke="#16a34a" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="615" y="262" text-anchor="middle" font-size="15" fill="#16a34a">开源化</text>
 
   <!-- === 阶段三：双轨 === -->
-  <rect x="40" y="285" width="730" height="75" rx="10" fill="url(#dualGrad)" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
-  <text x="400" y="315" text-anchor="middle" class="phase-title" fill="#166534">第三次转身：开源化 + 双轨并行（2022—）</text>
-  <text x="400" y="340" text-anchor="middle" class="item">openKylin 木兰 v2 开源 → 内核仓库公开于 Gitee/GitCode → V10 (2020) → V11 (2025, 6.6 内核) → UKUI 桌面 + 磐石架构</text>
+  <rect x="40" y="290" width="730" height="82" rx="10" fill="url(#dualGrad)" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
+  <text x="400" y="320" text-anchor="middle" class="phase-title" fill="#166534">第三次转身：开源化 + 双轨并行（2022—）</text>
+  <text x="400" y="346" text-anchor="middle" class="item">openKylin 木兰 v2 开源 · 内核仓库公开于 Gitee/GitCode</text>
+  <text x="400" y="366" text-anchor="middle" class="item" fill="#666">V10 (2020) → V11 (2025, 6.6 内核) → UKUI 桌面 + 磐石架构</text>
 
   <!-- 两侧卡片 -->
-  <rect x="40" y="378" width="340" height="140" rx="10" fill="url(#bizGrad)" stroke="#60a5fa" stroke-width="1" filter="url(#shadow)"/>
-  <text x="210" y="410" text-anchor="middle" class="track-title" fill="#fff">商业线：银河麒麟</text>
-  <text x="60" y="438" class="track-item" fill="#e0e7ff">• 专有授权 · 政企采购主力</text>
-  <text x="60" y="462" class="track-item" fill="#e0e7ff">• V10/V11 桌面版 + 服务器版</text>
-  <text x="60" y="486" class="track-item" fill="#e0e7ff">• 内核补丁不公开 · 等保/国密合规</text>
-  <text x="60" y="510" class="track-item" fill="#fcd34d">→ 商业保落地，走量走质</text>
+  <rect x="40" y="390" width="340" height="150" rx="10" fill="url(#bizGrad)" stroke="#60a5fa" stroke-width="1" filter="url(#shadow)"/>
+  <text x="210" y="422" text-anchor="middle" class="track-title" fill="#fff">商业线：银河麒麟</text>
+  <text x="60" y="452" class="track-item" fill="#e0e7ff">• 专有授权 · 政企采购主力</text>
+  <text x="60" y="476" class="track-item" fill="#e0e7ff">• V10/V11 桌面版 + 服务器版</text>
+  <text x="60" y="500" class="track-item" fill="#e0e7ff">• 内核补丁不公开 · 等保/国密合规</text>
+  <text x="60" y="528" class="track-item" fill="#fcd34d">→ 商业保落地，走量走质</text>
 
-  <rect x="420" y="378" width="350" height="140" rx="10" fill="url(#commGrad)" stroke="#4ade80" stroke-width="1" filter="url(#shadow)"/>
-  <text x="595" y="410" text-anchor="middle" class="track-title" fill="#fff">社区线：openKylin</text>
-  <text x="440" y="438" class="track-item" fill="#dcfce7">• 木兰宽松 v2 · 开放原子基金会孵化</text>
-  <text x="440" y="462" class="track-item" fill="#dcfce7">• 内核仓库公开 · 社区驱动开发</text>
-  <text x="440" y="486" class="track-item" fill="#dcfce7">• 玲珑/开明包格式 · 桌面环境创新</text>
-  <text x="440" y="510" class="track-item" fill="#fde68a">→ 开源换生态，两条线各司其职</text>
+  <rect x="420" y="390" width="350" height="150" rx="10" fill="url(#commGrad)" stroke="#4ade80" stroke-width="1" filter="url(#shadow)"/>
+  <text x="595" y="422" text-anchor="middle" class="track-title" fill="#fff">社区线：openKylin</text>
+  <text x="440" y="452" class="track-item" fill="#dcfce7">• 木兰宽松 v2 · 开放原子基金会孵化</text>
+  <text x="440" y="476" class="track-item" fill="#dcfce7">• 内核仓库公开 · 社区驱动开发</text>
+  <text x="440" y="500" class="track-item" fill="#dcfce7">• 玲珑/开明包格式 · 桌面环境创新</text>
+  <text x="440" y="528" class="track-item" fill="#fde68a">→ 开源换生态，两条线各司其职</text>
 
   <!-- 连接 -->
-  <line x1="380" y1="448" x2="420" y2="448" stroke="#999" stroke-width="1" stroke-dasharray="5,3"/>
-  <text x="400" y="440" text-anchor="middle" font-size="14" fill="#888">≠ 上下游</text>
+  <line x1="380" y1="465" x2="420" y2="465" stroke="#999" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="400" y="456" text-anchor="middle" font-size="14" fill="#888">≠ 上下游</text>
 </svg>
