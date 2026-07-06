@@ -1,147 +1,147 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 960" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1050" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
   <defs>
     <linearGradient id="appGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#0f3460"/>
-      <stop offset="100%" stop-color="#1a1a5e"/>
+      <stop offset="0%" stop-color="#e0f2fe"/>
+      <stop offset="100%" stop-color="#bae6fd"/>
     </linearGradient>
     <linearGradient id="modelGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#533483"/>
-      <stop offset="100%" stop-color="#3d2a6e"/>
+      <stop offset="0%" stop-color="#ede9fe"/>
+      <stop offset="100%" stop-color="#ddd6fe"/>
     </linearGradient>
     <linearGradient id="frameworkGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#e94560"/>
-      <stop offset="100%" stop-color="#c23152"/>
+      <stop offset="0%" stop-color="#fee2e2"/>
+      <stop offset="100%" stop-color="#fecaca"/>
     </linearGradient>
     <linearGradient id="computeGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#f5a623"/>
-      <stop offset="100%" stop-color="#d4891a"/>
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fde68a"/>
     </linearGradient>
     <linearGradient id="infraGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#1a8a5a"/>
-      <stop offset="100%" stop-color="#146b45"/>
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
     </linearGradient>
     <linearGradient id="dataGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#2d6a8a"/>
-      <stop offset="100%" stop-color="#1e5068"/>
+      <stop offset="0%" stop-color="#e0e7ff"/>
+      <stop offset="100%" stop-color="#c7d2fe"/>
     </linearGradient>
     <marker id="arrowDown" viewBox="0 0 10 10" refX="5" refY="10" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M0,0 L5,10 L10,0" fill="#667eea" opacity="0.6"/>
+      <path d="M0,0 L5,10 L10,0" fill="#6366f1" opacity="0.6"/>
     </marker>
     <filter id="shadow">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
     </filter>
   </defs>
 
   <style>
-    text { fill: #e0e0e0; }
-    .title { font-size: 27px; font-weight: 700; fill: #fff; }
-    .layer-title { font-size: 22px; font-weight: 700; fill: #fff; }
-    .layer-sub { font-size: 18px; opacity: 0.8; }
-    .layer-detail { font-size: 17px; opacity: 0.6; }
-    .label { font-size: 17px; fill: #ccc; }
-    .small { font-size: 15px; opacity: 0.55; }
-    .cn-title { font-size: 18px; font-weight: 600; fill: #4ecdc4; }
-    .cn-text { font-size: 17px; fill: #93c5fd; }
+    text { fill: #333333; }
+    .title { font-size: 27px; font-weight: 700; fill: #1a1a1a; }
+    .layer-title { font-size: 22px; font-weight: 700; }
+    .layer-sub { font-size: 18px; }
+    .layer-detail { font-size: 17px; fill: #555555; }
+    .label { font-size: 17px; fill: #555555; }
+    .small { font-size: 15px; fill: #666666; }
+    .cn-title { font-size: 18px; font-weight: 600; }
+    .cn-text { font-size: 17px; }
     .bottleneck-title { font-size: 21px; font-weight: 700; }
   </style>
 
   <text x="400" y="34" text-anchor="middle" class="title">AI 产业链全景：六层依赖关系</text>
 
   <!-- ===== 应用层 ===== -->
-  <rect x="30" y="58" width="560" height="100" rx="8" fill="url(#appGrad)" filter="url(#shadow)" stroke="#4ecdc4" stroke-width="0.5"/>
-  <text x="310" y="86" text-anchor="middle" class="layer-title">应用层</text>
-  <text x="310" y="108" text-anchor="middle" class="layer-sub">ChatGPT · Copilot · Kimi · 豆包 · Agent · RAG · 行业应用</text>
-  <text x="310" y="130" text-anchor="middle" class="layer-detail">ToB 政企 / ToC 对话 / Agent 自主任务</text>
+  <rect x="30" y="58" width="560" height="104" rx="8" fill="url(#appGrad)" filter="url(#shadow)" stroke="#67e8f9" stroke-width="0.5"/>
+  <text x="310" y="88" text-anchor="middle" class="layer-title" fill="#0c4a6e">应用层</text>
+  <text x="310" y="112" text-anchor="middle" class="layer-sub" fill="#155e75">ChatGPT · Copilot · Kimi · 豆包 · Agent · RAG · 行业应用</text>
+  <text x="310" y="136" text-anchor="middle" class="layer-detail">ToB 政企 / ToC 对话 / Agent 自主任务</text>
 
   <!-- 右侧标注 -->
-  <rect x="610" y="58" width="160" height="100" rx="6" fill="none" stroke="#4ecdc4" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
-  <text x="690" y="84" text-anchor="middle" class="cn-title">🇨🇳 字节豆包 · Kimi</text>
-  <text x="690" y="106" text-anchor="middle" class="cn-text">WPS AI · 政企大模型</text>
-  <text x="690" y="128" text-anchor="middle" class="cn-text">应用层有竞争力</text>
+  <rect x="610" y="58" width="160" height="104" rx="6" fill="none" stroke="#67e8f9" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+  <text x="690" y="86" text-anchor="middle" class="cn-title" fill="#0e7490">🇨🇳 字节豆包 · Kimi</text>
+  <text x="690" y="110" text-anchor="middle" class="cn-text" fill="#155e75">WPS AI · 政企大模型</text>
+  <text x="690" y="134" text-anchor="middle" class="cn-text" fill="#0e7490">应用层有竞争力</text>
 
   <!-- 应用→模型 -->
-  <line x1="310" y1="158" x2="310" y2="182" stroke="#667eea" stroke-width="1.5" marker-end="url(#arrowDown)"/>
-  <text x="326" y="174" class="small">调用 API</text>
+  <line x1="310" y1="162" x2="310" y2="194" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arrowDown)"/>
+  <text x="326" y="182" class="small">调用 API</text>
 
   <!-- ===== 模型层 ===== -->
-  <rect x="30" y="186" width="560" height="100" rx="8" fill="url(#modelGrad)" filter="url(#shadow)" stroke="#a78bfa" stroke-width="0.5"/>
-  <text x="310" y="214" text-anchor="middle" class="layer-title">模型层</text>
-  <text x="310" y="236" text-anchor="middle" class="layer-sub">GPT-5 · Llama 4 · DeepSeek-V3/R1 · Gemini · 通义 · GLM</text>
-  <text x="310" y="258" text-anchor="middle" class="layer-detail">Dense / MoE 架构 · 训练 (6N FLOPs/token) · 推理服务</text>
+  <rect x="30" y="198" width="560" height="104" rx="8" fill="url(#modelGrad)" filter="url(#shadow)" stroke="#c4b5fd" stroke-width="0.5"/>
+  <text x="310" y="228" text-anchor="middle" class="layer-title" fill="#4c1d95">模型层</text>
+  <text x="310" y="252" text-anchor="middle" class="layer-sub" fill="#5b21b6">GPT-5 · Llama 4 · DeepSeek-V3/R1 · Gemini · 通义 · GLM</text>
+  <text x="310" y="276" text-anchor="middle" class="layer-detail">Dense / MoE 架构 · 训练 (6N FLOPs/token) · 推理服务</text>
 
-  <rect x="610" y="186" width="160" height="100" rx="6" fill="none" stroke="#a78bfa" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
-  <text x="690" y="212" text-anchor="middle" class="cn-title">🇨🇳 DeepSeek · 通义</text>
-  <text x="690" y="234" text-anchor="middle" class="cn-text">GLM · 文心 · 豆包</text>
-  <text x="690" y="256" text-anchor="middle" class="cn-text">模型层可竞争</text>
+  <rect x="610" y="198" width="160" height="104" rx="6" fill="none" stroke="#c4b5fd" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+  <text x="690" y="226" text-anchor="middle" class="cn-title" fill="#6d28d9">🇨🇳 DeepSeek · 通义</text>
+  <text x="690" y="250" text-anchor="middle" class="cn-text" fill="#5b21b6">GLM · 文心 · 豆包</text>
+  <text x="690" y="274" text-anchor="middle" class="cn-text" fill="#6d28d9">模型层可竞争</text>
 
   <!-- 模型→框架 -->
-  <line x1="310" y1="286" x2="310" y2="310" stroke="#667eea" stroke-width="1.5" marker-end="url(#arrowDown)"/>
-  <text x="326" y="302" class="small">依赖训练框架</text>
+  <line x1="310" y1="302" x2="310" y2="334" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arrowDown)"/>
+  <text x="326" y="322" class="small">依赖训练框架</text>
 
   <!-- ===== 框架层 ===== -->
-  <rect x="30" y="314" width="560" height="100" rx="8" fill="url(#frameworkGrad)" filter="url(#shadow)" stroke="#f87171" stroke-width="0.5"/>
-  <text x="310" y="342" text-anchor="middle" class="layer-title">框架与工具链</text>
-  <text x="310" y="364" text-anchor="middle" class="layer-sub">PyTorch · CUDA · cuDNN/cuBLAS · JAX · MindSpore</text>
-  <text x="310" y="386" text-anchor="middle" class="layer-detail">PyTorch → cuDNN → CUDA → GPU 锁定链</text>
+  <rect x="30" y="338" width="560" height="104" rx="8" fill="url(#frameworkGrad)" filter="url(#shadow)" stroke="#fca5a5" stroke-width="0.5"/>
+  <text x="310" y="368" text-anchor="middle" class="layer-title" fill="#991b1b">框架与工具链</text>
+  <text x="310" y="392" text-anchor="middle" class="layer-sub" fill="#b91c1c">PyTorch · CUDA · cuDNN/cuBLAS · JAX · MindSpore</text>
+  <text x="310" y="416" text-anchor="middle" class="layer-detail">PyTorch → cuDNN → CUDA → GPU 锁定链</text>
 
-  <rect x="610" y="314" width="160" height="100" rx="6" fill="none" stroke="#f87171" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
-  <text x="690" y="340" text-anchor="middle" class="cn-title">🇨🇳 MindSpore · PaddlePaddle</text>
-  <text x="690" y="362" text-anchor="middle" class="cn-text">PyTorch 昇腾适配</text>
-  <text x="690" y="384" text-anchor="middle" fill="#e94560" font-size="17">框架层短板</text>
+  <rect x="610" y="338" width="160" height="104" rx="6" fill="none" stroke="#fca5a5" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+  <text x="690" y="366" text-anchor="middle" class="cn-title" fill="#b91c1c">🇨🇳 MindSpore · PaddlePaddle</text>
+  <text x="690" y="390" text-anchor="middle" class="cn-text" fill="#dc2626">PyTorch 昇腾适配</text>
+  <text x="690" y="414" text-anchor="middle" class="cn-text" fill="#dc2626">框架层短板</text>
 
   <!-- 框架→算力 -->
-  <line x1="310" y1="414" x2="310" y2="438" stroke="#667eea" stroke-width="1.5" marker-end="url(#arrowDown)"/>
-  <text x="326" y="430" class="small">CUDA 绑定硬件</text>
+  <line x1="310" y1="442" x2="310" y2="474" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arrowDown)"/>
+  <text x="326" y="462" class="small">CUDA 绑定硬件</text>
 
   <!-- ===== 算力层 ===== -->
-  <rect x="30" y="442" width="560" height="120" rx="8" fill="url(#computeGrad)" filter="url(#shadow)" stroke="#fbbf24" stroke-width="0.5"/>
-  <text x="310" y="470" text-anchor="middle" class="layer-title" fill="#1a1a2e">算力层（GPU / AI 芯片）</text>
-  <text x="310" y="494" text-anchor="middle" class="layer-sub" fill="#333">H100/B200 · 昇腾 910B · MI300X · 寒武纪 · 海光 DCU</text>
-  <text x="310" y="516" text-anchor="middle" class="layer-detail" fill="#555">CUDA Core + Tensor Core · HBM 显存 · NVLink 互联 · 液冷</text>
+  <rect x="30" y="478" width="560" height="126" rx="8" fill="url(#computeGrad)" filter="url(#shadow)" stroke="#fcd34d" stroke-width="0.5"/>
+  <text x="310" y="508" text-anchor="middle" class="layer-title">算力层（GPU / AI 芯片）</text>
+  <text x="310" y="534" text-anchor="middle" class="layer-sub" fill="#92400e">H100/B200 · 昇腾 910B · MI300X · 寒武纪 · 海光 DCU</text>
+  <text x="310" y="558" text-anchor="middle" class="layer-detail">CUDA Core + Tensor Core · HBM 显存 · NVLink 互联 · 液冷</text>
   <!-- 隐藏供应链条 -->
-  <rect x="55" y="530" width="510" height="20" rx="5" fill="#1a1a2e" opacity="0.35"/>
-  <text x="310" y="544" text-anchor="middle" font-size="15" fill="#999">隐藏供应链：HBM（SK海力士/三星/美光）· CoWoS（台积电）· PCB 20+层 · MLCC · 电源</text>
+  <rect x="55" y="574" width="510" height="20" rx="5" fill="#fef3c7" opacity="0.6"/>
+  <text x="310" y="588" text-anchor="middle" font-size="15" fill="#92400e">隐藏供应链：HBM（SK海力士/三星/美光）· CoWoS（台积电）· PCB 20+层 · MLCC · 电源</text>
 
-  <rect x="610" y="442" width="160" height="120" rx="6" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
-  <text x="690" y="472" text-anchor="middle" class="cn-title">🇨🇳 昇腾 · 寒武纪</text>
-  <text x="690" y="494" text-anchor="middle" class="cn-text">海光 DCU · 壁仞</text>
-  <text x="690" y="516" text-anchor="middle" fill="#e94560" font-size="17">算力层最被卡</text>
+  <rect x="610" y="478" width="160" height="126" rx="6" fill="none" stroke="#fcd34d" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+  <text x="690" y="510" text-anchor="middle" class="cn-title" fill="#b45309">🇨🇳 昇腾 · 寒武纪</text>
+  <text x="690" y="536" text-anchor="middle" class="cn-text" fill="#d97706">海光 DCU · 壁仞</text>
+  <text x="690" y="562" text-anchor="middle" class="cn-text" fill="#dc2626">算力层最被卡</text>
 
   <!-- 算力→基础设施 -->
-  <line x1="310" y1="562" x2="310" y2="586" stroke="#667eea" stroke-width="1.5" marker-end="url(#arrowDown)"/>
-  <text x="326" y="578" class="small">GPU 装入数据中心</text>
+  <line x1="310" y1="604" x2="310" y2="636" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arrowDown)"/>
+  <text x="326" y="624" class="small">GPU 装入数据中心</text>
 
   <!-- ===== 基础设施层 ===== -->
-  <rect x="30" y="590" width="560" height="90" rx="8" fill="url(#infraGrad)" filter="url(#shadow)" stroke="#34d399" stroke-width="0.5"/>
-  <text x="310" y="618" text-anchor="middle" class="layer-title">基础设施层</text>
-  <text x="310" y="642" text-anchor="middle" class="layer-sub">AWS · Azure · Google Cloud · 阿里云 · 华为云 · 智算中心</text>
-  <text x="310" y="664" text-anchor="middle" class="layer-detail">InfiniBand · CPO 光互联 · 液冷数据中心 · 供电/散热/网络</text>
+  <rect x="30" y="640" width="560" height="96" rx="8" fill="url(#infraGrad)" filter="url(#shadow)" stroke="#86efac" stroke-width="0.5"/>
+  <text x="310" y="670" text-anchor="middle" class="layer-title" fill="#166534">基础设施层</text>
+  <text x="310" y="696" text-anchor="middle" class="layer-sub" fill="#15803d">AWS · Azure · Google Cloud · 阿里云 · 华为云 · 智算中心</text>
+  <text x="310" y="720" text-anchor="middle" class="layer-detail">InfiniBand · CPO 光互联 · 液冷数据中心 · 供电/散热/网络</text>
 
-  <rect x="610" y="590" width="160" height="90" rx="6" fill="none" stroke="#34d399" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
-  <text x="690" y="616" text-anchor="middle" class="cn-title">🇨🇳 阿里云 · 华为云</text>
-  <text x="690" y="638" text-anchor="middle" class="cn-text">腾讯云 · 各地智算中心</text>
-  <text x="690" y="660" text-anchor="middle" class="cn-text">重资产投入</text>
+  <rect x="610" y="640" width="160" height="96" rx="6" fill="none" stroke="#86efac" stroke-width="1" stroke-dasharray="4,3" opacity="0.7"/>
+  <text x="690" y="668" text-anchor="middle" class="cn-title" fill="#166534">🇨🇳 阿里云 · 华为云</text>
+  <text x="690" y="692" text-anchor="middle" class="cn-text" fill="#15803d">腾讯云 · 各地智算中心</text>
+  <text x="690" y="716" text-anchor="middle" class="cn-text" fill="#15803d">重资产投入</text>
 
   <!-- ===== 数据层（底部横条） ===== -->
-  <rect x="30" y="710" width="740" height="36" rx="6" fill="url(#dataGrad)" filter="url(#shadow)" stroke="#60a5fa" stroke-width="0.5"/>
-  <text x="400" y="734" text-anchor="middle" class="layer-title" font-size="20">数据层贯穿全程：训练语料 → 合成数据 → 专有数据 → 多模态 → 用户反馈 → 合规审查</text>
+  <rect x="30" y="766" width="740" height="40" rx="6" fill="url(#dataGrad)" filter="url(#shadow)" stroke="#a5b4fc" stroke-width="0.5"/>
+  <text x="400" y="792" text-anchor="middle" font-size="20" font-weight="700" fill="#312e81">数据层贯穿全程：训练语料 → 合成数据 → 专有数据 → 多模态 → 用户反馈 → 合规审查</text>
 
   <!-- ===== 三个全局瓶颈 ===== -->
-  <rect x="30" y="770" width="230" height="80" rx="8" fill="#1a1a2e" stroke="#e94560" stroke-width="1"/>
-  <text x="145" y="798" text-anchor="middle" class="bottleneck-title" fill="#e94560">🔒 算力墙</text>
-  <text x="145" y="820" text-anchor="middle" font-size="17" fill="#ccc">GPU + 先进制程 + HBM</text>
-  <text x="145" y="840" text-anchor="middle" font-size="17" fill="#ccc">集中在英伟达+台积电</text>
+  <rect x="30" y="832" width="230" height="90" rx="8" fill="#fef2f2" stroke="#fca5a5" stroke-width="1"/>
+  <text x="145" y="862" text-anchor="middle" class="bottleneck-title" fill="#dc2626">🔒 算力墙</text>
+  <text x="145" y="886" text-anchor="middle" font-size="17" fill="#444">GPU + 先进制程 + HBM</text>
+  <text x="145" y="908" text-anchor="middle" font-size="17" fill="#444">集中在英伟达+台积电</text>
 
-  <rect x="285" y="770" width="230" height="80" rx="8" fill="#1a1a2e" stroke="#f5a623" stroke-width="1"/>
-  <text x="400" y="798" text-anchor="middle" class="bottleneck-title" fill="#f5a623">📊 数据墙</text>
-  <text x="400" y="820" text-anchor="middle" font-size="17" fill="#ccc">高质量语料趋近枯竭</text>
-  <text x="400" y="840" text-anchor="middle" font-size="17" fill="#ccc">合成数据效果待验证</text>
+  <rect x="285" y="832" width="230" height="90" rx="8" fill="#fffbeb" stroke="#fcd34d" stroke-width="1"/>
+  <text x="400" y="862" text-anchor="middle" class="bottleneck-title" fill="#d97706">📊 数据墙</text>
+  <text x="400" y="886" text-anchor="middle" font-size="17" fill="#444">高质量语料趋近枯竭</text>
+  <text x="400" y="908" text-anchor="middle" font-size="17" fill="#444">合成数据效果待验证</text>
 
-  <rect x="540" y="770" width="230" height="80" rx="8" fill="#1a1a2e" stroke="#4ecdc4" stroke-width="1"/>
-  <text x="655" y="798" text-anchor="middle" class="bottleneck-title" fill="#4ecdc4">⚡ 能耗墙</text>
-  <text x="655" y="820" text-anchor="middle" font-size="17" fill="#ccc">GB200 NVL72 单柜 140kW</text>
-  <text x="655" y="840" text-anchor="middle" font-size="17" fill="#ccc">供电成新约束</text>
+  <rect x="540" y="832" width="230" height="90" rx="8" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="1"/>
+  <text x="655" y="862" text-anchor="middle" class="bottleneck-title" fill="#059669">⚡ 能耗墙</text>
+  <text x="655" y="886" text-anchor="middle" font-size="17" fill="#444">GB200 NVL72 单柜 140kW</text>
+  <text x="655" y="908" text-anchor="middle" font-size="17" fill="#444">供电成新约束</text>
 
   <!-- 左侧：数据层纵向贯穿效果 -->
-  <rect x="15" y="58" width="10" height="622" rx="3" fill="#60a5fa" opacity="0.15"/>
+  <rect x="15" y="58" width="10" height="682" rx="3" fill="#818cf8" opacity="0.12"/>
 </svg>
