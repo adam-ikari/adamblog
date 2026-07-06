@@ -190,8 +190,4 @@ series:
 [^ukui_wiki]: [UKUI — Wikipedia](https://en.wikipedia.org/wiki/UKUI)
 [^xinchuang_wiki]: [信创 — Wikipedia (中文)](https://zh.wikipedia.org/wiki/信创)
 
-::: tip 关于核验
-报告中涉及版本号、规格、适配名录等易变事实，均以上述来源截至查阅时（2026 年 7 月）的信息为准。商业版银河麒麟的专有内核补丁不公开，相关推断以开源 openKylin 仓库为旁证，非直接证据。
-:::
-
 

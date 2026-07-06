@@ -98,7 +98,3 @@ date: 2026-07-02
 [^rockchip_wiki]: [Rockchip — Wikipedia（英文）](https://en.wikipedia.org/wiki/Rockchip)
 [^allwinner_wiki]: [Allwinner Technology — Wikipedia（英文）](https://en.wikipedia.org/wiki/Allwinner_Technology)
 [^thead_wiki]: [T-Head — Wikipedia（英文）](https://en.wikipedia.org/wiki/T-Head)
-
-::: tip 关于核验
-新兴厂商部分：香山以 GitHub 仓库与官网双源核验（开源 RISC-V、三代微架构、MICRO 2022 论文），此芯科技、瑞芯微、全志、平头哥以官网及维基交叉核验；此芯科技维基无独立条目，创始人孙文剑的 AMD 出身、P1 规格等以公开报道与官网为准，融资轮次等细节未在可靠来源中核到，未写入正文。平头哥倚天 710 的"最快 ARM 云服务器 CPU"系 IEEE 2024 年 3 月研究评测口径，含光 800 为 AI 推理芯片、非通用 CPU，正文已作区分。各厂商产品更新快，具体型号规格以官网最新披露为准。
-:::
