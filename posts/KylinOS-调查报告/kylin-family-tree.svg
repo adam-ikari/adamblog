@@ -1,84 +1,95 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 620" font-family="'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
   <defs>
-    <linearGradient id="kylinGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#0f3460"/>
-      <stop offset="100%" stop-color="#1a5fa8"/>
+    <linearGradient id="ylGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#0f3460"/>
     </linearGradient>
-    <linearGradient id="neoGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#533483"/>
-      <stop offset="100%" stop-color="#7c3aed"/>
+    <linearGradient id="nsGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2d1a4e"/>
+      <stop offset="100%" stop-color="#1a0a30"/>
     </linearGradient>
-    <linearGradient id="ubuntuGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#e95420"/>
-      <stop offset="100%" stop-color="#f97316"/>
+    <linearGradient id="ykGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0d4a2e"/>
+      <stop offset="100%" stop-color="#0a1a10"/>
     </linearGradient>
-    <linearGradient id="openGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#1a8a5a"/>
-      <stop offset="100%" stop-color="#22c55e"/>
+    <linearGradient id="okGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4a2020"/>
+      <stop offset="100%" stop-color="#2a1010"/>
     </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#667eea"/>
+    </marker>
     <filter id="shadow">
       <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.2"/>
     </filter>
-    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M0,0 L10,5 L0,10" fill="#888"/>
-    </marker>
   </defs>
 
   <style>
     text { fill: #e0e0e0; }
+    .node-title { font-size: 21px; font-weight: 700; fill: #fff; }
+    .node-sub { font-size: 15px; }
+    .branch-label { font-size: 17px; fill: #f5a623; font-weight: 600; }
+    .anno { font-size: 15px; fill: #888; }
   </style>
 
-  <text x="480" y="30" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">麒麟操作系统谱系：四个"麒麟"，四种来历</text>
+  <text x="400" y="32" text-anchor="middle" font-size="27" font-weight="700" fill="#fff">麒麟操作系统家族</text>
+  <text x="400" y="56" text-anchor="middle" font-size="18" fill="#888">四系同源，三条路线：党政信创 / 社区开源 / 消费桌面</text>
 
-  <!-- ===== 银河麒麟（本体） ===== -->
-  <rect x="280" y="55" width="400" height="110" rx="12" fill="url(#kylinGrad)" filter="url(#shadow)" stroke="#3b82f6" stroke-width="1.5"/>
-  <text x="480" y="85" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">银河麒麟（Kylin）</text>
-  <text x="480" y="108" text-anchor="middle" font-size="12" fill="#93c5fd">本体 · 商业专有 · 信创采购主力</text>
-  <text x="480" y="130" text-anchor="middle" font-size="11" fill="#bfdbfe">2001 年 863 计划立项 · 国防科大起源 · 麒麟软件运营</text>
-  <text x="480" y="150" text-anchor="middle" font-size="11" fill="#bfdbfe">V10 (2020) / V11 (2025) · 桌面版 + 服务器版 + 智算版</text>
-
-  <!-- ===== NeoKylin ===== -->
-  <rect x="80" y="210" width="370" height="100" rx="10" fill="url(#neoGrad)" filter="url(#shadow)" stroke="#a78bfa" stroke-width="1" opacity="0.9"/>
-  <text x="265" y="240" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">中标麒麟（NeoKylin）</text>
-  <text x="265" y="262" text-anchor="middle" font-size="11" fill="#c4b5fd">2010 年"中标 Linux"与"银河麒麟"合并</text>
-  <text x="265" y="282" text-anchor="middle" font-size="11" fill="#c4b5fd">一度在政企市场铺得很广</text>
-  <text x="265" y="300" text-anchor="middle" font-size="11" fill="#a78bfa">与本体属合并关系，并非独立产品</text>
-
-  <!-- ===== Ubuntu Kylin ===== -->
-  <rect x="510" y="210" width="370" height="100" rx="10" fill="url(#ubuntuGrad)" filter="url(#shadow)" stroke="#fb923c" stroke-width="1" opacity="0.9"/>
-  <text x="695" y="240" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">优麒麟（Ubuntu Kylin）</text>
-  <text x="695" y="262" text-anchor="middle" font-size="11" fill="#fed7aa">2013 年 Canonical + 工信部合作推出</text>
-  <text x="695" y="282" text-anchor="middle" font-size="11" fill="#fed7aa">基于 Ubuntu，独立合作项目</text>
-  <text x="695" y="300" text-anchor="middle" font-size="11" fill="#fb923c">⚠ 不等于麒麟本体！"套壳 Ubuntu"印象的来源</text>
-
-  <!-- ===== openKylin ===== -->
-  <rect x="280" y="355" width="400" height="100" rx="10" fill="url(#openGrad)" filter="url(#shadow)" stroke="#4ade80" stroke-width="1" opacity="0.9"/>
-  <text x="480" y="385" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">开放麒麟（openKylin）</text>
-  <text x="480" y="407" text-anchor="middle" font-size="11" fill="#bbf7d0">2022 年 7 月发布 · 开放原子开源基金会孵化</text>
-  <text x="480" y="427" text-anchor="middle" font-size="11" fill="#bbf7d0">木兰宽松许可证 v2 · 商业银河麒麟的开源对应面</text>
-  <text x="480" y="447" text-anchor="middle" font-size="11" fill="#86efac">内核仓库公开（Gitee/GitCode），可查定制层</text>
+  <!-- ===== 顶部：麒麟软件 ===== -->
+  <rect x="280" y="78" width="240" height="50" rx="10" fill="#1a1a2e" stroke="#667eea" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="100" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">麒麟软件 (Kylinsoft)</text>
+  <text x="400" y="120" text-anchor="middle" font-size="15" fill="#667eea">2019 中标 + 银河合并 · 中国电子 (CEC) 旗下</text>
 
   <!-- 连接线 -->
-  <!-- 银河麒麟 → NeoKylin -->
-  <line x1="370" y1="165" x2="300" y2="210" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="5,3"/>
-  <text x="350" y="190" font-size="10" fill="#888">合并</text>
-  <text x="350" y="202" font-size="10" fill="#888">(2010)</text>
+  <line x1="340" y1="128" x2="260" y2="168" stroke="#667eea" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="400" y1="128" x2="400" y2="168" stroke="#667eea" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="460" y1="128" x2="540" y2="168" stroke="#667eea" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-  <!-- 银河麒麟 → Ubuntu Kylin -->
-  <line x1="590" y1="165" x2="660" y2="210" stroke="#888" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="5,3"/>
-  <text x="610" y="190" font-size="10" fill="#888">合作</text>
-  <text x="610" y="202" font-size="10" fill="#888">(2013)</text>
+  <!-- ===== 三条分支 ===== -->
 
-  <!-- 银河麒麟 → openKylin -->
-  <line x1="480" y1="165" x2="480" y2="355" stroke="#4ade80" stroke-width="1.5" marker-end="url(#arrow)"/>
-  <text x="500" y="265" font-size="10" fill="#4ade80">开源化</text>
-  <text x="500" y="277" font-size="10" fill="#4ade80">(2022)</text>
+  <!-- 银河麒麟 (中) -->
+  <rect x="300" y="172" width="200" height="130" rx="10" fill="url(#ylGrad)" stroke="#3b82f6" stroke-width="1" filter="url(#shadow)"/>
+  <text x="400" y="200" text-anchor="middle" class="node-title" fill="#60a5fa">银河麒麟 V10</text>
+  <text x="400" y="222" text-anchor="middle" class="node-sub" fill="#93c5fd">KylinOS · 党政信创主力</text>
+  <text x="400" y="244" text-anchor="middle" class="branch-label">桌面版 + 服务器版</text>
+  <text x="400" y="264" text-anchor="middle" class="anno">Linux 5.10 内核 · 国产化率最高</text>
+  <text x="400" y="284" text-anchor="middle" class="anno">飞腾/鲲鹏/海光/兆芯/龙芯/申威</text>
+  <text x="400" y="302" text-anchor="middle" class="anno" fill="#22c55e">→ 信创采购主力，市场份额第一</text>
 
-  <!-- 右侧说明 -->
-  <rect x="280" y="490" width="400" height="100" rx="8" fill="#1a1a2e" stroke="#333" stroke-width="0.5"/>
+  <!-- 中标麒麟 (左) -->
+  <rect x="60" y="172" width="210" height="130" rx="10" fill="url(#nsGrad)" stroke="#a78bfa" stroke-width="1" filter="url(#shadow)"/>
+  <text x="165" y="200" text-anchor="middle" class="node-title" fill="#c4b5fd">中标麒麟</text>
+  <text x="165" y="222" text-anchor="middle" class="node-sub" fill="#a78bfa">NeoKylin · 前身/过渡品牌</text>
+  <text x="165" y="244" text-anchor="middle" class="branch-label">已逐步整合进银河</text>
+  <text x="165" y="264" text-anchor="middle" class="anno">早期政府采购体系核心</text>
+  <text x="165" y="284" text-anchor="middle" class="anno">FreeBSD 起点，后迁至 Linux</text>
+  <text x="165" y="302" text-anchor="middle" class="anno" fill="#888">→ 品牌淡化，存量替代中</text>
 
-  <text x="480" y="516" text-anchor="middle" font-size="13" font-weight="700" fill="#f5a623">核心辨析</text>
-  <text x="300" y="540" font-size="11" fill="#ccc">• "麒麟套壳 Ubuntu" → 说的是优麒麟，不是银河麒麟</text>
-  <text x="300" y="560" font-size="11" fill="#ccc">• 银河麒麟内核基于 Linux，但不以 Ubuntu/Debian 为上游</text>
-  <text x="300" y="580" font-size="11" fill="#ccc">• openKylin ≠ Fedora（麒麟的商业版与社区版并行，非上下游）</text>
+  <!-- 优麒麟 (右) -->
+  <rect x="530" y="172" width="210" height="130" rx="10" fill="url(#ykGrad)" stroke="#4ade80" stroke-width="1" filter="url(#shadow)"/>
+  <text x="635" y="200" text-anchor="middle" class="node-title" fill="#86efac">优麒麟</text>
+  <text x="635" y="222" text-anchor="middle" class="node-sub" fill="#4ade80">UbuntuKylin · 社区开源版</text>
+  <text x="635" y="244" text-anchor="middle" class="branch-label">Ubuntu 衍生，面向消费</text>
+  <text x="635" y="264" text-anchor="middle" class="anno">UKUI 桌面环境（自研）</text>
+  <text x="635" y="284" text-anchor="middle" class="anno">软件商店 · 个人用户</text>
+  <text x="635" y="302" text-anchor="middle" class="anno" fill="#888">→ 社区活跃度一般</text>
+
+  <!-- 连接线到 openKylin -->
+  <line x1="300" y1="302" x2="235" y2="370" stroke="#f5a623" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="500" y1="302" x2="565" y2="370" stroke="#f5a623" stroke-width="1.5" stroke-dasharray="5,3"/>
+
+  <!-- ===== openKylin ===== -->
+  <rect x="220" y="374" width="360" height="60" rx="10" fill="url(#okGrad)" stroke="#e94560" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="400" text-anchor="middle" class="node-title" fill="#fca5a5">openKylin</text>
+  <text x="400" y="420" text-anchor="middle" class="node-sub" fill="#f87171">2022 年开源 · 独立社区治理 · 银河麒麟的上游</text>
+  <text x="400" y="436" text-anchor="middle" class="anno">→ 银河麒麟从 openKylin 取社区贡献，再叠加商业增强层</text>
+
+  <!-- 连接线到 openKylin -->
+  <line x1="400" y1="434" x2="400" y2="464" stroke="#e94560" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== 底部：关系说明 ===== -->
+  <rect x="30" y="470" width="740" height="65" rx="8" fill="#1a1a2e" stroke="#333" stroke-width="0.5"/>
+  <text x="60" y="496" font-size="18" fill="#ccc">• 银河麒麟 V10 是信创采购主力，桌面版 + 服务器版双线，内核 Linux 5.10，支持六大国产 CPU</text>
+  <text x="60" y="518" font-size="18" fill="#ccc">• 中标麒麟是前身品牌，已逐步整合进银河；优麒麟 (UbuntuKylin) 走社区开源路线，面向个人用户</text>
+  <text x="60" y="536" font-size="18" fill="#ccc">• openKylin 2022 年开源，定位为银河麒麟的上游社区，实现"社区开源→商业发行"的循环</text>
 </svg>

@@ -27,3 +27,11 @@ article table td,
 article table th {
   white-space: nowrap;
 }
+
+/* SVG 插图：自然占满内容区宽度，不受全局 max-height 限制 */
+.vp-doc img[src$=".svg"] {
+  display: block;
+  max-width: 100%;
+  max-height: none;
+  height: auto;
+}

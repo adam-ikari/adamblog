@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580" font-family="'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
   <defs>
     <marker id="lockArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
       <path d="M0,0 L10,5 L0,10" fill="#e94560"/>
@@ -15,72 +15,68 @@
     text { fill: #e0e0e0; }
   </style>
 
-  <text x="480" y="32" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">PyTorch → CUDA → GPU：全行业最深的技术锁定</text>
-  <text x="480" y="54" text-anchor="middle" font-size="12" fill="#888">开发者用 PyTorch 写一行代码，最终落到英伟达 GPU 上执行——中间的每一层都是独家锁定</text>
+  <text x="400" y="32" text-anchor="middle" font-size="27" font-weight="700" fill="#fff">PyTorch → CUDA → GPU：全行业最深的技术锁定</text>
+  <text x="400" y="56" text-anchor="middle" font-size="18" fill="#888">开发者用 PyTorch 写一行代码，最终落到英伟达 GPU 上执行——中间每一层都是独家锁定</text>
 
   <!-- ===== 第一层：开发者 ===== -->
-  <rect x="280" y="78" width="400" height="72" rx="12" fill="#1a1a2e" stroke="#667eea" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="480" y="104" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">👨‍💻 AI 开发者</text>
-  <text x="480" y="126" text-anchor="middle" font-size="12" fill="#999">用 PyTorch 写模型训练/推理代码</text>
-  <text x="480" y="143" text-anchor="middle" font-size="11" fill="#667eea">torch.nn.Linear / torch.nn.functional.softmax / .to('cuda')</text>
+  <rect x="160" y="78" width="480" height="72" rx="10" fill="#1a1a2e" stroke="#667eea" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="104" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">👨‍💻 AI 开发者</text>
+  <text x="400" y="126" text-anchor="middle" font-size="18" fill="#999">用 PyTorch 写模型训练/推理代码</text>
+  <text x="400" y="143" text-anchor="middle" font-size="17" fill="#667eea">torch.nn.Linear / .to('cuda') / torch.nn.functional.softmax</text>
 
-  <!-- 箭头: 开发者→PyTorch -->
-  <line x1="480" y1="150" x2="480" y2="185" stroke="#667eea" stroke-width="2" marker-end="url(#depArrow)"/>
-  <text x="500" y="171" font-size="11" fill="#667eea">编写代码</text>
+  <line x1="400" y1="150" x2="400" y2="180" stroke="#667eea" stroke-width="2" marker-end="url(#depArrow)"/>
+  <text x="420" y="168" font-size="17" fill="#667eea">编写代码</text>
 
   <!-- ===== 第二层：PyTorch ===== -->
-  <rect x="230" y="188" width="500" height="72" rx="12" fill="#1e2a4a" stroke="#a78bfa" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="480" y="214" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">📦 PyTorch</text>
-  <text x="480" y="236" text-anchor="middle" font-size="12" fill="#999">深度学习框架，全球 90%+ 新模型的首选</text>
-  <text x="480" y="253" text-anchor="middle" font-size="11" fill="#a78bfa">TensorFlow 败退 · JAX 小众 · 论文、开源模型全在 PyTorch 生态</text>
+  <rect x="110" y="184" width="580" height="72" rx="10" fill="#1e2a4a" stroke="#a78bfa" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="210" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">📦 PyTorch</text>
+  <text x="400" y="232" text-anchor="middle" font-size="18" fill="#999">深度学习框架，全球 90%+ 新模型的首选</text>
+  <text x="400" y="249" text-anchor="middle" font-size="17" fill="#a78bfa">TensorFlow 败退 · JAX 小众 · 论文、开源模型全在 PyTorch 生态</text>
 
-  <!-- 箭头: PyTorch→cuDNN -->
-  <line x1="425" y1="260" x2="335" y2="295" stroke="#e94560" stroke-width="2" marker-end="url(#lockArrow)"/>
-  <text x="392" y="282" font-size="11" fill="#e94560">调用 cuDNN 算子</text>
+  <!-- PyTorch→cuDNN -->
+  <line x1="340" y1="256" x2="250" y2="288" stroke="#e94560" stroke-width="2" marker-end="url(#lockArrow)"/>
+  <text x="310" y="276" font-size="17" fill="#e94560">调用 cuDNN 算子</text>
 
   <!-- ===== 第三层：cuDNN/cuBLAS ===== -->
-  <rect x="155" y="298" width="280" height="85" rx="12" fill="#2a1520" stroke="#e94560" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="295" y="324" text-anchor="middle" font-size="14" font-weight="700" fill="#e94560">⚙️ cuDNN / cuBLAS</text>
-  <text x="295" y="346" text-anchor="middle" font-size="11" fill="#ccc">英伟达深度神经网络库 / 基础线性代数库</text>
-  <text x="295" y="363" text-anchor="middle" font-size="11" fill="#f87171">卷积 (Winograd/FFT/implicit gemm)</text>
-  <text x="295" y="378" text-anchor="middle" font-size="11" fill="#f87171">矩阵乘 (高度优化的 GEMM 内核)</text>
+  <rect x="50" y="292" width="340" height="88" rx="10" fill="#2a1520" stroke="#e94560" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="220" y="320" text-anchor="middle" font-size="21" font-weight="700" fill="#e94560">⚙️ cuDNN / cuBLAS</text>
+  <text x="220" y="344" text-anchor="middle" font-size="17" fill="#ccc">英伟达深度神经网络库 / 基础线性代数库</text>
+  <text x="220" y="364" text-anchor="middle" font-size="17" fill="#f87171">卷积 (Winograd/FFT/implicit gemm) · 矩阵乘 (高度优化的 GEMM)</text>
 
-  <!-- 箭头: cuDNN→CUDA -->
-  <line x1="295" y1="383" x2="295" y2="415" stroke="#e94560" stroke-width="2" marker-end="url(#lockArrow)"/>
-  <text x="315" y="402" font-size="11" fill="#e94560">只在 CUDA 上运行</text>
+  <!-- cuDNN→CUDA -->
+  <line x1="220" y1="380" x2="220" y2="408" stroke="#e94560" stroke-width="2" marker-end="url(#lockArrow)"/>
+  <text x="240" y="398" font-size="17" fill="#e94560">只在 CUDA 上运行</text>
 
   <!-- ===== 第四层：CUDA ===== -->
-  <rect x="155" y="418" width="280" height="72" rx="12" fill="#1a0810" stroke="#dc2626" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="295" y="444" text-anchor="middle" font-size="14" font-weight="700" fill="#dc2626">🔐 CUDA 平台（18 年积累）</text>
-  <text x="295" y="466" text-anchor="middle" font-size="11" fill="#ccc">nvcc 编译器 · Nsight Profiler · Debugger</text>
-  <text x="295" y="483" text-anchor="middle" font-size="11" fill="#f87171">Compute Capability 体系 · PTX 中间码</text>
+  <rect x="50" y="412" width="340" height="75" rx="10" fill="#1a0810" stroke="#dc2626" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="220" y="440" text-anchor="middle" font-size="21" font-weight="700" fill="#dc2626">🔐 CUDA 平台（18 年积累）</text>
+  <text x="220" y="462" text-anchor="middle" font-size="17" fill="#ccc">nvcc 编译器 · Nsight Profiler · Debugger</text>
+  <text x="220" y="480" text-anchor="middle" font-size="17" fill="#f87171">Compute Capability 体系 · PTX 中间码</text>
 
-  <!-- 箭头: CUDA→GPU -->
-  <line x1="295" y1="490" x2="295" y2="520" stroke="#e94560" stroke-width="2" marker-end="url(#lockArrow)"/>
-  <text x="315" y="510" font-size="11" fill="#e94560">独家绑定</text>
+  <!-- CUDA→GPU -->
+  <line x1="220" y1="487" x2="220" y2="515" stroke="#e94560" stroke-width="2" marker-end="url(#lockArrow)"/>
+  <text x="240" y="505" font-size="17" fill="#e94560">独家绑定</text>
 
   <!-- ===== 第五层：GPU ===== -->
-  <rect x="155" y="523" width="280" height="45" rx="12" fill="#0a1a10" stroke="#22c55e" stroke-width="1.5" filter="url(#shadow)"/>
-  <text x="295" y="551" text-anchor="middle" font-size="14" font-weight="700" fill="#22c55e">🖥️ 英伟达 GPU（H100 / B200）</text>
+  <rect x="50" y="519" width="340" height="50" rx="10" fill="#0a1a10" stroke="#22c55e" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="220" y="550" text-anchor="middle" font-size="21" font-weight="700" fill="#22c55e">🖥️ 英伟达 GPU（H100 / B200）</text>
 
   <!-- ===== 右侧：锁定说明 ===== -->
-  <rect x="510" y="298" width="430" height="270" rx="10" fill="#1a1a2e" stroke="#333" stroke-width="0.5"/>
+  <rect x="430" y="292" width="340" height="277" rx="10" fill="#1a1a2e" stroke="#333" stroke-width="0.5"/>
 
-  <text x="530" y="328" font-size="14" font-weight="700" fill="#f5a623">这条链意味着什么？</text>
+  <text x="455" y="322" font-size="21" font-weight="700" fill="#f5a623">这条链意味着什么？</text>
 
-  <text x="530" y="360" font-size="12" fill="#ccc">• 换 AMD GPU → cuDNN 不跑，得用 ROCm 重写</text>
-  <text x="545" y="382" font-size="11" fill="#888">ROCm 生态不成熟，算子覆盖不全、性能差距大</text>
+  <text x="455" y="358" font-size="18" fill="#ccc">• 换 AMD GPU → cuDNN 不跑，得用 ROCm 重写</text>
+  <text x="475" y="382" font-size="17" fill="#888">ROCm 生态不成熟，算子覆盖不全、性能差距大</text>
 
-  <text x="530" y="410" font-size="12" fill="#ccc">• 换昇腾 → 得让 PyTorch 适配 CANN，逐算子翻译</text>
-  <text x="545" y="432" font-size="11" fill="#888">工程量巨大，且算子性能未必追得上 cuDNN</text>
+  <text x="455" y="414" font-size="18" fill="#ccc">• 换昇腾 → PyTorch 适配 CANN，逐算子翻译</text>
+  <text x="475" y="438" font-size="17" fill="#888">工程量巨大，且算子性能未必追得上 cuDNN</text>
 
-  <text x="530" y="460" font-size="12" fill="#ccc">• 自研新芯片 → 没 CUDA = 没生态</text>
-  <text x="545" y="482" font-size="11" fill="#888">开发者不会为一个新芯片重写全部代码</text>
+  <text x="455" y="470" font-size="18" fill="#ccc">• 自研新芯片 → 没 CUDA = 没生态</text>
+  <text x="475" y="494" font-size="17" fill="#888">开发者不会为一个新芯片重写全部代码</text>
 
-  <text x="530" y="515" font-size="13" font-weight="700" fill="#e94560">结论：CUDA 不是软件选择，是硬件绑定</text>
-  <text x="530" y="540" font-size="12" fill="#f87171">换 GPU = 换整个软件栈。这是 AI 产业最深的护城河</text>
-  <text x="530" y="558" font-size="11" fill="#666">ZLUDA 等 CUDA 兼容层试图打破锁定，至今未达生产级可用</text>
+  <line x1="440" y1="515" x2="760" y2="515" stroke="#e94560" stroke-width="0.5" opacity="0.3"/>
 
-  <!-- 底部总结 -->
-  <rect x="155" y="578" width="785" height="1" fill="#e94560" opacity="0.3"/>
+  <text x="455" y="540" font-size="20" font-weight="700" fill="#e94560">结论：CUDA 不是软件选择，是硬件绑定</text>
+  <text x="455" y="562" font-size="18" fill="#f87171">换 GPU = 换整个软件栈。这是 AI 产业最深的护城河</text>
 </svg>

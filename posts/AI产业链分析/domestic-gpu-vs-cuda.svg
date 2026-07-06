@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 820" font-family="'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 840" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
   <defs>
     <linearGradient id="nvGrad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#0f3460"/>
@@ -12,10 +12,6 @@
       <stop offset="0%" stop-color="#1a8a5a"/>
       <stop offset="100%" stop-color="#0d4a2e"/>
     </linearGradient>
-    <linearGradient id="hygonGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#b45309"/>
-      <stop offset="100%" stop-color="#5c2800"/>
-    </linearGradient>
     <filter id="shadow">
       <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.25"/>
     </filter>
@@ -25,222 +21,184 @@
     <marker id="cnArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
       <path d="M0,0 L10,5 L0,10" fill="#f5a623"/>
     </marker>
-    <marker id="redArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
-      <path d="M0,0 L10,5 L0,10" fill="#e94560"/>
-    </marker>
   </defs>
 
   <style>
     text { fill: #e0e0e0; }
+    .col-title { font-size: 22px; font-weight: 700; }
+    .col-sub { font-size: 17px; }
+    .section { font-size: 19px; font-weight: 700; fill: #f5a623; }
+    .item { font-size: 18px; }
+    .item-sub { font-size: 15px; }
+    .good { fill: #4ade80; font-weight: 600; }
+    .warn { fill: #f5a623; }
+    .bad { fill: #e94560; }
   </style>
 
-  <text x="480" y="30" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">国产 AI 算力三条路线 vs NVIDIA CUDA</text>
-  <text x="480" y="54" text-anchor="middle" font-size="12" fill="#888">每条国产路线的本质差异：不是硬件架构，而是"原生" vs "翻译"</text>
+  <text x="400" y="32" text-anchor="middle" font-size="27" font-weight="700" fill="#fff">国产 AI 算力 vs NVIDIA CUDA：全栈对比</text>
+  <text x="400" y="56" text-anchor="middle" font-size="18" fill="#888">本质差异不在硬件架构，在软件生态——"原生" 还是 "翻译"？</text>
 
-  <!-- ===== NVIDIA 路线 ===== -->
-  <rect x="20" y="72" width="220" height="720" rx="10" fill="url(#nvGrad)" stroke="#3b82f6" stroke-width="1.5" filter="url(#shadow)"/>
-  <rect x="20" y="72" width="220" height="36" rx="10" fill="#1e3a5f"/>
-  <rect x="20" y="98" width="220" height="10" fill="#1e3a5f"/>
-  <text x="130" y="95" text-anchor="middle" font-size="15" font-weight="700" fill="#60a5fa">NVIDIA CUDA</text>
-  <text x="130" y="125" text-anchor="middle" font-size="11" fill="#93c5fd">全球标杆 · 18 年积累</text>
+  <!-- ===== NVIDIA CUDA 列 ===== -->
+  <rect x="20" y="74" width="240" height="700" rx="10" fill="url(#nvGrad)" stroke="#3b82f6" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="20" y="74" width="240" height="36" rx="10" fill="#1e3a5f"/>
+  <rect x="20" y="100" width="240" height="10" fill="#1e3a5f"/>
+  <text x="140" y="97" text-anchor="middle" class="col-title" fill="#60a5fa">NVIDIA CUDA</text>
+  <text x="140" y="125" text-anchor="middle" class="col-sub" fill="#93c5fd">全球标杆 · 19 年积累</text>
 
-  <text x="35" y="155" font-size="12" font-weight="700" fill="#f5a623">软件栈</text>
-  <rect x="35" y="165" width="190" height="36" rx="6" fill="#1e3a5f"/>
-  <text x="130" y="180" text-anchor="middle" font-size="11" fill="#bfdbfe">PyTorch / JAX</text>
-  <text x="130" y="195" text-anchor="middle" font-size="10" fill="#60a5fa">全球 90%+ 模型用 PyTorch</text>
+  <text x="35" y="158" class="section">框架接入</text>
+  <rect x="35" y="168" width="210" height="36" rx="6" fill="#1e3a5f"/>
+  <text x="140" y="184" text-anchor="middle" class="item" fill="#bfdbfe">PyTorch / JAX / TensorFlow</text>
+  <text x="140" y="200" text-anchor="middle" class="item-sub" fill="#60a5fa">原生支持，零适配</text>
 
-  <line x1="130" y1="201" x2="130" y2="215" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#nvArrow)"/>
+  <line x1="140" y1="204" x2="140" y2="216" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#nvArrow)"/>
 
-  <rect x="35" y="218" width="190" height="36" rx="6" fill="#1e3a5f"/>
-  <text x="130" y="233" text-anchor="middle" font-size="11" fill="#bfdbfe">cuDNN / cuBLAS</text>
-  <text x="130" y="248" text-anchor="middle" font-size="10" fill="#60a5fa">高度优化的算子库</text>
+  <rect x="35" y="220" width="210" height="36" rx="6" fill="#1e3a5f"/>
+  <text x="140" y="236" text-anchor="middle" class="item" fill="#bfdbfe">cuDNN / cuBLAS / cuSPARSE</text>
+  <text x="140" y="252" text-anchor="middle" class="item-sub" fill="#60a5fa">深度优化的算子库（19年打磨）</text>
 
-  <line x1="130" y1="254" x2="130" y2="268" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#nvArrow)"/>
+  <line x1="140" y1="256" x2="140" y2="268" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#nvArrow)"/>
 
-  <rect x="35" y="271" width="190" height="36" rx="6" fill="#1e3a5f"/>
-  <text x="130" y="286" text-anchor="middle" font-size="11" fill="#bfdbfe">CUDA 平台</text>
-  <text x="130" y="301" text-anchor="middle" font-size="10" fill="#60a5fa">nvcc · PTX · Compute Capability</text>
+  <rect x="35" y="272" width="210" height="36" rx="6" fill="#1e3a5f"/>
+  <text x="140" y="288" text-anchor="middle" class="item" fill="#bfdbfe">CUDA 平台 + 工具链</text>
+  <text x="140" y="304" text-anchor="middle" class="item-sub" fill="#60a5fa">nvcc · Nsight · PTX 中间码</text>
 
-  <line x1="130" y1="307" x2="130" y2="321" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#nvArrow)"/>
+  <line x1="140" y1="308" x2="140" y2="320" stroke="#3b82f6" stroke-width="1.5" marker-end="url(#nvArrow)"/>
 
-  <text x="35" y="345" font-size="12" font-weight="700" fill="#f5a623">硬件</text>
-  <rect x="35" y="355" width="190" height="36" rx="6" fill="#0a2a10"/>
-  <text x="130" y="370" text-anchor="middle" font-size="11" fill="#bbf7d0">CUDA Core + Tensor Core</text>
-  <text x="130" y="385" text-anchor="middle" font-size="10" fill="#4ade80">H100/B200 · TSMC 4NP</text>
+  <text x="35" y="348" class="section">硬件平台</text>
+  <rect x="35" y="358" width="210" height="48" rx="6" fill="#0a2a10"/>
+  <text x="140" y="376" text-anchor="middle" class="item" fill="#bbf7d0">H100/H200 → B200/B300</text>
+  <text x="140" y="394" text-anchor="middle" class="item-sub" fill="#4ade80">→ Vera Rubin (2026 H2)</text>
+  <text x="140" y="406" text-anchor="middle" class="item-sub" fill="#4ade80">990 TF → 2.25 PF → ~3.3 PF FP16</text>
 
-  <line x1="130" y1="391" x2="130" y2="405" stroke="#22c55e" stroke-width="1" marker-end="url(#nvArrow)"/>
+  <rect x="35" y="414" width="210" height="36" rx="6" fill="#0a2a10"/>
+  <text x="140" y="430" text-anchor="middle" class="item" fill="#bbf7d0">HBM3e → HBM4</text>
+  <text x="140" y="446" text-anchor="middle" class="item-sub" fill="#4ade80">8 TB/s → 10+ TB/s</text>
 
-  <rect x="35" y="408" width="190" height="36" rx="6" fill="#0a2a10"/>
-  <text x="130" y="423" text-anchor="middle" font-size="11" fill="#bbf7d0">HBM3e + NVLink 5.0</text>
-  <text x="130" y="438" text-anchor="middle" font-size="10" fill="#4ade80">8 TB/s · 1800 GB/s</text>
+  <text x="35" y="478" class="section">制程与封装</text>
+  <text x="140" y="502" text-anchor="middle" class="item good">TSMC 4NP → 3nm</text>
+  <text x="140" y="522" text-anchor="middle" class="item-sub" fill="#4ade80">CoWoS-L · NV-HBI 10TB/s 桥接</text>
 
-  <text x="35" y="468" font-size="12" font-weight="700" fill="#f5a623">制程</text>
-  <text x="130" y="490" text-anchor="middle" font-size="13" fill="#4ade80" font-weight="600">TSMC 4NP</text>
-  <text x="130" y="508" text-anchor="middle" font-size="10" fill="#888">CoWoS-L 先进封装</text>
+  <text x="35" y="556" class="section">生态成熟度</text>
+  <rect x="35" y="566" width="210" height="12" rx="3" fill="#22c55e"/>
+  <text x="140" y="596" text-anchor="middle" class="item good">100% 算子覆盖</text>
+  <text x="140" y="616" text-anchor="middle" class="item-sub" fill="#888">所有论文、开源模型直跑</text>
 
-  <text x="35" y="540" font-size="12" font-weight="700" fill="#f5a623">生态覆盖</text>
-  <rect x="35" y="550" width="190" height="10" rx="3" fill="#22c55e"/>
-  <text x="130" y="575" text-anchor="middle" font-size="11" fill="#4ade80">100% 算子覆盖</text>
-  <text x="130" y="593" text-anchor="middle" font-size="10" fill="#888">所有论文/开源模型</text>
+  <text x="35" y="648" class="section">互联</text>
+  <text x="140" y="672" text-anchor="middle" class="item good">NVLink 5.0: 1.8 TB/s</text>
+  <text x="140" y="692" text-anchor="middle" class="item-sub" fill="#4ade80">NVSwitch 全互联 + InfiniBand</text>
 
-  <text x="35" y="625" font-size="12" font-weight="700" fill="#f5a623">调用路径</text>
-  <text x="130" y="650" text-anchor="middle" font-size="11" fill="#22c55e" font-weight="600">PyTorch → cuDNN</text>
-  <text x="130" y="668" text-anchor="middle" font-size="11" fill="#22c55e">→ CUDA → GPU</text>
-  <text x="130" y="690" text-anchor="middle" font-size="10" fill="#4ade80">一条直线，原生路径</text>
+  <text x="35" y="726" class="section">调用路径</text>
+  <text x="140" y="752" text-anchor="middle" class="item good">PyTorch → cuDNN → CUDA → GPU</text>
+  <text x="140" y="772" text-anchor="middle" class="item-sub" fill="#4ade80">一条直线，原生路径，零翻译</text>
 
-  <!-- ===== 昇腾 910B ===== -->
-  <rect x="260" y="72" width="220" height="720" rx="10" fill="url(#ascendGrad)" stroke="#a78bfa" stroke-width="1.5" filter="url(#shadow)"/>
-  <rect x="260" y="72" width="220" height="36" rx="10" fill="rgba(167,139,250,0.15)"/>
-  <rect x="260" y="98" width="220" height="10" fill="rgba(167,139,250,0.15)"/>
-  <text x="370" y="95" text-anchor="middle" font-size="15" font-weight="700" fill="#c4b5fd">华为昇腾 910B</text>
-  <text x="370" y="125" text-anchor="middle" font-size="11" fill="#a78bfa">自研 Da Vinci 架构</text>
+  <!-- ===== 昇腾 列 ===== -->
+  <rect x="280" y="74" width="240" height="700" rx="10" fill="url(#ascendGrad)" stroke="#a78bfa" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="280" y="74" width="240" height="36" rx="10" fill="rgba(167,139,250,0.15)"/>
+  <rect x="280" y="100" width="240" height="10" fill="rgba(167,139,250,0.15)"/>
+  <text x="400" y="97" text-anchor="middle" class="col-title" fill="#c4b5fd">华为昇腾 910B/C</text>
+  <text x="400" y="125" text-anchor="middle" class="col-sub" fill="#a78bfa">自研 Da Vinci 架构 · GPGPU</text>
 
-  <text x="275" y="155" font-size="12" font-weight="700" fill="#f5a623">软件栈</text>
-  <rect x="275" y="165" width="190" height="36" rx="6" fill="rgba(167,139,250,0.12)"/>
-  <text x="370" y="180" text-anchor="middle" font-size="11" fill="#c4b5fd">PyTorch（经 torch_npu 适配）</text>
-  <text x="370" y="195" text-anchor="middle" font-size="10" fill="#f5a623">⚠ 适配层翻译 CUDA 算子</text>
+  <text x="295" y="158" class="section">框架接入</text>
+  <rect x="295" y="168" width="210" height="36" rx="6" fill="rgba(167,139,250,0.12)"/>
+  <text x="400" y="184" text-anchor="middle" class="item" fill="#c4b5fd">PyTorch 2.x（torch_npu 插件）</text>
+  <text x="400" y="200" text-anchor="middle" class="item-sub warn">⚠ 适配层翻译 CUDA 算子</text>
 
-  <line x1="370" y1="201" x2="370" y2="215" stroke="#f5a623" stroke-width="1.5" marker-end="url(#cnArrow)"/>
+  <line x1="400" y1="204" x2="400" y2="216" stroke="#f5a623" stroke-width="1.5" marker-end="url(#cnArrow)"/>
 
-  <rect x="275" y="218" width="190" height="36" rx="6" fill="rgba(167,139,250,0.12)"/>
-  <text x="370" y="233" text-anchor="middle" font-size="11" fill="#c4b5fd">CANN 计算架构</text>
-  <text x="370" y="248" text-anchor="middle" font-size="10" fill="#a78bfa">AscendCL · 图编译 · 融合算子</text>
+  <rect x="295" y="220" width="210" height="48" rx="6" fill="rgba(167,139,250,0.12)"/>
+  <text x="400" y="238" text-anchor="middle" class="item" fill="#c4b5fd">CANN 异构计算架构</text>
+  <text x="400" y="256" text-anchor="middle" class="item-sub" fill="#a78bfa">AscendCL · 图编译 GE</text>
+  <text x="400" y="268" text-anchor="middle" class="item-sub" fill="#a78bfa">融合算子 · HCCL 集合通信</text>
 
-  <line x1="370" y1="254" x2="370" y2="268" stroke="#f5a623" stroke-width="1.5" marker-end="url(#cnArrow)"/>
+  <line x1="400" y1="272" x2="400" y2="284" stroke="#f5a623" stroke-width="1.5" marker-end="url(#cnArrow)"/>
 
-  <rect x="275" y="271" width="190" height="36" rx="6" fill="rgba(167,139,250,0.12)"/>
-  <text x="370" y="286" text-anchor="middle" font-size="11" fill="#c4b5fd">MindSpore 框架</text>
-  <text x="370" y="301" text-anchor="middle" font-size="10" fill="#a78bfa">华为自研框架（份额小）</text>
+  <rect x="295" y="288" width="210" height="48" rx="6" fill="rgba(167,139,250,0.12)"/>
+  <text x="400" y="306" text-anchor="middle" class="item" fill="#c4b5fd">MindSpore + MindSpeed</text>
+  <text x="400" y="324" text-anchor="middle" class="item-sub" fill="#a78bfa">MindSpore: 自研框架（小份额）</text>
+  <text x="400" y="336" text-anchor="middle" class="item-sub" fill="#a78bfa">MindSpeed: 分布式训练加速库</text>
 
-  <line x1="370" y1="307" x2="370" y2="321" stroke="#f5a623" stroke-width="1.5" marker-end="url(#cnArrow)"/>
+  <line x1="400" y1="340" x2="400" y2="352" stroke="#f5a623" stroke-width="1.5" marker-end="url(#cnArrow)"/>
 
-  <text x="275" y="345" font-size="12" font-weight="700" fill="#f5a623">硬件</text>
-  <rect x="275" y="355" width="190" height="36" rx="6" fill="rgba(34,197,94,0.08)"/>
-  <text x="370" y="370" text-anchor="middle" font-size="11" fill="#bbf7d0">Da Vinci 3D Cube 矩阵单元</text>
-  <text x="370" y="385" text-anchor="middle" font-size="10" fill="#4ade80">910B: ~400 TFLOPS FP16</text>
+  <text x="295" y="378" class="section">硬件平台</text>
+  <rect x="295" y="388" width="210" height="48" rx="6" fill="rgba(34,197,94,0.08)"/>
+  <text x="400" y="406" text-anchor="middle" class="item" fill="#bbf7d0">910B: ~400 TFLOPS FP16</text>
+  <text x="400" y="424" text-anchor="middle" class="item-sub" fill="#4ade80">910C: 性能提升 ~40-60% (估算)</text>
+  <text x="400" y="436" text-anchor="middle" class="item-sub" fill="#4ade80">Atlas 800T A2/A3 训练服务器</text>
 
-  <line x1="370" y1="391" x2="370" y2="405" stroke="#22c55e" stroke-width="1" marker-end="url(#nvArrow)"/>
+  <rect x="295" y="444" width="210" height="36" rx="6" fill="rgba(34,197,94,0.08)"/>
+  <text x="400" y="460" text-anchor="middle" class="item" fill="#bbf7d0">HBM2e + HCCS 自研互联</text>
+  <text x="400" y="476" text-anchor="middle" class="item-sub" fill="#4ade80">~1.5-2.0 TB/s 带宽</text>
 
-  <rect x="275" y="408" width="190" height="36" rx="6" fill="rgba(34,197,94,0.08)"/>
-  <text x="370" y="423" text-anchor="middle" font-size="11" fill="#bbf7d0">HBM2e + HCCS 互联</text>
-  <text x="370" y="438" text-anchor="middle" font-size="10" fill="#4ade80">~1.5 TB/s · 自研互联</text>
+  <text x="295" y="506" class="section">制程与封装</text>
+  <text x="400" y="530" text-anchor="middle" class="item bad">SMIC N+2 (~7nm) / 自研</text>
+  <text x="400" y="550" text-anchor="middle" class="item-sub" fill="#f87171">受出口管制 · 良率/产能受限</text>
 
-  <text x="275" y="468" font-size="12" font-weight="700" fill="#f5a623">制程</text>
-  <text x="370" y="490" text-anchor="middle" font-size="13" fill="#e94560" font-weight="600">SMIC N+2 (~7nm)</text>
-  <text x="370" y="508" text-anchor="middle" font-size="10" fill="#f87171">受出口管制 · 良率/产能有限</text>
+  <text x="295" y="582" class="section">生态成熟度</text>
+  <rect x="295" y="592" width="147" height="12" rx="3" fill="#f5a623"/>
+  <text x="400" y="622" text-anchor="middle" class="item warn">~70-80% 常用算子覆盖</text>
+  <text x="400" y="642" text-anchor="middle" class="item-sub" fill="#888">适配追不上 PyTorch 发版节奏</text>
 
-  <text x="275" y="540" font-size="12" font-weight="700" fill="#f5a623">生态覆盖</text>
-  <rect x="275" y="550" width="142" height="10" rx="3" fill="#f5a623"/>
-  <text x="370" y="575" text-anchor="middle" font-size="11" fill="#f5a623">~70-80% 算子覆盖</text>
-  <text x="370" y="593" text-anchor="middle" font-size="10" fill="#888">适配永远追不上 PyTorch 发版</text>
+  <text x="295" y="672" class="section">互联</text>
+  <text x="400" y="696" text-anchor="middle" class="item warn">HCCS: ~400 GB/s</text>
+  <text x="400" y="716" text-anchor="middle" class="item-sub" fill="#f87171">带宽约为 NVLink 5.0 的 1/4</text>
 
-  <text x="275" y="625" font-size="12" font-weight="700" fill="#f5a623">调用路径</text>
-  <text x="370" y="650" text-anchor="middle" font-size="11" fill="#f5a623" font-weight="600">PyTorch → torch_npu</text>
-  <text x="370" y="668" text-anchor="middle" font-size="11" fill="#f5a623">→ CANN → 昇腾 GPU</text>
-  <text x="370" y="690" text-anchor="middle" font-size="10" fill="#e94560">多一层翻译，性能有损</text>
+  <text x="295" y="748" class="section">调用路径</text>
+  <text x="400" y="772" text-anchor="middle" class="item warn">PyTorch → torch_npu → CANN → 昇腾</text>
+  <text x="400" y="792" text-anchor="middle" class="item-sub" fill="#e94560">多一层算子翻译，性能有损耗</text>
 
-  <!-- ===== 寒武纪 ===== -->
-  <rect x="500" y="72" width="220" height="720" rx="10" fill="url(#cambriconGrad)" stroke="#4ade80" stroke-width="1.5" filter="url(#shadow)"/>
-  <rect x="500" y="72" width="220" height="36" rx="10" fill="rgba(34,197,94,0.12)"/>
-  <rect x="500" y="98" width="220" height="10" fill="rgba(34,197,94,0.12)"/>
-  <text x="610" y="95" text-anchor="middle" font-size="15" font-weight="700" fill="#86efac">寒武纪 MLU</text>
-  <text x="610" y="125" text-anchor="middle" font-size="11" fill="#4ade80">自研 MLU 架构 · 存算一体</text>
+  <!-- ===== 寒武纪 列 ===== -->
+  <rect x="540" y="74" width="240" height="700" rx="10" fill="url(#cambriconGrad)" stroke="#4ade80" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="540" y="74" width="240" height="36" rx="10" fill="rgba(34,197,94,0.12)"/>
+  <rect x="540" y="100" width="240" height="10" fill="rgba(34,197,94,0.12)"/>
+  <text x="660" y="97" text-anchor="middle" class="col-title" fill="#86efac">寒武纪 MLU</text>
+  <text x="660" y="125" text-anchor="middle" class="col-sub" fill="#4ade80">自研 MLU 架构 · 存算一体</text>
 
-  <text x="515" y="155" font-size="12" font-weight="700" fill="#f5a623">软件栈</text>
-  <rect x="515" y="165" width="190" height="36" rx="6" fill="rgba(34,197,94,0.08)"/>
-  <text x="610" y="180" text-anchor="middle" font-size="11" fill="#bbf7d0">PyTorch（经 torch_mlu 适配）</text>
-  <text x="610" y="195" text-anchor="middle" font-size="10" fill="#f5a623">⚠ 适配层翻译 CUDA 算子</text>
+  <text x="555" y="158" class="section">框架接入</text>
+  <rect x="555" y="168" width="210" height="36" rx="6" fill="rgba(34,197,94,0.08)"/>
+  <text x="660" y="184" text-anchor="middle" class="item" fill="#bbf7d0">PyTorch（torch_mlu 适配）</text>
+  <text x="660" y="200" text-anchor="middle" class="item-sub warn">⚠ 适配层翻译 CUDA 算子</text>
 
-  <line x1="610" y1="201" x2="610" y2="215" stroke="#f5a623" stroke-width="1.5" marker-end="url(#cnArrow)"/>
+  <line x1="660" y1="204" x2="660" y2="216" stroke="#f5a623" stroke-width="1.5" marker-end="url(#cnArrow)"/>
 
-  <rect x="515" y="218" width="190" height="36" rx="6" fill="rgba(34,197,94,0.08)"/>
-  <text x="610" y="233" text-anchor="middle" font-size="11" fill="#bbf7d0">Cambricon Neuware</text>
-  <text x="610" y="248" text-anchor="middle" font-size="10" fill="#4ade80">BANG 编程语言 · CNML 算子库</text>
+  <rect x="555" y="220" width="210" height="36" rx="6" fill="rgba(34,197,94,0.08)"/>
+  <text x="660" y="236" text-anchor="middle" class="item" fill="#bbf7d0">Cambricon Neuware</text>
+  <text x="660" y="252" text-anchor="middle" class="item-sub" fill="#4ade80">BANG 编程语言 · CNML 算子库</text>
 
-  <line x1="610" y1="254" x2="610" y2="268" stroke="#f5a623" stroke-width="1.5" marker-end="url(#cnArrow)"/>
+  <line x1="660" y1="256" x2="660" y2="268" stroke="#f5a623" stroke-width="1.5" marker-end="url(#cnArrow)"/>
 
-  <rect x="515" y="271" width="190" height="36" rx="6" fill="rgba(34,197,94,0.08)"/>
-  <text x="610" y="286" text-anchor="middle" font-size="11" fill="#bbf7d0">BANG C 编程模型</text>
-  <text x="610" y="301" text-anchor="middle" font-size="10" fill="#4ade80">对标 CUDA C 的并行编程模型</text>
+  <rect x="555" y="272" width="210" height="36" rx="6" fill="rgba(34,197,94,0.08)"/>
+  <text x="660" y="288" text-anchor="middle" class="item" fill="#bbf7d0">BANG C 编程模型</text>
+  <text x="660" y="304" text-anchor="middle" class="item-sub" fill="#4ade80">对标 CUDA C 的并行编程模型</text>
 
-  <line x1="610" y1="307" x2="610" y2="321" stroke="#f5a623" stroke-width="1.5" marker-end="url(#cnArrow)"/>
+  <line x1="660" y1="308" x2="660" y2="320" stroke="#f5a623" stroke-width="1.5" marker-end="url(#cnArrow)"/>
 
-  <text x="515" y="345" font-size="12" font-weight="700" fill="#f5a623">硬件</text>
-  <rect x="515" y="355" width="190" height="36" rx="6" fill="rgba(34,197,94,0.08)"/>
-  <text x="610" y="370" text-anchor="middle" font-size="11" fill="#bbf7d0">MLU 架构（存算一体）</text>
-  <text x="610" y="385" text-anchor="middle" font-size="10" fill="#4ade80">思元系列 · 专用 AI 加速</text>
+  <text x="555" y="348" class="section">硬件平台</text>
+  <rect x="555" y="358" width="210" height="36" rx="6" fill="rgba(34,197,94,0.08)"/>
+  <text x="660" y="374" text-anchor="middle" class="item" fill="#bbf7d0">思元 370/590</text>
+  <text x="660" y="390" text-anchor="middle" class="item-sub" fill="#4ade80">MLU 架构 · 专用 AI 加速</text>
 
-  <line x1="610" y1="391" x2="610" y2="405" stroke="#22c55e" stroke-width="1" marker-end="url(#nvArrow)"/>
+  <rect x="555" y="402" width="210" height="36" rx="6" fill="rgba(34,197,94,0.08)"/>
+  <text x="660" y="418" text-anchor="middle" class="item" fill="#bbf7d0">国产 HBM 替代方案</text>
+  <text x="660" y="434" text-anchor="middle" class="item-sub bad">HBM 受管制 · 替代方案有限</text>
 
-  <rect x="515" y="408" width="190" height="36" rx="6" fill="rgba(34,197,94,0.08)"/>
-  <text x="610" y="423" text-anchor="middle" font-size="11" fill="#bbf7d0">国产 HBM 替代方案</text>
-  <text x="610" y="438" text-anchor="middle" font-size="10" fill="#e94560">HBM 受管制 · 替代方案有限</text>
+  <text x="555" y="468" class="section">制程与封装</text>
+  <text x="660" y="492" text-anchor="middle" class="item bad">SMIC N+2 (~7nm)</text>
+  <text x="660" y="512" text-anchor="middle" class="item-sub" fill="#f87171">实体清单 · 先进制程受限</text>
 
-  <text x="515" y="468" font-size="12" font-weight="700" fill="#f5a623">制程</text>
-  <text x="610" y="490" text-anchor="middle" font-size="13" fill="#e94560" font-weight="600">SMIC N+2 (~7nm)</text>
-  <text x="610" y="508" text-anchor="middle" font-size="10" fill="#f87171">实体清单 · 先进制程受限</text>
+  <text x="555" y="544" class="section">生态成熟度</text>
+  <rect x="555" y="554" width="105" height="12" rx="3" fill="#e94560"/>
+  <text x="660" y="584" text-anchor="middle" class="item bad">~50-60% 算子覆盖</text>
+  <text x="660" y="604" text-anchor="middle" class="item-sub" fill="#888">生态最小 · 信创采购驱动</text>
 
-  <text x="515" y="540" font-size="12" font-weight="700" fill="#f5a623">生态覆盖</text>
-  <rect x="515" y="550" width="95" height="10" rx="3" fill="#e94560"/>
-  <text x="610" y="575" text-anchor="middle" font-size="11" fill="#e94560">~50-60% 算子覆盖</text>
-  <text x="610" y="593" text-anchor="middle" font-size="10" fill="#888">生态最小 · 信创采购驱动</text>
+  <text x="555" y="636" class="section">互联</text>
+  <text x="660" y="660" text-anchor="middle" class="item bad">自研互联 · 规模有限</text>
+  <text x="660" y="680" text-anchor="middle" class="item-sub" fill="#f87171">多卡扩展能力受限</text>
 
-  <text x="515" y="625" font-size="12" font-weight="700" fill="#f5a623">调用路径</text>
-  <text x="610" y="650" text-anchor="middle" font-size="11" fill="#f5a623" font-weight="600">PyTorch → torch_mlu</text>
-  <text x="610" y="668" text-anchor="middle" font-size="11" fill="#f5a623">→ Neuware → MLU</text>
-  <text x="610" y="690" text-anchor="middle" font-size="10" fill="#e94560">生态最小，兼容性最弱</text>
+  <text x="555" y="712" class="section">调用路径</text>
+  <text x="660" y="736" text-anchor="middle" class="item warn">PyTorch → torch_mlu → Neuware → MLU</text>
+  <text x="660" y="756" text-anchor="middle" class="item-sub" fill="#e94560">生态最小，兼容性最弱</text>
 
-  <!-- ===== 海光 DCU ===== -->
-  <rect x="740" y="72" width="200" height="720" rx="10" fill="url(#hygonGrad)" stroke="#f97316" stroke-width="1.5" filter="url(#shadow)"/>
-  <rect x="740" y="72" width="200" height="36" rx="10" fill="rgba(249,115,22,0.12)"/>
-  <rect x="740" y="98" width="200" height="10" fill="rgba(249,115,22,0.12)"/>
-  <text x="840" y="95" text-anchor="middle" font-size="15" font-weight="700" fill="#fdba74">海光 DCU（深算）</text>
-  <text x="840" y="125" text-anchor="middle" font-size="11" fill="#f97316">AMD CDNA 衍生架构</text>
-
-  <text x="755" y="155" font-size="12" font-weight="700" fill="#f5a623">软件栈</text>
-  <rect x="755" y="165" width="170" height="36" rx="6" fill="rgba(249,115,22,0.08)"/>
-  <text x="840" y="180" text-anchor="middle" font-size="11" fill="#fed7aa">PyTorch（经 ROCm/HIP）</text>
-  <text x="840" y="195" text-anchor="middle" font-size="10" fill="#f5a623">⚠ 两层翻译：HIP + 适配</text>
-
-  <line x1="840" y1="201" x2="840" y2="215" stroke="#f5a623" stroke-width="1.5" marker-end="url(#cnArrow)"/>
-
-  <rect x="755" y="218" width="170" height="36" rx="6" fill="rgba(249,115,22,0.08)"/>
-  <text x="840" y="233" text-anchor="middle" font-size="11" fill="#fed7aa">ROCm + HIP 转换层</text>
-  <text x="840" y="248" text-anchor="middle" font-size="10" fill="#f97316">AMD 生态桥接 NVIDIA</text>
-
-  <line x1="840" y1="254" x2="840" y2="268" stroke="#f5a623" stroke-width="1.5" marker-end="url(#cnArrow)"/>
-
-  <rect x="755" y="271" width="170" height="36" rx="6" fill="rgba(249,115,22,0.08)"/>
-  <text x="840" y="286" text-anchor="middle" font-size="11" fill="#fed7aa">DTK 开发工具包</text>
-  <text x="840" y="301" text-anchor="middle" font-size="10" fill="#f97316">海光自研 · HIP → 国产 GPU</text>
-
-  <line x1="840" y1="307" x2="840" y2="321" stroke="#f5a623" stroke-width="1.5" marker-end="url(#cnArrow)"/>
-
-  <text x="755" y="345" font-size="12" font-weight="700" fill="#f5a623">硬件</text>
-  <rect x="755" y="355" width="170" height="36" rx="6" fill="rgba(34,197,94,0.06)"/>
-  <text x="840" y="370" text-anchor="middle" font-size="11" fill="#bbf7d0">GPGPU 架构</text>
-  <text x="840" y="385" text-anchor="middle" font-size="10" fill="#4ade80">深算一号 · Zen 1 血统</text>
-
-  <line x1="840" y1="391" x2="840" y2="405" stroke="#22c55e" stroke-width="1" marker-end="url(#nvArrow)"/>
-
-  <rect x="755" y="408" width="170" height="36" rx="6" fill="rgba(34,197,94,0.06)"/>
-  <text x="840" y="423" text-anchor="middle" font-size="11" fill="#bbf7d0">GDDR6 / HBM2</text>
-  <text x="840" y="438" text-anchor="middle" font-size="10" fill="#e94560">HBM 版本受限</text>
-
-  <text x="755" y="468" font-size="12" font-weight="700" fill="#f5a623">制程</text>
-  <text x="840" y="490" text-anchor="middle" font-size="13" fill="#e94560" font-weight="600">SMIC / 国内代工</text>
-  <text x="840" y="508" text-anchor="middle" font-size="10" fill="#f87171">实体清单 · Zen 1 断供后自研</text>
-
-  <text x="755" y="540" font-size="12" font-weight="700" fill="#f5a623">生态覆盖</text>
-  <rect x="755" y="550" width="127" height="10" rx="3" fill="#f5a623"/>
-  <text x="840" y="575" text-anchor="middle" font-size="11" fill="#f5a623">~60-70% 算子覆盖</text>
-  <text x="840" y="593" text-anchor="middle" font-size="10" fill="#888">借 ROCm 桥接 · 链条最长</text>
-
-  <text x="755" y="625" font-size="12" font-weight="700" fill="#f5a623">调用路径</text>
-  <text x="840" y="650" text-anchor="middle" font-size="11" fill="#f5a623" font-weight="600">PyTorch → HIP</text>
-  <text x="840" y="668" text-anchor="middle" font-size="11" fill="#f5a623">→ ROCm → DTK → DCU</text>
-  <text x="840" y="690" text-anchor="middle" font-size="10" fill="#e94560">两层翻译，链条最长</text>
-
-  <!-- ===== 底部总结栏 ===== -->
-  <rect x="20" y="802" width="920" height="1" fill="#333"/>
+  <!-- 底部说明 -->
+  <rect x="20" y="788" width="760" height="40" rx="6" fill="#1a1a2e" stroke="#333" stroke-width="0.5"/>
+  <text x="400" y="814" text-anchor="middle" font-size="17" fill="#888">海光 DCU（深算系列）走 AMD CDNA 衍生 + ROCm/HIP 兼容路线，PyTorch → HIP → ROCm → DTK → DCU，链条最长</text>
 </svg>

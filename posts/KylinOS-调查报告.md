@@ -179,19 +179,18 @@ series:
 
 本报告事实部分综合以下来源交叉验证，凡来源间有出入之处，文中已标注。
 
-- [Kylin (operating system) — Wikipedia (英文)](https://en.wikipedia.org/wiki/Kylin_(operating_system))：来历、版本时间线、FreeBSD 争议、份额与兼容数、支持架构
-- [银河麒麟 — Wikipedia (中文)](https://zh.wikipedia.org/wiki/银河麒麟)：V10/V11 发布时间、首个 6.6 内核商业版、支持平台列表、麒麟软件公司沿革、NeoKylin 合并来历
 - [麒麟软件官网（V11 服务器版/桌面版）](https://www.kylinos.cn/)：KSAF 安全框架、国密支持、热补丁、磐石架构、开明包格式、DeepSeek 适配、AI 助手 kyCopilot、生态适配中心
 - [openKylin 内核仓库 — Gitee/GitCode](https://gitee.com/openkylin/kernel)：内核 6.6 LTS 基线、河流代号分支、`Kconfig.kylin`/`Makefile.kylin` 定制文件、国产 CPU 适配分支（作为商业版内核取向之旁证）
-- [openKylin 社区官网](https://www.openkylin.top/)：开放原子开源基金会孵化、木兰宽松许可证 v2、开源根社区定位
-- [UKUI — Wikipedia](https://en.wikipedia.org/wiki/UKUI)：Ultimate Kylin User Interface、Qt 编写、MATE fork、4.0 版本
-- [信创 — Wikipedia (中文)](https://zh.wikipedia.org/wiki/信创)：四大领域、2014 金融去 IOE 起源、三阶段推广、代表企业、市场规模
 - [NeoKylin — Wikipedia](https://en.wikipedia.org/wiki/NeoKylin)：中标麒麟合作渊源
 
-[^kylin_wiki]: [Kylin (operating system) — Wikipedia (英文)](https://en.wikipedia.org/wiki/Kylin_(operating_system))
-[^kylin_zhwiki]: [银河麒麟 — Wikipedia (中文)](https://zh.wikipedia.org/wiki/银河麒麟)
-[^openkylin_community]: [openKylin 社区官网](https://www.openkylin.top/)
-[^ukui_wiki]: [UKUI — Wikipedia](https://en.wikipedia.org/wiki/UKUI)
-[^xinchuang_wiki]: [信创 — Wikipedia (中文)](https://zh.wikipedia.org/wiki/信创)
+[^kylin_wiki]: [Kylin (operating system) — Wikipedia (英文)](https://en.wikipedia.org/wiki/Kylin_(operating_system))：来历、版本时间线、FreeBSD 争议、份额与兼容数、支持架构
+
+[^kylin_zhwiki]: [银河麒麟 — Wikipedia (中文)](https://zh.wikipedia.org/wiki/银河麒麟)：V10/V11 发布时间、首个 6.6 内核商业版、支持平台列表、麒麟软件公司沿革、NeoKylin 合并来历
+
+[^openkylin_community]: [openKylin 社区官网](https://www.openkylin.top/)：开放原子开源基金会孵化、木兰宽松许可证 v2、开源根社区定位
+
+[^ukui_wiki]: [UKUI — Wikipedia](https://en.wikipedia.org/wiki/UKUI)：Ultimate Kylin User Interface、Qt 编写、MATE fork、4.0 版本
+
+[^xinchuang_wiki]: [信创 — Wikipedia (中文)](https://zh.wikipedia.org/wiki/信创)：四大领域、2014 金融去 IOE 起源、三阶段推广、代表企业、市场规模
 
 
