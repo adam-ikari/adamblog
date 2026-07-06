@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 680" font-family="'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', sans-serif">
+  <defs>
+    <linearGradient id="bar1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#533483" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="bar2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0f3460" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="bar3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a8a5a" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#22c55e" stop-opacity="0.6"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <style>
+    text { fill: #e0e0e0; }
+  </style>
+
+  <text x="480" y="30" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">NVIDIA 数据中心 GPU 演进：2020 — 2024</text>
+  <text x="480" y="52" text-anchor="middle" font-size="12" fill="#888">从 A100 到 B200，五年间 FP16 算力 ×7、显存带宽 ×4、晶体管数 ×4</text>
+
+  <!-- ===== 算力对比 ===== -->
+  <text x="60" y="90" font-size="14" font-weight="700" fill="#f5a623">Tensor Core FP16 算力 (TFLOPS)</text>
+
+  <!-- A100 算力 -->
+  <rect x="60" y="100" width="108" height="30" rx="5" fill="url(#bar1)" filter="url(#shadow)"/>
+  <text x="65" y="120" font-size="12" fill="#fff" font-weight="600">A100: 312</text>
+  <!-- H100 算力 -->
+  <rect x="60" y="138" width="330" height="30" rx="5" fill="url(#bar2)" filter="url(#shadow)"/>
+  <text x="65" y="158" font-size="12" fill="#fff" font-weight="600">H100/200: 990</text>
+  <!-- B100 算力 -->
+  <rect x="60" y="176" width="660" height="30" rx="5" fill="url(#bar2)" filter="url(#shadow)"/>
+  <text x="65" y="196" font-size="12" fill="#fff" font-weight="600">B100: 1,980</text>
+  <!-- B200 算力 -->
+  <rect x="60" y="214" width="750" height="30" rx="5" fill="url(#bar3)" filter="url(#shadow)"/>
+  <text x="65" y="234" font-size="12" fill="#fff" font-weight="600">B200: 2,250 (×7 vs A100)</text>
+
+  <!-- 算力刻度 -->
+  <line x1="60" y1="252" x2="810" y2="252" stroke="#333" stroke-width="0.5"/>
+  <text x="60" y="268" font-size="10" fill="#666">0</text>
+  <text x="390" y="268" font-size="10" fill="#666">1000</text>
+  <text x="720" y="268" font-size="10" fill="#666">2000 TFLOPS</text>
+
+  <!-- ===== 显存带宽 ===== -->
+  <text x="60" y="310" font-size="14" font-weight="700" fill="#4ecdc4">显存带宽 (TB/s)</text>
+
+  <rect x="60" y="320" width="200" height="30" rx="5" fill="url(#bar1)" filter="url(#shadow)"/>
+  <text x="65" y="340" font-size="12" fill="#fff" font-weight="600">A100: 2.0 (HBM2e)</text>
+
+  <rect x="60" y="358" width="335" height="30" rx="5" fill="url(#bar1)" filter="url(#shadow)"/>
+  <text x="65" y="378" font-size="12" fill="#fff" font-weight="600">H100: 3.35 (HBM3)</text>
+
+  <rect x="60" y="396" width="480" height="30" rx="5" fill="url(#bar2)" filter="url(#shadow)"/>
+  <text x="65" y="416" font-size="12" fill="#fff" font-weight="600">H200: 4.8 (HBM3e)</text>
+
+  <rect x="60" y="434" width="800" height="30" rx="5" fill="url(#bar3)" filter="url(#shadow)"/>
+  <text x="65" y="454" font-size="12" fill="#fff" font-weight="600">B200: 8.0 (HBM3e, ×4 vs A100)</text>
+
+  <line x1="60" y1="472" x2="860" y2="472" stroke="#333" stroke-width="0.5"/>
+  <text x="60" y="488" font-size="10" fill="#666">0</text>
+  <text x="460" y="488" font-size="10" fill="#666">4</text>
+  <text x="860" y="488" font-size="10" fill="#666">8 TB/s</text>
+
+  <!-- ===== 晶体管数 ===== -->
+  <text x="60" y="528" font-size="14" font-weight="700" fill="#a78bfa">晶体管数 (亿)</text>
+
+  <rect x="60" y="538" width="207" height="30" rx="5" fill="url(#bar1)" filter="url(#shadow)"/>
+  <text x="65" y="558" font-size="12" fill="#fff" font-weight="600">A100: 540 亿 (7nm)</text>
+
+  <rect x="60" y="576" width="307" height="30" rx="5" fill="url(#bar2)" filter="url(#shadow)"/>
+  <text x="65" y="596" font-size="12" fill="#fff" font-weight="600">H100/200: 800 亿 (4N = 5nm 定制)</text>
+
+  <rect x="60" y="614" width="800" height="30" rx="5" fill="url(#bar3)" filter="url(#shadow)"/>
+  <text x="65" y="634" font-size="12" fill="#fff" font-weight="600">B100/200: 2,080 亿 (4NP, ×4 vs A100, 双 die 合封)</text>
+
+  <line x1="60" y1="652" x2="860" y2="652" stroke="#333" stroke-width="0.5"/>
+  <text x="60" y="668" font-size="10" fill="#666">0</text>
+  <text x="410" y="668" font-size="10" fill="#666">1000</text>
+  <text x="860" y="668" font-size="10" fill="#666">2080 亿</text>
+
+  <!-- 右侧注释 -->
+  <text x="900" y="120" font-size="11" fill="#888">Ampere</text>
+  <text x="900" y="158" font-size="11" fill="#888">Hopper</text>
+  <text x="900" y="196" font-size="11" fill="#888">Blackwell</text>
+  <text x="900" y="234" font-size="11" fill="#888">Blackwell</text>
+</svg>
