@@ -28,12 +28,9 @@ article table th {
   white-space: nowrap;
 }
 
-/* SVG 插图：自然占满内容区宽度，不受全局 max-height 限制 */
-/* 用 .vp-doc .content 提升优先级，覆盖主题的 .VPDoc .content main img */
-.vp-doc .content main img[src$=".svg"],
+/* SVG 插图：自然占满内容区宽度 */
 .vp-doc img[src$=".svg"] {
   display: block;
   max-width: 100%;
-  max-height: none;
   height: auto;
 }

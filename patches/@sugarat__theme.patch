@@ -5,7 +5,7 @@ index 24eafc715e5d9a92e54baba791c13607e8daa0f6..b0a09addcecad36b498d8bf13ad4726e
 @@ -12,6 +12,21 @@ const formatShowDate = useFormatShowDate()
  const recommend = useRecommendConfig()
  const show = useShowRecommend()
- 
+
 +// TF-IDF 相关文章数据：构建时生成 related-posts.json，记录每篇文章的 top-N 相似文章
 +const tfidfMap = ref<Record<string, { title: string; link: string }[]>>({})
 +const tfidfReady = ref(false)
@@ -27,7 +27,7 @@ index 24eafc715e5d9a92e54baba791c13607e8daa0f6..b0a09addcecad36b498d8bf13ad4726e
 @@ -109,6 +124,23 @@ const recommendList = computed(() => {
    }
    normalList.sort(compareFn)
- 
+
 +  // TF-IDF 向量相关：若构建时生成的 related-posts.json 有当前页的相似文章数据，
 +  // 按相似度排序，把语义最相关的排到前面（剩余的按原排序补齐）
 +  if (tfidfReady.value) {
@@ -47,13 +47,13 @@ index 24eafc715e5d9a92e54baba791c13607e8daa0f6..b0a09addcecad36b498d8bf13ad4726e
 +
    return topList.concat(normalList)
  })
- 
+
 diff --git a/src/components/BlogSidebar.vue b/src/components/BlogSidebar.vue
 index 66b9e205dfc1a39bffce0127bda6e405ecc87992..8008db305b0e4681b90b4a58ca77b16f3a2e71de 100644
 --- a/src/components/BlogSidebar.vue
 +++ b/src/components/BlogSidebar.vue
 @@ -12,7 +12,9 @@ const sidebarStyle = computed(() =>
- 
+
  <template>
    <div v-if="show" class="sidebar" :class="{ card: sidebarStyle === 'card' }" data-pagefind-ignore="all">
 -    <BlogRecommendArticle />
@@ -62,4 +62,16 @@ index 66b9e205dfc1a39bffce0127bda6e405ecc87992..8008db305b0e4681b90b4a58ca77b16f
 +    </ClientOnly>
    </div>
  </template>
- 
+
+diff --git a/src/styles/index.css b/src/styles/index.css
+index a8b2e5c..d7f3a1e 100644
+--- a/src/styles/index.css
++++ b/src/styles/index.css
+@@ -84,7 +84,6 @@
+   }
+ }
+ .VPDoc .content main img {
+-  max-height: 300px;
+   margin: 0 auto;
+   cursor: pointer;
+ }
