@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" font-family="'Noto Sans SC', 'Microsoft YaHei', 'PingFang SC', sans-serif">
+  <defs>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <style>
+    text { fill: #e0e0e0; }
+  </style>
+
+  <text x="480" y="30" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">麒麟技术演进：三次转身（2001 — 2025）</text>
+
+  <!-- 时间轴 -->
+  <line x1="60" y1="70" x2="900" y2="70" stroke="#333" stroke-width="2"/>
+
+  <!-- 时间刻度 -->
+  <circle cx="60" cy="70" r="5" fill="#667eea"/>
+  <text x="60" y="55" text-anchor="middle" font-size="12" fill="#888">2001</text>
+
+  <circle cx="240" cy="70" r="5" fill="#667eea"/>
+  <text x="240" y="55" text-anchor="middle" font-size="12" fill="#888">2006</text>
+
+  <circle cx="480" cy="70" r="7" fill="#f5a623"/>
+  <text x="480" y="55" text-anchor="middle" font-size="12" fill="#f5a623">2014</text>
+
+  <circle cx="660" cy="70" r="5" fill="#667eea"/>
+  <text x="660" y="55" text-anchor="middle" font-size="12" fill="#888">2022</text>
+
+  <circle cx="900" cy="70" r="7" fill="#4ade80"/>
+  <text x="900" y="55" text-anchor="middle" font-size="12" fill="#4ade80">2025</text>
+
+  <!-- === 阶段一：FreeBSD === -->
+  <rect x="60" y="95" width="350" height="120" rx="10" fill="#1a1a2e" stroke="#3b82f6" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="60" y="95" width="350" height="30" rx="10" fill="#1e3a5f"/>
+  <rect x="60" y="115" width="350" height="10" fill="#1e3a5f"/>
+  <text x="235" y="115" text-anchor="middle" font-size="14" font-weight="700" fill="#60a5fa">第一次转身：立足 FreeBSD</text>
+
+  <text x="80" y="148" font-size="12" fill="#ccc">• 863 计划立项，国防科大开发</text>
+  <text x="80" y="168" font-size="12" fill="#ccc">• 基于 FreeBSD 5.3 内核</text>
+  <text x="80" y="188" font-size="12" fill="#ccc">• 2006 年报道首个 B2 安全等级 64 位 OS</text>
+  <text x="80" y="208" font-size="11" fill="#888">本质：在没有自研内核能力时，借力成熟 BSD 起步</text>
+
+  <!-- 箭头1→2 -->
+  <line x1="410" y1="155" x2="465" y2="155" stroke="#f5a623" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="438" y="145" text-anchor="middle" font-size="10" fill="#f5a623">切换</text>
+  <text x="438" y="170" text-anchor="middle" font-size="10" fill="#f5a623">内核</text>
+
+  <!-- === 阶段二：Linux 内核 === -->
+  <rect x="470" y="95" width="430" height="120" rx="10" fill="#1a1a2e" stroke="#f5a623" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="470" y="95" width="430" height="30" rx="10" fill="rgba(245,166,35,0.15)"/>
+  <rect x="470" y="115" width="430" height="10" fill="rgba(245,166,35,0.15)"/>
+  <text x="685" y="115" text-anchor="middle" font-size="14" font-weight="700" fill="#fbbf24">第二次转身：转向 Linux 内核</text>
+
+  <text x="490" y="148" font-size="12" fill="#ccc">• 3.0 版本从 FreeBSD 切至 Linux 内核</text>
+  <text x="490" y="168" font-size="12" fill="#ccc">• 未基于 Ubuntu/Debian 发行版，直接采用 Linux 内核</text>
+  <text x="490" y="188" font-size="12" fill="#ccc">• 接入 Linux 驱动与社区生态，大幅拓宽兼容面</text>
+  <text x="490" y="208" font-size="11" fill="#888">本质：放弃"自证内核"，换取实用生态</text>
+
+  <!-- 阶段二→三 连接 -->
+  <line x1="470" y1="270" x2="350" y2="310" stroke="#4ade80" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="420" y="293" font-size="10" fill="#4ade80">开源化</text>
+
+  <!-- === 阶段三：双轨 === -->
+  <rect x="60" y="315" width="400" height="160" rx="10" fill="#1e2a1a" stroke="#22c55e" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="60" y="315" width="400" height="30" rx="10" fill="rgba(34,197,94,0.15)"/>
+  <rect x="60" y="335" width="400" height="10" fill="rgba(34,197,94,0.15)"/>
+  <text x="260" y="335" text-anchor="middle" font-size="14" font-weight="700" fill="#4ade80">第三次转身：开源化 + 双轨并行</text>
+
+  <text x="80" y="368" font-size="12" fill="#ccc">• 2022 年 openKylin 开源发布（木兰 v2 许可证）</text>
+  <text x="80" y="388" font-size="12" fill="#ccc">• 商业银河麒麟 + 社区 openKylin 双轨并行</text>
+  <text x="80" y="408" font-size="12" fill="#ccc">• V10 (2020) → V11 (2025, 首个 6.6 内核商业版)</text>
+  <text x="80" y="428" font-size="12" fill="#ccc">• 内核仓库公开于 Gitee/GitCode，定制层可查</text>
+  <text x="80" y="448" font-size="12" fill="#ccc">• UKUI 桌面 + 磐石架构 + 开明包格式 + AI 适配</text>
+  <text x="80" y="468" font-size="11" fill="#888">本质：以开源换生态，以商业保落地，两条线各司其职</text>
+
+  <!-- 右侧双轨对比 -->
+  <rect x="510" y="315" width="195" height="160" rx="8" fill="url(#kylinGrad2)" stroke="#3b82f6" stroke-width="1" opacity="0.85"/>
+  <text x="607" y="345" text-anchor="middle" font-size="13" font-weight="700" fill="#93c5fd">商业线：银河麒麟</text>
+  <text x="530" y="370" font-size="11" fill="#bfdbfe">专有授权</text>
+  <text x="530" y="390" font-size="11" fill="#bfdbfe">政企采购主力</text>
+  <text x="530" y="410" font-size="11" fill="#bfdbfe">V10/V11 桌面+服务器</text>
+  <text x="530" y="430" font-size="11" fill="#bfdbfe">内核补丁不公开</text>
+  <text x="530" y="450" font-size="11" fill="#bfdbfe">等保/国密合规</text>
+
+  <rect x="730" y="315" width="195" height="160" rx="8" fill="url(#openGrad2)" stroke="#22c55e" stroke-width="1" opacity="0.85"/>
+  <text x="827" y="345" text-anchor="middle" font-size="13" font-weight="700" fill="#bbf7d0">社区线：openKylin</text>
+  <text x="750" y="370" font-size="11" fill="#dcfce7">木兰宽松 v2</text>
+  <text x="750" y="390" font-size="11" fill="#dcfce7">社区驱动开发</text>
+  <text x="750" y="410" font-size="11" fill="#dcfce7">内核仓库公开</text>
+  <text x="750" y="430" font-size="11" fill="#dcfce7">玲珑 / 开明包格式</text>
+  <text x="750" y="450" font-size="11" fill="#dcfce7">开放原子基金会孵化</text>
+
+  <!-- 连接两轨 -->
+  <line x1="705" y1="395" x2="730" y2="395" stroke="#888" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="718" y="410" text-anchor="middle" font-size="9" fill="#666">≠ 上下游</text>
+
+  <defs>
+    <linearGradient id="kylinGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f3460"/>
+      <stop offset="100%" stop-color="#0a1a30"/>
+    </linearGradient>
+    <linearGradient id="openGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#14532d"/>
+      <stop offset="100%" stop-color="#0a1a10"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#888"/>
+    </marker>
+  </defs>
+</svg>
