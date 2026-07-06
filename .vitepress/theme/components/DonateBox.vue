@@ -32,7 +32,7 @@ function copyAddress() {
         :class="{ active: activeMethod === 'waffo' }"
         @click="activeMethod = 'waffo'"
       >
-        💳 微信/支付宝
+        💳 Visa 支付
       </button>
       <button
         class="donate-tab"
@@ -47,18 +47,16 @@ function copyAddress() {
     <div v-if="activeMethod === 'waffo'" class="donate-method">
       <div class="method-header">
         <span class="method-name">Waffo 全球收款</span>
-        <span class="method-tag">微信/支付宝/银联/Visa</span>
+        <span class="method-tag">Visa</span>
       </div>
       <div class="method-body">
         <div class="waffo-info">
           <div class="waffo-payments">
             <span class="payment-icon">💳</span>
-            <span class="payment-icon">微信</span>
-            <span class="payment-icon">支付宝</span>
-            <span class="payment-icon">银联</span>
+            <span class="payment-icon">Visa</span>
           </div>
           <p class="waffo-desc">
-            通过 <a href="https://www.waffo.ai/" target="_blank" rel="noopener">Waffo Pancake</a> 全球收款平台打赏，支持微信支付、支付宝、银联、Visa、Mastercard 等多种方式。
+            通过 <a href="https://www.waffo.ai/" target="_blank" rel="noopener">Waffo Pancake</a> 全球收款平台打赏，支持 Visa 支付。
           </p>
           <a
             href="https://pancake.waffo.ai/store/blog-int1ntnq/product/PROD_2rXR5U1U7iFecrVIQSOh6Z?type=onetime&currency=USD"
