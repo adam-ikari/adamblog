@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="matureGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#fee2e2"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 26px; font-weight: 700; fill: #1a1a1a; }
+    .sub { font-size: 17px; fill: #666; }
+    .name { font-size: 19px; font-weight: 700; }
+    .level { font-size: 15px; font-weight: 600; }
+    .note { font-size: 14px; fill: #666; }
+    .axis { font-size: 15px; font-weight: 600; fill: #888; }
+  </style>
+
+  <text x="400" y="30" text-anchor="middle" class="title">国产办公应用：生态成熟度参差</text>
+  <text x="400" y="52" text-anchor="middle" class="sub">不是一刀切的"成熟/不成熟"——应用层取决于产品力与用户用脚投票，非采购即份额</text>
+
+  <!-- 成熟度轴 -->
+  <text x="40" y="92" class="axis">成熟 ▶</text>
+  <text x="760" y="92" text-anchor="end" class="axis">▶ 边缘/盲区</text>
+
+  <!-- WPS -->
+  <rect x="40" y="100" width="720" height="44" rx="6" fill="#dcfce7" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="128" class="name" fill="#166534">WPS</text>
+  <text x="180" y="128" class="level" fill="#15803d">最成熟 · 替得透</text>
+  <text x="380" y="128" class="note">功能/平台/用户量/信创适配/云端协作样样拿得出手</text>
+  <text x="740" y="128" text-anchor="end" class="note" fill="#16a34a">Linux 终端几乎别无选择</text>
+
+  <!-- 福昕 -->
+  <rect x="40" y="152" width="720" height="44" rx="6" fill="#dcfce7" stroke="#86efac" stroke-width="0.5" filter="url(#shadow)"/>
+  <text x="60" y="180" class="name" fill="#166534">福昕</text>
+  <text x="180" y="180" class="level" fill="#15803d">次之 · 扎实但偏窄</text>
+  <text x="380" y="180" class="note">PDF 替代扎实，海外输出背书</text>
+  <text x="740" y="180" text-anchor="end" class="note" fill="#b45309">知名度有限，离全民认知差一截</text>
+
+  <!-- 中望CAD -->
+  <rect x="40" y="204" width="720" height="44" rx="6" fill="#fef3c7" stroke="#fcd34d" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="232" class="name" fill="#92400e">中望 CAD</text>
+  <text x="180" y="232" class="level" fill="#b45309">能用但替不透</text>
+  <text x="380" y="232" class="note">二维中低端能顶，三维/高端差远</text>
+  <text x="740" y="232" text-anchor="end" class="note" fill="#dc2626">CASS/湘源/天正插件跟不上</text>
+
+  <!-- 永中 -->
+  <rect x="40" y="256" width="720" height="44" rx="6" fill="#fef3c7" stroke="#fcd34d" stroke-width="0.5" filter="url(#shadow)"/>
+  <text x="60" y="284" class="name" fill="#92400e">永中 Office</text>
+  <text x="180" y="284" class="level" fill="#b45309">活下来但边缘化</text>
+  <text x="380" y="284" class="note">产品还在，已非信创办公主流选择</text>
+  <text x="740" y="284" text-anchor="end" class="note" fill="#dc2626">产品迭代没跟上</text>
+
+  <!-- OFD -->
+  <rect x="40" y="308" width="720" height="44" rx="6" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5" filter="url(#shadow)"/>
+  <text x="60" y="336" class="name" fill="#991b1b">OFD 版式</text>
+  <text x="180" y="336" class="level" fill="#b91c1c">政务推得动·民间推不动</text>
+  <text x="380" y="336" class="note">标准立起来了，政务场景落地</text>
+  <text x="740" y="336" text-anchor="end" class="note" fill="#dc2626">通用习惯没改过来</text>
+
+  <!-- 财务软件 -->
+  <rect x="40" y="360" width="720" height="44" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="5,3" filter="url(#shadow)"/>
+  <text x="60" y="388" class="name" fill="#475569">财务软件（用友/金蝶）</text>
+  <text x="280" y="388" class="level" fill="#475569">视野盲区</text>
+  <text x="400" y="388" class="note">本身国产不在"替国外"口径，但信创基础栈适配/财税迁移才是企业真卡点</text>
+
+  <!-- 底部 -->
+  <text x="400" y="440" text-anchor="middle" class="note" fill="#444">WPS 赢因真的好用且全平台；永中输非不够"国产"而是没跟上迭代</text>
+  <text x="400" y="460" text-anchor="middle" class="note" fill="#888">应用层逻辑：离用户近→有选择→分高下，与 OS 层"采购即份额"根本不同</text>
+</svg>

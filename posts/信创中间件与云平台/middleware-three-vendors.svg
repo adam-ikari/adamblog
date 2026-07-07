@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="tongGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <linearGradient id="besGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="primGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 26px; font-weight: 700; fill: #1a1a1a; }
+    .sub { font-size: 17px; fill: #666; }
+    .name { font-size: 20px; font-weight: 700; }
+    .tag { font-size: 15px; font-weight: 600; }
+    .note { font-size: 14px; fill: #666; }
+  </style>
+
+  <text x="400" y="30" text-anchor="middle" class="title">国产中间件三家：格局与定位</text>
+  <text x="400" y="52" text-anchor="middle" class="sub">功能对标 WebSphere/WebLogic，差距在生态与惯性——信任一寸寸挪</text>
+
+  <!-- 东方通 -->
+  <rect x="30" y="74" width="240" height="220" rx="8" fill="url(#tongGrad)" stroke="#93c5fd" stroke-width="1" filter="url(#shadow)"/>
+  <text x="150" y="104" text-anchor="middle" class="name" fill="#1e40af">东方通</text>
+  <text x="150" y="126" text-anchor="middle" class="tag" fill="#1e3a8a">老牌龙头</text>
+  <line x1="60" y1="138" x2="240" y2="138" stroke="#93c5fd" stroke-width="0.5"/>
+  <text x="50" y="162" class="note">• 资历最深，产品线最全</text>
+  <text x="50" y="184" class="note">• TongWeb 对标 WebSphere</text>
+  <text x="50" y="206" class="note">• 深交所主板 2014（最早）</text>
+  <text x="50" y="228" class="note">• 金融/政务/电信均有</text>
+  <text x="50" y="258" class="tag" fill="#1e3a8a">定位：全能型铺面</text>
+  <text x="50" y="280" class="note" fill="#888">广度优先</text>
+
+  <!-- 宝兰德 -->
+  <rect x="285" y="74" width="240" height="220" rx="8" fill="url(#besGrad)" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
+  <text x="405" y="104" text-anchor="middle" class="name" fill="#166534">宝兰德</text>
+  <text x="405" y="126" text-anchor="middle" class="tag" fill="#15803d">硬案例担当</text>
+  <line x1="315" y1="138" x2="495" y2="138" stroke="#86efac" stroke-width="0.5"/>
+  <text x="305" y="162" class="note">• 电信核心系统替通</text>
+  <text x="305" y="184" class="note">• BES 应用服务器</text>
+  <text x="305" y="206" class="note">• 科创板 2019</text>
+  <text x="305" y="228" class="note">• 中移动磨了十几年</text>
+  <text x="305" y="258" class="tag" fill="#15803d">定位：深扎行业</text>
+  <text x="305" y="280" class="note" fill="#888">深度优先</text>
+
+  <!-- 普元 -->
+  <rect x="540" y="74" width="240" height="220" rx="8" fill="url(#primGrad)" stroke="#fcd34d" stroke-width="1" filter="url(#shadow)"/>
+  <text x="660" y="104" text-anchor="middle" class="name" fill="#92400e">普元</text>
+  <text x="660" y="126" text-anchor="middle" class="tag" fill="#b45309">平台化代表</text>
+  <line x1="570" y1="138" x2="750" y2="138" stroke="#fcd34d" stroke-width="0.5"/>
+  <text x="560" y="162" class="note">• 中间件→低代码延伸</text>
+  <text x="560" y="184" class="note">• 数据治理</text>
+  <text x="560" y="206" class="note">• 科创板（随后）</text>
+  <text x="560" y="228" class="note">• 基础软件平台化</text>
+  <text x="560" y="258" class="tag" fill="#b45309">定位：平台延伸</text>
+  <text x="560" y="280" class="note" fill="#888">广度+深度之外</text>
+
+  <!-- 底部 -->
+  <text x="400" y="332" text-anchor="middle" class="note" fill="#444">三家上市路径不同：东方通主板最早(2014)，宝兰德/普元走科创板(2019起)——科创板对国产基础软件标的友好</text>
+  <text x="400" y="354" text-anchor="middle" class="note" fill="#888">与 WebSphere/WebLogic 的距离 = 生态与惯性，非功能；核心账务替换靠逐行业证明稳定性</text>
+</svg>

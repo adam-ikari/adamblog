@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="ossGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <linearGradient id="pcGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ede9fe"/>
+      <stop offset="100%" stop-color="#ddd6fe"/>
+    </linearGradient>
+    <linearGradient id="socGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+    <linearGradient id="aliGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 27px; font-weight: 700; fill: #1a1a1a; }
+    .sub { font-size: 18px; fill: #666; }
+    .name { font-size: 20px; font-weight: 700; }
+    .route { font-size: 16px; }
+    .note { font-size: 14px; fill: #666; }
+  </style>
+
+  <text x="400" y="34" text-anchor="middle" class="title">国产 CPU 新兴势力：信创之外的五条路</text>
+  <text x="400" y="58" text-anchor="middle" class="sub">不进信创主力盘子——靠开源、消费市场、出货量说话，争的是"能在多大范围里站着"</text>
+
+  <!-- 香山 -->
+  <rect x="40" y="90" width="350" height="130" rx="8" fill="url(#ossGrad)" stroke="#93c5fd" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="120" class="name" fill="#1e40af">香山</text>
+  <text x="60" y="144" class="route" fill="#1e3a8a">开源 RISC-V 高性能</text>
+  <text x="60" y="168" class="note">中科院/开源社区路线</text>
+  <text x="60" y="190" class="note">"不卡脖子"纯粹度高过龙芯</text>
+  <text x="60" y="210" class="note" fill="#dc2626">代价：无现成商用产品链</text>
+
+  <!-- 此芯科技 -->
+  <rect x="410" y="90" width="350" height="130" rx="8" fill="url(#pcGrad)" stroke="#c4b5fd" stroke-width="1" filter="url(#shadow)"/>
+  <text x="430" y="120" class="name" fill="#5b21b6">此芯科技</text>
+  <text x="430" y="144" class="route" fill="#4c1d95">ARM PC 级芯片</text>
+  <text x="430" y="168" class="note">商业创业路线</text>
+  <text x="430" y="190" class="note">押注 ARM PC 消费市场</text>
+  <text x="430" y="210" class="note" fill="#dc2626">代价：赌赛道能否起来</text>
+
+  <!-- 瑞芯微 -->
+  <rect x="40" y="240" width="170" height="130" rx="8" fill="url(#socGrad)" stroke="#fcd34d" stroke-width="1" filter="url(#shadow)"/>
+  <text x="125" y="270" text-anchor="middle" class="name" fill="#92400e">瑞芯微</text>
+  <text x="125" y="294" text-anchor="middle" class="route" fill="#92400e">ARM SoC</text>
+  <text x="125" y="316" text-anchor="middle" class="note">消费电子/嵌入式</text>
+  <text x="125" y="338" text-anchor="middle" class="note">靠出货量与成本</text>
+  <text x="125" y="358" text-anchor="middle" class="note" fill="#b45309">不靠政策采购</text>
+
+  <!-- 全志 -->
+  <rect x="220" y="240" width="170" height="130" rx="8" fill="url(#socGrad)" stroke="#fcd34d" stroke-width="1" filter="url(#shadow)"/>
+  <text x="305" y="270" text-anchor="middle" class="name" fill="#92400e">全志</text>
+  <text x="305" y="294" text-anchor="middle" class="route" fill="#92400e">ARM SoC</text>
+  <text x="305" y="316" text-anchor="middle" class="note">低价消费电子</text>
+  <text x="305" y="338" text-anchor="middle" class="note">平板/盒子/嵌入式</text>
+  <text x="305" y="358" text-anchor="middle" class="note" fill="#b45309">性价比路线</text>
+
+  <!-- 平头哥 -->
+  <rect x="400" y="240" width="360" height="130" rx="8" fill="url(#aliGrad)" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
+  <text x="420" y="270" class="name" fill="#166534">平头哥（阿里）</text>
+  <text x="420" y="294" class="route" fill="#15803d">RISC-V + ARM 双线</text>
+  <text x="420" y="316" class="note">玄铁 RISC-V：开源铺覆盖面</text>
+  <text x="420" y="338" class="note">倚天 ARM：打服务器</text>
+  <text x="420" y="358" class="note" fill="#15803d">互联网大厂下场，开源商用两头沾</text>
+
+  <!-- 底部对比 -->
+  <rect x="40" y="394" width="720" height="60" rx="6" fill="#f8fafc" stroke="#d1d5db" stroke-width="0.5"/>
+  <text x="60" y="420" class="route" fill="#444">信创六家：守关键行业安全底线（"不能被卡"）</text>
+  <text x="60" y="442" class="route" fill="#444">新兴五家：伸向消费/开源/PC（"能在多大范围站着"）——两条线一起看才是国产 CPU 全貌</text>
+</svg>
