@@ -32,6 +32,8 @@ todo delete 1              # 删除第 1 个
 
 技术栈：Node.js + 原生 `fs` 模块，不引任何依赖，让模型专心实现逻辑。
 
+![Claude Code + DeepSeek 实战流程](/posts/macOS-Claude-Code-实战案例/practice-workflow.svg)
+
 ## 第一步：确认环境
 
 ```bash
