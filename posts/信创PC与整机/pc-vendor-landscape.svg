@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="cecGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <linearGradient id="mergeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="giantGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+    <linearGradient id="localGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 26px; font-weight: 700; fill: #1a1a1a; }
+    .sub { font-size: 17px; fill: #666; }
+    .cat { font-size: 18px; font-weight: 700; }
+    .name { font-size: 19px; font-weight: 700; }
+    .note { font-size: 14px; fill: #666; }
+  </style>
+
+  <text x="400" y="30" text-anchor="middle" class="title">信创整机厂商格局：采购驱动玩家构成</text>
+  <text x="400" y="52" text-anchor="middle" class="sub">主力=央企嫡系/被收编地方/体量巨头；民营消费 PC 厂不占主流——政企采购天然倾向国资背景</text>
+
+  <!-- 央企嫡系 -->
+  <rect x="30" y="80" width="185" height="220" rx="8" fill="url(#cecGrad)" stroke="#93c5fd" stroke-width="1" filter="url(#shadow)"/>
+  <text x="122" y="108" text-anchor="middle" class="cat" fill="#1e40af">央企嫡系</text>
+  <line x1="50" y1="120" x2="195" y2="120" stroke="#93c5fd" stroke-width="0.5"/>
+  <text x="122" y="148" text-anchor="middle" class="name" fill="#1e3a8a">中国长城</text>
+  <text x="45" y="174" class="note">CEC 核心成员</text>
+  <text x="45" y="194" class="note">飞腾 CPU+长城整机</text>
+  <text x="45" y="214" class="note">+麒麟系统闭环</text>
+  <text x="45" y="240" class="note">2013 退出消费 PC</text>
+  <text x="45" y="260" class="note">all in 信创</text>
+  <text x="45" y="290" class="note" fill="#1e3a8a">决绝程度罕见</text>
+
+  <!-- 被央企收编的地方/校办 -->
+  <rect x="230" y="80" width="185" height="220" rx="8" fill="url(#mergeGrad)" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
+  <text x="322" y="108" text-anchor="middle" class="cat" fill="#166534">被央企收编</text>
+  <line x1="250" y1="120" x2="395" y2="120" stroke="#86efac" stroke-width="0.5"/>
+  <text x="322" y="148" text-anchor="middle" class="name" fill="#15803d">同方</text>
+  <text x="245" y="174" class="note">清华发起(1997)</text>
+  <text x="245" y="194" class="note">2019 控股变中核资本</text>
+  <text x="245" y="214" class="note">校办→央企成员</text>
+  <text x="245" y="240" class="note">浪潮(济南/国有)</text>
+  <text x="245" y="260" class="note">偏服务器一侧</text>
+  <text x="245" y="290" class="note" fill="#15803d">国资委统筹意图</text>
+
+  <!-- 体量巨头 -->
+  <rect x="430" y="80" width="185" height="220" rx="8" fill="url(#giantGrad)" stroke="#fcd34d" stroke-width="1" filter="url(#shadow)"/>
+  <text x="522" y="108" text-anchor="middle" class="cat" fill="#92400e">体量巨头</text>
+  <line x1="450" y1="120" x2="595" y2="120" stroke="#fcd34d" stroke-width="0.5"/>
+  <text x="522" y="148" text-anchor="middle" class="name" fill="#b45309">联想</text>
+  <text x="445" y="174" class="note">消费 PC 全球第一</text>
+  <text x="445" y="194" class="note">"联想开天"信创线</text>
+  <text x="445" y="214" class="note">适配飞腾/龙芯/海光</text>
+  <text x="445" y="240" class="note">在既有体系长支线</text>
+  <text x="445" y="260" class="note">非押全部身家</text>
+  <text x="445" y="290" class="note" fill="#b45309">支线而非主线</text>
+
+  <!-- 地方/民营玩家 -->
+  <rect x="630" y="80" width="160" height="220" rx="8" fill="url(#localGrad)" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="5,3" filter="url(#shadow)"/>
+  <text x="710" y="108" text-anchor="middle" class="cat" fill="#475569">地方玩家</text>
+  <line x1="645" y1="120" x2="775" y2="120" stroke="#cbd5e1" stroke-width="0.5"/>
+  <text x="710" y="148" text-anchor="middle" class="name" fill="#475569">海尔·七喜</text>
+  <text x="645" y="174" class="note">参与信创整机</text>
+  <text x="645" y="194" class="note">份额与信息有限</text>
+  <text x="645" y="214" class="note">七喜:信创系列</text>
+  <text x="645" y="234" class="note">通过工信部评审</text>
+  <text x="645" y="254" class="note">广州信创协会会员</text>
+  <text x="645" y="290" class="note" fill="#dc2626">非主流,分一杯羹</text>
+
+  <!-- 底部 -->
+  <rect x="30" y="320" width="760" height="56" rx="6" fill="#f8fafc" stroke="#d1d5db" stroke-width="0.5"/>
+  <text x="400" y="346" text-anchor="middle" class="cat" fill="#444">驱动力决定玩家构成：政企采购 → 天然倾向央企与国资背景供应商</text>
+  <text x="400" y="368" text-anchor="middle" class="note">服务器侧另分：浪潮/长城/华为偏服务器，PC 与服务器合起来才是信创整机全貌</text>
+
+  <text x="400" y="412" text-anchor="middle" class="note" fill="#888">整机厂承担"集成与适配"——适配优先于体验；合规是入场券；采购驱动而非市场驱动</text>
+</svg>
