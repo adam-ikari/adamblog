@@ -5,9 +5,13 @@ const blogTheme = getThemeConfig({
   // 搜索 - 启用 pagefind 离线全文搜索
   // search: false,
 
-  // 推荐文章：禁用主题内置列表，改用自定义 RelatedArticles 组件
-  // （基于构建时 TF-IDF 生成的 related-posts.json，每篇只显示最相关 10 篇）
-  recommend: false,
+  // 推荐文章：启用主题内置列表（侧边栏 + 文章底部）。
+  // 候选池与排序由 patch 注入的 TF-IDF 逻辑控制——每篇只显示最相关 10 篇。
+  recommend: {
+    sort: 'filename',
+    pageSize: 10,
+    showSelf: false,
+  },
 
   // 页脚
   footer: {

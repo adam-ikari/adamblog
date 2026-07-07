@@ -1,11 +1,11 @@
 diff --git a/src/components/BlogRecommendArticle.vue b/src/components/BlogRecommendArticle.vue
-index 24eafc715e5d9a92e54baba791c13607e8daa0f6..b0a09addcecad36b498d8bf13ad4726ed0ed05e6 100644
+index 24eafc715e5d9a92e54baba791c13607e8daa0f6..61b26535c0ba28f3fd337a812742feb324432611 100644
 --- a/src/components/BlogRecommendArticle.vue
 +++ b/src/components/BlogRecommendArticle.vue
 @@ -12,6 +12,21 @@ const formatShowDate = useFormatShowDate()
  const recommend = useRecommendConfig()
  const show = useShowRecommend()
-
+ 
 +// TF-IDF 相关文章数据：构建时生成 related-posts.json，记录每篇文章的 top-N 相似文章
 +const tfidfMap = ref<Record<string, { title: string; link: string }[]>>({})
 +const tfidfReady = ref(false)
@@ -24,50 +24,33 @@ index 24eafc715e5d9a92e54baba791c13607e8daa0f6..b0a09addcecad36b498d8bf13ad4726e
  const sidebarStyle = computed(() =>
    recommend.value?.style ?? 'sidebar'
  )
-@@ -109,6 +124,23 @@ const recommendList = computed(() => {
+@@ -109,6 +124,21 @@ const recommendList = computed(() => {
    }
    normalList.sort(compareFn)
-
+ 
 +  // TF-IDF 向量相关：若构建时生成的 related-posts.json 有当前页的相似文章数据，
-+  // 按相似度排序，把语义最相关的排到前面（剩余的按原排序补齐）
++  // 候选池限定为该 top-N 列表（按相似度排序），不再混入同前缀的全站文章。
++  // 没有数据（如非文章页）则回退到上面的同前缀候选池。
 +  if (tfidfReady.value) {
 +    const currentPath = decodeURIComponent(route.path).replace(/\.html$/, '')
 +    const related = tfidfMap.value[currentPath] || []
 +    if (related.length) {
 +      const order = new Map(related.map((r, i) => [r.link, i]))
-+      normalList.sort((a, b) => {
-+        const aRoute = a.route.replace(/\.html$/, '')
-+        const bRoute = b.route.replace(/\.html$/, '')
-+        const aIdx = order.has(aRoute) ? order.get(aRoute) : Infinity
-+        const bIdx = order.has(bRoute) ? order.get(bRoute) : Infinity
-+        return aIdx - bIdx
-+      })
++      const tfidfList = normalList
++        .filter((v) => order.has(v.route.replace(/\.html$/, '')))
++        .sort((a, b) => order.get(a.route.replace(/\.html$/, '')) - order.get(b.route.replace(/\.html$/, '')))
++      return topList.concat(tfidfList)
 +    }
 +  }
 +
    return topList.concat(normalList)
  })
-
-diff --git a/src/components/BlogSidebar.vue b/src/components/BlogSidebar.vue
-index 66b9e205dfc1a39bffce0127bda6e405ecc87992..8008db305b0e4681b90b4a58ca77b16f3a2e71de 100644
---- a/src/components/BlogSidebar.vue
-+++ b/src/components/BlogSidebar.vue
-@@ -12,7 +12,9 @@ const sidebarStyle = computed(() =>
-
- <template>
-   <div v-if="show" class="sidebar" :class="{ card: sidebarStyle === 'card' }" data-pagefind-ignore="all">
--    <BlogRecommendArticle />
-+    <ClientOnly>
-+      <BlogRecommendArticle />
-+    </ClientOnly>
-   </div>
- </template>
-
+ 
 diff --git a/src/styles/index.css b/src/styles/index.css
-index a8b2e5c..d7f3a1e 100644
+index c1495f5c3f9feaa5669e4cc1df636be69bc831de..e9738c42ce1ec0c774f22dc0bcb9fc37d707bb91 100644
 --- a/src/styles/index.css
 +++ b/src/styles/index.css
-@@ -84,7 +84,6 @@
+@@ -84,7 +84,6 @@ html.dark {
    }
  }
  .VPDoc .content main img {
