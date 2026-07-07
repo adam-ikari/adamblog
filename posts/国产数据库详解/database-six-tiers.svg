@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 540" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="selfDbGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="openDbGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+    <linearGradient id="unkDbGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 27px; font-weight: 700; fill: #1a1a1a; }
+    .sub { font-size: 18px; fill: #666; }
+    .tier-label { font-size: 19px; font-weight: 700; }
+    .db-name { font-size: 19px; font-weight: 700; }
+    .db-origin { font-size: 15px; fill: #555; }
+    .db-note { font-size: 15px; }
+  </style>
+
+  <text x="400" y="34" text-anchor="middle" class="title">国产数据库六家：按内核来源分档</text>
+  <text x="400" y="58" text-anchor="middle" class="sub">自研内核"自主口径最硬"，开源改造"借力但出身非自研"——金融核心选型看这条</text>
+
+  <!-- ===== 第一档：自研内核 ===== -->
+  <rect x="40" y="86" width="720" height="150" rx="8" fill="url(#selfDbGrad)" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="114" class="tier-label" fill="#166534">① 自研内核（自主口径最硬）</text>
+
+  <!-- 达梦 -->
+  <rect x="60" y="128" width="220" height="96" rx="6" fill="#ffffff" opacity="0.7"/>
+  <text x="170" y="154" text-anchor="middle" class="db-name" fill="#166534">达梦</text>
+  <text x="170" y="176" text-anchor="middle" class="db-origin">CEC · 冯玉才 · 2000</text>
+  <text x="170" y="198" text-anchor="middle" class="db-note" fill="#15803d">最像 Oracle</text>
+  <text x="170" y="216" text-anchor="middle" class="db-note" fill="#888">党政/金融迁移</text>
+
+  <!-- OceanBase -->
+  <rect x="290" y="128" width="220" height="96" rx="6" fill="#ffffff" opacity="0.7"/>
+  <text x="400" y="154" text-anchor="middle" class="db-name" fill="#166534">OceanBase</text>
+  <text x="400" y="176" text-anchor="middle" class="db-origin">蚂蚁集团 · 2010</text>
+  <text x="400" y="198" text-anchor="middle" class="db-note" fill="#15803d">原生分布式 · 扛过双十一</text>
+  <text x="400" y="216" text-anchor="middle" class="db-note" fill="#888">金融核心实证替代</text>
+
+  <!-- GaussDB -->
+  <rect x="520" y="128" width="220" height="96" rx="6" fill="#ffffff" opacity="0.7"/>
+  <text x="630" y="154" text-anchor="middle" class="db-name" fill="#166534">GaussDB</text>
+  <text x="630" y="176" text-anchor="middle" class="db-origin">华为 · 2001 起</text>
+  <text x="630" y="198" text-anchor="middle" class="db-note" fill="#15803d">云原生/AI 原生</text>
+  <text x="630" y="216" text-anchor="middle" class="db-note" fill="#888">四大行核心系统</text>
+
+  <!-- ===== 第二档：开源改造 ===== -->
+  <rect x="40" y="252" width="720" height="110" rx="8" fill="url(#openDbGrad)" stroke="#fcd34d" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="280" class="tier-label" fill="#92400e">② 开源改造（借力成熟开源，自主率高但出身非自研）</text>
+
+  <rect x="60" y="294" width="680" height="56" rx="6" fill="#ffffff" opacity="0.6"/>
+  <text x="170" y="318" text-anchor="middle" class="db-name" fill="#92400e">人大金仓</text>
+  <text x="170" y="338" text-anchor="middle" class="db-origin">CETC · 基于 PostgreSQL</text>
+  <text x="400" y="318" text-anchor="middle" class="db-note" fill="#b45309">通用型 · 铺量最广</text>
+  <text x="400" y="338" text-anchor="middle" class="db-origin">党政/医疗/交通</text>
+  <text x="630" y="318" text-anchor="middle" class="db-note" fill="#b45309">销量套数领先</text>
+  <text x="630" y="338" text-anchor="middle" class="db-origin">企业化增强</text>
+
+  <!-- ===== 第三档：血缘未公开 ===== -->
+  <rect x="40" y="378" width="720" height="110" rx="8" fill="url(#unkDbGrad)" stroke="#cbd5e1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="60" y="406" class="tier-label" fill="#475569">③ 内核血缘公开资料有限（不强行归类，以官方为准）</text>
+
+  <rect x="60" y="420" width="330" height="56" rx="6" fill="#ffffff" opacity="0.6"/>
+  <text x="225" y="444" text-anchor="middle" class="db-name" fill="#475569">神通</text>
+  <text x="225" y="464" text-anchor="middle" class="db-origin">航天系 CASC · 政务/军工</text>
+
+  <rect x="410" y="420" width="330" height="56" rx="6" fill="#ffffff" opacity="0.6"/>
+  <text x="575" y="444" text-anchor="middle" class="db-name" fill="#475569">南大通用</text>
+  <text x="575" y="464" text-anchor="middle" class="db-origin">分析型见长 · 数据仓库第一份额</text>
+
+  <!-- 底部 -->
+  <text x="400" y="520" text-anchor="middle" class="db-note" fill="#888">替代 Oracle 是分水岭：金融核心实证替换的硬仗，是 OceanBase 与 GaussDB 打的</text>
+</svg>
