@@ -160,6 +160,8 @@ cc-switch use deepseek
 cc-switch use ollama
 ```
 
+![cc-Switch 两套工具对比](/posts/macOS-配置cc-Switch教程/cc-switch-two-tools.svg)
+
 ## macOS 上的使用场景
 
 ### 场景零：在多个国产模型之间切换（本系列核心）

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="profileGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <linearGradient id="providerGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+    <marker id="sArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#6366f1"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 26px; font-weight: 700; fill: #1a1a1a; }
+    .sub { font-size: 17px; fill: #666; }
+    .tool { font-size: 18px; font-weight: 700; }
+    .mode { font-size: 16px; font-weight: 600; }
+    .note { font-size: 14px; fill: #666; }
+    .step { font-size: 14px; }
+  </style>
+
+  <text x="400" y="30" text-anchor="middle" class="title">cc-Switch 两套工具：Profile 管理 vs 提供商切换</text>
+  <text x="400" y="52" text-anchor="middle" class="sub">一个整份 settings.json 替换，一个只改 env 字段——按需选用</text>
+
+  <!-- 左：aravhawk Profile 管理 -->
+  <rect x="30" y="80" width="370" height="300" rx="8" fill="url(#profileGrad)" stroke="#93c5fd" stroke-width="1" filter="url(#shadow)"/>
+  <text x="215" y="108" text-anchor="middle" class="tool" fill="#1e40af">@aravhawk/cc-switch</text>
+  <text x="215" y="130" text-anchor="middle" class="mode" fill="#1e3a8a">Profile 管理模式</text>
+  <line x1="60" y1="142" x2="370" y2="142" stroke="#93c5fd" stroke-width="0.5"/>
+  <text x="50" y="166" class="note">核心：Profile = 完整 settings.json 副本</text>
+  <text x="50" y="190" class="step">① profiles 存 ~/.cc-switch/profiles/</text>
+  <text x="50" y="210" class="step">② state.json 记当前激活 Profile</text>
+  <text x="50" y="230" class="step">③ 切换=同步当前回 Profile</text>
+  <text x="50" y="250" class="step">④ 再把目标复制到 settings.json</text>
+  <line x1="60" y1="264" x2="370" y2="264" stroke="#93c5fd" stroke-width="0.5" stroke-dasharray="4,3"/>
+  <text x="50" y="288" class="note">适合：整份配置隔离</text>
+  <text x="50" y="308" class="note">• 工作/个人账户切换</text>
+  <text x="50" y="328" class="note">• 多项目不同技术栈</text>
+  <text x="50" y="348" class="note">• 本地模型 vs 云端</text>
+  <text x="50" y="372" class="mode" fill="#1e3a8a">粒度：粗（整份替换）</text>
+
+  <!-- 右：adithya 提供商切换 -->
+  <rect x="420" y="80" width="370" height="300" rx="8" fill="url(#providerGrad)" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
+  <text x="605" y="108" text-anchor="middle" class="tool" fill="#166534">@adithya-13/cc-switch</text>
+  <text x="605" y="130" text-anchor="middle" class="mode" fill="#15803d">提供商切换模式</text>
+  <line x1="450" y1="142" x2="760" y2="142" stroke="#86efac" stroke-width="0.5"/>
+  <text x="440" y="166" class="note">核心：只改 env 块的 API 字段</text>
+  <text x="440" y="190" class="step">① 预置各提供商模板</text>
+  <text x="440" y="210" class="step">② 选提供商→填 Key</text>
+  <text x="440" y="230" class="step">③ 改写 settings.json 的 env</text>
+  <text x="440" y="250" class="step">④ base_url/token/model 切换</text>
+  <line x1="450" y1="264" x2="760" y2="264" stroke="#86efac" stroke-width="0.5" stroke-dasharray="4,3"/>
+  <text x="440" y="288" class="note">适合：多国产模型间快速切</text>
+  <text x="440" y="308" class="note">• DeepSeek↔智谱↔月之暗面</text>
+  <text x="440" y="328" class="note">• API 额度耗尽换提供商</text>
+  <text x="440" y="348" class="note">• 只换模型不换其他配置</text>
+  <text x="440" y="372" class="mode" fill="#15803d">粒度：细（仅 env 字段）</text>
+
+  <!-- 底部 -->
+  <rect x="30" y="394" width="760" height="50" rx="6" fill="#f8fafc" stroke="#d1d5db" stroke-width="0.5"/>
+  <text x="400" y="418" text-anchor="middle" class="mode" fill="#444">本系列核心场景=多国产模型切换 → 推荐 @adithya-13/cc-switch（提供商模式）</text>
+  <text x="400" y="436" text-anchor="middle" class="note">需整份配置隔离（账户/项目）时用 @aravhawk/cc-switch（Profile 模式）</text>
+</svg>
