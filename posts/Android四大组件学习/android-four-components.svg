@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="actG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#dbeafe"/><stop offset="100%" stop-color="#bfdbfe"/></linearGradient>
+    <linearGradient id="svcG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#dcfce7"/><stop offset="100%" stop-color="#bbf7d0"/></linearGradient>
+    <linearGradient id="cpG" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fef3c7"/><stop offset="100%" stop-color="#fde68a"/></linearGradient>
+    <linearGradient id="brG2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ede9fe"/><stop offset="100%" stop-color="#ddd6fe"/></linearGradient>
+    <filter id="sh"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/></filter>
+  </defs>
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 26px; font-weight: 700; fill: #1a1a1a; }
+    .sub { font-size: 17px; fill: #666; }
+    .name { font-size: 19px; font-weight: 700; }
+    .desc { font-size: 14px; fill: #555; }
+    .note { font-size: 13px; fill: #666; }
+  </style>
+  <text x="400" y="30" text-anchor="middle" class="title">Android 四大组件</text>
+  <text x="400" y="52" text-anchor="middle" class="sub">Activity 界面 · Service 后台 · ContentProvider 数据 · BroadcastReceiver 通信</text>
+
+  <!-- Activity -->
+  <rect x="20" y="80" width="185" height="200" rx="8" fill="url(#actG)" stroke="#93c5fd" stroke-width="1" filter="url(#sh)"/>
+  <text x="112" y="108" text-anchor="middle" class="name" fill="#1e40af">Activity</text>
+  <line x1="40" y1="120" x2="185" y2="120" stroke="#93c5fd" stroke-width="0.5"/>
+  <text x="35" y="144" class="desc">用户界面单元</text>
+  <text x="35" y="168" class="note">• 一个屏幕一个交互</text>
+  <text x="35" y="190" class="note">• 生命周期七态</text>
+  <text x="35" y="212" class="note">• Intent 启动/传参</text>
+  <text x="35" y="234" class="note">• 任务栈管理</text>
+  <text x="35" y="262" class="desc" fill="#1e3a8a">看得见的层</text>
+
+  <!-- Service -->
+  <rect x="215" y="80" width="185" height="200" rx="8" fill="url(#svcG)" stroke="#86efac" stroke-width="1" filter="url(#sh)"/>
+  <text x="307" y="108" text-anchor="middle" class="name" fill="#166534">Service</text>
+  <line x1="235" y1="120" x2="380" y2="120" stroke="#86efac" stroke-width="0.5"/>
+  <text x="230" y="144" class="desc">后台服务</text>
+  <text x="230" y="168" class="note">• 无界面长时运行</text>
+  <text x="230" y="190" class="note">• 启动式/绑定式</text>
+  <text x="230" y="212" class="note">• 音乐/下载/上传</text>
+  <text x="230" y="234" class="note">• 前台服务保活</text>
+  <text x="230" y="262" class="desc" fill="#15803d">看不见的活</text>
+
+  <!-- ContentProvider -->
+  <rect x="410" y="80" width="185" height="200" rx="8" fill="url(#cpG)" stroke="#fcd34d" stroke-width="1" filter="url(#sh)"/>
+  <text x="502" y="108" text-anchor="middle" class="name" fill="#92400e">ContentProvider</text>
+  <line x1="430" y1="120" x2="575" y2="120" stroke="#fcd34d" stroke-width="0.5"/>
+  <text x="425" y="144" class="desc">数据共享</text>
+  <text x="425" y="168" class="note">• 跨进程数据访问</text>
+  <text x="425" y="190" class="note">• 统一 URI 接口</text>
+  <text x="425" y="212" class="note">• 通讯录/媒体库</text>
+  <text x="425" y="234" class="note">• 数据封装与权限</text>
+  <text x="425" y="262" class="desc" fill="#b45309">数据的口</text>
+
+  <!-- BroadcastReceiver -->
+  <rect x="605" y="80" width="175" height="200" rx="8" fill="url(#brG2)" stroke="#c4b5fd" stroke-width="1" filter="url(#sh)"/>
+  <text x="692" y="108" text-anchor="middle" class="name" fill="#5b21b6">BroadcastReceiver</text>
+  <line x1="625" y1="120" x2="760" y2="120" stroke="#c4b5fd" stroke-width="0.5"/>
+  <text x="620" y="144" class="desc">广播接收</text>
+  <text x="620" y="168" class="note">• 系统事件监听</text>
+  <text x="620" y="190" class="note">• 自定义广播</text>
+  <text x="620" y="212" class="note">• 开机/网络/电量</text>
+  <text x="620" y="234" class="note">• 静态/动态注册</text>
+  <text x="620" y="262" class="desc" fill="#6d28d9">消息的耳</text>
+
+  <!-- 底部 -->
+  <rect x="20" y="304" width="760" height="50" rx="6" fill="#f8fafc" stroke="#d1d5db" stroke-width="0.5"/>
+  <text x="400" y="326" text-anchor="middle" class="desc" fill="#444">四大组件均需在 AndroidManifest.xml 注册，由系统调度</text>
+  <text x="400" y="346" text-anchor="middle" class="note">组件间通过 Intent 通信，ContentProvider 通过 URI 访问数据</text>
+
+  <text x="400" y="396" text-anchor="middle" class="note" fill="#888">Activity 管"看" · Service 管"后台跑" · ContentProvider 管"数据共享" · BroadcastReceiver 管"听消息"</text>
+  <text x="400" y="418" text-anchor="middle" class="note" fill="#888">四者分工协作，构成 Android 应用的运行骨架</text>
+</svg>

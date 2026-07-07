@@ -9,7 +9,7 @@ date: 2023-05-11
 # Vuex介绍
 Vuex 是 Vue.js 里最常用的状态管理库，学 Vue 绕不开它。下面这份指南面向刚入门的开发者，尽量把概念讲清楚。
 
-
+![Vuex 状态流转](/posts/Vuex介绍/vuex-data-flow.svg)
 
 ## 什么是 Vuex?
 

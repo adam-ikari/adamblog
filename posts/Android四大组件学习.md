@@ -9,6 +9,8 @@ date: 2019-09-19
 # Android四大组件学习
 > 这篇博文是从本人过去的 github pages 博客迁移过来，时间上会比较古老。
 
+![Android 四大组件](/posts/Android四大组件学习/android-four-components.svg)
+
 ## 简介
 
 Android 四大组件包括：
