@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="riskGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fee2e2"/>
+      <stop offset="100%" stop-color="#fecaca"/>
+    </linearGradient>
+    <linearGradient id="fixGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <marker id="rArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#16a34a"/>
+    </marker>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 27px; font-weight: 700; fill: #1a1a1a; }
+    .sub { font-size: 18px; fill: #666; }
+    .col-title { font-size: 20px; font-weight: 700; }
+    .case-name { font-size: 18px; font-weight: 700; }
+    .case-note { font-size: 15px; }
+    .fix { font-size: 15px; fill: #15803d; }
+  </style>
+
+  <text x="400" y="34" text-anchor="middle" class="title">信创断供的三类依赖与应对</text>
+  <text x="400" y="58" text-anchor="middle" class="sub">实体清单卡的是"买得到关键部件"——三个咽喉点攥在海外，信创把它们逐个换成可控来源</text>
+
+  <!-- 列标题 -->
+  <text x="120" y="100" text-anchor="middle" class="col-title" fill="#991b1b">咽喉点（依赖海外）</text>
+  <text x="400" y="100" text-anchor="middle" class="col-title" fill="#92400e">典型被卡案例</text>
+  <text x="680" y="100" text-anchor="middle" class="col-title" fill="#166534">信创应对</text>
+
+  <!-- ===== 第一行：先进制程代工 ===== -->
+  <rect x="30" y="114" width="240" height="110" rx="8" fill="url(#riskGrad)" stroke="#fca5a5" stroke-width="1" filter="url(#shadow)"/>
+  <text x="150" y="142" text-anchor="middle" class="case-name" fill="#991b1b">先进制程代工</text>
+  <text x="150" y="166" text-anchor="middle" class="case-note" fill="#7f1d1d">设计能做，流片靠代工</text>
+  <text x="150" y="188" text-anchor="middle" class="case-note" fill="#7f1d1d">台积电等少数厂</text>
+  <text x="150" y="210" text-anchor="middle" class="case-note" fill="#7f1d1d">用美国设备/受管制</text>
+
+  <rect x="290" y="114" width="240" height="110" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1" filter="url(#shadow)"/>
+  <text x="410" y="142" text-anchor="middle" class="case-name" fill="#92400e">华为海思</text>
+  <text x="410" y="166" text-anchor="middle" class="case-note" fill="#92400e">上清单后代工受限</text>
+  <text x="410" y="188" text-anchor="middle" class="case-note" fill="#92400e">先进制程产能断</text>
+  <text x="410" y="210" text-anchor="middle" class="case-note" fill="#92400e">被迫转向/囤货/补链</text>
+
+  <rect x="550" y="114" width="240" height="110" rx="8" fill="url(#fixGrad)" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
+  <text x="670" y="142" text-anchor="middle" class="case-name" fill="#166534">国产代工补链</text>
+  <text x="670" y="166" text-anchor="middle" class="fix">中芯国际等国内代工</text>
+  <text x="670" y="188" text-anchor="middle" class="fix">封装/封测国产化</text>
+  <text x="670" y="210" text-anchor="middle" class="fix">成熟制程先行</text>
+
+  <line x1="270" y1="169" x2="290" y2="169" stroke="#92400e" stroke-width="1.5" opacity="0.5"/>
+  <line x1="530" y1="169" x2="550" y2="169" stroke="#16a34a" stroke-width="1.5" marker-end="url(#rArrow)"/>
+
+  <!-- ===== 第二行：架构/IP授权 ===== -->
+  <rect x="30" y="240" width="240" height="110" rx="8" fill="url(#riskGrad)" stroke="#fca5a5" stroke-width="1" filter="url(#shadow)"/>
+  <text x="150" y="268" text-anchor="middle" class="case-name" fill="#991b1b">架构 / IP 授权</text>
+  <text x="150" y="292" text-anchor="middle" class="case-note" fill="#7f1d1d">x86 闭源架构</text>
+  <text x="150" y="314" text-anchor="middle" class="case-note" fill="#7f1d1d">授权卡在 Intel/AMD</text>
+  <text x="150" y="336" text-anchor="middle" class="case-note" fill="#7f1d1d">能否续/扩受地缘约束</text>
+
+  <rect x="290" y="240" width="240" height="110" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1" filter="url(#shadow)"/>
+  <text x="410" y="268" text-anchor="middle" class="case-name" fill="#92400e">海光（AMD 合资）</text>
+  <text x="410" y="292" text-anchor="middle" class="case-note" fill="#92400e">2019 上实体清单</text>
+  <text x="410" y="314" text-anchor="middle" class="case-note" fill="#92400e">Zen 架构续约受阻</text>
+  <text x="410" y="336" text-anchor="middle" class="case-note" fill="#92400e">保留 Zen1 使用权</text>
+
+  <rect x="550" y="240" width="240" height="110" rx="8" fill="url(#fixGrad)" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
+  <text x="670" y="268" text-anchor="middle" class="case-name" fill="#166534">力推自研指令集</text>
+  <text x="670" y="292" text-anchor="middle" class="fix">龙芯 LoongArch</text>
+  <text x="670" y="314" text-anchor="middle" class="fix">申威 SW64</text>
+  <text x="670" y="336" text-anchor="middle" class="fix">ARM 生态自有 IP</text>
+
+  <line x1="270" y1="295" x2="290" y2="295" stroke="#92400e" stroke-width="1.5" opacity="0.5"/>
+  <line x1="530" y1="295" x2="550" y2="295" stroke="#16a34a" stroke-width="1.5" marker-end="url(#rArrow)"/>
+
+  <!-- ===== 第三行：精密零部件/设备 ===== -->
+  <rect x="30" y="366" width="240" height="110" rx="8" fill="url(#riskGrad)" stroke="#fca5a5" stroke-width="1" filter="url(#shadow)"/>
+  <text x="150" y="394" text-anchor="middle" class="case-name" fill="#991b1b">精密零部件 / 设备</text>
+  <text x="150" y="418" text-anchor="middle" class="case-note" fill="#7f1d1d">感光鼓/激光器</text>
+  <text x="150" y="440" text-anchor="middle" class="case-note" fill="#7f1d1d">光刻机/EDA 工具</text>
+  <text x="150" y="462" text-anchor="middle" class="case-note" fill="#7f1d1d">大头在海外厂商</text>
+
+  <rect x="290" y="366" width="240" height="110" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1" filter="url(#shadow)"/>
+  <text x="410" y="394" text-anchor="middle" class="case-name" fill="#92400e">奔图 / 半导体业</text>
+  <text x="410" y="418" text-anchor="middle" class="case-note" fill="#92400e">奔图卡零部件</text>
+  <text x="410" y="440" text-anchor="middle" class="case-note" fill="#92400e">主控自研扛住了</text>
+  <text x="410" y="462" text-anchor="middle" class="case-note" fill="#92400e">设备侧全行业受限</text>
+
+  <rect x="550" y="366" width="240" height="110" rx="8" fill="url(#fixGrad)" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
+  <text x="670" y="394" text-anchor="middle" class="case-name" fill="#166534">关键节点国产化</text>
+  <text x="670" y="418" text-anchor="middle" class="fix">主控芯片自研</text>
+  <text x="670" y="440" text-anchor="middle" class="fix">国产光刻/EDA 攻坚</text>
+  <text x="670" y="462" text-anchor="middle" class="fix">非关键适度放开</text>
+
+  <line x1="270" y1="421" x2="290" y2="421" stroke="#92400e" stroke-width="1.5" opacity="0.5"/>
+  <line x1="530" y1="421" x2="550" y2="421" stroke="#16a34a" stroke-width="1.5" marker-end="url(#rArrow)"/>
+
+  <!-- 底部 -->
+  <text x="400" y="520" text-anchor="middle" class="case-note" fill="#888">不是每个零件都得国产，但 CPU 架构/OS/数据库/密码/可信根这几个咽喉点得攥住</text>
+  <text x="400" y="542" text-anchor="middle" class="case-note" fill="#888">+ 来源可追溯 + 自主率评分 + 可信链闭环 = 信创对供应链的真实要求</text>
+</svg>

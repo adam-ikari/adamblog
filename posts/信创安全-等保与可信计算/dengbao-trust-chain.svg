@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="levelGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="trustGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <marker id="tArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#4f46e5"/>
+    </marker>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 27px; font-weight: 700; fill: #1a1a1a; }
+    .sub { font-size: 18px; fill: #666; }
+    .section-title { font-size: 20px; font-weight: 700; }
+    .level-num { font-size: 18px; font-weight: 700; }
+    .level-name { font-size: 16px; }
+    .level-note { font-size: 14px; fill: #666; }
+    .trust-layer { font-size: 17px; font-weight: 600; }
+    .trust-note { font-size: 14px; fill: #555; }
+  </style>
+
+  <text x="400" y="34" text-anchor="middle" class="title">等保 2.0 五级 + 可信计算信任链</text>
+  <text x="400" y="58" text-anchor="middle" class="sub">等保是合规准入门槛，可信计算把信任根钉进硬件——从开机起逐级验证没被篡改</text>
+
+  <!-- ===== 左侧：等保五级 ===== -->
+  <text x="40" y="96" class="section-title" fill="#166534">等保 2.0 五级（GB/T 22239-2019）</text>
+
+  <rect x="40" y="108" width="360" height="46" rx="6" fill="#dcfce7" stroke="#86efac" stroke-width="0.5" filter="url(#shadow)"/>
+  <text x="58" y="136" class="level-num" fill="#166534">第一级</text>
+  <text x="130" y="136" class="level-name" fill="#15803d">自主保护级</text>
+  <text x="250" y="136" class="level-note">一般系统</text>
+
+  <rect x="40" y="160" width="360" height="46" rx="6" fill="#dcfce7" stroke="#86efac" stroke-width="0.5" filter="url(#shadow)"/>
+  <text x="58" y="188" class="level-num" fill="#166534">第二级</text>
+  <text x="130" y="188" class="level-name" fill="#15803d">指导保护级</text>
+  <text x="250" y="188" class="level-note">需定期测评</text>
+
+  <rect x="40" y="212" width="360" height="46" rx="6" fill="#fef3c7" stroke="#fcd34d" stroke-width="1" filter="url(#shadow)"/>
+  <text x="58" y="240" class="level-num" fill="#92400e">第三级</text>
+  <text x="130" y="240" class="level-name" fill="#b45309">监督保护级</text>
+  <text x="250" y="240" class="level-note" fill="#b45309">关键信息基础设施标配</text>
+
+  <rect x="40" y="264" width="360" height="46" rx="6" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.5" filter="url(#shadow)"/>
+  <text x="58" y="292" class="level-num" fill="#991b1b">第四级</text>
+  <text x="130" y="292" class="level-name" fill="#b91c1c">强制保护级</text>
+  <text x="250" y="292" class="level-note">关键核心系统</text>
+
+  <rect x="40" y="316" width="360" height="46" rx="6" fill="#fee2e2" stroke="#f87171" stroke-width="1" filter="url(#shadow)"/>
+  <text x="58" y="344" class="level-num" fill="#991b1b">第五级</text>
+  <text x="130" y="344" class="level-name" fill="#b91c1c">专控保护级</text>
+  <text x="250" y="344" class="level-note">特殊重要系统</text>
+
+  <text x="40" y="388" class="level-note">2.0 扩展对象：云计算·大数据·物联网·工业控制</text>
+  <text x="40" y="408" class="level-note">三级以上 → 可信验证为测评项，TCM/TPM 是硬指标</text>
+
+  <!-- ===== 右侧：可信计算信任链 ===== -->
+  <text x="440" y="96" class="section-title" fill="#1e40af">可信计算：信任链逐级建立</text>
+
+  <!-- 信任根（硬件） -->
+  <rect x="440" y="108" width="320" height="56" rx="6" fill="#1e40af" filter="url(#shadow)"/>
+  <text x="600" y="134" text-anchor="middle" class="trust-layer" fill="#fff">🔧 信任根（硬件芯片）</text>
+  <text x="600" y="154" text-anchor="middle" class="trust-note" fill="#bfdbfe">TCM / TPM 国产版 · 钉在芯片固件</text>
+
+  <line x1="600" y1="164" x2="600" y2="186" stroke="#4f46e5" stroke-width="1.5" marker-end="url(#tArrow)"/>
+  <text x="612" y="180" class="trust-note" fill="#4f46e5">度量+验证</text>
+
+  <!-- 固件/BIOS -->
+  <rect x="440" y="188" width="320" height="48" rx="6" fill="url(#trustGrad)" stroke="#93c5fd" stroke-width="0.5" filter="url(#shadow)"/>
+  <text x="600" y="208" text-anchor="middle" class="trust-layer" fill="#1e3a8a">固件 / BIOS</text>
+  <text x="600" y="226" text-anchor="middle" class="trust-note">启动引导未被篡改</text>
+
+  <line x1="600" y1="236" x2="600" y2="258" stroke="#4f46e5" stroke-width="1.5" marker-end="url(#tArrow)"/>
+
+  <!-- 操作系统 -->
+  <rect x="440" y="260" width="320" height="48" rx="6" fill="url(#trustGrad)" stroke="#93c5fd" stroke-width="0.5" filter="url(#shadow)"/>
+  <text x="600" y="280" text-anchor="middle" class="trust-layer" fill="#1e3a8a">操作系统内核</text>
+  <text x="600" y="298" text-anchor="middle" class="trust-note">内核完整性校验</text>
+
+  <line x1="600" y1="308" x2="600" y2="330" stroke="#4f46e5" stroke-width="1.5" marker-end="url(#tArrow)"/>
+
+  <!-- 应用 -->
+  <rect x="440" y="332" width="320" height="48" rx="6" fill="url(#trustGrad)" stroke="#93c5fd" stroke-width="0.5" filter="url(#shadow)"/>
+  <text x="600" y="352" text-anchor="middle" class="trust-layer" fill="#1e3a8a">应用程序</text>
+  <text x="600" y="370" text-anchor="middle" class="trust-note">运行环境可信</text>
+
+  <text x="440" y="408" class="level-note">从信任根逐级度量 → 建立信任链 → 开机即干净可验证</text>
+
+  <!-- 底部：两者关系 -->
+  <rect x="40" y="436" width="720" height="64" rx="8" fill="#f8fafc" stroke="#d1d5db" stroke-width="0.5"/>
+  <text x="60" y="464" class="trust-layer" fill="#444">等保 × 可信计算 = 配套关系</text>
+  <text x="60" y="486" class="trust-note">等保规定"得过某级"，过级往往要求国产+审计+可信根；可信计算提供"硬件层自主可控"的底层支撑</text>
+
+  <text x="400" y="540" text-anchor="middle" class="level-note" fill="#888">等保是需求发生器，可信计算是底层硬指标——两者共同构成信创安全的合规骨架</text>
+</svg>
