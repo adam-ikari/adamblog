@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="startGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+    <marker id="dArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#6366f1"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 26px; font-weight: 700; fill: #1a1a1a; }
+    .sub { font-size: 17px; fill: #666; }
+    .step { font-size: 18px; font-weight: 700; }
+    .note { font-size: 14px; fill: #666; }
+    .result { font-size: 16px; font-weight: 600; }
+    .fix { font-size: 14px; }
+  </style>
+
+  <text x="400" y="30" text-anchor="middle" class="title">Claude Code 报错定位：curl 二分法</text>
+  <text x="400" y="52" text-anchor="middle" class="sub">先用 curl 直接打 API——把"Key/地址问题"还是"Claude Code 配置问题"二分开</text>
+
+  <!-- 起点：遇到报错 -->
+  <rect x="280" y="76" width="240" height="56" rx="8" fill="url(#startGrad)" stroke="#93c5fd" stroke-width="1" filter="url(#shadow)"/>
+  <text x="400" y="102" text-anchor="middle" class="step" fill="#1e40af">遇到报错</text>
+  <text x="400" y="122" text-anchor="middle" class="note" fill="#1e3a8a">先别动 Claude Code 配置</text>
+
+  <line x1="400" y1="132" x2="400" y2="156" stroke="#6366f1" stroke-width="1.5" marker-end="url(#dArrow)"/>
+
+  <!-- curl 验证 -->
+  <rect x="220" y="158" width="360" height="64" rx="8" fill="#1e1b4b" filter="url(#shadow)"/>
+  <text x="400" y="184" text-anchor="middle" class="step" fill="#fff">curl 直接打提供商 API</text>
+  <text x="400" y="206" text-anchor="middle" class="note" fill="#c7d2fe">最小请求验证 Key + 地址 + 模型 ID</text>
+
+  <!-- 分流箭头 -->
+  <line x1="400" y1="222" x2="400" y2="246" stroke="#6366f1" stroke-width="1.5"/>
+  <line x1="120" y1="246" x2="680" y2="246" stroke="#6366f1" stroke-width="1.5"/>
+  <line x1="120" y1="246" x2="120" y2="270" stroke="#6366f1" stroke-width="1.5" marker-end="url(#dArrow)"/>
+  <line x1="320" y1="246" x2="320" y2="270" stroke="#6366f1" stroke-width="1.5" marker-end="url(#dArrow)"/>
+  <line x1="500" y1="246" x2="500" y2="270" stroke="#6366f1" stroke-width="1.5" marker-end="url(#dArrow)"/>
+  <line x1="680" y1="246" x2="680" y2="270" stroke="#6366f1" stroke-width="1.5" marker-end="url(#dArrow)"/>
+
+  <!-- 返回正常 JSON -->
+  <rect x="30" y="272" width="180" height="120" rx="8" fill="#dcfce7" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
+  <text x="120" y="298" text-anchor="middle" class="result" fill="#166534">正常 JSON 回复</text>
+  <line x1="50" y1="310" x2="190" y2="310" stroke="#86efac" stroke-width="0.5"/>
+  <text x="45" y="332" class="fix" fill="#15803d">Key/地址都对</text>
+  <text x="45" y="354" class="fix" fill="#15803d">问题在 Claude Code</text>
+  <text x="45" y="376" class="fix" fill="#666">→ 查 settings.json</text>
+
+  <!-- 401 -->
+  <rect x="230" y="272" width="180" height="120" rx="8" fill="#fee2e2" stroke="#fca5a5" stroke-width="1" filter="url(#shadow)"/>
+  <text x="320" y="298" text-anchor="middle" class="result" fill="#991b1b">401 Unauthorized</text>
+  <line x1="250" y1="310" x2="390" y2="310" stroke="#fca5a5" stroke-width="0.5"/>
+  <text x="245" y="332" class="fix" fill="#b91c1c">Key 错</text>
+  <text x="245" y="354" class="fix" fill="#b91c1c">或认证头格式错</text>
+  <text x="245" y="376" class="fix" fill="#666">→ 查 Bearer/Token</text>
+
+  <!-- 404 -->
+  <rect x="410" y="272" width="180" height="120" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1" filter="url(#shadow)"/>
+  <text x="500" y="298" text-anchor="middle" class="result" fill="#92400e">404 model not found</text>
+  <line x1="430" y1="310" x2="570" y2="310" stroke="#fcd34d" stroke-width="0.5"/>
+  <text x="425" y="332" class="fix" fill="#b45309">模型 ID 填错</text>
+  <text x="425" y="354" class="fix" fill="#b45309">或该端点不支持</text>
+  <text x="425" y="376" class="fix" fill="#666">→ 核对 model 字段</text>
+
+  <!-- 超时 -->
+  <rect x="590" y="272" width="180" height="120" rx="8" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="680" y="298" text-anchor="middle" class="result" fill="#475569">连接超时</text>
+  <line x1="610" y1="310" x2="750" y2="310" stroke="#cbd5e1" stroke-width="0.5"/>
+  <text x="605" y="332" class="fix" fill="#475569">网络问题</text>
+  <text x="605" y="354" class="fix" fill="#475569">或 base_url 不通</text>
+  <text x="605" y="376" class="fix" fill="#666">→ 查代理/地址</text>
+
+  <!-- 底部 -->
+  <rect x="30" y="420" width="740" height="56" rx="6" fill="#fef2f2" stroke="#fca5a5" stroke-width="0.5"/>
+  <text x="50" y="446" class="result" fill="#991b1b">💡 curl 用 OpenAI 兼容端点验 Key 有效性即可，与 Claude Code 走的 Anthropic 协议端点是两回事</text>
+  <text x="50" y="466" class="note">换提供商把 URL / 模型 ID / Token 换成对应的——验证 Key 这一步足够了</text>
+
+  <text x="400" y="510" text-anchor="middle" class="note" fill="#888">五类报错：401认证·连接超时·模型不存在·上下文超限·配置不生效</text>
+  <text x="400" y="532" text-anchor="middle" class="note" fill="#888">二分法先把 API 侧和配置侧分开，再逐类定位——比直接改配置省事十倍</text>
+</svg>

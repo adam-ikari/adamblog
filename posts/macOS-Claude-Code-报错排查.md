@@ -44,6 +44,8 @@ curl -X POST https://api.deepseek.com/chat/completions \
 
 > 💡 这里用的是 DeepSeek 原生的 OpenAI 兼容端点（`/chat/completions`）来验证 Key 有没有效，这跟 Claude Code 走的 Anthropic 协议端点是两回事，但**验证 Key 有效性足够了**。换提供商时把 URL、模型 ID、Token 换成对应的就行。
 
+![Claude Code 报错定位 curl 二分法](/posts/macOS-Claude-Code-报错排查/troubleshoot-curl-decision.svg)
+
 ## 报错一：401 认证失败 / Unauthorized
 
 ### 典型现象
