@@ -15,7 +15,7 @@ Android 媒体库（MediaProvider）说到底就是一个 Provider。
 
 **Android 4.4** 之后，遇到这几种情况——**系统启动完成**、**SD 卡插拔**，或者收到 **`Intent.ACTION_MEDIA_SCANNER_SCAN_FILE` 广播**——系统就会扫一遍文件系统，把新增和删除的文件信息同步进这个 MediaProvider。别的应用要用到媒体文件，直接读它就行，不必自己去翻目录。
 
-
+![Android MediaProvider 媒体库更新流程图](/posts/Android媒体库更新问题/media-update-flow.svg)
 
 ## 背景
 

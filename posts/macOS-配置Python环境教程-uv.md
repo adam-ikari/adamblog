@@ -19,6 +19,8 @@ series:
 
 Python 环境管理一直是开发者的痛点：传统 pip + venv 慢，conda 环境臃肿，pyenv 管版本又麻烦。uv 是 Astral 团队（也就是做 Ruff 那帮人）出的新一代 Python 包管理器，用 Rust 写的，快得离谱——比 pip 快一到两个数量级。它把版本管理、虚拟环境、包管理都收进了一个工具，单二进制文件，不拖家带口，跟 pip 和 PyPI 生态也完全兼容。
 
+![uv 配置 Python 环境全流程](/posts/macOS-配置Python环境教程-uv/uv-python-workflow.svg)
+
 ## macOS 上安装 uv
 
 ### 方式一：Homebrew（推荐）

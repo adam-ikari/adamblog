@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eef2f7"/>
+    </linearGradient>
+    <linearGradient id="uvGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.10"/>
+    </filter>
+    <filter id="shadowDeep">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-opacity="0.15"/>
+    </filter>
+    <marker id="mergeArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#16a34a"/>
+    </marker>
+    <marker id="toolArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 27px; font-weight: 700; fill: #1a1a1a; }
+    .subtitle { font-size: 15px; fill: #666; }
+    .uv-name { font-size: 30px; font-weight: 700; fill: #14532d; }
+    .uv-tag { font-size: 15px; font-weight: 600; fill: #16a34a; }
+    .col-head { font-size: 17px; font-weight: 700; }
+    .tool-name { font-size: 15px; font-weight: 600; }
+    .tool-role { font-size: 12.5px; fill: #666; }
+    .cap-title { font-size: 16px; font-weight: 700; }
+    .cap-cmd { font-size: 13.5px; fill: #1e40af; font-family: 'SF Mono', 'Consolas', monospace; }
+    .cap-desc { font-size: 12.5px; fill: #555; }
+  </style>
+
+  <rect width="800" height="600" fill="url(#bgGrad)"/>
+
+  <text x="400" y="36" text-anchor="middle" class="title">uv：一个工具替掉一整套 Python 工具链</text>
+  <text x="400" y="60" text-anchor="middle" class="subtitle">Rust 实现 · 全局缓存并行解析 · 装包比 pip 快 10–100x</text>
+
+  <!-- ===== 左侧：被替代的分散工具链 ===== -->
+  <text x="140" y="98" text-anchor="middle" class="col-head" fill="#b91c1c">传统做法：工具割裂，各管一段</text>
+
+  <!-- pyenv -->
+  <rect x="40" y="112" width="200" height="52" rx="8" fill="#fee2e2" stroke="#fca5a5" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="140" y="135" text-anchor="middle" class="tool-name" fill="#991b1b">pyenv</text>
+  <text x="140" y="153" text-anchor="middle" class="tool-role">Python 版本管理（Shell 实现）</text>
+
+  <!-- venv -->
+  <rect x="40" y="174" width="200" height="52" rx="8" fill="#fee2e2" stroke="#fca5a5" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="140" y="197" text-anchor="middle" class="tool-name" fill="#991b1b">venv / virtualenv</text>
+  <text x="140" y="215" text-anchor="middle" class="tool-role">创建虚拟环境</text>
+
+  <!-- pip -->
+  <rect x="40" y="236" width="200" height="52" rx="8" fill="#fee2e2" stroke="#fca5a5" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="140" y="259" text-anchor="middle" class="tool-name" fill="#991b1b">pip / pip-tools</text>
+  <text x="140" y="277" text-anchor="middle" class="tool-role">安装包、解析依赖（串行）</text>
+
+  <!-- poetry -->
+  <rect x="40" y="298" width="200" height="52" rx="8" fill="#fee2e2" stroke="#fca5a5" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="140" y="321" text-anchor="middle" class="tool-name" fill="#991b1b">poetry</text>
+  <text x="140" y="339" text-anchor="middle" class="tool-role">项目管理、锁文件</text>
+
+  <!-- pipx -->
+  <rect x="40" y="360" width="200" height="52" rx="8" fill="#fee2e2" stroke="#fca5a5" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="140" y="383" text-anchor="middle" class="tool-name" fill="#991b1b">pipx</text>
+  <text x="140" y="401" text-anchor="middle" class="tool-role">安装全局命令行工具</text>
+
+  <text x="140" y="432" text-anchor="middle" font-size="13" fill="#94a3b8">五个工具，五套配置，彼此不兼容</text>
+
+  <!-- ===== 汇聚箭头 ===== -->
+  <line x1="245" y1="138" x2="318" y2="278" stroke="#16a34a" stroke-width="1.8" marker-end="url(#mergeArrow)"/>
+  <line x1="245" y1="200" x2="318" y2="284" stroke="#16a34a" stroke-width="1.8" marker-end="url(#mergeArrow)"/>
+  <line x1="245" y1="262" x2="318" y2="290" stroke="#16a34a" stroke-width="1.8" marker-end="url(#mergeArrow)"/>
+  <line x1="245" y1="324" x2="318" y2="296" stroke="#16a34a" stroke-width="1.8" marker-end="url(#mergeArrow)"/>
+  <line x1="245" y1="386" x2="318" y2="302" stroke="#16a34a" stroke-width="1.8" marker-end="url(#mergeArrow)"/>
+
+  <!-- ===== 中央：uv ===== -->
+  <rect x="320" y="250" width="160" height="96" rx="14" fill="url(#uvGrad)" stroke="#16a34a" stroke-width="2.2" filter="url(#shadowDeep)"/>
+  <text x="400" y="287" text-anchor="middle" class="uv-name">⚡ uv</text>
+  <text x="400" y="312" text-anchor="middle" class="uv-tag">Rust · Astral 团队</text>
+  <text x="400" y="332" text-anchor="middle" font-size="12.5" fill="#166534">一个二进制，全流程通吃</text>
+
+  <!-- ===== 右侧：uv 的四大能力 ===== -->
+  <text x="620" y="98" text-anchor="middle" class="col-head" fill="#15803d">uv 一站式：四大能力 + 工具安装</text>
+
+  <!-- 能力1：Python 版本管理 -->
+  <rect x="520" y="112" width="240" height="70" rx="8" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="534" y="134" class="cap-title" fill="#1e3a8a">① Python 版本管理</text>
+  <text x="534" y="154" class="cap-cmd">uv python install / list / pin</text>
+  <text x="534" y="172" class="cap-desc">替 pyenv：装、查、固定版本</text>
+
+  <!-- 能力2：虚拟环境 -->
+  <rect x="520" y="192" width="240" height="70" rx="8" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="534" y="214" class="cap-title" fill="#1e3a8a">② 虚拟环境管理</text>
+  <text x="534" y="234" class="cap-cmd">uv venv --python 3.12</text>
+  <text x="534" y="252" class="cap-desc">替 venv：建环境，缺版本自动装</text>
+
+  <!-- 能力3：包管理 -->
+  <rect x="520" y="272" width="240" height="70" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="534" y="294" class="cap-title" fill="#92400e">③ 包管理（极速）</text>
+  <text x="534" y="314" class="cap-cmd">uv pip install / list</text>
+  <text x="534" y="332" class="cap-desc">替 pip：全局缓存 + 并行解析</text>
+
+  <!-- 能力4：项目管理 -->
+  <rect x="520" y="352" width="240" height="70" rx="8" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="534" y="374" class="cap-title" fill="#5b21b6">④ 项目管理</text>
+  <text x="534" y="394" class="cap-cmd">uv init / add / sync / lock</text>
+  <text x="534" y="412" class="cap-desc">替 poetry：声明 + 锁文件可复现</text>
+
+  <!-- uv → 四大能力 连接线 -->
+  <line x1="480" y1="278" x2="516" y2="147" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#toolArrow)"/>
+  <line x1="480" y1="286" x2="516" y2="227" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#toolArrow)"/>
+  <line x1="480" y1="302" x2="516" y2="307" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#toolArrow)"/>
+  <line x1="480" y1="310" x2="516" y2="387" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#toolArrow)"/>
+
+  <!-- ===== 底部：全局工具 + 可复现 ===== -->
+  <rect x="40" y="462" width="360" height="108" rx="10" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="60" y="486" font-size="16" font-weight="700" fill="#14532d">⑤ 全局工具安装（替 pipx）</text>
+  <text x="60" y="508" font-size="13.5" fill="#1e40af" font-family="'SF Mono','Consolas',monospace">uv tool install / list / run  ·  uvx</text>
+  <text x="60" y="528" font-size="13" fill="#555">工具装在隔离环境，不污染全局 Python</text>
+  <text x="60" y="548" font-size="13" fill="#555">uvx 临时运行，不落地</text>
+
+  <rect x="420" y="462" width="340" height="108" rx="10" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="440" y="486" font-size="16" font-weight="700" fill="#92400e">环境可复现：两个文件</text>
+  <text x="440" y="508" font-size="13.5" fill="#1e40af" font-family="'SF Mono','Consolas',monospace">pyproject.toml  →  声明依赖范围</text>
+  <text x="440" y="528" font-size="13.5" fill="#1e40af" font-family="'SF Mono','Consolas',monospace">uv.lock          →  锁定精确版本+哈希</text>
+  <text x="440" y="550" font-size="13" fill="#555">uv sync 让虚拟环境与锁文件完全一致</text>
+
+  <!-- 底部脚注 -->
+  <text x="400" y="588" text-anchor="middle" font-size="13" fill="#94a3b8">兼容 pyproject.toml 标准 / requirements.txt，迁移成本低</text>
+</svg>

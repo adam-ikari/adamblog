@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eff6ff"/>
+    </linearGradient>
+    <linearGradient id="step1Grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eff6ff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+    <linearGradient id="step2Grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ecfdf5"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+    <linearGradient id="step3Grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="100%" stop-color="#fef3c7"/>
+    </linearGradient>
+    <linearGradient id="conflictGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef2f2"/>
+      <stop offset="100%" stop-color="#fee2e2"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.1"/>
+    </filter>
+    <marker id="flowArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#1e40af"/>
+    </marker>
+    <marker id="solveArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#16a34a"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .code { font-family: 'SF Mono', 'Menlo', 'Consolas', monospace; }
+  </style>
+
+  <rect x="0" y="0" width="800" height="620" fill="url(#bgGrad)"/>
+
+  <text x="400" y="40" text-anchor="middle" font-size="27" font-weight="700" fill="#1a1a1a">Element Plus 图标全局注册 + 别名：三步流程</text>
+  <text x="400" y="64" text-anchor="middle" font-size="16" fill="#666">导入全部图标 → 加前缀全局注册 → 模板里用别名直接引用</text>
+
+  <!-- ===== 步骤 1：导入 ===== -->
+  <rect x="50" y="88" width="700" height="92" rx="10" fill="url(#step1Grad)" stroke="#93c5fd" stroke-width="1.5" filter="url(#shadow)"/>
+  <circle cx="86" cy="124" r="20" fill="#1e40af"/>
+  <text x="86" y="131" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">1</text>
+  <text x="120" y="118" font-size="19" font-weight="700" fill="#1e3a8a">导入全部图标</text>
+  <text x="120" y="142" font-size="14" fill="#555">用命名空间导入把所有图标组件一次性拿过来</text>
+  <text x="120" y="166" font-size="15" fill="#1e40af" class="code">import * as ElementPlusIconsVue from "@element-plus/icons-vue"</text>
+
+  <!-- 箭头 1→2 -->
+  <line x1="400" y1="180" x2="400" y2="206" stroke="#1e40af" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- ===== 步骤 2：注册 + 别名 ===== -->
+  <rect x="50" y="208" width="700" height="110" rx="10" fill="url(#step2Grad)" stroke="#86efac" stroke-width="1.5" filter="url(#shadow)"/>
+  <circle cx="86" cy="254" r="20" fill="#16a34a"/>
+  <text x="86" y="261" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">2</text>
+  <text x="120" y="244" font-size="19" font-weight="700" fill="#14532d">遍历注册，统一加前缀 ElIcon</text>
+  <text x="120" y="268" font-size="14" fill="#555">遍历所有图标，用模板字符串拼出带前缀的组件名全局注册</text>
+  <text x="120" y="290" font-size="15" fill="#166534" class="code">for (const [key, component] of Object.entries(ElementPlusIconsVue))</text>
+  <text x="120" y="310" font-size="15" fill="#16a34a" class="code">  app.component(`ElIcon${key}`, component)</text>
+
+  <!-- 箭头 2→3 -->
+  <line x1="400" y1="318" x2="400" y2="344" stroke="#1e40af" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- ===== 步骤 3：使用 ===== -->
+  <rect x="50" y="346" width="700" height="92" rx="10" fill="url(#step3Grad)" stroke="#fcd34d" stroke-width="1.5" filter="url(#shadow)"/>
+  <circle cx="86" cy="382" r="20" fill="#b45309"/>
+  <text x="86" y="389" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">3</text>
+  <text x="120" y="376" font-size="19" font-weight="700" fill="#78350f">模板里按别名直接用</text>
+  <text x="120" y="400" font-size="14" fill="#555">无需 import，组件名转成 kebab-case，加 el-icon- 前缀</text>
+  <text x="120" y="424" font-size="15" fill="#b45309" class="code">&lt;el-icon&gt;&lt;el-icon-menu /&gt;&lt;/el-icon&gt;</text>
+
+  <!-- ===== 底部：为什么要别名 ===== -->
+  <text x="400" y="466" text-anchor="middle" font-size="20" font-weight="700" fill="#1a1a1a">为什么要加前缀别名？</text>
+
+  <!-- 冲突卡片 -->
+  <rect x="50" y="484" width="340" height="118" rx="10" fill="url(#conflictGrad)" stroke="#fca5a5" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="220" y="512" text-anchor="middle" font-size="18" font-weight="700" fill="#b91c1c">直接用原名会冲突</text>
+  <text x="220" y="538" text-anchor="middle" font-size="14" fill="#555">Element Plus 图标里有个叫 Menu 的组件</text>
+  <text x="220" y="560" text-anchor="middle" font-size="14" fill="#555">而 HTML 标准已有 &lt;menu&gt; 标签</text>
+  <text x="220" y="584" text-anchor="middle" font-size="15" font-weight="600" fill="#dc2626">同名 → 渲染/语义冲突</text>
+
+  <!-- 解决箭头 -->
+  <line x1="394" y1="543" x2="406" y2="543" stroke="#16a34a" stroke-width="2.5" marker-end="url(#solveArrow)"/>
+
+  <!-- 解决卡片 -->
+  <rect x="410" y="484" width="340" height="118" rx="10" fill="url(#step2Grad)" stroke="#86efac" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="580" y="512" text-anchor="middle" font-size="18" font-weight="700" fill="#166534">加前缀就避开了</text>
+  <text x="580" y="538" text-anchor="middle" font-size="14" fill="#555">注册时拼 ElIcon 前缀</text>
+  <text x="580" y="560" text-anchor="middle" font-size="14" fill="#555">用时再转 el-icon- 前缀</text>
+  <text x="580" y="584" text-anchor="middle" font-size="15" font-weight="600" fill="#16a34a">专属命名空间，互不干扰</text>
+</svg>

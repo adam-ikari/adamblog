@@ -20,7 +20,7 @@ tags: 前端 nvm 离线安装
 
 内网、隔离网这类离线环境装 Node.js 是个麻烦事——没网就没法在线拉版本。办法其实不复杂：先在外网把 nvm-windows 安装包和需要的 Node.js 版本包下好、拷进去，跑 `nvm-setup.exe` 装好 nvm，再把 Node.js 版本文件解压到 nvm 的安装目录下，最后用 nvm 命令查看、切换、验证。整个过程不联网，照样能管多个 Node.js 版本。
 
-
+![离线环境 nvm-windows 安装 Node.js 全流程](/posts/在离线环境使用-nvm-windows-安装和管理-node-js/offline-nvm-flow.svg)
 
 ## 正文
 

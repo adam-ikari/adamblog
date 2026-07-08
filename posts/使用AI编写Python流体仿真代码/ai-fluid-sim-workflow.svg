@@ -1,0 +1,155 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eff6ff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+    <linearGradient id="cardStep" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+    <linearGradient id="cardPrinciple" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#fef9c3"/>
+    </linearGradient>
+    <linearGradient id="cardStage" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.14"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1e40af"/>
+    </marker>
+    <marker id="arrowGray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 26px; font-weight: 700; fill: #1a1a1a; }
+    .subtitle { font-size: 14px; fill: #666; }
+    .section { font-size: 16px; font-weight: 700; }
+    .step-title { font-size: 14px; font-weight: 700; }
+    .step-desc { font-size: 12px; fill: #555; }
+    .principle-title { font-size: 14px; font-weight: 700; }
+    .principle-desc { font-size: 12px; fill: #555; }
+    .stage-title { font-size: 14px; font-weight: 700; }
+    .stage-desc { font-size: 12px; fill: #555; }
+  </style>
+
+  <rect x="0" y="0" width="800" height="620" fill="url(#bg)"/>
+
+  <text x="400" y="34" text-anchor="middle" class="title">Claude Code 流体仿真开发工作流</text>
+  <text x="400" y="56" text-anchor="middle" class="subtitle">编写—运行—调试闭环 · 分步构建 · 把需求说精确、把结果分步验、把代码原理弄懂</text>
+
+  <!-- ===== 顶部：工作流闭环（5 步 + 回环箭头） ===== -->
+  <text x="30" y="86" class="section" fill="#1e40af">工作流闭环</text>
+
+  <!-- Step 1 -->
+  <rect x="24" y="98" width="140" height="86" rx="8" fill="url(#cardStep)" stroke="#bfdbfe" stroke-width="1" filter="url(#shadow)"/>
+  <circle cx="44" cy="120" r="13" fill="#1e40af"/>
+  <text x="44" y="125" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">1</text>
+  <text x="64" y="125" class="step-title" fill="#1e40af">项目结构</text>
+  <text x="36" y="146" class="step-desc">写 CLAUDE.md：</text>
+  <text x="36" y="162" class="step-desc">物理模型、技术栈、</text>
+  <text x="36" y="178" class="step-desc">代码组织方式</text>
+
+  <!-- Step 2 -->
+  <rect x="178" y="98" width="140" height="86" rx="8" fill="url(#cardStep)" stroke="#bfdbfe" stroke-width="1" filter="url(#shadow)"/>
+  <circle cx="198" cy="120" r="13" fill="#1e40af"/>
+  <text x="198" y="125" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">2</text>
+  <text x="218" y="125" class="step-title" fill="#1e40af">核心算法</text>
+  <text x="190" y="146" class="step-desc">生成初始框架：</text>
+  <text x="190" y="162" class="step-desc">D2Q9 速度、权重、</text>
+  <text x="190" y="178" class="step-desc">平衡态、BGK 碰撞</text>
+
+  <!-- Step 3 -->
+  <rect x="332" y="98" width="140" height="86" rx="8" fill="url(#cardStep)" stroke="#bfdbfe" stroke-width="1" filter="url(#shadow)"/>
+  <circle cx="352" cy="120" r="13" fill="#1e40af"/>
+  <text x="352" y="125" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">3</text>
+  <text x="372" y="125" class="step-title" fill="#1e40af">边界条件</text>
+  <text x="344" y="146" class="step-desc">补充 bounce-back</text>
+  <text x="344" y="162" class="step-desc">与顶盖驱动；</text>
+  <text x="344" y="178" class="step-desc">整合 step() 方法</text>
+
+  <!-- Step 4 -->
+  <rect x="486" y="98" width="140" height="86" rx="8" fill="url(#cardStep)" stroke="#bfdbfe" stroke-width="1" filter="url(#shadow)"/>
+  <circle cx="506" cy="120" r="13" fill="#1e40af"/>
+  <text x="506" y="125" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">4</text>
+  <text x="526" y="125" class="step-title" fill="#1e40af">可视化</text>
+  <text x="498" y="146" class="step-desc">速度云图 + 矢量图，</text>
+  <text x="498" y="162" class="step-desc">中心线剖面与</text>
+  <text x="498" y="178" class="step-desc">Ghia 基准解对比</text>
+
+  <!-- Step 5 -->
+  <rect x="640" y="98" width="140" height="86" rx="8" fill="url(#cardStep)" stroke="#bfdbfe" stroke-width="1" filter="url(#shadow)"/>
+  <circle cx="660" cy="120" r="13" fill="#b45309"/>
+  <text x="660" y="125" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">5</text>
+  <text x="680" y="125" class="step-title" fill="#b45309">性能优化</text>
+  <text x="652" y="146" class="step-desc">NumPy 向量化，</text>
+  <text x="652" y="162" class="step-desc">Numba JIT 加速</text>
+  <text x="652" y="178" class="step-desc">（10–50 倍提速）</text>
+
+  <!-- 顺序箭头 -->
+  <line x1="164" y1="141" x2="178" y2="141" stroke="#1e40af" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="318" y1="141" x2="332" y2="141" stroke="#1e40af" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="472" y1="141" x2="486" y2="141" stroke="#1e40af" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="626" y1="141" x2="640" y2="141" stroke="#1e40af" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- 回环箭头：5 -> 2（调试后回到步骤迭代） -->
+  <path d="M 710 184 C 710 230, 248 230, 248 184" fill="none" stroke="#64748b" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#arrowGray)"/>
+  <rect x="400" y="206" width="200" height="22" rx="11" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.8"/>
+  <text x="500" y="221" text-anchor="middle" font-size="12" fill="#475569">结果不对 → 描述报错让 AI 调试</text>
+
+  <!-- ===== 中部：三大原则 ===== -->
+  <text x="30" y="270" class="section" fill="#b45309">三条核心原则</text>
+
+  <rect x="24" y="282" width="248" height="74" rx="8" fill="url(#cardPrinciple)" stroke="#fde68a" stroke-width="1" filter="url(#shadow)"/>
+  <text x="148" y="304" text-anchor="middle" class="principle-title" fill="#b45309">把需求说精确</text>
+  <text x="148" y="324" text-anchor="middle" class="principle-desc">指明方法（D2Q9）、算子（BGK）、</text>
+  <text x="148" y="340" text-anchor="middle" class="principle-desc">边界（bounce-back）、雷诺数关系</text>
+
+  <rect x="276" y="282" width="248" height="74" rx="8" fill="url(#cardPrinciple)" stroke="#fde68a" stroke-width="1" filter="url(#shadow)"/>
+  <text x="400" y="304" text-anchor="middle" class="principle-title" fill="#b45309">把结果分步验</text>
+  <text x="400" y="324" text-anchor="middle" class="principle-desc">核心算法 → 边界 → 可视化</text>
+  <text x="400" y="340" text-anchor="middle" class="principle-desc">→ 优化，每步跑通再往下</text>
+
+  <rect x="528" y="282" width="248" height="74" rx="8" fill="url(#cardPrinciple)" stroke="#fde68a" stroke-width="1" filter="url(#shadow)"/>
+  <text x="652" y="304" text-anchor="middle" class="principle-title" fill="#b45309">把代码原理弄懂</text>
+  <text x="652" y="324" text-anchor="middle" class="principle-desc">让 AI 解释每行物理含义，</text>
+  <text x="652" y="340" text-anchor="middle" class="principle-desc">懂原理才能排查数值不稳定</text>
+
+  <!-- ===== 底部：从辅助到自主的过渡 ===== -->
+  <text x="30" y="392" class="section" fill="#16a34a">从辅助开发到自主开发的过渡</text>
+
+  <rect x="24" y="404" width="248" height="76" rx="8" fill="url(#cardStage)" stroke="#bbf7d0" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="24" y="404" width="6" height="76" rx="3" fill="#16a34a"/>
+  <text x="44" y="426" class="stage-title" fill="#16a34a">初期</text>
+  <text x="44" y="446" class="stage-desc">AI 生成完整代码，</text>
+  <text x="44" y="462" class="stage-desc">逐行理解每一部分含义</text>
+
+  <line x1="272" y1="442" x2="296" y2="442" stroke="#64748b" stroke-width="1.4" marker-end="url(#arrowGray)"/>
+
+  <rect x="296" y="404" width="248" height="76" rx="8" fill="url(#cardStage)" stroke="#bbf7d0" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="296" y="404" width="6" height="76" rx="3" fill="#16a34a"/>
+  <text x="316" y="426" class="stage-title" fill="#16a34a">中期</text>
+  <text x="316" y="446" class="stage-desc">自写框架与关键算法，</text>
+  <text x="316" y="462" class="stage-desc">AI 补细节与边界条件</text>
+
+  <line x1="544" y1="442" x2="568" y2="442" stroke="#64748b" stroke-width="1.4" marker-end="url(#arrowGray)"/>
+
+  <rect x="568" y="404" width="208" height="76" rx="8" fill="url(#cardStage)" stroke="#bbf7d0" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="568" y="404" width="6" height="76" rx="3" fill="#16a34a"/>
+  <text x="588" y="426" class="stage-title" fill="#16a34a">后期</text>
+  <text x="588" y="446" class="stage-desc">独立编写，仅遇疑难</text>
+  <text x="588" y="462" class="stage-desc">时咨询 AI</text>
+
+  <!-- 底注 -->
+  <line x1="24" y1="510" x2="776" y2="510" stroke="#cbd5e1" stroke-width="0.6"/>
+  <text x="400" y="534" text-anchor="middle" font-size="13" fill="#555" font-weight="600">AI 是加速器，不是替代品——真正的工程判断力靠实践攒</text>
+  <text x="400" y="556" text-anchor="middle" font-size="12" fill="#777">实战案例：2D 顶盖驱动腔体流动 · D2Q9 格子玻尔兹曼方法 · Re=100 · 与 Ghia 基准解对比</text>
+  <text x="400" y="576" text-anchor="middle" font-size="12" fill="#777">拓展方向：3D(D3Q19/27) · MRT · 多相流(Shan-Chen) · 热对流 · 湍流(LES) · GPU(CuPy/Taichi)</text>
+</svg>

@@ -20,6 +20,8 @@ series:
 
 Docker、systemd 这些依赖内核特性的组件在 WSL2 中都能运行，文件系统 I/O 也比 WSL1 快得多。Windows 与 Linux 的文件还可互相访问，无需来回搬运。简言之，不必离开 Windows，就能获得一个基本完整的 Linux 开发环境。
 
+![Windows 11 配置 WSL2 全流程图](/posts/Windows11-配置WSL2教程/wsl2-setup-flow.svg)
+
 ## 前提条件
 
 ### Windows 11 版本要求

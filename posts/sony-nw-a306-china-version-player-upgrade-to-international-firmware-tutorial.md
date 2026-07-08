@@ -37,6 +37,8 @@ date: 2024-04-28
 > 如果没有足够的内部存储空间，将不必要的数据转移到计算机中；
 > 请确保 Walkman 播放器电量超过 60%，并且处于充电状态；
 
+![NW-A306 国行版升国际版固件流程：1.x 可行、2.x 失败的分叉路径](/posts/sony-nw-a306-china-version-player-upgrade-to-international-firmware-tutorial/firmware-upgrade-flow.svg)
+
 ## 附录
 
 ### 固件下载地址

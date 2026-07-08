@@ -16,6 +16,8 @@ tags:
   [1] 这是注的内容
 -->
 
+![Python 镜像瘦身六大方法分类图](/posts/python-应用-docker-镜像瘦身小技巧/docker-image-slim-methods.svg)
+
 ## 正文
 
 把 Python 应用容器化，Docker 镜像多大，直接影响部署快慢、存储和传输成本。镜像越小，推拉越省事。下面是几个实用的瘦身办法。

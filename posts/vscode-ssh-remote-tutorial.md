@@ -20,7 +20,7 @@ date: 2024-02-22
 
 磨刀不误砍柴功。哪怕不是软件行业的人，偶尔也得 ssh 远程登服务器写两段代码。这时候学会 VSCode 的远程开发功能，能省掉不少在本地和服务器之间来回倒腾文件的麻烦。
 
-
+![VSCode Remote-SSH 远程开发全景](/posts/vscode-ssh-remote-tutorial/remote-ssh-overview.svg)
 
 ## 安装 VSCode
 

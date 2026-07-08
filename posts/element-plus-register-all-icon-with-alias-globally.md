@@ -18,7 +18,7 @@ date: 2024-09-05
 
 项目里要动态配置侧边导航菜单的图标，所以需要把 Element Plus 的图标全都拿过来用。但 HTML 标准里已经有一个叫 `menu` 的标签，直接用会冲突，得给它起个别名。最后的做法是全局注册所有图标，并统一加上别名前缀。
 
-
+![Element Plus 图标全局注册与别名三步流程](/posts/element-plus-register-all-icon-with-alias-globally/register-flow.svg)
 
 ## 注册所有图标
 

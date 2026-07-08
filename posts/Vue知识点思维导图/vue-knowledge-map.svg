@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 660" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="coreGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e0e7ff"/>
+      <stop offset="100%" stop-color="#c7d2fe"/>
+    </linearGradient>
+    <linearGradient id="reactGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="compGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <linearGradient id="lifeGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+    <linearGradient id="dirGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ede9fe"/>
+      <stop offset="100%" stop-color="#ddd6fe"/>
+    </linearGradient>
+    <linearGradient id="ecoGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#6366f1"/>
+    </marker>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 27px; font-weight: 700; }
+    .subtitle { font-size: 16px; fill: #666; }
+    .pillar-title { font-size: 19px; font-weight: 700; }
+    .pillar-sub { font-size: 14px; }
+    .item { font-size: 14px; fill: #444; }
+    .anno { font-size: 14px; fill: #666; }
+    .tag { font-size: 13px; font-weight: 600; }
+  </style>
+
+  <text x="400" y="32" text-anchor="middle" class="title" fill="#1a1a1a">Vue.js 核心知识图谱</text>
+  <text x="400" y="54" text-anchor="middle" class="subtitle">四大支柱支撑应用开发，外圈生态工具各司其职</text>
+
+  <!-- ===== 顶部核心 ===== -->
+  <rect x="290" y="72" width="220" height="58" rx="10" fill="url(#coreGrad)" stroke="#6366f1" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="98" text-anchor="middle" font-size="21" font-weight="700" fill="#1e1b4b">Vue.js 核心</text>
+  <text x="400" y="119" text-anchor="middle" class="anno" fill="#4f46e5">数据驱动 · 组件化 · 模板语法</text>
+
+  <!-- 连接线：核心 → 四大支柱 -->
+  <line x1="345" y1="130" x2="160" y2="170" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="378" y1="130" x2="378" y2="170" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="422" y1="130" x2="422" y2="170" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="455" y1="130" x2="640" y2="170" stroke="#6366f1" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== 四大支柱卡片 ===== -->
+
+  <!-- 响应式原理（左） -->
+  <rect x="40" y="174" width="220" height="156" rx="10" fill="url(#reactGrad)" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
+  <text x="150" y="200" text-anchor="middle" class="pillar-title" fill="#166534">响应式原理</text>
+  <text x="150" y="220" text-anchor="middle" class="pillar-sub" fill="#16a34a">数据变化 → 视图自动更新</text>
+  <text x="150" y="246" text-anchor="middle" class="item">• Object.defineProperty</text>
+  <text x="150" y="266" text-anchor="middle" class="item">• 依赖收集 / 派发更新</text>
+  <text x="150" y="286" text-anchor="middle" class="item">• 计算属性 computed</text>
+  <text x="150" y="306" text-anchor="middle" class="item">• 监听器 watch</text>
+  <text x="150" y="322" text-anchor="middle" class="anno" fill="#888">异步更新队列，批量刷新</text>
+
+  <!-- 组件化（中左） -->
+  <rect x="288" y="174" width="224" height="156" rx="10" fill="url(#compGrad)" stroke="#93c5fd" stroke-width="1" filter="url(#shadow)"/>
+  <text x="400" y="200" text-anchor="middle" class="pillar-title" fill="#1e40af">组件化</text>
+  <text x="400" y="220" text-anchor="middle" class="pillar-sub" fill="#2563eb">可复用、可组合的视图单元</text>
+  <text x="400" y="246" text-anchor="middle" class="item">• props / $emit 父子通信</text>
+  <text x="400" y="266" text-anchor="middle" class="item">• 插槽 slot 内容分发</text>
+  <text x="400" y="286" text-anchor="middle" class="item">• 混入 mixin 逻辑复用</text>
+  <text x="400" y="306" text-anchor="middle" class="item">• 动态 / 异步组件</text>
+  <text x="400" y="322" text-anchor="middle" class="anno" fill="#888">组件 = 模板 + 逻辑 + 样式</text>
+
+  <!-- 生命周期（中右） -->
+  <rect x="288" y="370" width="224" height="156" rx="10" fill="url(#lifeGrad)" stroke="#fcd34d" stroke-width="1" filter="url(#shadow)"/>
+  <text x="400" y="396" text-anchor="middle" class="pillar-title" fill="#b45309">生命周期钩子</text>
+  <text x="400" y="416" text-anchor="middle" class="pillar-sub" fill="#d97706">实例从创建到销毁的各阶段</text>
+  <text x="400" y="442" text-anchor="middle" class="item">• created  完成数据观测</text>
+  <text x="400" y="462" text-anchor="middle" class="item">• mounted  挂载到 DOM</text>
+  <text x="400" y="482" text-anchor="middle" class="item">• updated  数据变更后</text>
+  <text x="400" y="502" text-anchor="middle" class="item">• destroyed  实例销毁</text>
+  <text x="400" y="518" text-anchor="middle" class="anno" fill="#888">在合适的钩子里写业务逻辑</text>
+
+  <!-- 指令与事件（右） -->
+  <rect x="540" y="174" width="220" height="156" rx="10" fill="url(#dirGrad)" stroke="#c4b5fd" stroke-width="1" filter="url(#shadow)"/>
+  <text x="650" y="200" text-anchor="middle" class="pillar-title" fill="#6d28d9">指令与事件</text>
+  <text x="650" y="220" text-anchor="middle" class="pillar-sub" fill="#7c3aed">模板里扩展 HTML 行为</text>
+  <text x="650" y="246" text-anchor="middle" class="item">• v-if / v-for 条件与循环</text>
+  <text x="650" y="266" text-anchor="middle" class="item">• v-bind / v-model 绑定</text>
+  <text x="650" y="286" text-anchor="middle" class="item">• v-on 事件 + 修饰符</text>
+  <text x="650" y="306" text-anchor="middle" class="item">• 自定义指令</text>
+  <text x="650" y="322" text-anchor="middle" class="anno" fill="#888">事件修饰符让代码更声明式</text>
+
+  <!-- 支柱间横向关系线：响应式 → 组件（数据流向组件） -->
+  <line x1="260" y1="252" x2="288" y2="252" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="274" y="246" text-anchor="middle" font-size="12" fill="#16a34a">数据</text>
+
+  <!-- 组件 → 生命周期（组件实例触发钩子） -->
+  <line x1="400" y1="330" x2="400" y2="370" stroke="#d97706" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="412" y="352" font-size="12" fill="#d97706">实例各阶段</text>
+
+  <!-- 组件 → 指令（模板用指令） -->
+  <line x1="512" y1="252" x2="540" y2="252" stroke="#7c3aed" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="526" y="246" text-anchor="middle" font-size="12" fill="#7c3aed">模板</text>
+
+  <!-- ===== 底部生态工具 ===== -->
+  <text x="400" y="558" text-anchor="middle" font-size="17" font-weight="600" fill="#475569">▼ 生态工具：在核心之外扩展能力</text>
+
+  <!-- Vuex -->
+  <rect x="60" y="572" width="210" height="68" rx="10" fill="url(#ecoGrad)" stroke="#94a3b8" stroke-width="1" filter="url(#shadow)"/>
+  <text x="165" y="596" text-anchor="middle" font-size="17" font-weight="700" fill="#334155">Vuex</text>
+  <text x="165" y="616" text-anchor="middle" class="anno">状态管理：State / Getter</text>
+  <text x="165" y="632" text-anchor="middle" class="anno">Mutation / Action / Module</text>
+
+  <!-- Vue-router -->
+  <rect x="295" y="572" width="210" height="68" rx="10" fill="url(#ecoGrad)" stroke="#94a3b8" stroke-width="1" filter="url(#shadow)"/>
+  <text x="400" y="596" text-anchor="middle" font-size="17" font-weight="700" fill="#334155">Vue-router</text>
+  <text x="400" y="616" text-anchor="middle" class="anno">路由：参数 / 嵌套</text>
+  <text x="400" y="632" text-anchor="middle" class="anno">路由组件传参</text>
+
+  <!-- 构建工具 -->
+  <rect x="530" y="572" width="210" height="68" rx="10" fill="url(#ecoGrad)" stroke="#94a3b8" stroke-width="1" filter="url(#shadow)"/>
+  <text x="635" y="596" text-anchor="middle" font-size="17" font-weight="700" fill="#334155">构建工具</text>
+  <text x="635" y="616" text-anchor="middle" class="anno">Webpack 集成</text>
+  <text x="635" y="632" text-anchor="middle" class="anno">.vue 单文件组件打包</text>
+</svg>

@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 660" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f5f3ff"/>
+      <stop offset="100%" stop-color="#ede9fe"/>
+    </linearGradient>
+    <linearGradient id="axiom" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <linearGradient id="func" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="eval" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+    <linearGradient id="homo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fce7f3"/>
+      <stop offset="100%" stop-color="#fbcfe8"/>
+    </linearGradient>
+    <linearGradient id="infl" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#e0e7ff"/>
+      <stop offset="100%" stop-color="#c7d2fe"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.13"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7c3aed"/>
+    </marker>
+    <marker id="arrowS" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9ca3af"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 27px; font-weight: 700; fill: #1a1a1a; }
+    .subtitle { font-size: 15px; fill: #666; }
+    .layer-title { font-size: 17px; font-weight: 700; }
+    .layer-sub { font-size: 13px; fill: #555; }
+    .body { font-size: 14px; fill: #444; }
+    .small { font-size: 12.5px; fill: #666; }
+    .pill { font-size: 12.5px; font-weight: 600; }
+  </style>
+
+  <rect x="0" y="0" width="800" height="660" fill="url(#bg)"/>
+
+  <text x="400" y="36" text-anchor="middle" class="title">Lisp 的根源：从七条公理到「用自身编写自身」</text>
+  <text x="400" y="58" text-anchor="middle" class="subtitle">McCarthy 1960 论文层层构建：每一层只用前一层已定义的能力 · 自底向上的递归大厦</text>
+
+  <!-- 层 1：七个原始操作符 -->
+  <rect x="40" y="88" width="720" height="92" rx="10" fill="url(#axiom)" stroke="#1e40af" stroke-opacity="0.35" filter="url(#shadow)"/>
+  <text x="56" y="114" class="layer-title" fill="#1e40af">① 七个原始操作符（公理）</text>
+  <text x="56" y="134" class="layer-sub">原子 + 列表 → 表达式；第一个元素为操作符，其余为参数</text>
+  <g class="pill">
+    <rect x="56" y="146" width="60" height="24" rx="12" fill="#ffffff" stroke="#1e40af" stroke-opacity="0.4"/>
+    <text x="86" y="163" text-anchor="middle" fill="#1e40af">quote</text>
+    <rect x="122" y="146" width="56" height="24" rx="12" fill="#ffffff" stroke="#1e40af" stroke-opacity="0.4"/>
+    <text x="150" y="163" text-anchor="middle" fill="#1e40af">atom</text>
+    <rect x="184" y="146" width="48" height="24" rx="12" fill="#ffffff" stroke="#1e40af" stroke-opacity="0.4"/>
+    <text x="208" y="163" text-anchor="middle" fill="#1e40af">eq</text>
+    <rect x="238" y="146" width="50" height="24" rx="12" fill="#ffffff" stroke="#1e40af" stroke-opacity="0.4"/>
+    <text x="263" y="163" text-anchor="middle" fill="#1e40af">car</text>
+    <rect x="294" y="146" width="52" height="24" rx="12" fill="#ffffff" stroke="#1e40af" stroke-opacity="0.4"/>
+    <text x="320" y="163" text-anchor="middle" fill="#1e40af">cdr</text>
+    <rect x="352" y="146" width="58" height="24" rx="12" fill="#ffffff" stroke="#1e40af" stroke-opacity="0.4"/>
+    <text x="381" y="163" text-anchor="middle" fill="#1e40af">cons</text>
+    <rect x="416" y="146" width="58" height="24" rx="12" fill="#ffffff" stroke="#1e40af" stroke-opacity="0.4"/>
+    <text x="445" y="163" text-anchor="middle" fill="#1e40af">cond</text>
+    <text x="500" y="163" class="small" fill="#475569">quote 区分「代码」与「数据」</text>
+  </g>
+
+  <line x1="400" y1="180" x2="400" y2="196" stroke="#7c3aed" stroke-width="2.2" marker-end="url(#arrow)"/>
+
+  <!-- 层 2：函数记号 -->
+  <rect x="40" y="198" width="720" height="66" rx="10" fill="url(#func)" stroke="#16a34a" stroke-opacity="0.35" filter="url(#shadow)"/>
+  <text x="56" y="224" class="layer-title" fill="#166534">② 函数记号：label + lambda</text>
+  <text x="56" y="244" class="layer-sub">lambda 表匿名函数与参数绑定；label 让函数能递归地引用自身（等价于 Y 组合子）</text>
+  <text x="56" y="259" class="small" fill="#475569">由 ① 的操作符 + cond 组合，即可定义 not / and / or / append / pair……</text>
+
+  <line x1="400" y1="264" x2="400" y2="280" stroke="#7c3aed" stroke-width="2.2" marker-end="url(#arrow)"/>
+
+  <!-- 层 3：元循环求值器 -->
+  <rect x="40" y="282" width="720" height="88" rx="10" fill="url(#eval)" stroke="#b45309" stroke-opacity="0.4" filter="url(#shadow)"/>
+  <text x="56" y="308" class="layer-title" fill="#b45309">③ 元循环求值器 eval（用 Lisp 自身写 Lisp）</text>
+  <text x="56" y="328" class="layer-sub">eval(e, x) 对表达式 e 在环境 x 求值；定义只用 ① + ② —— 因此 eval 可被它自己求值</text>
+  <text x="56" y="345" class="small" fill="#475569">辅助：assoc（查环境）· evcon（处理 cond 分支）· evlis（对参数列表逐个求值）</text>
+  <text x="56" y="361" class="small" fill="#475569">同像性 → 程序即列表，列表即原生数据结构，程序与数据之间没有语法鸿沟</text>
+
+  <!-- 自环：eval 求值自身 -->
+  <path d="M 720 326 C 770 326 770 380 740 380 C 710 380 700 350 720 326 Z"
+        fill="none" stroke="#b45309" stroke-width="1.6" stroke-dasharray="5 3"/>
+  <text x="755" y="360" text-anchor="middle" class="small" fill="#b45309" font-weight="600">自环</text>
+  <text x="755" y="374" text-anchor="middle" class="small" fill="#b45309">eval 求</text>
+  <text x="755" y="386" text-anchor="middle" class="small" fill="#b45309">值自身</text>
+
+  <line x1="400" y1="370" x2="400" y2="394" stroke="#7c3aed" stroke-width="2.2" marker-end="url(#arrow)"/>
+
+  <!-- 层 4：同像性 / 宏 -->
+  <rect x="40" y="396" width="720" height="64" rx="10" fill="url(#homo)" stroke="#be185d" stroke-opacity="0.35" filter="url(#shadow)"/>
+  <text x="56" y="422" class="layer-title" fill="#be185d">④ 同像性（Homoiconicity）→ 宏系统</text>
+  <text x="56" y="441" class="layer-sub">代码与数据同形；宏不是文本替换，而是对代码结构的变换 → 可定义新的语言构造</text>
+  <text x="56" y="456" class="small" fill="#475569">三条支柱：数据统一表示 · eval 的存在性 · quote 区分代码/数据以避免无限递归</text>
+
+  <line x1="400" y1="460" x2="400" y2="476" stroke="#7c3aed" stroke-width="2.2" marker-end="url(#arrow)"/>
+
+  <!-- 层 5：影响辐射 -->
+  <rect x="40" y="478" width="720" height="118" rx="10" fill="url(#infl)" stroke="#4338ca" stroke-opacity="0.35" filter="url(#shadow)"/>
+  <text x="56" y="504" class="layer-title" fill="#4338ca">⑤ 影响辐射：新语言 = C 模型 + 逐项移植 Lisp 特性</text>
+  <text x="56" y="524" class="layer-sub">Graham 观点：计算机越强大，新语言越向 Lisp 模型靠拢</text>
+  <g class="pill">
+    <rect x="56" y="538" width="86" height="24" rx="12" fill="#ffffff" stroke="#4338ca" stroke-opacity="0.35"/>
+    <text x="99" y="555" text-anchor="middle" fill="#4338ca">垃圾回收</text>
+    <rect x="148" y="538" width="86" height="24" rx="12" fill="#ffffff" stroke="#4338ca" stroke-opacity="0.35"/>
+    <text x="191" y="555" text-anchor="middle" fill="#4338ca">高阶函数</text>
+    <rect x="240" y="538" width="86" height="24" rx="12" fill="#ffffff" stroke="#4338ca" stroke-opacity="0.35"/>
+    <text x="283" y="555" text-anchor="middle" fill="#4338ca">宏系统</text>
+    <rect x="332" y="538" width="86" height="24" rx="12" fill="#ffffff" stroke="#4338ca" stroke-opacity="0.35"/>
+    <text x="375" y="555" text-anchor="middle" fill="#4338ca">同像性</text>
+    <rect x="424" y="538" width="70" height="24" rx="12" fill="#ffffff" stroke="#4338ca" stroke-opacity="0.35"/>
+    <text x="459" y="555" text-anchor="middle" fill="#4338ca">递归</text>
+    <rect x="500" y="538" width="86" height="24" rx="12" fill="#ffffff" stroke="#4338ca" stroke-opacity="0.35"/>
+    <text x="543" y="555" text-anchor="middle" fill="#4338ca">动态类型</text>
+    <rect x="592" y="538" width="70" height="24" rx="12" fill="#ffffff" stroke="#4338ca" stroke-opacity="0.35"/>
+    <text x="627" y="555" text-anchor="middle" fill="#4338ca">闭包</text>
+  </g>
+  <text x="56" y="582" class="small" fill="#475569">附：mark 算法（标记可达单元、回收不可达内存）是所有现代 GC 的源头</text>
+
+  <!-- 底注 -->
+  <text x="400" y="628" text-anchor="middle" class="small" fill="#6b7280" font-style="italic">
+    每一层只用其下层已定义的能力 —— 这正是「Lisp 可以用自身来编写」的递归构造
+  </text>
+</svg>

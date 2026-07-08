@@ -16,6 +16,8 @@ date: 2019-09-18
 可以用 `@NonNull` 标在方法或构造函数的参数上，让 lombok 帮你把 null-check 那段代码生成出来。
 *@NonNull 在 Java 库 lombok v0.11.10 中引入，Android 这边可以通过 androidx.annotation 库导入。*
 
+![NonNull 与传统空检查对比](/posts/NonNull用法/nonnull-vs-traditional.svg)
+
 写个例子：
 
 ```java

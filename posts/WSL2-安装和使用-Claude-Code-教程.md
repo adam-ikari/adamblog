@@ -20,6 +20,8 @@ Claude Code 是 Anthropic 出的命令行编程助手，跑在终端里，能读
 
 放在 WSL2 里用有天然优势：Linux 原生环境对 Node.js 和工具链支持更顺，文件权限更规范，Shell 命令兼容性也强。这篇就把从装到用的全过程走一遍。
 
+![WSL2 安装使用 Claude Code 全流程图](/posts/WSL2-安装和使用-Claude-Code-教程/wsl2-claude-code-workflow.svg)
+
 ## 前提条件
 
 ### WSL2 已安装

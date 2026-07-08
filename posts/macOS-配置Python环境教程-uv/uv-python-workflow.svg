@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0f9ff"/>
+      <stop offset="100%" stop-color="#e0f2fe"/>
+    </linearGradient>
+    <linearGradient id="cardUv" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="cardOld" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+    <linearGradient id="stepGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.14"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1e40af"/>
+    </marker>
+    <marker id="arrowGray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .step-cmd { fill: #1e3a8a; font-family: 'SF Mono', 'Menlo', 'Consolas', monospace; }
+  </style>
+
+  <rect x="0" y="0" width="800" height="720" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" font-size="27" font-weight="700" fill="#1a1a1a">uv 配置 Python 环境全流程</text>
+  <text x="400" y="62" text-anchor="middle" font-size="15" fill="#666">一个 Rust 二进制 = 版本管理 + 虚拟环境 + 包管理 + 工具安装</text>
+
+  <!-- ===== 顶部对比：uv 一体化 vs 传统多工具 ===== -->
+  <text x="40" y="100" font-size="16" font-weight="700" fill="#166534">uv 单工具收编</text>
+  <text x="430" y="100" font-size="16" font-weight="700" fill="#b45309">传统多工具拼装</text>
+
+  <!-- uv 一体化卡片 -->
+  <rect x="40" y="110" width="340" height="92" rx="10" fill="url(#cardUv)" filter="url(#shadow)"/>
+  <text x="210" y="138" text-anchor="middle" font-size="20" font-weight="700" fill="#166534">uv</text>
+  <text x="210" y="160" text-anchor="middle" font-size="13" fill="#374151">Rust 编写 · 比 pip 快 10–100× · 单二进制</text>
+  <text x="210" y="180" text-anchor="middle" font-size="13" fill="#374151">版本 / 环境 / 依赖 / 工具 全内置</text>
+  <text x="210" y="196" text-anchor="middle" font-size="13" fill="#6b7280">兼容 pip 与 PyPI 生态</text>
+
+  <!-- 传统多工具卡片 -->
+  <rect x="420" y="110" width="340" height="92" rx="10" fill="url(#cardOld)" filter="url(#shadow)"/>
+  <text x="590" y="138" text-anchor="middle" font-size="16" font-weight="700" fill="#b45309">pyenv + venv + pip + pipx</text>
+  <text x="590" y="160" text-anchor="middle" font-size="13" fill="#374151">四个工具各管一摊，拼装麻烦</text>
+  <text x="590" y="180" text-anchor="middle" font-size="13" fill="#374151">pip 慢 · pyenv 编译慢 · 无统一锁文件</text>
+  <text x="590" y="196" text-anchor="middle" font-size="13" fill="#6b7280">conda 臃肿，环境互不兼容</text>
+
+  <!-- 替代箭头 -->
+  <line x1="385" y1="156" x2="415" y2="156" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrowGray)"/>
+
+  <!-- ===== 中部：五步流程 ===== -->
+  <text x="40" y="240" font-size="17" font-weight="700" fill="#1e40af">标准工作流（五步）</text>
+
+  <!-- Step 1 安装 -->
+  <rect x="40" y="252" width="135" height="92" rx="8" fill="url(#stepGrad)" filter="url(#shadow)"/>
+  <circle cx="62" cy="274" r="13" fill="#1e40af"/>
+  <text x="62" y="279" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">1</text>
+  <text x="107" y="279" text-anchor="middle" font-size="15" font-weight="700" fill="#1e3a8a">安装 uv</text>
+  <text x="50" y="306" font-size="12" class="step-cmd">brew install uv</text>
+  <text x="50" y="324" font-size="12" class="step-cmd">curl …/install.sh | sh</text>
+  <text x="50" y="340" font-size="11" fill="#6b7280">验证 uv --version</text>
+
+  <!-- arrow -->
+  <line x1="180" y1="298" x2="208" y2="298" stroke="#1e40af" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 2 版本管理 -->
+  <rect x="210" y="252" width="135" height="92" rx="8" fill="url(#stepGrad)" filter="url(#shadow)"/>
+  <circle cx="232" cy="274" r="13" fill="#1e40af"/>
+  <text x="232" y="279" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">2</text>
+  <text x="277" y="279" text-anchor="middle" font-size="15" font-weight="700" fill="#1e3a8a">Python 版本</text>
+  <text x="220" y="306" font-size="12" class="step-cmd">uv python install 3.12</text>
+  <text x="220" y="324" font-size="12" class="step-cmd">uv python list</text>
+  <text x="220" y="340" font-size="11" fill="#6b7280">pin 生成 .python-version</text>
+
+  <line x1="350" y1="298" x2="378" y2="298" stroke="#1e40af" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 3 虚拟环境 -->
+  <rect x="380" y="252" width="135" height="92" rx="8" fill="url(#stepGrad)" filter="url(#shadow)"/>
+  <circle cx="402" cy="274" r="13" fill="#1e40af"/>
+  <text x="402" y="279" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">3</text>
+  <text x="447" y="279" text-anchor="middle" font-size="15" font-weight="700" fill="#1e3a8a">虚拟环境</text>
+  <text x="390" y="306" font-size="12" class="step-cmd">uv venv --python 3.12</text>
+  <text x="390" y="324" font-size="12" class="step-cmd">source .venv/bin/activate</text>
+  <text x="390" y="340" font-size="11" fill="#6b7280">退出用 deactivate</text>
+
+  <line x1="520" y1="298" x2="548" y2="298" stroke="#1e40af" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 4 依赖 -->
+  <rect x="550" y="252" width="135" height="92" rx="8" fill="url(#stepGrad)" filter="url(#shadow)"/>
+  <circle cx="572" cy="274" r="13" fill="#1e40af"/>
+  <text x="572" y="279" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">4</text>
+  <text x="617" y="279" text-anchor="middle" font-size="15" font-weight="700" fill="#1e3a8a">依赖管理</text>
+  <text x="560" y="306" font-size="12" class="step-cmd">uv init / uv add numpy</text>
+  <text x="560" y="324" font-size="12" class="step-cmd">uv add --dev pytest</text>
+  <text x="560" y="340" font-size="11" fill="#6b7280">uv sync 按 pyproject 同步</text>
+
+  <line x1="690" y1="298" x2="718" y2="298" stroke="#1e40af" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Step 5 运行 -->
+  <rect x="720" y="252" width="40" height="92" rx="8" fill="url(#stepGrad)" filter="url(#shadow)"/>
+
+  <!-- ===== 底部：项目产出（pyproject.toml） ===== -->
+  <text x="40" y="378" font-size="17" font-weight="700" fill="#7c3aed">项目结构产出</text>
+
+  <rect x="40" y="390" width="345" height="170" rx="10" fill="#ede9fe" filter="url(#shadow)"/>
+  <text x="57" y="414" font-size="14" font-weight="700" fill="#5b21b6">my-project/</text>
+  <text x="57" y="436" font-size="13" fill="#374151">├── .python-version   ← uv python pin</text>
+  <text x="57" y="456" font-size="13" fill="#374151">├── pyproject.toml    ← uv add 写入依赖</text>
+  <text x="57" y="476" font-size="13" fill="#374151">├── uv.lock           ← 锁定可复现版本</text>
+  <text x="57" y="496" font-size="13" fill="#374151">├── main.py</text>
+  <text x="57" y="516" font-size="13" fill="#374151">└── .venv/            ← uv venv 创建</text>
+  <text x="57" y="544" font-size="12" fill="#6b7280">uv run python main.py · uv run pytest</text>
+
+  <!-- 流程对应关系：步骤 → 产物 -->
+  <line x1="232" y1="346" x2="172" y2="408" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="617" y1="346" x2="300" y2="430" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="447" y1="346" x2="320" y2="490" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- 右侧：常用工具与对比要点 -->
+  <rect x="410" y="390" width="350" height="170" rx="10" fill="#fef3c7" filter="url(#shadow)"/>
+  <text x="427" y="414" font-size="15" font-weight="700" fill="#b45309">uv vs pip / conda 关键差异</text>
+  <text x="427" y="438" font-size="13" fill="#374151">• 安装速度：极快（Rust） vs 慢 / 中等</text>
+  <text x="427" y="458" font-size="13" fill="#374151">• 版本+环境+包：内置 vs 需拼装</text>
+  <text x="427" y="478" font-size="13" fill="#374151">• 锁文件：uv.lock 可复现 vs 无</text>
+  <text x="427" y="498" font-size="13" fill="#374151">• 全局工具：uv tool install (≈pipx)</text>
+  <text x="427" y="524" font-size="13" fill="#166534" font-weight="600">迁移：uv pip install -r requirements.txt</text>
+  <text x="427" y="548" font-size="12" fill="#6b7280">缓存：uv cache clean / uv cache dir</text>
+
+  <!-- ===== 底部强调条 ===== -->
+  <rect x="40" y="585" width="720" height="42" rx="8" fill="#dcfce7" filter="url(#shadow)"/>
+  <text x="400" y="611" text-anchor="middle" font-size="15" fill="#166534" font-weight="600">五步走通：安装 → 版本 → 虚拟环境 → 依赖 → 运行，全程一个 uv 命令</text>
+
+  <text x="400" y="654" text-anchor="middle" font-size="12" fill="#94a3b8">基于 uv 项目管理：pyproject.toml + uv.lock 实现可复现环境</text>
+  <text x="400" y="672" text-anchor="middle" font-size="12" fill="#94a3b8">科学计算 / CI 流水线尤其受益于其安装速度与缓存</text>
+</svg>

@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 460" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f1f5f9"/>
+      <stop offset="1" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="cBlue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dbeafe"/>
+      <stop offset="1" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <linearGradient id="cGreen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dcfce7"/>
+      <stop offset="1" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="cAmber" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fef3c7"/>
+      <stop offset="1" stop-color="#fde68a"/>
+    </linearGradient>
+    <linearGradient id="cPurple" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ede9fe"/>
+      <stop offset="1" stop-color="#ddd6fe"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <style>
+    .title { font-size: 26px; font-weight: 700; fill: #1e293b; }
+    .sub { font-size: 14px; fill: #475569; }
+    .step { font-size: 16px; font-weight: 600; fill: #1e293b; }
+    .desc { font-size: 13px; fill: #475569; }
+    .code { font-size: 14px; fill: #1e40af; font-family: 'SF Mono', 'Consolas', 'Menlo', monospace; }
+    .arrow { stroke: #64748b; stroke-width: 2; fill: none; }
+    .arrowHead { fill: #64748b; }
+    .stage { font-size: 13px; font-weight: 600; fill: #64748b; letter-spacing: 1px; }
+  </style>
+
+  <rect width="800" height="460" fill="url(#bg)"/>
+
+  <text x="40" y="48" class="title">C++ 程序从源码到运行</text>
+  <text x="40" y="72" class="sub">写代码 → 编译 → 运行：初学者摸清 C++ 程序构建链路的最短路径</text>
+
+  <!-- 流程标题 -->
+  <text x="40" y="112" class="stage">构建与执行链路</text>
+
+  <!-- Step 1: 源码 -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="128" width="180" height="120" rx="10" fill="url(#cBlue)" stroke="#93c5fd" stroke-width="1"/>
+  </g>
+  <text x="130" y="156" class="step" text-anchor="middle">1. 写源码</text>
+  <text x="130" y="180" class="code" text-anchor="middle">hello.cpp</text>
+  <text x="130" y="206" class="desc" text-anchor="middle">#include &lt;iostream&gt;</text>
+  <text x="130" y="224" class="desc" text-anchor="middle">int main() { ... }</text>
+
+  <!-- arrow 1 -->
+  <path class="arrow" d="M224 188 L256 188" marker-end="url(#aHead)"/>
+
+  <!-- Step 2: 编译 -->
+  <g filter="url(#shadow)">
+    <rect x="260" y="128" width="180" height="120" rx="10" fill="url(#cAmber)" stroke="#fcd34d" stroke-width="1"/>
+  </g>
+  <text x="350" y="156" class="step" text-anchor="middle">2. 编译</text>
+  <text x="350" y="182" class="code" text-anchor="middle">g++ -o hello</text>
+  <text x="350" y="200" class="code" text-anchor="middle">hello.cpp</text>
+  <text x="350" y="224" class="desc" text-anchor="middle">g++ 把源码转为</text>
+  <text x="350" y="240" class="desc" text-anchor="middle">可执行文件</text>
+
+  <!-- arrow 2 -->
+  <path class="arrow" d="M444 188 L476 188" marker-end="url(#aHead)"/>
+
+  <!-- Step 3: 可执行文件 -->
+  <g filter="url(#shadow)">
+    <rect x="480" y="128" width="130" height="120" rx="10" fill="url(#cPurple)" stroke="#c4b5fd" stroke-width="1"/>
+  </g>
+  <text x="545" y="156" class="step" text-anchor="middle">3. 产物</text>
+  <text x="545" y="182" class="code" text-anchor="middle">./hello</text>
+  <text x="545" y="210" class="desc" text-anchor="middle">机器可执行的</text>
+  <text x="545" y="226" class="desc" text-anchor="middle">二进制文件</text>
+
+  <!-- arrow 3 -->
+  <path class="arrow" d="M614 188 L646 188" marker-end="url(#aHead)"/>
+
+  <!-- Step 4: 运行输出 -->
+  <g filter="url(#shadow)">
+    <rect x="650" y="128" width="130" height="120" rx="10" fill="url(#cGreen)" stroke="#86efac" stroke-width="1"/>
+  </g>
+  <text x="715" y="156" class="step" text-anchor="middle">4. 运行</text>
+  <text x="715" y="180" class="code" text-anchor="middle">./hello</text>
+  <text x="715" y="208" class="desc" text-anchor="middle">输出：</text>
+  <text x="715" y="228" class="code" text-anchor="middle">Hello, World!</text>
+
+  <defs>
+    <marker id="aHead" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" class="arrowHead"/>
+    </marker>
+  </defs>
+
+  <!-- 分隔线 -->
+  <line x1="40" y1="288" x2="760" y2="288" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 4"/>
+
+  <text x="40" y="318" class="stage">C++ 语言的核心特点（本教程后续展开）</text>
+
+  <!-- 四个特点卡片 -->
+  <g filter="url(#shadow)">
+    <rect x="40" y="334" width="170" height="96" rx="10" fill="url(#cBlue)" stroke="#93c5fd" stroke-width="1"/>
+  </g>
+  <text x="125" y="360" class="step" text-anchor="middle">面向对象</text>
+  <text x="125" y="386" class="desc" text-anchor="middle">类、继承、多态</text>
+
+  <g filter="url(#shadow)">
+    <rect x="230" y="334" width="170" height="96" rx="10" fill="url(#cAmber)" stroke="#fcd34d" stroke-width="1"/>
+  </g>
+  <text x="315" y="360" class="step" text-anchor="middle">模板泛型</text>
+  <text x="315" y="386" class="desc" text-anchor="middle">一份代码复用到</text>
+  <text x="315" y="404" class="desc" text-anchor="middle">多种类型</text>
+
+  <g filter="url(#shadow)">
+    <rect x="420" y="334" width="170" height="96" rx="10" fill="url(#cPurple)" stroke="#c4b5fd" stroke-width="1"/>
+  </g>
+  <text x="505" y="360" class="step" text-anchor="middle">底层控制</text>
+  <text x="505" y="386" class="desc" text-anchor="middle">直接操纵内存</text>
+  <text x="505" y="404" class="desc" text-anchor="middle">与硬件资源</text>
+
+  <g filter="url(#shadow)">
+    <rect x="610" y="334" width="170" height="96" rx="10" fill="url(#cGreen)" stroke="#86efac" stroke-width="1"/>
+  </g>
+  <text x="695" y="360" class="step" text-anchor="middle">标准库</text>
+  <text x="695" y="386" class="desc" text-anchor="middle">现成的数据结构</text>
+  <text x="695" y="404" class="desc" text-anchor="middle">与算法</text>
+</svg>

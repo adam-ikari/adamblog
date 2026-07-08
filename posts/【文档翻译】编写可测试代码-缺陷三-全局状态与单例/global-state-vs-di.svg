@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fafafa"/>
+      <stop offset="100%" stop-color="#eef2f7"/>
+    </linearGradient>
+    <marker id="spookyArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#dc2626"/>
+    </marker>
+    <marker id="diArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#16a34a"/>
+    </marker>
+    <marker id="hideArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#b45309"/>
+    </marker>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 26px; font-weight: 700; fill: #1a1a1a; }
+    .subtitle { font-size: 14px; fill: #666; }
+    .colHead { font-size: 18px; font-weight: 700; }
+    .cardTitle { font-size: 16px; font-weight: 700; }
+    .body { font-size: 14px; fill: #444; }
+    .small { font-size: 13px; fill: #555; }
+    .emph { font-weight: 700; }
+  </style>
+
+  <rect x="0" y="0" width="800" height="620" fill="url(#bg)"/>
+
+  <text x="400" y="34" text-anchor="middle" class="title">全局状态与单例：从“超距作用”到依赖注入</text>
+  <text x="400" y="56" text-anchor="middle" class="subtitle">同一段 CreditCard 扣款逻辑，左边靠隐藏的全局状态（API 说谎、测试互相污染），右边靠显式注入（依赖清晰、可并行可孤立）</text>
+
+  <!-- ============ 左列：全局状态 / 单例 ============ -->
+  <rect x="20" y="78" width="370" height="510" rx="12" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="205" y="104" text-anchor="middle" class="colHead" fill="#991b1b">缺陷：全局状态 / 单例</text>
+  <text x="205" y="124" text-anchor="middle" class="small" fill="#b91c1c">static 字段 · getInstance() · 服务定位器 · flag</text>
+
+  <!-- 调用方 -->
+  <rect x="40" y="140" width="330" height="58" rx="8" fill="#ffffff" stroke="#fca5a5" stroke-width="1"/>
+  <text x="55" y="162" class="cardTitle" fill="#7f1d1d">CreditCard card{…}; card.charge(100)</text>
+  <text x="55" y="184" class="small">API 看起来只改自身状态，对依赖说谎</text>
+
+  <!-- 隐藏的静态访问 -->
+  <line x1="205" y1="198" x2="205" y2="222" stroke="#b45309" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#hideArrow)"/>
+  <text x="215" y="214" font-size="13" fill="#b45309">偷偷抓全局（不在签名里）</text>
+
+  <!-- 全局状态盒 -->
+  <rect x="40" y="226" width="330" height="78" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="55" y="248" class="cardTitle" fill="#92400e">进程级全局状态（static）</text>
+  <text x="55" y="270" class="body">Database::init(…) · CreditCardProcessor::init(…)</text>
+  <text x="55" y="290" class="small">不调就跑不起来；调哪些，得逐行读源码猜</text>
+
+  <!-- 超距作用：污染其他测试 -->
+  <line x1="205" y1="304" x2="205" y2="332" stroke="#dc2626" stroke-width="2.2" marker-end="url(#spookyArrow)"/>
+  <text x="215" y="324" font-size="13" font-weight="700" fill="#dc2626">超距作用 Spooky Action</text>
+
+  <!-- 后果盒 -->
+  <rect x="40" y="336" width="330" height="222" rx="8" fill="#ffffff" stroke="#fca5a5" stroke-width="1" filter="url(#shadow)"/>
+  <text x="55" y="358" class="cardTitle" fill="#7f1d1d">测试运行时是一头阴险的野兽</text>
+
+  <text x="55" y="382" class="body">• 测试 A 改了全局状态 → 测试 B、C 出乎意料失败</text>
+  <text x="55" y="404" class="body">• 改变执行顺序就失败；单独跑却通过</text>
+  <text x="55" y="426" class="body">• 无法并行：共享状态有线程竞态</text>
+  <text x="55" y="448" class="body">• 被迫加 setForTest() / resetForTest() 破封装</text>
+  <text x="55" y="470" class="body">• 忘了重置 → 陈旧实例泄漏给后续测试</text>
+  <text x="55" y="492" class="body">• 全局负载传递累积：一个 Cache 暴露整张表</text>
+
+  <rect x="55" y="506" width="300" height="40" rx="6" fill="#fee2e2" stroke="#f87171" stroke-width="1"/>
+  <text x="205" y="524" text-anchor="middle" class="emph" fill="#991b1b" font-size="14">全局状态是单元测试</text>
+  <text x="205" y="541" text-anchor="middle" class="emph" fill="#991b1b" font-size="14">单一最大的头疼来源</text>
+
+  <!-- ============ 中间箭头：解法 ============ -->
+  <line x1="395" y1="312" x2="405" y2="312" stroke="#16a34a" stroke-width="0"/>
+  <rect x="378" y="288" width="44" height="48" rx="24" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+  <text x="400" y="318" text-anchor="middle" font-size="26" font-weight="700" fill="#15803d">→</text>
+  <text x="400" y="352" text-anchor="middle" font-size="13" font-weight="700" fill="#15803d">依赖注入</text>
+
+  <!-- ============ 右列：依赖注入 ============ -->
+  <rect x="410" y="78" width="370" height="510" rx="12" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="595" y="104" text-anchor="middle" class="colHead" fill="#166534">解法：依赖注入（你的朋友）</text>
+  <text x="595" y="124" text-anchor="middle" class="small" fill="#15803d">合作者从构造函数注入 · 容器管理作用域</text>
+
+  <!-- 调用方 -->
+  <rect x="430" y="140" width="330" height="58" rx="8" fill="#ffffff" stroke="#86efac" stroke-width="1"/>
+  <text x="445" y="162" class="cardTitle" fill="#14532d">CreditCard card{processor, …};</text>
+  <text x="445" y="184" class="small">构造函数签名如实声明依赖，API 不再说谎</text>
+
+  <!-- 显式依赖箭头 -->
+  <line x1="595" y1="198" x2="595" y2="222" stroke="#16a34a" stroke-width="2" marker-end="url(#diArrow)"/>
+  <text x="605" y="214" font-size="13" fill="#15803d">显式传入，签名里看得见</text>
+
+  <!-- 注入的对象 -->
+  <rect x="430" y="226" width="330" height="78" rx="8" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="445" y="248" class="cardTitle" fill="#1e3a8a">注入的合作者（普通对象）</text>
+  <text x="445" y="270" class="body">Database db{…}</text>
+  <text x="445" y="290" class="body">CreditCardProcessor processor{db, …}</text>
+
+  <!-- 状态局部 -->
+  <line x1="595" y1="304" x2="595" y2="332" stroke="#16a34a" stroke-width="2.2" marker-end="url(#diArrow)"/>
+  <text x="605" y="324" font-size="13" font-weight="700" fill="#15803d">状态局部、随测随灭</text>
+
+  <!-- 好处盒 -->
+  <rect x="430" y="336" width="330" height="222" rx="8" fill="#ffffff" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
+  <text x="445" y="358" class="cardTitle" fill="#14532d">测试又小又快又孤立</text>
+
+  <text x="445" y="382" class="body">• 每个测试构造自己的对象，无共享污染</text>
+  <text x="445" y="404" class="body">• 任意顺序、可并行运行，互不影响</text>
+  <text x="445" y="426" class="body">• 注入 MockLoginService / StubStatusChecker</text>
+  <text x="445" y="448" class="body">• 不再需要 setForTest / resetForTest</text>
+  <text x="445" y="470" class="body">• 不再需要 Flags::disableStateChecking…</text>
+  <text x="445" y="492" class="body">• 静态库调用包成接口对象再注入打桩</text>
+
+  <rect x="445" y="506" width="300" height="40" rx="6" fill="#dcfce7" stroke="#4ade80" stroke-width="1"/>
+  <text x="595" y="524" text-anchor="middle" class="emph" fill="#166534" font-size="14">需要“唯一实例”时，</text>
+  <text x="595" y="541" text-anchor="middle" class="emph" fill="#166534" font-size="14">让容器把它置于单例作用域</text>
+
+  <!-- 底部备注 -->
+  <text x="400" y="608" text-anchor="middle" font-size="13" fill="#666">进程级全局状态的检验：能否在同一个进程里创建应用的第二个实例而不冲突？不能 → 你就在用 static。</text>
+</svg>

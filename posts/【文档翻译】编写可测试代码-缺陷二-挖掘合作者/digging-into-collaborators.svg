@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 640" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="badGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef2f2"/>
+      <stop offset="100%" stop-color="#fee2e2"/>
+    </linearGradient>
+    <linearGradient id="goodGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+    <linearGradient id="signalGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="100%" stop-color="#fef3c7"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="badArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#dc2626"/>
+    </marker>
+    <marker id="goodArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#16a34a"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 26px; font-weight: 700; fill: #1a1a1a; }
+    .subtitle { font-size: 15px; fill: #666; }
+    .col-title { font-size: 20px; font-weight: 700; }
+    .col-sub { font-size: 14px; fill: #555; }
+    .section { font-size: 16px; font-weight: 700; }
+    .code { font-size: 13px; }
+    .note { font-size: 13px; fill: #666; }
+  </style>
+
+  <!-- 标题 -->
+  <text x="400" y="34" text-anchor="middle" class="title">挖掘合作者 vs 直接注入：迪米特法则的两面</text>
+  <text x="400" y="56" text-anchor="middle" class="subtitle">别去找东西，去要东西——把真正需要的合作者声明在方法签名 / 构造函数里</text>
+
+  <!-- ============ 左列：缺陷 ============ -->
+  <rect x="24" y="76" width="372" height="430" rx="12" fill="url(#badGrad)" stroke="#fca5a5" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="210" y="104" text-anchor="middle" class="col-title" fill="#991b1b">✗ 缺陷：挖掘合作者（到处找）</text>
+  <text x="210" y="124" text-anchor="middle" class="col-sub">违反迪米特法则 · 调用链句点多于一个</text>
+
+  <!-- 缺陷1：火车相撞链 -->
+  <text x="40" y="152" class="section" fill="#b91c1c">① 火车相撞（Train Wreck）</text>
+  <rect x="40" y="158" width="340" height="44" rx="6" fill="#ffffff" stroke="#fecaca" stroke-width="1"/>
+  <text x="48" y="178" class="code" fill="#7f1d1d">user->getUser(123)</text>
+  <text x="48" y="196" class="code" fill="#7f1d1d">     .getProfile().isAdmin();</text>
+
+  <!-- 缺陷2：context 对象 -->
+  <text x="40" y="226" class="section" fill="#b91c1c">② Context / Holder 大杂烩</text>
+  <rect x="40" y="232" width="340" height="44" rx="6" fill="#ffffff" stroke="#fecaca" stroke-width="1"/>
+  <text x="48" y="252" class="code" fill="#7f1d1d">processOrder(UserContext ctx)</text>
+  <text x="48" y="270" class="code" fill="#7f1d1d">  // API 在依赖上撒了谎</text>
+
+  <!-- 缺陷3：服务定位器 -->
+  <text x="40" y="300" class="section" fill="#b91c1c">③ 服务定位器（db.getLock()）</text>
+  <rect x="40" y="306" width="340" height="44" rx="6" fill="#ffffff" stroke="#fecaca" stroke-width="1"/>
+  <text x="48" y="326" class="code" fill="#7f1d1d">db.getLock().acquire();</text>
+  <text x="48" y="344" class="code" fill="#7f1d1d">  // Database 身份危机</text>
+
+  <!-- 缺陷后果 -->
+  <line x1="40" y1="364" x2="376" y2="364" stroke="#fca5a5" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="40" y="386" class="note" fill="#7f1d1d">• 测试要搭返回 mock 的 mock</text>
+  <text x="40" y="406" class="note" fill="#7f1d1d">• 中间对象全成编译依赖，代码脆弱</text>
+  <text x="40" y="426" class="note" fill="#7f1d1d">• 复用得连带拖入无关类源码</text>
+  <text x="40" y="458" class="section" fill="#991b1b">本质：对象定位与计算混在一起</text>
+
+  <!-- ============ 右列：修复 ============ -->
+  <rect x="404" y="76" width="372" height="430" rx="12" fill="url(#goodGrad)" stroke="#86efac" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="590" y="104" text-anchor="middle" class="col-title" fill="#166534">✓ 修复：直接注入（到处要）</text>
+  <text x="590" y="124" text-anchor="middle" class="col-sub">只和直接的朋友说话 · 工厂负责定位</text>
+
+  <!-- 修复1：直接要 admin -->
+  <text x="420" y="152" class="section" fill="#15803d">① 直接要你需要的对象</text>
+  <rect x="420" y="158" width="340" height="44" rx="6" fill="#ffffff" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="428" y="178" class="code" fill="#14532d">isAdmin(User&amp; user) // 不再</text>
+  <text x="428" y="196" class="code" fill="#14532d">                 // 遍历对象图</text>
+
+  <!-- 修复2：具体参数 -->
+  <text x="420" y="226" class="section" fill="#15803d">② 用具体参数替换 context</text>
+  <rect x="420" y="232" width="340" height="44" rx="6" fill="#ffffff" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="428" y="252" class="code" fill="#14532d">processOrder(User, PlanLevel,</text>
+  <text x="428" y="270" class="code" fill="#14532d">             Order) // 依赖清晰</text>
+
+  <!-- 修复3：注入 Lock -->
+  <text x="420" y="300" class="section" fill="#15803d">③ 注入 Lock，移除 getLock()</text>
+  <rect x="420" y="306" width="340" height="44" rx="6" fill="#ffffff" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="428" y="326" class="code" fill="#14532d">UpdateBug(Database, Lock)</text>
+  <text x="428" y="344" class="code" fill="#14532d">  // 各司一职，不再分发引用</text>
+
+  <!-- 修复收益 -->
+  <line x1="420" y1="364" x2="756" y2="364" stroke="#86efac" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="420" y="386" class="note" fill="#15803d">• mock 更少，不再 mock 图遍历</text>
+  <text x="420" y="406" class="note" fill="#15803d">• 松耦合，更易演进、更可测</text>
+  <text x="420" y="426" class="note" fill="#15803d">• 暴露真正依赖，提示拆分类</text>
+  <text x="420" y="458" class="section" fill="#166534">本质：把定位职责移交给工厂 / GUICE</text>
+
+  <!-- 中间对比箭头 -->
+  <line x1="398" y1="290" x2="402" y2="290" stroke="#6b7280" stroke-width="2.5" marker-end="url(#goodArrow)"/>
+
+  <!-- ============ 底部：危险信号诊断条 ============ -->
+  <rect x="24" y="522" width="752" height="100" rx="12" fill="url(#signalGrad)" stroke="#fcd34d" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="40" y="548" class="section" fill="#b45309">⚠ 危险信号（识别这个缺陷）</text>
+  <text x="40" y="574" class="note" fill="#92400e">• 对象被传进来却从不直接使用，只用来获取其他对象</text>
+  <text x="40" y="594" class="note" fill="#92400e">• 方法调用链句点多于一个「.」</text>
+  <text x="410" y="574" class="note" fill="#92400e">• 可疑名字：context / environment /</text>
+  <text x="410" y="594" class="note" fill="#92400e">  principal / container / manager</text>
+  <text x="410" y="614" class="note" fill="#92400e">• 测试因复杂 fixture 搭建而难写</text>
+</svg>

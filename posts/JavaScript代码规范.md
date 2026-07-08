@@ -17,7 +17,7 @@ recommend: true
 
 掌握这份规范最好的办法，就是装到自己的项目里用起来。
 
-
+![JavaScript 代码规范要点分类图](/posts/JavaScript代码规范/code-standard-categories.svg)
 
 ## 细则
 

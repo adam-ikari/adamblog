@@ -40,6 +40,8 @@ assert(true, "True is true");
 
 Chai 的好处在于好用又灵活，支持插件，Node.js、浏览器、各种构建工具（Browserify、Webpack）都能跑。几种断言挑一种顺手的用就行；遇到复杂用例，它给的错误信息也比较友好，能帮你较快定位测试为什么挂了。
 
+![Chai.js 三种断言风格分类图](/posts/chai-js-断言库使用说明/chai-assert-styles.svg)
+
 ## Expect 风格写法
 
 下面挑 Expect 风格展开，看看各类断言怎么写。

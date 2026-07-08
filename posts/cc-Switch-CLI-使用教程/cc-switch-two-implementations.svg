@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 660" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef2ff"/>
+    </linearGradient>
+    <linearGradient id="blueCard" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eff6ff"/>
+      <stop offset="1" stop-color="#dbeafe"/>
+    </linearGradient>
+    <linearGradient id="greenCard" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ecfdf5"/>
+      <stop offset="1" stop-color="#d1fae5"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3.5" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#1e40af"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#16a34a"/>
+    </marker>
+    <marker id="arrowGray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#6b7280"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { fill: #333; }
+    .title { font-size: 26px; font-weight: 700; fill: #1a1a1a; }
+    .subtitle { font-size: 14px; fill: #666; }
+    .colTitle { font-size: 18px; font-weight: 700; }
+    .step { font-size: 14px; fill: #444; }
+    .cmd { font-size: 13px; font-weight: 600; }
+    .note { font-size: 12px; fill: #666; }
+    .store { font-size: 13px; fill: #555; }
+    .axis { font-size: 14px; font-weight: 700; fill: #374151; }
+  </style>
+
+  <rect width="800" height="660" fill="url(#bg)"/>
+
+  <text x="400" y="36" text-anchor="middle" class="title">cc-Switch：两种实现，两种切换抽象</text>
+  <text x="400" y="58" text-anchor="middle" class="subtitle">社区两个同名包，一个按「整份配置档案」切，一个按「AI 提供商」切——都改写 ~/.claude/settings.json</text>
+
+  <!-- 中间分隔线 -->
+  <line x1="400" y1="78" x2="400" y2="640" stroke="#d1d5db" stroke-width="1.5" stroke-dasharray="5 5"/>
+
+  <!-- ================= 左列：@aravhawk Profile 管理 ================= -->
+  <rect x="20" y="80" width="365" height="44" rx="9" fill="url(#blueCard)" stroke="#3b82f6" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="202" y="103" text-anchor="middle" class="colTitle" fill="#1e40af">@aravhawk/cc-switch</text>
+  <text x="202" y="119" text-anchor="middle" class="note">抽象单元 = Profile（配置档案）</text>
+
+  <!-- 工作流程步骤 -->
+  <rect x="20" y="138" width="365" height="46" rx="8" fill="#ffffff" stroke="#bfdbfe" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="34" y="160" class="step">① 多套完整 settings.json 副本</text>
+  <text x="34" y="177" class="note">每个 Profile = 一整份配置（含权限、MCP 等）</text>
+
+  <line x1="202" y1="184" x2="202" y2="200" stroke="#1e40af" stroke-width="1.8" marker-end="url(#arrowBlue)"/>
+
+  <rect x="20" y="204" width="365" height="46" rx="8" fill="#ffffff" stroke="#bfdbfe" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="34" y="226" class="step">② 先把当前配置同步回当前 Profile</text>
+  <text x="34" y="243" class="note">避免丢失任何已修改的设置</text>
+
+  <line x1="202" y1="250" x2="202" y2="266" stroke="#1e40af" stroke-width="1.8" marker-end="url(#arrowBlue)"/>
+
+  <rect x="20" y="270" width="365" height="46" rx="8" fill="#ffffff" stroke="#bfdbfe" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="34" y="292" class="step">③ 把目标 Profile 整体复制覆盖</text>
+  <text x="34" y="309" class="note">~/.claude/settings.json 被整体替换</text>
+
+  <line x1="202" y1="316" x2="202" y2="332" stroke="#1e40af" stroke-width="1.8" marker-end="url(#arrowBlue)"/>
+
+  <rect x="20" y="336" width="365" height="46" rx="8" fill="#dbeafe" stroke="#1e40af" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="34" y="358" class="step" fill="#1e3a8a">④ 切换完成，重启 claude 生效</text>
+  <text x="34" y="375" class="note" fill="#1e40af">适合：多项目 / 多账户的整份配置管理</text>
+
+  <!-- 存储位置 -->
+  <rect x="20" y="395" width="365" height="58" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="34" y="416" class="store" font-weight="700">存储位置</text>
+  <text x="34" y="434" class="store">~/.cc-switch/profiles/  存各 Profile 副本</text>
+  <text x="34" y="449" class="store">~/.cc-switch/state.json  记录当前激活</text>
+
+  <!-- 典型命令 -->
+  <rect x="20" y="465" width="365" height="58" rx="8" fill="#ffffff" stroke="#bfdbfe" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="34" y="486" class="store" font-weight="700">典型命令</text>
+  <text x="34" y="504" class="cmd" fill="#1e40af">cc-switch --create work --template spark</text>
+  <text x="34" y="519" class="cmd" fill="#1e40af">cc-switch work  ·  cc-switch --list</text>
+
+  <!-- 提供商模板 -->
+  <rect x="20" y="535" width="365" height="98" rx="8" fill="#ffffff" stroke="#bfdbfe" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="34" y="556" class="store" font-weight="700">内置模板</text>
+  <text x="34" y="575" class="step">anthropic · moonshot(Kimi)</text>
+  <text x="34" y="593" class="step">zai(智谱) · minimax · spark · deepseek</text>
+  <text x="34" y="613" class="note" fill="#b45309">支持用模板+Key 一键创建新 Profile</text>
+
+  <!-- ================= 右列：@adithya-13 提供商切换 ================= -->
+  <rect x="415" y="80" width="365" height="44" rx="9" fill="url(#greenCard)" stroke="#22c55e" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="597" y="103" text-anchor="middle" class="colTitle" fill="#15803d">@adithya-13/cc-switch</text>
+  <text x="597" y="119" text-anchor="middle" class="note">抽象单元 = Provider（AI 提供商）</text>
+
+  <rect x="415" y="138" width="365" height="46" rx="8" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="429" y="160" class="step">① 各提供商的 Key 集中保存</text>
+  <text x="429" y="177" class="note">keys.json 权限 chmod 600，不进代码/日志</text>
+
+  <line x1="597" y1="184" x2="597" y2="200" stroke="#16a34a" stroke-width="1.8" marker-end="url(#arrowGreen)"/>
+
+  <rect x="415" y="204" width="365" height="46" rx="8" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="429" y="226" class="step">② 指定要切到的提供商</text>
+  <text x="429" y="243" class="note">一个命令选目标 Provider，不碰整份配置</text>
+
+  <line x1="597" y1="250" x2="597" y2="266" stroke="#16a34a" stroke-width="1.8" marker-end="url(#arrowGreen)"/>
+
+  <rect x="415" y="270" width="365" height="46" rx="8" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="429" y="292" class="step">③ 只改写 API 地址与认证信息</text>
+  <text x="429" y="309" class="note">更新 ANTHROPIC_BASE_URL 和认证头</text>
+
+  <line x1="597" y1="316" x2="597" y2="332" stroke="#16a34a" stroke-width="1.8" marker-end="url(#arrowGreen)"/>
+
+  <rect x="415" y="336" width="365" height="46" rx="8" fill="#d1fae5" stroke="#16a34a" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="429" y="358" class="step" fill="#14532d">④ 切换完成，重启 claude 生效</text>
+  <text x="429" y="375" class="note" fill="#15803d">适合：额度耗尽时在提供商间一键切</text>
+
+  <rect x="415" y="395" width="365" height="58" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="4 3"/>
+  <text x="429" y="416" class="store" font-weight="700">存储位置</text>
+  <text x="429" y="434" class="store">~/.cc-switch/keys.json  集中存所有 Key</text>
+  <text x="429" y="449" class="store">改写 ~/.claude/settings.json 中的认证段</text>
+
+  <rect x="415" y="465" width="365" height="58" rx="8" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="429" y="486" class="store" font-weight="700">典型命令</text>
+  <text x="429" y="504" class="cmd" fill="#15803d">cc-switch use openrouter</text>
+  <text x="429" y="519" class="cmd" fill="#15803d">cc-switch status  ·  cc-switch doctor</text>
+
+  <rect x="415" y="535" width="365" height="98" rx="8" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="429" y="556" class="store" font-weight="700">支持提供商</text>
+  <text x="429" y="575" class="step">pro · openrouter · deepseek</text>
+  <text x="429" y="593" class="step">kimi · zai · qwen · ollama(本地)</text>
+  <text x="429" y="613" class="note" fill="#b45309">Ollama 免 API Key，跑本地模型</text>
+
+  <!-- 底部汇合：共同落点 -->
+  <line x1="202" y1="633" x2="380" y2="633" stroke="#6b7280" stroke-width="1.5"/>
+  <line x1="597" y1="633" x2="420" y2="633" stroke="#6b7280" stroke-width="1.5"/>
+  <rect x="305" y="624" width="190" height="26" rx="13" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="400" y="641" text-anchor="middle" class="step" fill="#b45309" font-weight="700">最终都改写 settings.json</text>
+</svg>

@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <marker id="flowArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#1e40af"/>
+    </marker>
+    <marker id="sshArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#16a34a"/>
+    </marker>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef2ff"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+  </style>
+
+  <rect x="0" y="0" width="800" height="620" fill="url(#bgGrad)"/>
+
+  <text x="400" y="36" text-anchor="middle" font-size="27" font-weight="700" fill="#1a1a1a">VSCode Remote-SSH 远程开发全景</text>
+  <text x="400" y="60" text-anchor="middle" font-size="16" fill="#666">代码跑在远程机器上，本地 VSCode 只是一个操作窗口——通过 SSH 通道打通两边</text>
+
+  <!-- ===== 左侧：本地 ===== -->
+  <rect x="40" y="86" width="300" height="460" rx="12" fill="#dbeafe" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="6 4" filter="url(#shadow)"/>
+  <text x="190" y="114" text-anchor="middle" font-size="20" font-weight="700" fill="#1e40af">💻 本地（你的笔记本）</text>
+  <text x="190" y="136" text-anchor="middle" font-size="14" fill="#1e40af">只装 VSCode，不存代码、不跑代码</text>
+
+  <!-- 本地步骤1 -->
+  <rect x="64" y="158" width="252" height="74" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="190" y="184" text-anchor="middle" font-size="16" font-weight="700" fill="#1e3a8a">① 安装 VSCode</text>
+  <text x="190" y="206" text-anchor="middle" font-size="13" fill="#555">官网下载安装程序</text>
+  <text x="190" y="223" text-anchor="middle" font-size="13" fill="#555">按提示装上即可</text>
+
+  <line x1="190" y1="232" x2="190" y2="252" stroke="#1e40af" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- 本地步骤2 -->
+  <rect x="64" y="256" width="252" height="74" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="190" y="282" text-anchor="middle" font-size="16" font-weight="700" fill="#1e3a8a">② 装 Remote-SSH 插件</text>
+  <text x="190" y="304" text-anchor="middle" font-size="13" fill="#555">扩展面板搜索安装</text>
+  <text x="190" y="321" text-anchor="middle" font-size="13" fill="#555">让 VSCode 具备远程能力</text>
+
+  <line x1="190" y1="330" x2="190" y2="350" stroke="#1e40af" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- 本地步骤3 -->
+  <rect x="64" y="354" width="252" height="74" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="190" y="380" text-anchor="middle" font-size="16" font-weight="700" fill="#1e3a8a">③ 配置 SSH 连接</text>
+  <text x="190" y="402" text-anchor="middle" font-size="13" fill="#555">Add SSH Host 填写连接信息</text>
+  <text x="190" y="419" text-anchor="middle" font-size="13" fill="#1e40af">ssh user_name@host_domain:22 -A</text>
+
+  <line x1="190" y1="428" x2="190" y2="448" stroke="#1e40af" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- 本地步骤4 -->
+  <rect x="64" y="452" width="252" height="74" rx="8" fill="#ffffff" stroke="#93c5fd" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="190" y="478" text-anchor="middle" font-size="16" font-weight="700" fill="#1e3a8a">④ Connect to Host 连接</text>
+  <text x="190" y="500" text-anchor="middle" font-size="13" fill="#555">右键配置 → 输密码/私钥</text>
+  <text x="190" y="517" text-anchor="middle" font-size="13" fill="#555">显示远程文件系统即成功</text>
+
+  <!-- ===== 中间：SSH 通道 ===== -->
+  <line x1="346" y1="430" x2="454" y2="430" stroke="#16a34a" stroke-width="3" marker-end="url(#sshArrow)"/>
+  <rect x="360" y="404" width="80" height="22" rx="11" fill="#dcfce7" stroke="#4ade80" stroke-width="1"/>
+  <text x="400" y="420" text-anchor="middle" font-size="13" font-weight="700" fill="#166534">SSH 通道</text>
+  <text x="400" y="448" text-anchor="middle" font-size="12" fill="#16a34a">传输操作指令</text>
+  <text x="400" y="463" text-anchor="middle" font-size="12" fill="#16a34a">回传文件/输出</text>
+
+  <!-- ===== 右侧：远程 ===== -->
+  <rect x="460" y="86" width="300" height="460" rx="12" fill="#dcfce7" stroke="#4ade80" stroke-width="1.5" stroke-dasharray="6 4" filter="url(#shadow)"/>
+  <text x="610" y="114" text-anchor="middle" font-size="20" font-weight="700" fill="#166534">🖥️ 远程服务器</text>
+  <text x="610" y="136" text-anchor="middle" font-size="14" fill="#166534">代码、依赖、运行环境都在这里</text>
+
+  <!-- 远程内容卡片 -->
+  <rect x="484" y="158" width="252" height="108" rx="8" fill="#ffffff" stroke="#86efac" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="610" y="184" text-anchor="middle" font-size="16" font-weight="700" fill="#14532d">📁 远程文件系统</text>
+  <text x="610" y="208" text-anchor="middle" font-size="13" fill="#555">在编辑器里直接打开</text>
+  <text x="610" y="225" text-anchor="middle" font-size="13" fill="#555">远程的文件或文件夹</text>
+  <text x="610" y="248" text-anchor="middle" font-size="13" fill="#166534">编辑 = 改服务器上的代码</text>
+
+  <line x1="610" y1="266" x2="610" y2="286" stroke="#16a34a" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <rect x="484" y="290" width="252" height="108" rx="8" fill="#ffffff" stroke="#86efac" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="610" y="316" text-anchor="middle" font-size="16" font-weight="700" fill="#14532d">⚙️ 编辑 / 调试 / 运行</text>
+  <text x="610" y="340" text-anchor="middle" font-size="13" fill="#555">和本地操作几乎一样</text>
+  <text x="610" y="357" text-anchor="middle" font-size="13" fill="#555">断点、变量、调用栈可用</text>
+  <text x="610" y="380" text-anchor="middle" font-size="13" fill="#166534">代码实际在这台机器上跑</text>
+
+  <line x1="610" y1="398" x2="610" y2="418" stroke="#16a34a" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <rect x="484" y="422" width="252" height="108" rx="8" fill="#ffffff" stroke="#86efac" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="610" y="448" text-anchor="middle" font-size="16" font-weight="700" fill="#14532d">🛠️ VSCode 全功能可用</text>
+  <text x="610" y="472" text-anchor="middle" font-size="13" fill="#555">版本控制 Git</text>
+  <text x="610" y="489" text-anchor="middle" font-size="13" fill="#555">集成终端（远程 shell）</text>
+  <text x="610" y="512" text-anchor="middle" font-size="13" fill="#166534">本地窗口操作 → 远程执行</text>
+
+  <!-- ===== 底部：核心观点 ===== -->
+  <rect x="64" y="560" width="672" height="48" rx="8" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="400" y="590" text-anchor="middle" font-size="17" font-weight="700" fill="#b45309">核心：省去本地↔服务器来回倒腾文件，远程开发体验约等于本地</text>
+</svg>

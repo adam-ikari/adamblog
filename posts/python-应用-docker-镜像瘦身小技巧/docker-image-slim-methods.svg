@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="srcGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eff6ff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+    <linearGradient id="cleanGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ecfdf5"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+    <linearGradient id="resultGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f5f3ff"/>
+      <stop offset="100%" stop-color="#ede9fe"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.12"/>
+    </filter>
+    <marker id="blueArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#1e40af"/>
+    </marker>
+    <marker id="greenArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#16a34a"/>
+    </marker>
+    <marker id="purpleArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#6d28d9"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 27px; font-weight: 700; fill: #1a1a1a; }
+    .subtitle { font-size: 16px; fill: #666; }
+    .group-title { font-size: 20px; font-weight: 700; }
+    .group-sub { font-size: 13px; }
+    .tip { font-size: 15px; font-weight: 600; }
+    .tip-sub { font-size: 13px; }
+    .result-title { font-size: 20px; font-weight: 700; fill: #6d28d9; }
+    .result-line { font-size: 14px; fill: #555; }
+    .badge { font-size: 13px; font-weight: 600; }
+  </style>
+
+  <rect x="0" y="0" width="800" height="600" fill="url(#bgGrad)"/>
+
+  <text x="400" y="36" text-anchor="middle" class="title">Python 镜像瘦身：六大方法</text>
+  <text x="400" y="60" text-anchor="middle" class="subtitle">两类手段叠加 —— 从源头选小，在构建中清干净</text>
+
+  <!-- ===== 左列：源头瘦身 ===== -->
+  <rect x="24" y="84" width="360" height="350" rx="12" fill="url(#srcGrad)" stroke="#93c5fd" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="24" y="84" width="360" height="44" rx="12" fill="#bfdbfe"/>
+  <rect x="24" y="116" width="360" height="12" fill="#bfdbfe"/>
+  <text x="204" y="110" text-anchor="middle" class="group-title" fill="#1e40af">① 源头瘦身 · 选小基础</text>
+  <text x="204" y="146" text-anchor="middle" class="group-sub" fill="#3b82f6">基础镜像 + 构建方式决定下限</text>
+
+  <!-- tip 1 -->
+  <rect x="44" y="162" width="320" height="74" rx="8" fill="#ffffff" stroke="#bfdbfe" stroke-width="1"/>
+  <rect x="44" y="162" width="6" height="74" fill="#1e40af"/>
+  <text x="62" y="186" class="tip" fill="#1e40af">1. 精简基础镜像</text>
+  <text x="62" y="208" class="tip-sub">python:3.x-slim ≈ 60MB</text>
+  <text x="62" y="226" class="tip-sub">python:3.x-alpine ≈ 23MB（比 Ubuntu 小一截）</text>
+
+  <!-- tip 2 -->
+  <rect x="44" y="246" width="320" height="74" rx="8" fill="#ffffff" stroke="#bfdbfe" stroke-width="1"/>
+  <rect x="44" y="246" width="6" height="74" fill="#1e40af"/>
+  <text x="62" y="270" class="tip" fill="#1e40af">2. 多阶段构建</text>
+  <text x="62" y="292" class="tip-sub">builder 阶段编译依赖</text>
+  <text x="62" y="310" class="tip-sub">运行阶段只 COPY 必需文件</text>
+
+  <!-- tip 4 -->
+  <rect x="44" y="330" width="320" height="74" rx="8" fill="#ffffff" stroke="#bfdbfe" stroke-width="1"/>
+  <rect x="44" y="330" width="6" height="74" fill="#1e40af"/>
+  <text x="62" y="354" class="tip" fill="#1e40af">3. .dockerignore</text>
+  <text x="62" y="376" class="tip-sub">挡住 .git / __pycache__ / *.log</text>
+  <text x="62" y="394" class="tip-sub">不进镜像，构建也更快</text>
+
+  <!-- ===== 右列：构建清理 ===== -->
+  <rect x="416" y="84" width="360" height="350" rx="12" fill="url(#cleanGrad)" stroke="#86efac" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="416" y="84" width="360" height="44" rx="12" fill="#bbf7d0"/>
+  <rect x="416" y="116" width="360" height="12" fill="#bbf7d0"/>
+  <text x="596" y="110" text-anchor="middle" class="group-title" fill="#15803d">② 构建清理 · 不留垃圾</text>
+  <text x="596" y="146" text-anchor="middle" class="group-sub" fill="#16a34a">层数、缓存、推荐包逐项抠</text>
+
+  <!-- tip 3 -->
+  <rect x="436" y="162" width="320" height="74" rx="8" fill="#ffffff" stroke="#bbf7d0" stroke-width="1"/>
+  <rect x="436" y="162" width="6" height="74" fill="#16a34a"/>
+  <text x="454" y="186" class="tip" fill="#15803d">4. 减少镜像层数</text>
+  <text x="454" y="208" class="tip-sub">每条 RUN 叠一层</text>
+  <text x="454" y="226" class="tip-sub">多命令合并到一个 RUN &amp;&amp;</text>
+
+  <!-- tip 5 -->
+  <rect x="436" y="246" width="320" height="74" rx="8" fill="#ffffff" stroke="#bbf7d0" stroke-width="1"/>
+  <rect x="436" y="246" width="6" height="74" fill="#16a34a"/>
+  <text x="454" y="270" class="tip" fill="#15803d">5. 清理缓存 / 临时文件</text>
+  <text x="454" y="292" class="tip-sub">pip install --no-cache-dir</text>
+  <text x="454" y="310" class="tip-sub">rm -rf /root/.cache/pip</text>
+
+  <!-- tip 6 -->
+  <rect x="436" y="330" width="320" height="74" rx="8" fill="#ffffff" stroke="#bbf7d0" stroke-width="1"/>
+  <rect x="436" y="330" width="6" height="74" fill="#16a34a"/>
+  <text x="454" y="354" class="tip" fill="#15803d">6. --no-install-recommends</text>
+  <text x="454" y="376" class="tip-sub">装系统包跳过"推荐"项</text>
+  <text x="454" y="394" class="tip-sub">配合 rm -rf /var/lib/apt/lists/*</text>
+
+  <!-- ===== 汇合箭头 ===== -->
+  <path d="M 204 434 L 204 470 L 340 470 L 400 500" fill="none" stroke="#1e40af" stroke-width="2" marker-end="url(#blueArrow)"/>
+  <path d="M 596 434 L 596 470 L 460 470 L 400 500" fill="none" stroke="#16a34a" stroke-width="2" marker-end="url(#greenArrow)"/>
+
+  <!-- ===== 结果 ===== -->
+  <rect x="220" y="500" width="360" height="80" rx="12" fill="url(#resultGrad)" stroke="#c4b5fd" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="220" y="500" width="360" height="6" fill="#7c3aed"/>
+  <text x="400" y="530" text-anchor="middle" class="result-title">瘦身后的镜像</text>
+  <text x="400" y="552" text-anchor="middle" class="result-line">推拉更快 · 存储更省 · 部署更轻</text>
+  <rect x="318" y="562" width="164" height="22" rx="11" fill="#ede9fe" stroke="#c4b5fd" stroke-width="1"/>
+  <text x="400" y="577" text-anchor="middle" class="badge" fill="#6d28d9">两类手段叠加效果最佳</text>
+</svg>

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eef2f7"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 27px; font-weight: 700; fill: #1a1a1a; }
+    .subtitle { font-size: 15px; fill: #666; }
+    .cat-title { font-size: 19px; font-weight: 700; }
+    .principle { font-size: 14px; fill: #555; }
+    .rule { font-size: 13px; fill: #444; }
+    .rule-code { font-size: 13px; fill: #444; font-family: 'SF Mono', 'Menlo', monospace; }
+    .footer { font-size: 13px; fill: #666; }
+  </style>
+
+  <rect x="0" y="0" width="800" height="620" fill="url(#bgGrad)"/>
+
+  <text x="400" y="38" text-anchor="middle" class="title">JavaScript 代码规范要点分类</text>
+  <text x="400" y="60" text-anchor="middle" class="subtitle">standardjs 近百条规则可归为四大类，每类一条核心原则 + 代表性规则</text>
+
+  <!-- ============ 命名 ============ -->
+  <rect x="40" y="84" width="350" height="160" rx="12" fill="#dbeafe" stroke="#60a5fa" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="60" y="110" class="cat-title" fill="#1e40af">① 命名（Naming）</text>
+  <text x="60" y="132" class="principle">原则：驼峰命名 + 构造器大写 + 不重复声明</text>
+  <text x="60" y="156" class="rule">• 变量/函数用驼峰：<tspan class="rule-code" fill="#1e40af">myFunction</tspan> 而非 my_function</text>
+  <text x="60" y="178" class="rule">• 构造函数大写开头：<tspan class="rule-code" fill="#1e40af">new Animal()</tspan></text>
+  <text x="60" y="200" class="rule">• 不重复声明：<tspan class="rule-code" fill="#1e40af">let name</tspan> 不再 let 一次</text>
+  <text x="60" y="222" class="rule">• 避免类名重赋值、与 label / 保留字重名</text>
+
+  <!-- ============ 格式 ============ -->
+  <rect x="410" y="84" width="350" height="160" rx="12" fill="#dcfce7" stroke="#4ade80" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="430" y="110" class="cat-title" fill="#166534">② 格式（Formatting）</text>
+  <text x="430" y="132" class="principle">原则：两空格缩进 + 单引号 + 不加分号</text>
+  <text x="430" y="156" class="rule">• 缩进两空格，行尾不留空格、不连续空行</text>
+  <text x="430" y="178" class="rule">• 字符串统一单引号：<tspan class="rule-code" fill="#166534">'hello'</tspan></text>
+  <text x="430" y="200" class="rule">• 不使用分号：<tspan class="rule-code" fill="#166534">alert('hi')</tspan> 非 alert('hi');</text>
+  <text x="430" y="222" class="rule">• 关键字/逗号/操作符前后加空格，行首忌 ( [ `</text>
+
+  <!-- ============ 性能/最佳实践 ============ -->
+  <rect x="40" y="264" width="350" height="160" rx="12" fill="#fef3c7" stroke="#fbbf24" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="60" y="290" class="cat-title" fill="#b45309">③ 性能与最佳实践（Performance）</text>
+  <text x="60" y="312" class="principle">原则：用字面量 + 简洁写法 + 避免冗余</text>
+  <text x="60" y="336" class="rule">• 数组用字面量：<tspan class="rule-code" fill="#b45309">[1,2,3]</tspan> 而非 new Array(...)</text>
+  <text x="60" y="358" class="rule">• 不滥用三元：<tspan class="rule-code" fill="#b45309">val || 0</tspan> 优于 val ? val : 0</text>
+  <text x="60" y="380" class="rule">• 禁用 eval / with / debugger / arguments.callee</text>
+  <text x="60" y="402" class="rule">• 多导入合并、去多余构造器与计算属性</text>
+
+  <!-- ============ 错误处理与安全 ============ -->
+  <rect x="410" y="264" width="350" height="160" rx="12" fill="#fee2e2" stroke="#f87171" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="430" y="290" class="cat-title" fill="#991b1b">④ 错误处理与安全（Errors）</text>
+  <text x="430" y="312" class="principle">原则：全等比较 + 处理 err + 抛 Error 对象</text>
+  <text x="430" y="336" class="rule">• 始终用 <tspan class="rule-code" fill="#991b1b">===</tspan> 替代 ==（obj == null 例外）</text>
+  <text x="430" y="358" class="rule">• 不丢异常参数：<tspan class="rule-code" fill="#991b1b">if (err) throw err</tspan></text>
+  <text x="430" y="380" class="rule">• throw 抛 Error：<tspan class="rule-code" fill="#991b1b">throw new Error()</tspan></text>
+  <text x="430" y="402" class="rule">• 检查 NaN 用 isNaN()，switch 勿忘 break</text>
+
+  <!-- ============ 汇总条 ============ -->
+  <rect x="40" y="444" width="720" height="80" rx="12" fill="#ede9fe" stroke="#a78bfa" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="472" text-anchor="middle" class="cat-title" fill="#5b21b6">核心思想：可读性 &gt; 取巧</text>
+  <text x="400" y="496" text-anchor="middle" class="rule">"相比可读易懂的代码，那些看似取巧的写法并不值得"</text>
+  <text x="400" y="516" text-anchor="middle" class="footer">规范由 eslint 规则强制执行 —— 装到项目里用起来，比逐条背诵更有效</text>
+
+  <!-- ============ 底部箭头说明 ============ -->
+  <text x="400" y="558" text-anchor="middle" class="footer">命名 → 写对名字　　格式 → 写得一致　　性能 → 写得简洁　　错误 → 写得健壮</text>
+  <text x="400" y="582" text-anchor="middle" class="footer">四类合力：让团队代码如同一人所写</text>
+</svg>

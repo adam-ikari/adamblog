@@ -21,6 +21,8 @@ series:
 
 Claude Code 是终端原生的 AI 编程工具，做科学计算项目挺合适。它能直接读你的项目文件、跑代码、看输出，凑成一个"编写—运行—调试"的闭环。下面分享用它写 Python 流体仿真代码的完整工作流，并用一个 2D 流体求解器的实战案例走一遍具体操作。
 
+![Claude Code 流体仿真开发工作流](/posts/使用AI编写Python流体仿真代码/ai-fluid-sim-workflow.svg)
+
 ## 使用 Claude Code 编写流体仿真代码的工作流
 
 ### 创建项目结构

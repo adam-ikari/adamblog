@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef2f7"/>
+    </linearGradient>
+    <marker id="flowArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#1e40af"/>
+    </marker>
+    <marker id="copyArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#b45309"/>
+    </marker>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .step-num { font-size: 13px; font-weight: 700; fill: #ffffff; }
+    .title { font-size: 26px; font-weight: 700; fill: #1a1a1a; }
+    .subtitle { font-size: 15px; fill: #666; }
+    .card-title { font-size: 17px; font-weight: 700; }
+    .card-body { font-size: 14px; fill: #555; }
+    .cmd { font-size: 13px; fill: #1e40af; font-family: 'JetBrains Mono', 'Consolas', monospace; }
+    .zone { font-size: 13px; font-weight: 700; }
+  </style>
+
+  <rect x="0" y="0" width="800" height="520" fill="url(#bg)"/>
+
+  <text x="400" y="34" text-anchor="middle" class="title">离线环境 nvm-windows 安装 Node.js 全流程</text>
+  <text x="400" y="56" text-anchor="middle" class="subtitle">外网备包 → 拷入内网 → 跑安装程序 → 解压版本 → nvm 命令管理，全程不联网</text>
+
+  <!-- 环境分界带 -->
+  <rect x="0" y="76" width="800" height="2" fill="#cbd5e1"/>
+  <text x="110" y="72" text-anchor="middle" class="zone" fill="#b45309">🌐 外网环境（有网）</text>
+  <text x="560" y="72" text-anchor="middle" class="zone" fill="#16a34a">🔒 内网/离线环境（无网）</text>
+
+  <!-- ===== 步骤1：外网下载 ===== -->
+  <rect x="30" y="90" width="230" height="150" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5" filter="url(#shadow)"/>
+  <circle cx="50" cy="110" r="12" fill="#b45309"/>
+  <text x="50" y="114" text-anchor="middle" class="step-num">1</text>
+  <text x="70" y="115" class="card-title" fill="#7c2d12">外网备包</text>
+  <text x="45" y="138" class="card-body">▸ nvm-setup.exe</text>
+  <text x="45" y="156" class="card-body">  GitHub releases 下载</text>
+  <text x="45" y="178" class="card-body">▸ node-vX-win-x64.zip</text>
+  <text x="45" y="196" class="card-body">  nodejs.org/dist 选版本</text>
+  <text x="45" y="218" class="card-body" fill="#b45309">两样都要提前下好</text>
+
+  <!-- 拷贝箭头 -->
+  <line x1="262" y1="165" x2="318" y2="165" stroke="#b45309" stroke-width="2.5" marker-end="url(#copyArrow)"/>
+  <text x="290" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#b45309">拷贝</text>
+  <text x="290" y="180" text-anchor="middle" font-size="12" fill="#92400e">U盘/介质</text>
+
+  <!-- ===== 步骤2：装 nvm-windows ===== -->
+  <rect x="320" y="90" width="230" height="150" rx="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5" filter="url(#shadow)"/>
+  <circle cx="340" cy="110" r="12" fill="#1e40af"/>
+  <text x="340" y="114" text-anchor="middle" class="step-num">2</text>
+  <text x="360" y="115" class="card-title" fill="#1e3a8a">安装 nvm-windows</text>
+  <text x="335" y="138" class="card-body">▸ 双击 nvm-setup.exe</text>
+  <text x="335" y="156" class="card-body">  选路径如 C:\nvm4w</text>
+  <text x="335" y="178" class="card-body">▸ 验证：</text>
+  <text x="335" y="198" class="cmd">  nvm -v  →  1.2.2</text>
+  <text x="335" y="220" class="card-body" fill="#1e40af">装好版本管理器本体</text>
+
+  <!-- 流程箭头 2→3 -->
+  <line x1="435" y1="242" x2="435" y2="288" stroke="#1e40af" stroke-width="2.5" marker-end="url(#flowArrow)"/>
+
+  <!-- ===== 步骤3：手动解压 Node ===== -->
+  <rect x="320" y="292" width="230" height="150" rx="10" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5" filter="url(#shadow)"/>
+  <circle cx="340" cy="312" r="12" fill="#16a34a"/>
+  <text x="340" y="316" text-anchor="middle" class="step-num">3</text>
+  <text x="360" y="317" class="card-title" fill="#14532d">手动解压 Node 版本</text>
+  <text x="335" y="340" class="card-body">▸ 解压 zip 到 nvm 目录</text>
+  <text x="335" y="358" class="card-body">  改名 v20.18.3 文件夹</text>
+  <text x="335" y="378" class="card-body">▸ 验证：</text>
+  <text x="335" y="398" class="cmd">  nvm list  →  * 20.18.3</text>
+  <text x="335" y="420" class="card-body" fill="#16a34a">绕过联网下载</text>
+
+  <!-- 流程箭头 3→4 -->
+  <line x1="435" y1="444" x2="435" y2="470" stroke="#1e40af" stroke-width="2.5" marker-end="url(#flowArrow)"/>
+
+  <!-- ===== 步骤4：nvm 管理多版本 ===== -->
+  <rect x="540" y="292" width="230" height="150" rx="10" fill="#ede9fe" stroke="#8b5cf6" stroke-width="1.5" filter="url(#shadow)"/>
+  <circle cx="560" cy="312" r="12" fill="#6d28d9"/>
+  <text x="560" y="316" text-anchor="middle" class="step-num">4</text>
+  <text x="580" y="317" class="card-title" fill="#4c1d95">nvm 管理多版本</text>
+  <text x="555" y="340" class="cmd">nvm list          # 查看已装</text>
+  <text x="555" y="362" class="cmd">nvm use 20.18.3   # 切换</text>
+  <text x="555" y="384" class="cmd">node -v           # 验证</text>
+  <text x="555" y="406" class="cmd">npm -v</text>
+  <text x="555" y="426" class="card-body" fill="#6d28d9">无网照样管多版本</text>
+
+  <!-- 跨步骤连接：3→4 横向 -->
+  <line x1="552" y1="367" x2="538" y2="367" stroke="#1e40af" stroke-width="2.5" marker-end="url(#flowArrow)"/>
+
+  <!-- 底部要点 -->
+  <rect x="30" y="460" width="490" height="44" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="45" y="480" font-size="14" font-weight="700" fill="#444">关键点：</text>
+  <text x="118" y="480" font-size="14" fill="#555">版本文件直接解压进 nvm 目录，伪装成"已下载"，离线机器即可复用在线 nvm 命令。</text>
+  <text x="45" y="497" font-size="13" fill="#777">前提是步骤1外网备包齐全 + 步骤2 nvm 已装好；之后 list/use 全在本地完成，不再联网。</text>
+</svg>

@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" text-rendering="geometricPrecision">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef2f7"/>
+    </linearGradient>
+    <linearGradient id="flaskCore" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dbeafe"/>
+      <stop offset="1" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <linearGradient id="flaskExt" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dcfce7"/>
+      <stop offset="1" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="django" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fef3c7"/>
+      <stop offset="1" stop-color="#fde68a"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ede9fe"/>
+      <stop offset="1" stop-color="#ddd6fe"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#1e293b" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <style>
+    .title{font-family:'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif;font-size:26px;font-weight:700;fill:#1e293b}
+    .subtitle{font-family:'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif;font-size:15px;fill:#475569}
+    .col{font-family:'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif;font-size:16px;font-weight:700;fill:#1e40af}
+    .col2{font-family:'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif;font-size:16px;font-weight:700;fill:#b45309}
+    .card{font-family:'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif;font-size:14px;font-weight:600;fill:#334155}
+    .sub{font-family:'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif;font-size:12.5px;fill:#475569}
+    .tag{font-family:'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif;font-size:13px;font-weight:600;fill:#1e40af}
+    .stage{font-family:'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif;font-size:14px;font-weight:700;fill:#475569}
+    .note{font-family:'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',sans-serif;font-size:13px;fill:#555;font-style:italic}
+  </style>
+
+  <rect width="800" height="620" fill="url(#bg)"/>
+
+  <text x="400" y="38" class="title" text-anchor="middle">Flask：精简核心 + 按需扩展</text>
+  <text x="400" y="60" class="subtitle" text-anchor="middle">核心小、不替你做决定；想要的功能靠扩展组装 —— 与 Django「大而全」对照</text>
+
+  <!-- 左列：Flask -->
+  <text x="120" y="96" class="col" text-anchor="middle">Flask（轻量）</text>
+  <!-- 核心盒 -->
+  <rect x="40" y="108" width="160" height="118" rx="10" fill="url(#flaskCore)" stroke="#1e40af" stroke-width="1.4" filter="url(#shadow)"/>
+  <text x="120" y="130" class="card" text-anchor="middle">精简核心</text>
+  <text x="120" y="151" class="sub" text-anchor="middle">路由 · 视图函数</text>
+  <text x="120" y="170" class="sub" text-anchor="middle">Jinja2 模板</text>
+  <text x="120" y="189" class="sub" text-anchor="middle">请求 / 响应</text>
+  <text x="120" y="208" class="sub" text-anchor="middle">会话 / Cookie</text>
+
+  <!-- 连接线 -->
+  <path d="M120 226 L120 246 M70 246 L170 246 M70 246 L70 262 M120 246 L120 262 M170 246 L170 262" stroke="#1e40af" stroke-width="1.6" fill="none"/>
+  <text x="195" y="243" class="tag">按需挂载</text>
+
+  <!-- 扩展三盒 -->
+  <rect x="20" y="262" width="100" height="78" rx="8" fill="url(#flaskExt)" stroke="#16a34a" stroke-width="1.3" filter="url(#shadow)"/>
+  <text x="70" y="284" class="card" text-anchor="middle" fill="#166534">数据库</text>
+  <text x="70" y="304" class="sub" text-anchor="middle">Flask-SQLAlchemy</text>
+  <text x="70" y="322" class="sub" text-anchor="middle">ORM · 迁移</text>
+
+  <rect x="70" y="262" width="100" height="78" rx="8" fill="url(#flaskExt)" stroke="#16a34a" stroke-width="1.3" filter="url(#shadow)"/>
+  <text x="120" y="284" class="card" text-anchor="middle" fill="#166534">API</text>
+  <text x="120" y="304" class="sub" text-anchor="middle">Flask-RESTful</text>
+  <text x="120" y="322" class="sub" text-anchor="middle">Resource 类</text>
+
+  <rect x="120" y="262" width="100" height="78" rx="8" fill="url(#flaskExt)" stroke="#16a34a" stroke-width="1.3" filter="url(#shadow)"/>
+  <text x="170" y="284" class="card" text-anchor="middle" fill="#166534">表单/认证</text>
+  <text x="170" y="304" class="sub" text-anchor="middle">Flask-WTF</text>
+  <text x="170" y="322" class="sub" text-anchor="middle">Flask-Login</text>
+
+  <!-- 更下方扩展 -->
+  <rect x="40" y="358" width="160" height="44" rx="8" fill="url(#flaskExt)" stroke="#16a34a" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="120" y="378" class="sub" text-anchor="middle" fill="#166534">Admin · Mail · Uploads … 社区扩展自选</text>
+
+  <text x="120" y="424" class="note" text-anchor="middle">轻、上手快、可控</text>
+  <text x="120" y="442" class="note" text-anchor="middle">代价：自己组装</text>
+
+  <!-- 右列：Django -->
+  <text x="680" y="96" class="col2" text-anchor="middle">Django（大而全）</text>
+  <rect x="600" y="108" width="160" height="294" rx="10" fill="url(#django)" stroke="#b45309" stroke-width="1.4" filter="url(#shadow)"/>
+  <text x="680" y="132" class="card" text-anchor="middle" fill="#7c2d12">开箱即用，一体包</text>
+  <text x="680" y="158" class="sub" text-anchor="middle">ORM（自带）</text>
+  <text x="680" y="180" class="sub" text-anchor="middle">模板引擎（自带）</text>
+  <text x="680" y="202" class="sub" text-anchor="middle">Admin 后台（自带）</text>
+  <text x="680" y="224" class="sub" text-anchor="middle">表单 / 认证（自带）</text>
+  <text x="680" y="246" class="sub" text-anchor="middle">路由 / 视图（自带）</text>
+  <text x="680" y="268" class="sub" text-anchor="middle">会话 / Cookie（自带）</text>
+  <text x="680" y="290" class="sub" text-anchor="middle">安全中间件（自带）</text>
+  <text x="680" y="312" class="sub" text-anchor="middle">缓存 / 上传…（自带）</text>
+  <line x1="620" y1="328" x2="740" y2="328" stroke="#b45309" stroke-width="1" stroke-dasharray="4 3" opacity="0.6"/>
+  <text x="680" y="350" class="sub" text-anchor="middle" fill="#7c2d12">约束多，替你做决定</text>
+  <text x="680" y="372" class="sub" text-anchor="middle" fill="#7c2d12">代价：有冗余、不灵活</text>
+
+  <!-- 中间结论 -->
+  <rect x="250" y="455" width="300" height="34" rx="8" fill="#ffffff" stroke="#475569" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="400" y="477" class="sub" text-anchor="middle" fill="#1e293b">要灵活可控 → Flask；要少折腾开箱即用 → Django</text>
+
+  <!-- 底部：学习路线 -->
+  <text x="400" y="513" class="subtitle" text-anchor="middle" fill="#1e293b" font-weight="700">Flask 学习路线（四阶段）</text>
+  <line x1="60" y1="535" x2="740" y2="535" stroke="#94a3b8" stroke-width="1.2"/>
+
+  <rect x="40" y="545" width="170" height="50" rx="8" fill="url(#route)" stroke="#6d28d9" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="125" y="565" class="stage" text-anchor="middle" fill="#4c1d95">① 介绍与安装</text>
+  <text x="125" y="584" class="sub" text-anchor="middle">特点 · 安装</text>
+
+  <rect x="230" y="545" width="170" height="50" rx="8" fill="url(#route)" stroke="#6d28d9" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="315" y="565" class="stage" text-anchor="middle" fill="#4c1d95">② 基础知识</text>
+  <text x="315" y="584" class="sub" text-anchor="middle">路由 · 模板 · 表单 · 钩子</text>
+
+  <rect x="420" y="545" width="170" height="50" rx="8" fill="url(#route)" stroke="#6d28d9" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="505" y="565" class="stage" text-anchor="middle" fill="#4c1d95">③ 扩展生态</text>
+  <text x="505" y="584" class="sub" text-anchor="middle">WTF · SQLAlchemy · RESTful</text>
+
+  <rect x="610" y="545" width="150" height="50" rx="8" fill="url(#route)" stroke="#6d28d9" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="685" y="565" class="stage" text-anchor="middle" fill="#4c1d95">④ 部署与进阶</text>
+  <text x="685" y="584" class="sub" text-anchor="middle">WSGI · 安全 · 性能</text>
+</svg>

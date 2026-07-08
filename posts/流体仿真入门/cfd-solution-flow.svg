@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 660" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eef2f7"/>
+    </linearGradient>
+    <marker id="flowArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#1e40af"/>
+    </marker>
+    <marker id="branchArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#b45309"/>
+    </marker>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 27px; font-weight: 700; fill: #1a1a1a; }
+    .subtitle { font-size: 15px; fill: #666; }
+    .stage { font-size: 17px; font-weight: 700; }
+    .desc { font-size: 14px; fill: #555; }
+    .small { font-size: 13px; fill: #666; }
+    .accent { font-size: 13px; font-weight: 600; }
+  </style>
+
+  <rect x="0" y="0" width="800" height="660" fill="url(#bgGrad)"/>
+
+  <text x="400" y="38" text-anchor="middle" class="title">CFD 流体仿真的求解流程</text>
+  <text x="400" y="62" text-anchor="middle" class="subtitle">从物理方程到数值解：物理建模 → 离散化 → 时间推进 → 求解结果</text>
+
+  <!-- ===== 阶段1：物理方程 ===== -->
+  <rect x="220" y="86" width="360" height="96" rx="10" fill="#dbeafe" stroke="#60a5fa" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="112" text-anchor="middle" class="stage" fill="#1e3a8a">① 物理方程：流体运动的数学描述</text>
+  <text x="400" y="135" text-anchor="middle" class="desc">Navier-Stokes 方程（动量守恒）</text>
+  <text x="400" y="153" text-anchor="middle" class="small">连续性方程（质量守恒） + 边界条件</text>
+  <text x="400" y="171" text-anchor="middle" class="small" fill="#1e40af">本质：牛顿第二定律在流体里的翻版</text>
+
+  <line x1="400" y1="182" x2="400" y2="218" stroke="#1e40af" stroke-width="2" marker-end="url(#flowArrow)"/>
+  <text x="412" y="204" class="small" fill="#1e40af">无法解析求解</text>
+
+  <!-- ===== 阶段2：离散化（分支） ===== -->
+  <rect x="180" y="222" width="440" height="70" rx="10" fill="#fef3c7" stroke="#fbbf24" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="248" text-anchor="middle" class="stage" fill="#78350f">② 离散化：把连续方程变成计算机能算的代数式</text>
+  <text x="400" y="270" text-anchor="middle" class="desc">在网格点上用差分/积分近似导数，将偏微分方程转为线性方程组</text>
+  <text x="400" y="286" text-anchor="middle" class="small">核心权衡：方法简单 vs 适应复杂几何</text>
+
+  <!-- 分支箭头 -->
+  <line x1="330" y1="292" x2="200" y2="332" stroke="#b45309" stroke-width="2" marker-end="url(#branchArrow)"/>
+  <line x1="470" y1="292" x2="600" y2="332" stroke="#b45309" stroke-width="2" marker-end="url(#branchArrow)"/>
+
+  <!-- FDM 卡片 -->
+  <rect x="70" y="336" width="280" height="118" rx="10" fill="#dcfce7" stroke="#4ade80" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="210" y="362" text-anchor="middle" class="stage" fill="#14532d">有限差分法 FDM</text>
+  <text x="210" y="384" text-anchor="middle" class="desc">用差分近似导数：∂u/∂x ≈ (uᵢ₊₁−uᵢ)/Δx</text>
+  <text x="210" y="406" text-anchor="middle" class="accent" fill="#16a34a">优点：简单易懂，容易实现</text>
+  <text x="210" y="426" text-anchor="middle" class="accent" fill="#dc2626">短板：复杂几何适应性差</text>
+  <text x="210" y="446" text-anchor="middle" class="small">适合：规则网格、入门教学（如 2D 热传导）</text>
+
+  <!-- FVM 卡片 -->
+  <rect x="450" y="336" width="280" height="118" rx="10" fill="#ede9fe" stroke="#a78bfa" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="590" y="362" text-anchor="middle" class="stage" fill="#4c1d95">有限体积法 FVM</text>
+  <text x="590" y="384" text-anchor="middle" class="desc">基于积分守恒，划分控制体积</text>
+  <text x="590" y="406" text-anchor="middle" class="accent" fill="#16a34a">优点：守恒性好，适合复杂几何</text>
+  <text x="590" y="426" text-anchor="middle" class="accent" fill="#dc2626">代价：实现相对复杂</text>
+  <text x="590" y="446" text-anchor="middle" class="small">适合：工业级 CFD（OpenFOAM 等）</text>
+
+  <!-- 汇合箭头 -->
+  <line x1="210" y1="454" x2="380" y2="490" stroke="#1e40af" stroke-width="2" marker-end="url(#flowArrow)"/>
+  <line x1="590" y1="454" x2="420" y2="490" stroke="#1e40af" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- ===== 阶段3：时间推进 ===== -->
+  <rect x="180" y="494" width="440" height="66" rx="10" fill="#dbeafe" stroke="#60a5fa" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="520" text-anchor="middle" class="stage" fill="#1e3a8a">③ 时间推进：逐步求解每个时刻的场</text>
+  <text x="400" y="542" text-anchor="middle" class="desc">按 Δt 步长迭代，需满足稳定性条件（如 CFL）</text>
+  <text x="400" y="556" text-anchor="middle" class="small">处理初始条件 + 边界条件更新</text>
+
+  <line x1="400" y1="560" x2="400" y2="588" stroke="#1e40af" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- ===== 阶段4：结果 ===== -->
+  <rect x="220" y="592" width="360" height="56" rx="10" fill="#fef3c7" stroke="#fbbf24" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="616" text-anchor="middle" class="stage" fill="#78350f">④ 求解结果：可视化与物理分析</text>
+  <text x="400" y="636" text-anchor="middle" class="small">温度场/速度场/压力场 · 验证守恒性与收敛性</text>
+</svg>

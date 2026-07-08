@@ -11,6 +11,8 @@ date: 2025-04-14
 
 做网络应用开发，搞清楚当前网络的 NAT 类型，对 P2P 通信和连通性诊断都挺关键。pystun3-gui 这个项目做的就是这件事——一个简单的图形界面工具，帮你快速测出 NAT 类型。
 
+![NAT 四种类型与穿透难度](/posts/NAT测试工具/nat-types-and-traversal.svg)
+
 ## 简介
 
 pystun3-gui 是基于 Python 的 NAT 类型检测工具，本质是对 pystun3 库做了一层图形界面封装。界面简洁，支持自定义 STUN 服务器，能同时显示本地 IP 和公网 IP；检测放在多线程里跑，界面不会卡；Windows、Linux、MacOS 都能用。

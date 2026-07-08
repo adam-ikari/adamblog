@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fafafa"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+    <linearGradient id="badGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef2f2"/>
+      <stop offset="100%" stop-color="#fee2e2"/>
+    </linearGradient>
+    <linearGradient id="goodGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.12"/>
+    </filter>
+    <marker id="blockArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#dc2626"/>
+    </marker>
+    <marker id="openArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#16a34a"/>
+    </marker>
+    <marker id="diArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#1e40af"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 26px; font-weight: 700; fill: #1a1a1a; }
+    .subtitle { font-size: 15px; fill: #666; }
+    .panel-h { font-size: 19px; font-weight: 700; }
+    .code { font-family: 'JetBrains Mono', 'Menlo', monospace; font-size: 13px; }
+    .code-cmt { font-family: 'JetBrains Mono', 'Menlo', monospace; font-size: 12px; }
+    .lbl { font-size: 14px; fill: #444; }
+    .lbl-em { font-size: 14px; font-weight: 700; }
+  </style>
+
+  <rect x="0" y="0" width="800" height="620" fill="url(#bgGrad)"/>
+
+  <text x="400" y="34" text-anchor="middle" class="title">构造函数做实事 vs 构造函数只赋值</text>
+  <text x="400" y="58" text-anchor="middle" class="subtitle">前者抹掉测试接缝、绑死合作者；后者开启接缝、可注入测试替身</text>
+
+  <!-- ============ 左侧：改造前 ============ -->
+  <rect x="20" y="78" width="370" height="430" rx="12" fill="url(#badGrad)" stroke="#fca5a5" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="205" y="106" text-anchor="middle" class="panel-h" fill="#b91c1c">✗ 改造前：构造函数做实事</text>
+
+  <!-- 构造函数框 -->
+  <rect x="40" y="124" width="330" height="150" rx="8" fill="#ffffff" stroke="#f87171" stroke-width="1" opacity="0.95"/>
+  <text x="55" y="146" class="lbl-em" fill="#991b1b">House 构造函数（干活）</text>
+  <text x="55" y="168" class="code" fill="#444">House() {</text>
+  <text x="70" y="187" class="code" fill="#dc2626">  bedroom_ = make_unique&lt;Bedroom&gt;();</text>
+  <text x="70" y="206" class="code-cmt" fill="#a16207">  // 创建合作者 + 静态调用 + 控制流</text>
+  <text x="70" y="224" class="code-cmt" fill="#a16207">  // 都发生在这里</text>
+  <text x="55" y="243" class="code" fill="#444">}</text>
+  <text x="55" y="263" class="code-cmt" fill="#a16207">kitchen_{make_unique&lt;Kitchen&gt;()} // 字段处直接 new</text>
+
+  <!-- 下行：合作品种 -->
+  <line x1="205" y1="274" x2="205" y2="296" stroke="#dc2626" stroke-width="2" marker-end="url(#blockArrow)"/>
+  <text x="215" y="290" font-size="13" fill="#dc2626">内部 new，无接缝</text>
+
+  <!-- 真合作者 -->
+  <rect x="60" y="300" width="130" height="60" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1"/>
+  <text x="125" y="324" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3412">真 Bedroom</text>
+  <text x="125" y="344" text-anchor="middle" font-size="12" fill="#9a3412">重 / 可能连文件</text>
+
+  <rect x="220" y="300" width="130" height="60" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1"/>
+  <text x="285" y="324" text-anchor="middle" font-size="15" font-weight="700" fill="#9a3412">真 Kitchen</text>
+  <text x="285" y="344" text-anchor="middle" font-size="12" fill="#9a3412">可能连数据库</text>
+
+  <!-- 测试困境 -->
+  <rect x="40" y="378" width="330" height="112" rx="8" fill="#fef2f2" stroke="#f87171" stroke-width="1" stroke-dasharray="5 3"/>
+  <text x="55" y="400" class="lbl-em" fill="#991b1b">测试困境</text>
+  <text x="55" y="422" class="lbl" fill="#7f1d1d">• 测试被绑死在真合作者上，无法替换</text>
+  <text x="55" y="442" class="lbl" fill="#7f1d1d">• 缺少接缝：永远得不到子类/mock 对象</text>
+  <text x="55" y="462" class="lbl" fill="#7f1d1d">• 违反单一职责：构造与逻辑混在一起</text>
+  <text x="55" y="482" class="lbl" fill="#7f1d1d">• 静态方法不可拦截、不可 mock</text>
+
+  <!-- ============ 右侧：改造后 ============ -->
+  <rect x="410" y="78" width="370" height="430" rx="12" fill="url(#goodGrad)" stroke="#86efac" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="595" y="106" text-anchor="middle" class="panel-h" fill="#166534">✓ 改造后：构造函数只赋值</text>
+
+  <!-- 构造函数框 -->
+  <rect x="430" y="124" width="330" height="150" rx="8" fill="#ffffff" stroke="#4ade80" stroke-width="1" opacity="0.95"/>
+  <text x="445" y="146" class="lbl-em" fill="#15803d">House 构造函数（只赋值）</text>
+  <text x="445" y="168" class="code" fill="#444">House(unique_ptr&lt;Kitchen&gt; k,</text>
+  <text x="445" y="187" class="code" fill="#444">      unique_ptr&lt;Bedroom&gt; b)</text>
+  <text x="460" y="206" class="code" fill="#16a34a">  : kitchen_(move(k)),</text>
+  <text x="460" y="225" class="code" fill="#16a34a">    bedroom_(move(b)) {}</text>
+  <text x="445" y="250" class="code-cmt" fill="#1e40af">// 不去找东西，去要东西</text>
+  <text x="445" y="268" class="code-cmt" fill="#1e40af">// 接缝出现在参数列表</text>
+
+  <!-- DI 下行 -->
+  <line x1="595" y1="274" x2="595" y2="296" stroke="#16a34a" stroke-width="2" marker-end="url(#openArrow)"/>
+  <text x="605" y="290" font-size="13" fill="#16a34a">外部传入，有接缝</text>
+
+  <!-- 合作者可替换 -->
+  <rect x="430" y="300" width="130" height="60" rx="8" fill="#eff6ff" stroke="#60a5fa" stroke-width="1"/>
+  <text x="495" y="324" text-anchor="middle" font-size="15" font-weight="700" fill="#1e3a8a">DummyBedroom</text>
+  <text x="495" y="344" text-anchor="middle" font-size="12" fill="#1e3a8a">轻量 / 测试替身</text>
+
+  <rect x="590" y="300" width="130" height="60" rx="8" fill="#eff6ff" stroke="#60a5fa" stroke-width="1"/>
+  <text x="655" y="324" text-anchor="middle" font-size="15" font-weight="700" fill="#1e3a8a">DummyKitchen</text>
+  <text x="655" y="344" text-anchor="middle" font-size="12" fill="#1e3a8a">轻量 / 测试替身</text>
+
+  <!-- DI 注入箭头 -->
+  <line x1="495" y1="300" x2="520" y2="280" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#diArrow)"/>
+  <line x1="655" y1="300" x2="630" y2="280" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#diArrow)"/>
+
+  <!-- 测试优势 -->
+  <rect x="430" y="378" width="330" height="112" rx="8" fill="#f0fdf4" stroke="#4ade80" stroke-width="1" stroke-dasharray="5 3"/>
+  <text x="445" y="400" class="lbl-em" fill="#15803d">测试优势</text>
+  <text x="445" y="422" class="lbl" fill="#14532d">• 接缝开启：可注入任意测试替身</text>
+  <text x="445" y="442" class="lbl" fill="#14532d">• 构造平凡：实例化快、不碰全局状态</text>
+  <text x="445" y="462" class="lbl" fill="#14532d">• 单一职责：对象图构造交给工厂/Provider</text>
+  <text x="445" y="482" class="lbl" fill="#14532d">• 可并行测试、不依赖静态方法</text>
+
+  <!-- ============ 底部：要点 ============ -->
+  <rect x="20" y="524" width="760" height="80" rx="12" fill="#eef2ff" stroke="#818cf8" stroke-width="1" filter="url(#shadow)"/>
+  <text x="40" y="552" font-size="18" font-weight="700" fill="#1e1b4b">底线判断：孤立构造这个类、或用测试替身合作者构造它，有多难？</text>
+  <text x="40" y="578" font-size="15" fill="#444">难 = 构造函数干了太多活（违反单一职责、抹掉接缝）　·　容易 = 只做字段赋值，合作者由外部工厂/Provider 提供</text>
+  <text x="40" y="598" font-size="13" fill="#6b21a8">别去找东西（new / 静态调用 / 全局 flag），去要东西（依赖注入）</text>
+</svg>

@@ -27,6 +27,8 @@ series:
 
 > **注意：** cc-Switch 是社区开发的第三方工具，非 Anthropic 官方产品。本文内容基于 npm 上的包信息和 GitHub 仓库文档整理，具体功能请以官方仓库最新版本为准。
 
+![cc-Switch 两种实现的切换抽象对比](/posts/cc-Switch-CLI-使用教程/cc-switch-two-implementations.svg)
+
 ## 安装和配置
 
 ### 前提条件

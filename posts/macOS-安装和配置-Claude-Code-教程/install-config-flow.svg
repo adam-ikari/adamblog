@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eef2f7"/>
+    </linearGradient>
+    <linearGradient id="stepBlue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <linearGradient id="stepGreen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="stepAmber" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+    <linearGradient id="decisionViolet" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ede9fe"/>
+      <stop offset="100%" stop-color="#ddd6fe"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.12"/>
+    </filter>
+    <marker id="flowArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#475569"/>
+    </marker>
+    <marker id="yesArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#16a34a"/>
+    </marker>
+    <marker id="warnArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#dc2626"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 27px; font-weight: 700; fill: #1a1a1a; }
+    .subtitle { font-size: 16px; fill: #666; }
+    .step-title { font-size: 17px; font-weight: 700; }
+    .step-body { font-size: 14px; fill: #555; }
+    .step-code { font-size: 14px; fill: #1e40af; font-family: ui-monospace, 'SF Mono', Menlo, monospace; }
+    .branch-label { font-size: 14px; font-weight: 700; }
+    .small { font-size: 13px; fill: #666; }
+    .warn-text { font-size: 14px; fill: #b45309; font-weight: 700; }
+  </style>
+
+  <rect width="800" height="720" fill="url(#bg)"/>
+
+  <text x="400" y="38" text-anchor="middle" class="title">macOS 安装与配置 Claude Code 全流程</text>
+  <text x="400" y="62" text-anchor="middle" class="subtitle">安装 → 配置国产 API → 验证启动，关键是把第三方网关接对认证字段</text>
+
+  <!-- ===== 步骤1：前提条件 ===== -->
+  <rect x="220" y="84" width="360" height="74" rx="10" fill="url(#stepBlue)" stroke="#60a5fa" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="108" text-anchor="middle" class="step-title" fill="#1e3a8a">① 前提条件</text>
+  <text x="400" y="130" text-anchor="middle" class="step-body">Node.js 18+（nvm 安装）+ 国产大模型 API Key</text>
+  <text x="400" y="148" text-anchor="middle" class="step-code">node --version   →   v18.x.x 或更高</text>
+
+  <line x1="400" y1="158" x2="400" y2="186" stroke="#475569" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- ===== 步骤2：安装 ===== -->
+  <rect x="190" y="190" width="420" height="74" rx="10" fill="url(#stepBlue)" stroke="#60a5fa" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="214" text-anchor="middle" class="step-title" fill="#1e3a8a">② 全局安装 Claude Code</text>
+  <text x="400" y="236" text-anchor="middle" class="step-body">macOS 通常无需 sudo，权限报错可改 npm prefix</text>
+  <text x="400" y="254" text-anchor="middle" class="step-code">npm install -g @anthropic-ai/claude-code</text>
+
+  <line x1="400" y1="264" x2="400" y2="292" stroke="#475569" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- ===== 决策菱形：配置方式 ===== -->
+  <polygon points="400,294 520,344 400,394 280,344" fill="url(#decisionViolet)" stroke="#8b5cf6" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="336" text-anchor="middle" class="step-title" fill="#4c1d95">③ 选配置方式</text>
+  <text x="400" y="358" text-anchor="middle" class="step-body">两选一，都能接第三方 API</text>
+
+  <!-- 左分支：环境变量 -->
+  <line x1="280" y1="344" x2="190" y2="344" stroke="#475569" stroke-width="2"/>
+  <line x1="190" y1="344" x2="190" y2="406" stroke="#475569" stroke-width="2" marker-end="url(#flowArrow)"/>
+  <text x="232" y="336" text-anchor="middle" class="branch-label" fill="#475569">环境变量</text>
+
+  <rect x="40" y="410" width="300" height="108" rx="10" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="190" y="434" text-anchor="middle" class="step-title" fill="#334155">方式一：~/.zshrc</text>
+  <text x="190" y="456" text-anchor="middle" class="small">写入后 source ~/.zshrc 生效</text>
+  <text x="190" y="478" text-anchor="middle" class="step-code">export ANTHROPIC_BASE_URL=…</text>
+  <text x="190" y="498" text-anchor="middle" class="step-code">export ANTHROPIC_AUTH_TOKEN=…</text>
+  <text x="190" y="514" text-anchor="middle" class="small" fill="#94a3b8">污染 Shell 环境，分散</text>
+
+  <!-- 右分支：settings.json -->
+  <line x1="520" y1="344" x2="610" y2="344" stroke="#16a34a" stroke-width="2"/>
+  <line x1="610" y1="344" x2="610" y2="406" stroke="#16a34a" stroke-width="2" marker-end="url(#yesArrow)"/>
+  <text x="566" y="336" text-anchor="middle" class="branch-label" fill="#16a34a">settings.json ✅</text>
+
+  <rect x="460" y="410" width="300" height="108" rx="10" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="610" y="434" text-anchor="middle" class="step-title" fill="#14532d">方式二：~/.claude/settings.json</text>
+  <text x="610" y="456" text-anchor="middle" class="small">配置集中在 env 块，不污染 Shell</text>
+  <text x="610" y="478" text-anchor="middle" class="step-code">{ "env": { BASE_URL, TOKEN } }</text>
+  <text x="610" y="498" text-anchor="middle" class="small" fill="#16a34a">推荐，便于 cc-Switch 切换</text>
+
+  <!-- 两分支汇合 -->
+  <line x1="190" y1="518" x2="190" y2="544" stroke="#475569" stroke-width="2"/>
+  <line x1="610" y1="518" x2="610" y2="544" stroke="#475569" stroke-width="2"/>
+  <line x1="190" y1="544" x2="610" y2="544" stroke="#475569" stroke-width="2"/>
+  <line x1="400" y1="544" x2="400" y2="566" stroke="#475569" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- ===== 关键提醒：认证字段 ===== -->
+  <rect x="120" y="570" width="560" height="68" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="594" text-anchor="middle" class="warn-text">⚠ 认证字段别选错</text>
+  <text x="400" y="616" text-anchor="middle" class="step-body">第三方网关走 Bearer Token → 必须用 <tspan font-weight="700" fill="#16a34a">ANTHROPIC_AUTH_TOKEN</tspan></text>
+  <text x="400" y="634" text-anchor="middle" class="small">误用 ANTHROPIC_API_KEY（X-Api-Key 头）多半收到 401</text>
+
+  <line x1="400" y1="638" x2="400" y2="658" stroke="#475569" stroke-width="2" marker-end="url(#flowArrow)"/>
+
+  <!-- ===== 步骤4：验证启动 ===== -->
+  <rect x="200" y="660" width="400" height="48" rx="10" fill="url(#stepGreen)" stroke="#4ade80" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="682" text-anchor="middle" class="step-title" fill="#14532d">④ 验证并启动</text>
+  <text x="400" y="700" text-anchor="middle" class="step-code" fill="#166534">claude --version   →   cd 项目 &amp;&amp; claude</text>
+</svg>

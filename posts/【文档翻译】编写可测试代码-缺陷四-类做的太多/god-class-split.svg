@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="godGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef2f2"/>
+      <stop offset="100%" stop-color="#fee2e2"/>
+    </linearGradient>
+    <linearGradient id="splitGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0fdf4"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+    <linearGradient id="stepGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eff6ff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#475569"/>
+    </marker>
+    <marker id="greenArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#16a34a"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 27px; font-weight: 700; }
+    .subtitle { font-size: 16px; fill: #666; }
+    .panel-title { font-size: 19px; font-weight: 700; }
+    .role { font-size: 15px; font-weight: 600; }
+    .duty { font-size: 13.5px; fill: #555; }
+    .step { font-size: 14.5px; font-weight: 600; fill: #1e40af; }
+    .step-desc { font-size: 12.5px; fill: #555; }
+    .bad { fill: #dc2626; }
+    .good { fill: #16a34a; }
+    .warn { fill: #b45309; }
+    .and { fill: #dc2626; font-weight: 700; }
+  </style>
+
+  <!-- 标题 -->
+  <text x="400" y="34" text-anchor="middle" class="title">类做的太多：从一个"上帝类"到多个单一职责类</text>
+  <text x="400" y="58" text-anchor="middle" class="subtitle">识别"和"字 → 命名 → 提取 → 各自可孤立测试（SRP）</text>
+
+  <!-- ===== 左侧：上帝类 ===== -->
+  <rect x="28" y="84" width="300" height="430" rx="10" fill="url(#godGrad)" stroke="#fca5a5" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="28" y="84" width="300" height="40" rx="10" fill="#fecaca"/>
+  <rect x="28" y="110" width="300" height="14" fill="#fecaca"/>
+  <text x="178" y="110" text-anchor="middle" class="panel-title bad">SyndicationManager（上帝类）</text>
+  <text x="178" y="148" text-anchor="middle" class="subtitle bad">"概括它做什么，句子里有 4 个'和'"</text>
+
+  <!-- 职责块 -->
+  <rect x="44" y="166" width="268" height="40" rx="6" fill="#fff"/>
+  <text x="56" y="183" class="role bad">缓存 syndication</text>
+  <text x="56" y="199" class="duty">字段 cache_ 仅此方法用</text>
+
+  <rect x="44" y="214" width="268" height="40" rx="6" fill="#fff"/>
+  <text x="56" y="231" class="role bad">实现复杂过期逻辑</text>
+  <text x="56" y="247" class="duty">字段 expiry_ 仅此方法用</text>
+
+  <rect x="44" y="262" width="268" height="40" rx="6" fill="#fff"/>
+  <text x="56" y="279" class="role bad">执行 RPC 重新填充</text>
+  <text x="56" y="295" class="duty">字段 rpcClient_ 仅此用</text>
+
+  <rect x="44" y="310" width="268" height="40" rx="6" fill="#fff"/>
+  <text x="56" y="327" class="role bad">维护用户统计</text>
+  <text x="56" y="343" class="duty">字段 stats_ 仅此方法用</text>
+
+  <!-- 危险信号 -->
+  <rect x="44" y="362" width="268" height="138" rx="6" fill="#fef9c3" stroke="#fde047" stroke-width="1"/>
+  <text x="56" y="382" class="step warn">⚠ 危险信号</text>
+  <text x="56" y="402" class="step-desc">• 概括时用到了"和"</text>
+  <text x="56" y="420" class="step-desc">• 某些字段只在部分方法里用</text>
+  <text x="56" y="438" class="step-desc">• 静态方法只操作参数（孤儿）</text>
+  <text x="56" y="456" class="step-desc">• 构造函数做实事（见缺陷一）</text>
+  <text x="56" y="474" class="step-desc">• 起名犯难 → 职责混乱</text>
+  <text x="56" y="492" class="step-desc">• 没有清晰的测试"接缝"</text>
+
+  <!-- 中间箭头 + 步骤 -->
+  <line x1="328" y1="200" x2="448" y2="200" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="388" y="190" text-anchor="middle" class="step">拆分</text>
+
+  <rect x="340" y="310" width="180" height="120" rx="8" fill="url(#stepGrad)" stroke="#93c5fd" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="430" y="328" text-anchor="middle" class="step">修复步骤</text>
+  <text x="350" y="346" class="step-desc">1. 识别各独立职责</text>
+  <text x="350" y="362" class="step-desc">2. 给每个起干脆的名字</text>
+  <text x="350" y="378" class="step-desc">3. 提取到独立类</text>
+  <text x="350" y="394" class="step-desc">4. 留一个居中调停类</text>
+  <text x="350" y="410" class="step-desc">5. 各类可孤立测试 ✓</text>
+
+  <line x1="430" y1="430" x2="430" y2="458" stroke="#16a34a" stroke-width="2.5" marker-end="url(#greenArrow)"/>
+
+  <!-- ===== 右侧：拆分后的类 ===== -->
+  <rect x="448" y="84" width="324" height="430" rx="10" fill="url(#splitGrad)" stroke="#86efac" stroke-width="1.5" filter="url(#shadow)"/>
+  <rect x="448" y="84" width="324" height="40" rx="10" fill="#bbf7d0"/>
+  <rect x="448" y="110" width="324" height="14" fill="#bbf7d0"/>
+  <text x="610" y="110" text-anchor="middle" class="panel-title good">单一职责类（可各自测试）</text>
+
+  <!-- 4 个聚焦的类 -->
+  <rect x="464" y="166" width="292" height="58" rx="6" fill="#fff"/>
+  <text x="476" y="184" class="role good">SyndicationCache</text>
+  <text x="476" y="202" class="duty">只缓存条目 · 名字聚焦</text>
+  <text x="476" y="217" class="duty">cache_ 字段归位此类</text>
+
+  <rect x="464" y="232" width="292" height="44" rx="6" fill="#fff"/>
+  <text x="476" y="250" class="role good">ExpiryPolicy</text>
+  <text x="476" y="267" class="duty">只管过期判断逻辑</text>
+
+  <rect x="464" y="284" width="292" height="44" rx="6" fill="#fff"/>
+  <text x="476" y="302" class="role good">RefillService</text>
+  <text x="476" y="319" class="duty">只做 RPC 重新填充</text>
+
+  <rect x="464" y="336" width="292" height="44" rx="6" fill="#fff"/>
+  <text x="476" y="354" class="role good">UsageStats</text>
+  <text x="476" y="371" class="duty">只维护用户统计</text>
+
+  <!-- 组合关系 -->
+  <rect x="464" y="392" width="292" height="58" rx="6" fill="#dbeafe" stroke="#93c5fd" stroke-width="1"/>
+  <text x="476" y="410" class="role" fill="#1e40af">SyndicationCoordinator</text>
+  <text x="476" y="427" class="duty">居中调停：依赖注入 4 个合作者</text>
+  <text x="476" y="442" class="duty">自己不再干活，只编排</text>
+
+  <!-- 收益 -->
+  <rect x="464" y="460" width="292" height="40" rx="6" fill="#fef9c3" stroke="#fde047" stroke-width="1"/>
+  <text x="476" y="478" class="step-desc good">✓ 装饰器 / 策略 / 子类化可替换单块</text>
+  <text x="476" y="494" class="step-desc good">✓ 接缝清晰，每块可独立单测</text>
+
+  <!-- 底部：无家可归的静态方法 -->
+  <rect x="28" y="528" width="744" height="76" rx="10" fill="#fff7ed" stroke="#fdba74" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="44" y="548" class="role warn">无家可归的静态方法也属于此类</text>
+  <text x="44" y="566" class="duty">OrderUtils::calculateTotal(order)  →  order 是被动参数，方法该归到 Order 上</text>
+  <text x="44" y="583" class="duty">改造后：order.total() —— 行为与数据在一起，也更易测试（移除 *Utils / *Manager 的信号）</text>
+  <text x="44" y="599" class="duty warn">先在改动处萌芽新类，从遗留类上一块块剥下，防止它继续膨胀</text>
+</svg>

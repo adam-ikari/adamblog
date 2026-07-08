@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="cardRed" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fee2e2"/>
+      <stop offset="100%" stop-color="#fecaca"/>
+    </linearGradient>
+    <linearGradient id="cardGreen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="cardBlue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#475569"/>
+    </marker>
+    <style>
+      .title { font-size: 26px; font-weight: 700; fill: #1e293b; }
+      .subtitle { font-size: 14px; fill: #64748b; }
+      .cardTitle { font-size: 17px; font-weight: 700; }
+      .label { font-size: 13px; fill: #555; font-family: ui-monospace, 'JetBrains Mono', Consolas, monospace; }
+      .annot { font-size: 13px; fill: #555; }
+      .tag { font-size: 12px; font-weight: 600; }
+      .step { font-size: 14px; font-weight: 600; fill: #334155; }
+      .desc { font-size: 13px; fill: #475569; }
+    </style>
+  </defs>
+
+  <rect width="800" height="480" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="400" y="38" text-anchor="middle" class="title">@NonNull：把空检查从样板代码变成声明式契约</text>
+  <text x="400" y="60" text-anchor="middle" class="subtitle">Lombok 在编译期自动生成 null-check，Android 亦可用 androidx.annotation 导入</text>
+
+  <!-- Left card: traditional -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="88" width="340" height="170" rx="10" fill="url(#cardRed)" stroke="#dc2626" stroke-width="1.2"/>
+  </g>
+  <text x="200" y="114" text-anchor="middle" class="cardTitle" fill="#991b1b">传统写法：手写 if + throw</text>
+  <text x="45" y="140" class="label">public void setSomeObj(Object obj)</text>
+  <text x="45" y="159" class="label">        throws NullPointerException {</text>
+  <text x="60" y="178" class="label">if (mSomeObj == null) {</text>
+  <text x="75" y="197" class="label">throw new NullPointerException();</text>
+  <text x="60" y="216" class="label">}</text>
+  <text x="45" y="235" class="label">this.mSomeObj = obj;</text>
+  <text x="45" y="252" class="label">}</text>
+
+  <g>
+    <rect x="40" y="266" width="320" height="22" rx="4" fill="#fee2e2" stroke="#fca5a5" stroke-width="0.8"/>
+    <text x="200" y="282" text-anchor="middle" class="annot" fill="#991b1b">入参挨个查，代码冗长，结构被打散</text>
+  </g>
+
+  <!-- Right card: NonNull -->
+  <g filter="url(#shadow)">
+    <rect x="430" y="88" width="340" height="170" rx="10" fill="url(#cardGreen)" stroke="#16a34a" stroke-width="1.2"/>
+  </g>
+  <text x="600" y="114" text-anchor="middle" class="cardTitle" fill="#166534">@NonNull 写法：一个注解</text>
+  <text x="445" y="140" class="label">public void setSomeObj(</text>
+  <text x="460" y="159" class="label">@NonNull Object obj) {</text>
+  <text x="475" y="178" class="label">this.mSomeObj = obj;</text>
+  <text x="445" y="197" class="label">}</text>
+  <text x="445" y="231" class="annot" fill="#166534" font-style="italic">// null-check 由编译器生成</text>
+
+  <g>
+    <rect x="440" y="266" width="320" height="22" rx="4" fill="#dcfce7" stroke="#86efac" stroke-width="0.8"/>
+    <text x="600" y="282" text-anchor="middle" class="annot" fill="#166534">业务逻辑干净，契约写在签名上</text>
+  </g>
+
+  <!-- Center arrow between cards -->
+  <line x1="370" y1="173" x2="430" y2="173" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="400" y="165" text-anchor="middle" class="tag" fill="#475569">编译期</text>
+
+  <!-- Bottom: mechanism flow -->
+  <g filter="url(#shadow)">
+    <rect x="30" y="312" width="740" height="150" rx="10" fill="url(#cardBlue)" stroke="#1e40af" stroke-width="1.2"/>
+  </g>
+  <text x="400" y="338" text-anchor="middle" class="cardTitle" fill="#1e3a8a">运行期行为：两者等价，差异只在书写处</text>
+
+  <!-- three steps -->
+  <g>
+    <circle cx="120" cy="380" r="16" fill="#1e40af"/>
+    <text x="120" y="385" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">1</text>
+    <text x="148" y="376" class="step">标 @NonNull</text>
+    <text x="148" y="394" class="desc">写在参数上，仅声明意图</text>
+  </g>
+  <line x1="222" y1="380" x2="270" y2="380" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g>
+    <circle cx="305" cy="380" r="16" fill="#1e40af"/>
+    <text x="305" y="385" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">2</text>
+    <text x="333" y="376" class="step">编译期织入</text>
+    <text x="333" y="394" class="desc">Lombok 生成 if(x==null) throw</text>
+  </g>
+  <line x1="430" y1="380" x2="478" y2="380" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g>
+    <circle cx="513" cy="380" r="16" fill="#1e40af"/>
+    <text x="513" y="385" text-anchor="middle" fill="#fff" font-size="14" font-weight="700">3</text>
+    <text x="541" y="376" class="step">运行期抛 NPE</text>
+    <text x="541" y="394" class="desc">行为同手写，位置在最前</text>
+  </g>
+  <line x1="638" y1="380" x2="686" y2="380" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <g>
+    <rect x="686" y="364" width="74" height="32" rx="6" fill="#fef3c7" stroke="#b45309" stroke-width="1"/>
+    <text x="723" y="385" text-anchor="middle" class="tag" fill="#b45309">非空契约</text>
+  </g>
+
+  <text x="400" y="448" text-anchor="middle" class="desc">注解不改变运行时语义，只是把样板代码交给编译器——同样的 NPE，更早、更整洁地出现</text>
+</svg>

@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eef2f7"/>
+    </linearGradient>
+    <linearGradient id="leftCard" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+    <linearGradient id="rightCard" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="centerBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#dcfce7"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#1e293b" flood-opacity="0.18"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1e40af"/>
+    </marker>
+    <marker id="arrowGray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <style>
+    .title { font-size: 27px; font-weight: 700; fill: #1e293b; }
+    .subtitle { font-size: 14px; fill: #64748b; }
+    .colTitle { font-size: 17px; font-weight: 700; }
+    .colSub { font-size: 13px; font-weight: 500; }
+    .code { font-family: 'SF Mono', 'Consolas', 'Menlo', monospace; font-size: 12.5px; fill: #334155; }
+    .itemHead { font-size: 14px; font-weight: 700; fill: #334155; }
+    .itemBody { font-size: 12.5px; fill: #475569; }
+    .footer { font-size: 14px; font-weight: 700; fill: #1e40af; }
+    .footerBody { font-size: 12.5px; fill: #475569; }
+    .tag { font-size: 12px; font-weight: 600; }
+  </style>
+
+  <rect width="800" height="620" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="400" y="42" text-anchor="middle" class="title">Vue3 组件写法对比：传统 setup() vs &lt;script setup&gt;</text>
+  <text x="400" y="64" text-anchor="middle" class="subtitle">编译时语法糖如何减少样板代码、提升性能与类型推断</text>
+
+  <!-- Left card: 传统写法 -->
+  <rect x="30" y="90" width="350" height="440" rx="12" fill="url(#leftCard)" stroke="#b45309" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="205" y="118" text-anchor="middle" class="colTitle" fill="#b45309">传统写法 setup()</text>
+  <text x="205" y="138" text-anchor="middle" class="colSub" fill="#92400e">手动 return · 样板代码多</text>
+
+  <!-- code block -->
+  <rect x="48" y="152" width="314" height="148" rx="6" fill="#fffbeb" stroke="#fcd34d" stroke-width="1"/>
+  <text x="58" y="171" class="code">setup(props, ctx) {</text>
+  <text x="58" y="188" class="code">  const count = ref(0)</text>
+  <text x="58" y="205" class="code">  const inc = () =&gt; count.value++</text>
+  <text x="58" y="222" class="code">  onMounted(() =&gt; { ... })</text>
+  <text x="58" y="239" class="code">  // 必须手动 return，模板才能用</text>
+  <text x="58" y="256" class="code">  return { count, inc }</text>
+  <text x="58" y="273" class="code">}</text>
+  <text x="58" y="293" class="code" fill="#b45309">// 仅首次导入执行一次</text>
+
+  <!-- pain points -->
+  <text x="48" y="325" class="itemHead">痛点</text>
+  <circle cx="55" cy="346" r="3" fill="#b45309"/>
+  <text x="64" y="350" class="itemBody">顶层变量须逐个 return 才能进模板</text>
+  <circle cx="55" cy="366" r="3" fill="#b45309"/>
+  <text x="64" y="370" class="itemBody">组件需 components 选项注册</text>
+  <circle cx="55" cy="386" r="3" fill="#b45309"/>
+  <text x="64" y="390" class="itemBody">ref 在 JS 里要 .value，易出错</text>
+  <circle cx="55" cy="406" r="3" fill="#b45309"/>
+  <text x="64" y="410" class="itemBody">类型推断慢，LS 提取成本高</text>
+  <circle cx="55" cy="426" r="3" fill="#b45309"/>
+  <text x="64" y="430" class="itemBody">渲染函数经中间代理，性能有损耗</text>
+
+  <rect x="48" y="448" width="314" height="66" rx="6" fill="#fff" stroke="#fcd34d" stroke-width="1" opacity="0.85"/>
+  <text x="58" y="470" class="itemHead" fill="#b45309">执行时机</text>
+  <text x="58" y="490" class="itemBody">setup() 作为函数体，返回值</text>
+  <text x="58" y="506" class="itemBody">经代理暴露给渲染作用域</text>
+
+  <!-- Right card: script setup -->
+  <rect x="420" y="90" width="350" height="440" rx="12" fill="url(#rightCard)" stroke="#16a34a" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="595" y="118" text-anchor="middle" class="colTitle" fill="#16a34a">&lt;script setup&gt;</text>
+  <text x="595" y="138" text-anchor="middle" class="colSub" fill="#15803d">编译时语法糖 · 自动暴露</text>
+
+  <!-- code block -->
+  <rect x="438" y="152" width="314" height="148" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1"/>
+  <text x="448" y="171" class="code">&lt;script setup&gt;</text>
+  <text x="448" y="188" class="code">import { ref } from 'vue'</text>
+  <text x="448" y="205" class="code">import MyComp from './MyComp.vue'</text>
+  <text x="448" y="222" class="code">const count = ref(0)</text>
+  <text x="448" y="239" class="code">const inc = () =&gt; count.value++</text>
+  <text x="448" y="256" class="code">onMounted(() =&gt; { ... })</text>
+  <text x="448" y="273" class="code">&lt;/script&gt;</text>
+  <text x="448" y="293" class="code" fill="#16a34a">// 无需 return，直接进模板</text>
+
+  <!-- gains -->
+  <text x="438" y="325" class="itemHead">收益</text>
+  <circle cx="445" cy="346" r="3" fill="#16a34a"/>
+  <text x="454" y="350" class="itemBody">顶层绑定自动暴露给模板</text>
+  <circle cx="445" cy="366" r="3" fill="#16a34a"/>
+  <text x="454" y="370" class="itemBody">import 的组件直接当标签用</text>
+  <circle cx="445" cy="386" r="3" fill="#16a34a"/>
+  <text x="454" y="390" class="itemBody">defineProps / defineEmits 顶层声明</text>
+  <circle cx="445" cy="406" r="3" fill="#16a34a"/>
+  <text x="454" y="410" class="itemBody">模板编译为同作用域渲染函数</text>
+  <circle cx="445" cy="426" r="3" fill="#16a34a"/>
+  <text x="454" y="430" class="itemBody">无中间代理，性能与类型推断更优</text>
+
+  <rect x="438" y="448" width="314" height="66" rx="6" fill="#fff" stroke="#86efac" stroke-width="1" opacity="0.85"/>
+  <text x="448" y="470" class="itemHead" fill="#16a34a">执行时机</text>
+  <text x="448" y="490" class="itemBody">代码编译进 setup() 函数体，</text>
+  <text x="448" y="506" class="itemBody">每次创建实例都执行</text>
+
+  <!-- center arrow -->
+  <line x1="384" y1="245" x2="416" y2="245" stroke="#1e40af" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <text x="400" y="232" text-anchor="middle" class="tag" fill="#1e40af">编译</text>
+
+  <!-- bottom bar: caveats -->
+  <rect x="30" y="548" width="740" height="56" rx="10" fill="url(#centerBar)" stroke="#1e40af" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="44" y="572" class="footer">局限性提示</text>
+  <text x="44" y="592" class="footerBody">不能与 &lt;script&gt; 共存 · 不支持 src 引用 · defineProps/defineEmits/生命周期须在顶层调用 · _前缀隐藏内部实现</text>
+</svg>

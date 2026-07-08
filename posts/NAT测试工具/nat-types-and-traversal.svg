@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eef2f7"/>
+    </linearGradient>
+    <linearGradient id="c1Grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="c2Grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <linearGradient id="c3Grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+    <linearGradient id="c4Grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fee2e2"/>
+      <stop offset="100%" stop-color="#fecaca"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#b45309"/>
+    </marker>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .card-title { font-size: 17px; font-weight: 700; }
+    .card-en { font-size: 13px; font-weight: 600; }
+    .card-body { font-size: 14px; }
+    .card-tag { font-size: 13px; font-weight: 600; }
+  </style>
+
+  <rect x="0" y="0" width="800" height="600" fill="url(#bgGrad)"/>
+
+  <text x="400" y="34" text-anchor="middle" font-size="27" font-weight="700" fill="#1a1a1a">NAT 四种类型与穿透难度</text>
+  <text x="400" y="58" text-anchor="middle" font-size="16" fill="#666">STUN 探测原理：换服务器/换端口观察映射变化，判断 NAT 行为</text>
+
+  <!-- 顶部：客户端 -> NAT -> 公网 -->
+  <rect x="60" y="78" width="120" height="44" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="120" y="106" text-anchor="middle" font-size="15" font-weight="600" fill="#334155">内网客户端</text>
+
+  <line x1="180" y1="100" x2="248" y2="100" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="250" y="78" width="180" height="44" rx="8" fill="#ede9fe" stroke="#a78bfa" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="340" y="106" text-anchor="middle" font-size="15" font-weight="700" fill="#5b21b6">NAT (端口映射)</text>
+
+  <line x1="430" y1="100" x2="498" y2="100" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <rect x="500" y="78" width="240" height="44" rx="8" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="620" y="106" text-anchor="middle" font-size="15" font-weight="600" fill="#334155">公网 IP:Port · STUN 服务器</text>
+
+  <!-- 四张分类卡 -->
+  <!-- Full Cone -->
+  <rect x="30" y="150" width="180" height="200" rx="10" fill="url(#c1Grad)" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
+  <text x="120" y="178" text-anchor="middle" class="card-title" fill="#166534">完全锥形</text>
+  <text x="120" y="198" text-anchor="middle" class="card-en" fill="#16a34a">Full Cone</text>
+  <line x1="50" y1="210" x2="190" y2="210" stroke="#86efac" stroke-width="1"/>
+  <text x="42" y="232" class="card-body">同一内网端点 →</text>
+  <text x="42" y="250" class="card-body">恒定映射到同一公网</text>
+  <text x="42" y="268" class="card-body">IP:Port</text>
+  <text x="42" y="294" class="card-body">任意外部主机均可经该</text>
+  <text x="42" y="312" class="card-body">映射反向打入</text>
+  <text x="120" y="338" text-anchor="middle" class="card-tag" fill="#16a34a">P2P 最易穿透</text>
+
+  <!-- Restricted Cone -->
+  <rect x="222" y="150" width="180" height="200" rx="10" fill="url(#c2Grad)" stroke="#93c5fd" stroke-width="1" filter="url(#shadow)"/>
+  <text x="312" y="178" text-anchor="middle" class="card-title" fill="#1e40af">限制锥形</text>
+  <text x="312" y="198" text-anchor="middle" class="card-en" fill="#2563eb">Restricted Cone</text>
+  <line x1="242" y1="210" x2="382" y2="210" stroke="#93c5fd" stroke-width="1"/>
+  <text x="234" y="232" class="card-body">映射仍固定，但只接受</text>
+  <text x="234" y="250" class="card-body">客户端曾主动发过的</text>
+  <text x="234" y="268" class="card-body">目标 IP 回包</text>
+  <text x="234" y="294" class="card-body">换 IP 来源即被丢弃，</text>
+  <text x="234" y="312" class="card-body">端口不限制</text>
+  <text x="312" y="338" text-anchor="middle" class="card-tag" fill="#1d4ed8">需先打洞到目标 IP</text>
+
+  <!-- Port Restricted Cone -->
+  <rect x="414" y="150" width="180" height="200" rx="10" fill="url(#c3Grad)" stroke="#fcd34d" stroke-width="1" filter="url(#shadow)"/>
+  <text x="504" y="178" text-anchor="middle" class="card-title" fill="#b45309">端口限制锥形</text>
+  <text x="504" y="198" text-anchor="middle" class="card-en" fill="#d97706">Port Restricted</text>
+  <line x1="434" y1="210" x2="574" y2="210" stroke="#fcd34d" stroke-width="1"/>
+  <text x="426" y="232" class="card-body">在限制锥形基础上，</text>
+  <text x="426" y="250" class="card-body">进一步限制目标端口</text>
+  <text x="426" y="276" class="card-body">只接受客户端曾发过的</text>
+  <text x="426" y="294" class="card-body">目标 IP + 端口回包</text>
+  <text x="426" y="320" class="card-body">UDP 打洞要求双方</text>
+  <text x="504" y="338" text-anchor="middle" class="card-tag" fill="#b45309">需双向打洞</text>
+
+  <!-- Symmetric -->
+  <rect x="606" y="150" width="164" height="200" rx="10" fill="url(#c4Grad)" stroke="#fca5a5" stroke-width="1" filter="url(#shadow)"/>
+  <text x="688" y="178" text-anchor="middle" class="card-title" fill="#b91c1c">对称型</text>
+  <text x="688" y="198" text-anchor="middle" class="card-en" fill="#dc2626">Symmetric</text>
+  <line x1="622" y1="210" x2="754" y2="210" stroke="#fca5a5" stroke-width="1"/>
+  <text x="616" y="232" class="card-body">每个目标分配独立的</text>
+  <text x="616" y="250" class="card-body">公网端口，映射不固定</text>
+  <text x="616" y="276" class="card-body">外部无法预知端口，</text>
+  <text x="616" y="294" class="card-body">常规 STUN 打洞失效</text>
+  <text x="616" y="320" class="card-body">需 TURN 中继转发</text>
+  <text x="688" y="338" text-anchor="middle" class="card-tag" fill="#dc2626">P2P 几乎不可穿</text>
+
+  <!-- 穿透难度递增箭头 -->
+  <line x1="50" y1="372" x2="745" y2="372" stroke="#b45309" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="400" y="394" text-anchor="middle" font-size="15" font-weight="600" fill="#b45309">穿透难度递增 · P2P 连通性递减</text>
+
+  <!-- 底部：STUN 检测原理说明 -->
+  <rect x="30" y="410" width="740" height="170" rx="10" fill="#f8fafc" stroke="#d1d5db" stroke-width="1" filter="url(#shadow)"/>
+  <text x="48" y="438" font-size="18" font-weight="700" fill="#1a1a1a">STUN 检测原理（pystun3-gui 背后做的事）</text>
+  <line x1="48" y1="448" x2="752" y2="448" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="48" y="472" font-size="15" fill="#444">① 客户端向 STUN 服务器发请求，获取经 NAT 映射后的公网 IP:Port</text>
+  <text x="48" y="496" font-size="15" fill="#444">② 换一台 STUN 服务器（改变目标 IP）再发一次，比对两次公网端口是否一致</text>
+  <text x="48" y="520" font-size="15" fill="#444">③ 端口不变 → 锥形 NAT（前三类）；端口改变 → 对称型 NAT（Symmetric）</text>
+  <text x="48" y="544" font-size="15" fill="#444">④ 进一步让服务器换端口回包，区分 Full / Restricted / Port Restricted</text>
+  <text x="48" y="568" font-size="14" fill="#888">→ 知道 NAT 类型，才能判断 P2P 是否可行，是否需要 TURN 中继兜底</text>
+</svg>

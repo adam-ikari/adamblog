@@ -11,7 +11,7 @@ date: 2024-02-22
 
 Linux 是开源操作系统，服务器和嵌入式设备上到处都是它的身影。要用、要管 Linux 系统，命令行是绕不开的基本功。这篇挑了一批最常用的入门命令，帮你先把基础摸熟。
 
-
+![Linux 入门命令全景图：按职能分类](/posts/linux_shell_get_start/linux-commands-overview.svg)
 
 ## 常用命令
 

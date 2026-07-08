@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#eef2f7"/>
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.12"/>
+    </filter>
+    <marker id="branchArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#475569"/>
+    </marker>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 27px; font-weight: 700; fill: #1a1a1a; }
+    .subtitle { font-size: 15px; fill: #666; }
+    .root-title { font-size: 19px; font-weight: 700; fill: #1e293b; }
+    .root-sub { font-size: 13px; fill: #555; }
+    .card-title { font-size: 16px; font-weight: 700; }
+    .signal { font-size: 13px; fill: #444; }
+    .key { font-size: 13px; fill: #555; font-style: italic; }
+    .key-label { font-size: 13px; font-weight: 700; }
+  </style>
+
+  <rect width="800" height="720" fill="url(#bgGrad)"/>
+
+  <text x="400" y="34" text-anchor="middle" class="title">阻碍可测试性的四大缺陷</text>
+  <text x="400" y="56" text-anchor="middle" class="subtitle">每条缺陷先列危险信号，再点明要害——共同根源是"依赖隐而不显、对象无法被独立装配"</text>
+
+  <!-- ===== 顶部根源节点 ===== -->
+  <rect x="250" y="76" width="300" height="64" rx="10" fill="#ede9fe" stroke="#a78bfa" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="104" text-anchor="middle" class="root-title">代码难以测试 = 设计出了问题</text>
+  <text x="400" y="126" text-anchor="middle" class="root-sub">测试写不动，往往不是测试的错，而是被测代码本身的设计缺陷</text>
+
+  <!-- 分叉到四张卡片 -->
+  <line x1="400" y1="140" x2="400" y2="162" stroke="#475569" stroke-width="2"/>
+  <line x1="110" y1="162" x2="690" y2="162" stroke="#475569" stroke-width="2"/>
+  <line x1="110" y1="162" x2="110" y2="186" stroke="#475569" stroke-width="2" marker-end="url(#branchArrow)"/>
+  <line x1="303" y1="162" x2="303" y2="186" stroke="#475569" stroke-width="2" marker-end="url(#branchArrow)"/>
+  <line x1="497" y1="162" x2="497" y2="186" stroke="#475569" stroke-width="2" marker-end="url(#branchArrow)"/>
+  <line x1="690" y1="162" x2="690" y2="186" stroke="#475569" stroke-width="2" marker-end="url(#branchArrow)"/>
+
+  <!-- ===== 缺陷 1 ===== -->
+  <rect x="20" y="190" width="180" height="500" rx="10" fill="#dbeafe" stroke="#60a5fa" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="110" y="216" text-anchor="middle" class="card-title" fill="#1e40af">缺陷 1</text>
+  <text x="110" y="238" text-anchor="middle" font-size="14" font-weight="700" fill="#1e40af">构造函数做实事</text>
+
+  <text x="30" y="262" font-size="12" font-weight="700" fill="#1e40af">危险信号</text>
+  <text x="30" y="280" class="signal">· 构造函数里出现 new</text>
+  <text x="30" y="296" class="signal">· 调用静态方法</text>
+  <text x="30" y="312" class="signal">· 除字段初始化外有</text>
+  <text x="30" y="326" class="signal">  其他操作</text>
+  <text x="30" y="342" class="signal">· 对象未完全初始化</text>
+  <text x="30" y="358" class="signal">  （留意 initialize）</text>
+  <text x="30" y="374" class="signal">· 出现条件 / 循环等</text>
+  <text x="30" y="388" class="signal">  控制流程</text>
+  <text x="30" y="404" class="signal">· 手动构建复杂对象</text>
+  <text x="30" y="420" class="signal">  而非用工厂 / 构建器</text>
+
+  <line x1="30" y1="436" x2="190" y2="436" stroke="#60a5fa" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="30" y="456" class="key-label" fill="#1e40af">要害</text>
+  <text x="30" y="474" class="key">构造函数本该只做</text>
+  <text x="30" y="490" class="key">字段赋值、把对象</text>
+  <text x="30" y="506" class="key">装配好。一旦干了</text>
+  <text x="30" y="522" class="key">"实事"——创建合作</text>
+  <text x="30" y="538" class="key">者、调静态方法、跑</text>
+  <text x="30" y="554" class="key">控制流——测试时便</text>
+  <text x="30" y="570" class="key">无法替换这些合作</text>
+  <text x="30" y="586" class="key">者，对象也无法在</text>
+  <text x="30" y="602" class="key">未就绪状态下被构</text>
+  <text x="30" y="618" class="key">造出来供测试。</text>
+  <text x="110" y="660" text-anchor="middle" font-size="12" font-weight="700" fill="#1e40af">合作者无法替换</text>
+  <text x="110" y="678" text-anchor="middle" font-size="12" fill="#1e40af">对象无法未就绪构造</text>
+
+  <!-- ===== 缺陷 2 ===== -->
+  <rect x="213" y="190" width="180" height="500" rx="10" fill="#dcfce7" stroke="#4ade80" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="303" y="216" text-anchor="middle" class="card-title" fill="#166534">缺陷 2</text>
+  <text x="303" y="238" text-anchor="middle" font-size="14" font-weight="700" fill="#166534">挖掘合作者</text>
+
+  <text x="223" y="262" font-size="12" font-weight="700" fill="#166534">危险信号</text>
+  <text x="223" y="280" class="signal">· 传了对象却从未直</text>
+  <text x="223" y="296" class="signal">  接使用，只用来够</text>
+  <text x="223" y="312" class="signal">  另一个对象</text>
+  <text x="223" y="332" class="signal">· 违反德米特定律：</text>
+  <text x="223" y="348" class="signal">  方法调用链在一个</text>
+  <text x="223" y="364" class="signal">  带多个点（.）的对</text>
+  <text x="223" y="380" class="signal">  象图中移动</text>
+  <text x="223" y="400" class="signal">· 可疑名称：context</text>
+  <text x="223" y="416" class="signal">  environment、principal</text>
+  <text x="223" y="432" class="signal">  container、manager</text>
+
+  <line x1="223" y1="448" x2="383" y2="448" stroke="#4ade80" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="223" y="468" class="key-label" fill="#166534">要害</text>
+  <text x="223" y="486" class="key">对象应只跟它直接</text>
+  <text x="223" y="502" class="key">需要的合作者打交</text>
+  <text x="223" y="518" class="key">道。若拿了对象只</text>
+  <text x="223" y="534" class="key">为够另一个对象</text>
+  <text x="223" y="550" class="key">（a.getB().getC()</text>
+  <text x="223" y="566" class="key">.doSomething()），</text>
+  <text x="223" y="582" class="key">说明真正依赖的是</text>
+  <text x="223" y="598" class="key">链尽头的那个，中</text>
+  <text x="223" y="614" class="key">间全是负担——测试</text>
+  <text x="223" y="630" class="key">时要装配整条链。</text>
+  <text x="303" y="660" text-anchor="middle" font-size="12" font-weight="700" fill="#166534">依赖链过长</text>
+  <text x="303" y="678" text-anchor="middle" font-size="12" fill="#166534">测试需装配整条链</text>
+
+  <!-- ===== 缺陷 3 ===== -->
+  <rect x="407" y="190" width="180" height="500" rx="10" fill="#fef3c7" stroke="#fbbf24" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="497" y="216" text-anchor="middle" class="card-title" fill="#92400e">缺陷 3</text>
+  <text x="497" y="238" text-anchor="middle" font-size="14" font-weight="700" fill="#92400e">全局状态与单例</text>
+
+  <text x="417" y="262" font-size="12" font-weight="700" fill="#92400e">危险信号</text>
+  <text x="417" y="280" class="signal">· 添加或使用单例模式</text>
+  <text x="417" y="300" class="signal">· 添加或使用静态字段</text>
+  <text x="417" y="316" class="signal">  或静态方法</text>
+  <text x="417" y="336" class="signal">· 添加或使用静态初</text>
+  <text x="417" y="352" class="signal">  始化块</text>
+  <text x="417" y="372" class="signal">· 添加或使用注册表</text>
+  <text x="417" y="392" class="signal">· 添加或使用服务定</text>
+  <text x="417" y="408" class="signal">  位器</text>
+
+  <line x1="417" y1="424" x2="577" y2="424" stroke="#fbbf24" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="417" y="444" class="key-label" fill="#92400e">要害</text>
+  <text x="417" y="462" class="key">全局状态让对象的</text>
+  <text x="417" y="478" class="key">依赖隐而不显——测</text>
+  <text x="417" y="494" class="key">试无法隔离，因为谁</text>
+  <text x="417" y="510" class="key">都能改那个全局变</text>
+  <text x="417" y="526" class="key">量，测试间互相污染。</text>
+  <text x="417" y="546" class="key">单例看似优雅，实则</text>
+  <text x="417" y="562" class="key">是披着面向对象外衣</text>
+  <text x="417" y="578" class="key">的全局状态，同样难</text>
+  <text x="417" y="594" class="key">以测试。</text>
+  <text x="497" y="660" text-anchor="middle" font-size="12" font-weight="700" fill="#92400e">依赖隐而不显</text>
+  <text x="497" y="678" text-anchor="middle" font-size="12" fill="#92400e">测试无法隔离</text>
+
+  <!-- ===== 缺陷 4 ===== -->
+  <rect x="600" y="190" width="180" height="500" rx="10" fill="#fce7f3" stroke="#f472b6" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="690" y="216" text-anchor="middle" class="card-title" fill="#9d174d">缺陷 4</text>
+  <text x="690" y="238" text-anchor="middle" font-size="14" font-weight="700" fill="#9d174d">类做的太多</text>
+
+  <text x="610" y="262" font-size="12" font-weight="700" fill="#9d174d">危险信号</text>
+  <text x="610" y="280" class="signal">· 类职责描述中含</text>
+  <text x="610" y="296" class="signal">  "和"这个关键字</text>
+  <text x="610" y="316" class="signal">· 新人阅读掌握一个</text>
+  <text x="610" y="332" class="signal">  类成为挑战</text>
+  <text x="610" y="352" class="signal">· 类具有仅在某些方</text>
+  <text x="610" y="368" class="signal">  法中使用的字段</text>
+  <text x="610" y="388" class="signal">· 类具有仅对参数操</text>
+  <text x="610" y="404" class="signal">  作的静态方法</text>
+
+  <line x1="610" y1="420" x2="770" y2="420" stroke="#f472b6" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="610" y="440" class="key-label" fill="#9d174d">要害</text>
+  <text x="610" y="458" class="key">一个类承担过多职</text>
+  <text x="610" y="474" class="key">责，职责间的交互埋</text>
+  <text x="610" y="490" class="key">在类内部，测试找不</text>
+  <text x="610" y="506" class="key">到清晰的接缝。能用</text>
+  <text x="610" y="522" class="key">一句话（不含"和"）</text>
+  <text x="610" y="538" class="key">说清一个类做什么，</text>
+  <text x="610" y="554" class="key">它才是聚焦的；说不</text>
+  <text x="610" y="570" class="key">清，就该拆。</text>
+  <text x="690" y="660" text-anchor="middle" font-size="12" font-weight="700" fill="#9d174d">职责过多</text>
+  <text x="690" y="678" text-anchor="middle" font-size="12" fill="#9d174d">测试找不到接缝</text>
+
+  <!-- 底部共同结论 -->
+  <text x="400" y="708" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">四类缺陷的共同结果：依赖隐而不显 → 测试无法独立装配对象 → 代码不可测</text>
+</svg>

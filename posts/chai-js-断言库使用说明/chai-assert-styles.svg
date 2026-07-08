@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" font-family="'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif">
+  <defs>
+    <linearGradient id="rootGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="bddGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#bfdbfe"/>
+    </linearGradient>
+    <linearGradient id="tddGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef3c7"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+    <linearGradient id="expectGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#dcfce7"/>
+      <stop offset="100%" stop-color="#bbf7d0"/>
+    </linearGradient>
+    <linearGradient id="shouldGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ede9fe"/>
+      <stop offset="100%" stop-color="#ddd6fe"/>
+    </linearGradient>
+    <linearGradient id="chainGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#f1f5f9"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10" fill="#475569"/>
+    </marker>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <style>
+    text { fill: #333333; }
+    .title { font-size: 27px; font-weight: 700; }
+    .subtitle { font-size: 16px; fill: #666666; }
+    .node-title { font-size: 20px; font-weight: 700; }
+    .node-sub { font-size: 14px; }
+    .code { font-family: 'SF Mono', 'Consolas', monospace; font-size: 13px; }
+    .anno { font-size: 13px; fill: #666666; }
+    .label { font-size: 15px; font-weight: 600; }
+  </style>
+
+  <text x="400" y="34" text-anchor="middle" class="title" fill="#1a1a1a">Chai.js 三种断言风格</text>
+  <text x="400" y="58" text-anchor="middle" class="subtitle">按 BDD / TDD 风格划分，同库三写法，挑顺手的用</text>
+
+  <!-- ===== 顶部：Chai.js 根节点 ===== -->
+  <rect x="290" y="78" width="220" height="52" rx="10" fill="url(#rootGrad)" stroke="#64748b" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="400" y="102" text-anchor="middle" class="node-title" fill="#1e293b">Chai.js 断言库</text>
+  <text x="400" y="122" text-anchor="middle" class="node-sub" fill="#475569">配 Mocha / Jest · 浏览器 & Node 通用</text>
+
+  <!-- 分叉到 BDD / TDD -->
+  <line x1="400" y1="130" x2="400" y2="152" stroke="#475569" stroke-width="1.5"/>
+  <line x1="220" y1="152" x2="580" y2="152" stroke="#475569" stroke-width="1.5"/>
+  <line x1="220" y1="152" x2="220" y2="176" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="580" y1="152" x2="580" y2="176" stroke="#475569" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ===== BDD 风格区 ===== -->
+  <rect x="70" y="180" width="300" height="40" rx="8" fill="url(#bddGrad)" stroke="#93c5fd" stroke-width="1" filter="url(#shadow)"/>
+  <text x="220" y="206" text-anchor="middle" class="label" fill="#1e40af">BDD 风格 · 行为驱动 · 链式语法</text>
+
+  <!-- expect 卡片 -->
+  <rect x="70" y="232" width="140" height="116" rx="10" fill="url(#expectGrad)" stroke="#86efac" stroke-width="1" filter="url(#shadow)"/>
+  <text x="140" y="258" text-anchor="middle" class="node-title" fill="#166534">expect</text>
+  <text x="140" y="280" text-anchor="middle" class="node-sub" fill="#15803d">直接调用</text>
+  <text x="140" y="304" text-anchor="middle" class="code" fill="#14532d">expect(x)</text>
+  <text x="140" y="322" text-anchor="middle" class="code" fill="#14532d"> .to.be.true</text>
+  <text x="140" y="340" text-anchor="middle" class="anno" fill="#16a34a">→ 主流写法</text>
+
+  <!-- should 卡片 -->
+  <rect x="230" y="232" width="140" height="116" rx="10" fill="url(#shouldGrad)" stroke="#c4b5fd" stroke-width="1" filter="url(#shadow)"/>
+  <text x="300" y="258" text-anchor="middle" class="node-title" fill="#6d28d9">should</text>
+  <text x="300" y="280" text-anchor="middle" class="node-sub" fill="#7c3aed">挂到对象上</text>
+  <text x="300" y="304" text-anchor="middle" class="code" fill="#5b21b6">x.should</text>
+  <text x="300" y="322" text-anchor="middle" class="code" fill="#5b21b6"> .be.true</text>
+  <text x="300" y="340" text-anchor="middle" class="anno" fill="#888">→ 改原型链</text>
+
+  <!-- expect 与 should 对比说明 -->
+  <text x="220" y="368" text-anchor="middle" class="anno">两者语法场景接近，区别在调用入口</text>
+
+  <!-- ===== TDD 风格区 ===== -->
+  <rect x="430" y="180" width="300" height="40" rx="8" fill="url(#tddGrad)" stroke="#fcd34d" stroke-width="1" filter="url(#shadow)"/>
+  <text x="580" y="206" text-anchor="middle" class="label" fill="#b45309">TDD 风格 · 测试驱动 · 函数式调用</text>
+
+  <!-- assert 卡片 -->
+  <rect x="460" y="232" width="240" height="116" rx="10" fill="url(#tddGrad)" stroke="#fcd34d" stroke-width="1.2" filter="url(#shadow)"/>
+  <text x="580" y="258" text-anchor="middle" class="node-title" fill="#b45309">assert</text>
+  <text x="580" y="280" text-anchor="middle" class="node-sub" fill="#a16207">普通函数调用</text>
+  <text x="580" y="304" text-anchor="middle" class="code" fill="#78350f">assert(true,</text>
+  <text x="580" y="322" text-anchor="middle" class="code" fill="#78350f">  "True is true")</text>
+  <text x="580" y="340" text-anchor="middle" class="anno" fill="#888">→ 非链式，最简洁</text>
+
+  <!-- ===== 分隔线 ===== -->
+  <line x1="60" y1="392" x2="740" y2="392" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="400" y="412" text-anchor="middle" class="label" fill="#475569">以 expect 为例：常用断言方法分类</text>
+
+  <!-- ===== expect 常用断言分组 ===== -->
+  <!-- 第 1 行 -->
+  <rect x="40" y="424" width="170" height="64" rx="8" fill="url(#chainGrad)" stroke="#cbd5e1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="55" y="446" class="label" fill="#1e40af">相等性</text>
+  <text x="55" y="466" class="code" fill="#0f172a">.equal / .deep.equal</text>
+  <text x="55" y="482" class="anno">值相等 / 对象结构相等</text>
+
+  <rect x="225" y="424" width="170" height="64" rx="8" fill="url(#chainGrad)" stroke="#cbd5e1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="240" y="446" class="label" fill="#1e40af">包含</text>
+  <text x="240" y="466" class="code" fill="#0f172a">.include / .contain</text>
+  <text x="240" y="482" class="anno">数组元素 / 字符串子串</text>
+
+  <rect x="410" y="424" width="170" height="64" rx="8" fill="url(#chainGrad)" stroke="#cbd5e1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="425" y="446" class="label" fill="#1e40af">比较</text>
+  <text x="425" y="466" class="code" fill="#0f172a">.above/.below</text>
+  <text x="425" y="482" class="code" fill="#0f172a">.at.least/.at.most</text>
+
+  <rect x="595" y="424" width="170" height="64" rx="8" fill="url(#chainGrad)" stroke="#cbd5e1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="610" y="446" class="label" fill="#1e40af">类型</text>
+  <text x="610" y="466" class="code" fill="#0f172a">.be.a("string")</text>
+  <text x="610" y="482" class="anno">null / object / …</text>
+
+  <!-- 第 2 行 -->
+  <rect x="40" y="500" width="230" height="64" rx="8" fill="url(#chainGrad)" stroke="#cbd5e1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="55" y="522" class="label" fill="#1e40af">属性 / 键</text>
+  <text x="55" y="542" class="code" fill="#0f172a">.have.property("a")</text>
+  <text x="55" y="558" class="code" fill="#0f172a">.include.keys("a","b")</text>
+
+  <rect x="285" y="500" width="200" height="64" rx="8" fill="url(#chainGrad)" stroke="#cbd5e1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="300" y="522" class="label" fill="#1e40af">空值</text>
+  <text x="300" y="542" class="code" fill="#0f172a">.be.empty</text>
+  <text x="300" y="558" class="anno">.not.be.empty 取反</text>
+
+  <rect x="500" y="500" width="265" height="64" rx="8" fill="url(#chainGrad)" stroke="#cbd5e1" stroke-width="1" filter="url(#shadow)"/>
+  <text x="515" y="522" class="label" fill="#b45309">异常</text>
+  <text x="515" y="542" class="code" fill="#0f172a">.throw() / .throw(TypeError)</text>
+  <text x="515" y="558" class="anno">测可能抛错的函数</text>
+
+  <!-- 底部要点 -->
+  <rect x="40" y="576" width="725" height="34" rx="8" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="55" y="598" font-size="14" fill="#555">要点：三种风格同库共存，可混用；expect/should 可链式叠加 .not、.deep、.a 等修饰词表达更复杂断言</text>
+</svg>
