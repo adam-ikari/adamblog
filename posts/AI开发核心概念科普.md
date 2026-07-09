@@ -5,6 +5,12 @@ category: AI
 tags: [AI, 大模型, API, Agent, 概念科普, 零基础]
 recommend: true
 date: 2026-07-09
+series:
+  - id: series-ai-concepts
+    name: AI 开发核心概念系列
+    order: 1
+    prev:
+    next: /posts/AI产业链分析
 ---
 
 # AI 开发核心概念科普：模型、API 与 Agent
