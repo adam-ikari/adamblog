@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 550" width="800" height="550">
+  <defs>
+    <style>
+      .title { font-family: -apple-system, sans-serif; font-size: 18px; font-weight: bold; }
+      .label { font-family: -apple-system, sans-serif; font-size: 14px; }
+      .step-title { font-family: -apple-system, sans-serif; font-size: 15px; font-weight: bold; }
+      .step-desc { font-family: -apple-system, sans-serif; font-size: 11px; fill: #666; }
+      .box { rx: 10; stroke-width: 2; }
+      .arrow { stroke-width: 2.5; fill: none; marker-end: url(#arrowhead); }
+      .loop-arrow { stroke-width: 2; fill: none; stroke-dasharray: 6,3; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+
+  <rect width="800" height="550" fill="transparent"/>
+
+  <!-- 标题 -->
+  <text x="400" y="30" text-anchor="middle" class="title" fill="#333">Agent 工作流：感知 → 思考 → 行动 → 观察</text>
+
+  <!-- 用户输入 -->
+  <rect x="300" y="50" width="200" height="45" rx="8" fill="#e3f2fd" stroke="#1976d2" stroke-width="2"/>
+  <text x="400" y="68" text-anchor="middle" class="step-title" fill="#1565c0">👤 用户输入</text>
+  <text x="400" y="85" text-anchor="middle" class="step-desc">"帮我查天气并订个咖啡馆"</text>
+
+  <!-- 箭头：用户 → 感知 -->
+  <line x1="400" y1="95" x2="400" y2="115" class="arrow" stroke="#666"/>
+
+  <!-- 步骤1：感知 -->
+  <rect x="280" y="115" width="240" height="70" class="box" fill="#fff3e0" stroke="#f57c00"/>
+  <text x="400" y="140" text-anchor="middle" class="step-title" fill="#e65100">1️⃣ 感知（Perceive）</text>
+  <text x="400" y="158" text-anchor="middle" class="step-desc">理解用户要什么</text>
+  <text x="400" y="175" text-anchor="middle" class="step-desc">识别意图：查天气 + 找咖啡馆</text>
+
+  <!-- 箭头：感知 → 思考 -->
+  <line x1="400" y1="185" x2="400" y2="205" class="arrow" stroke="#666"/>
+
+  <!-- 步骤2：思考 -->
+  <rect x="280" y="205" width="240" height="70" class="box" fill="#e8f5e9" stroke="#2e7d32"/>
+  <text x="400" y="230" text-anchor="middle" class="step-title" fill="#1b5e20">2️⃣ 思考（Think）</text>
+  <text x="400" y="248" text-anchor="middle" class="step-desc">规划步骤：先查天气 → 再搜咖啡馆</text>
+  <text x="400" y="265" text-anchor="middle" class="step-desc">选择工具：天气 API + 地图搜索</text>
+
+  <!-- 箭头：思考 → 行动 -->
+  <line x1="400" y1="275" x2="400" y2="295" class="arrow" stroke="#666"/>
+
+  <!-- 步骤3：行动 -->
+  <rect x="280" y="295" width="240" height="70" class="box" fill="#fce4ec" stroke="#c62828"/>
+  <text x="400" y="320" text-anchor="middle" class="step-title" fill="#b71c1c">3️⃣ 行动（Act）</text>
+  <text x="400" y="338" text-anchor="middle" class="step-desc">调用天气 API 获取北京天气</text>
+  <text x="400" y="355" text-anchor="middle" class="step-desc">调用地图 API 搜索附近咖啡馆</text>
+
+  <!-- 箭头：行动 → 观察 -->
+  <line x1="400" y1="365" x2="400" y2="385" class="arrow" stroke="#666"/>
+
+  <!-- 步骤4：观察 -->
+  <rect x="280" y="385" width="240" height="70" class="box" fill="#f3e5f5" stroke="#7b1fa2"/>
+  <text x="400" y="410" text-anchor="middle" class="step-title" fill="#6a1b9a">4️⃣ 观察（Observe）</text>
+  <text x="400" y="428" text-anchor="middle" class="step-desc">接收工具返回的结果</text>
+  <text x="400" y="445" text-anchor="middle" class="step-desc">天气：晴，25°C | 咖啡馆：3家推荐</text>
+
+  <!-- 判断分支 -->
+  <line x1="400" y1="455" x2="400" y2="475" class="arrow" stroke="#666"/>
+
+  <!-- 判断菱形 -->
+  <polygon points="400,475 450,500 400,525 350,500" fill="#fff9c4" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="495" text-anchor="middle" class="label" font-size="12px" fill="#f57f17">任务</text>
+  <text x="400" y="508" text-anchor="middle" class="label" font-size="12px" fill="#f57f17">完成了吗？</text>
+
+  <!-- 否：循环回思考 -->
+  <path d="M 350 500 Q 200 500 200 240 Q 200 240 280 240" class="loop-arrow" stroke="#f57c00" fill="none" marker-end="url(#arrowhead)"/>
+  <text x="220" y="375" text-anchor="middle" class="label" font-size="11px" fill="#e65100">否 → 回到思考</text>
+  <text x="220" y="390" text-anchor="middle" class="label" font-size="11px" fill="#e65100">调整计划继续</text>
+
+  <!-- 是：返回结果 -->
+  <line x1="450" y1="500" x2="550" y2="500" class="arrow" stroke="#2e7d32"/>
+  <rect x="550" y="470" width="180" height="60" rx="8" fill="#c8e6c9" stroke="#2e7d32"/>
+  <text x="640" y="495" text-anchor="middle" class="step-title" fill="#1b5e20">✅ 返回结果</text>
+  <text x="640" y="515" text-anchor="middle" class="step-desc">"北京今天晴，25°C。</text>
+  <text x="640" y="530" text-anchor="middle" class="step-desc">推荐三里屯的 XX 咖啡馆。"</text>
+
+  <!-- 底部说明 -->
+  <text x="400" y="545" text-anchor="middle" class="label" font-size="12px" fill="#666">Agent 循环执行直到任务完成，或达到最大步数限制</text>
+</svg>

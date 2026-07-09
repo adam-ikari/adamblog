@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <style>
+      .layer-box { rx: 8; stroke-width: 2; }
+      .arrow { stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+      .label { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; }
+      .title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 16px; font-weight: bold; }
+      .desc { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; fill: #666; }
+      @media (prefers-color-scheme: dark) {
+        .desc { fill: #aaa; }
+      }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="transparent"/>
+
+  <!-- 第1层：用户层 -->
+  <rect x="50" y="20" width="500" height="70" class="layer-box" fill="#e3f2fd" stroke="#1976d2"/>
+  <text x="300" y="45" text-anchor="middle" class="title" fill="#1565c0">用户层</text>
+  <text x="300" y="65" text-anchor="middle" class="label" fill="#333">你：Claude Code / ChatGPT / Kimi App / 网页</text>
+  <text x="570" y="55" class="desc">通过各种界面使用 AI</text>
+
+  <!-- 箭头 1→2 -->
+  <line x1="300" y1="90" x2="300" y2="110" class="arrow" stroke="#666"/>
+
+  <!-- 第2层：应用/工具层 -->
+  <rect x="50" y="110" width="500" height="70" class="layer-box" fill="#f3e5f5" stroke="#7b1fa2"/>
+  <text x="300" y="135" text-anchor="middle" class="title" fill="#6a1b9a">应用 / 工具层</text>
+  <text x="300" y="155" text-anchor="middle" class="label" fill="#333">Claude Code / ChatGPT / 各类 AI 应用</text>
+  <text x="570" y="145" class="desc">界面交互 · Agent 编排 · Tool 管理</text>
+
+  <!-- 箭头 2→3 -->
+  <line x1="300" y1="180" x2="300" y2="200" class="arrow" stroke="#666"/>
+
+  <!-- 第3层：API 网关层 -->
+  <rect x="50" y="200" width="500" height="70" class="layer-box" fill="#fff3e0" stroke="#e65100"/>
+  <text x="300" y="225" text-anchor="middle" class="title" fill="#d84315">API 网关层</text>
+  <text x="300" y="245" text-anchor="middle" class="label" fill="#333">OpenAI / DeepSeek / 讯飞 / 硅基流动 / OpenRouter</text>
+  <text x="570" y="235" class="desc">认证 · 计费 · 路由 · 格式转换</text>
+
+  <!-- 箭头 3→4 -->
+  <line x1="300" y1="270" x2="300" y2="290" class="arrow" stroke="#666"/>
+
+  <!-- 第4层：模型层 -->
+  <rect x="50" y="290" width="500" height="70" class="layer-box" fill="#e8f5e9" stroke="#2e7d32"/>
+  <text x="300" y="315" text-anchor="middle" class="title" fill="#1b5e20">模型层</text>
+  <text x="300" y="335" text-anchor="middle" class="label" fill="#333">GPT-4 / Claude / DeepSeek / 星火 / GLM / Qwen</text>
+  <text x="570" y="325" class="desc">理解输入 · 生成输出 · 推理计算</text>
+
+  <!-- 箭头 4→5 -->
+  <line x1="300" y1="360" x2="300" y2="380" class="arrow" stroke="#666"/>
+
+  <!-- 第5层：算力层 -->
+  <rect x="50" y="380" width="500" height="70" class="layer-box" fill="#fce4ec" stroke="#c62828"/>
+  <text x="300" y="405" text-anchor="middle" class="title" fill="#b71c1c">算力层</text>
+  <text x="300" y="425" text-anchor="middle" class="label" fill="#333">NVIDIA GPU / 华为昇腾 / 云服务集群</text>
+  <text x="570" y="415" class="desc">运行模型的硬件基础设施</text>
+
+  <!-- 底部说明 -->
+  <text x="300" y="490" text-anchor="middle" class="desc" font-size="13px">一个工具可接多家网关 · 一个网关可聚合多个模型</text>
+</svg>

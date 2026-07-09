@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <style>
+      .title { font-family: -apple-system, sans-serif; font-size: 18px; font-weight: bold; }
+      .label { font-family: -apple-system, sans-serif; font-size: 14px; }
+      .desc { font-family: -apple-system, sans-serif; font-size: 12px; fill: #666; }
+      .box { rx: 8; stroke-width: 2; }
+      .arrow { stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="800" height="500" fill="transparent"/>
+
+  <!-- 左侧：训练 -->
+  <rect x="30" y="20" width="350" height="200" class="box" fill="#ffebee" stroke="#c62828"/>
+  <text x="205" y="45" text-anchor="middle" class="title" fill="#b71c1c">训练（Training）</text>
+  <text x="205" y="70" text-anchor="middle" class="label" fill="#333">学骑自行车</text>
+
+  <!-- 训练流程图 -->
+  <rect x="60" y="90" width="120" height="35" rx="5" fill="#ffcdd2" stroke="#c62828"/>
+  <text x="120" y="112" text-anchor="middle" class="label" font-size="12px" fill="#333">输入数据</text>
+
+  <line x1="180" y1="107" x2="210" y2="107" class="arrow" stroke="#c62828"/>
+
+  <rect x="210" y="90" width="120" height="35" rx="5" fill="#ffcdd2" stroke="#c62828"/>
+  <text x="270" y="112" text-anchor="middle" class="label" font-size="12px" fill="#333">预测输出</text>
+
+  <line x1="270" y1="125" x2="270" y2="145" stroke="#c62828" stroke-width="2" stroke-dasharray="5,3"/>
+
+  <rect x="210" y="145" width="120" height="35" rx="5" fill="#ffcdd2" stroke="#c62828"/>
+  <text x="270" y="167" text-anchor="middle" class="label" font-size="12px" fill="#333">对比答案</text>
+
+  <line x1="210" y1="162" x2="180" y2="162" class="arrow" stroke="#c62828"/>
+
+  <rect x="60" y="145" width="120" height="35" rx="5" fill="#ffcdd2" stroke="#c62828"/>
+  <text x="120" y="167" text-anchor="middle" class="label" font-size="12px" fill="#333">调整参数</text>
+
+  <text x="205" y="205" text-anchor="middle" class="desc">反复循环数百万次，直到准确率达标</text>
+
+  <!-- 右侧：推理 -->
+  <rect x="420" y="20" width="350" height="200" class="box" fill="#e8f5e9" stroke="#2e7d32"/>
+  <text x="595" y="45" text-anchor="middle" class="title" fill="#1b5e20">推理（Inference）</text>
+  <text x="595" y="70" text-anchor="middle" class="label" fill="#333">骑车上路</text>
+
+  <!-- 推理流程图 -->
+  <rect x="450" y="100" width="120" height="35" rx="5" fill="#c8e6c9" stroke="#2e7d32"/>
+  <text x="510" y="122" text-anchor="middle" class="label" font-size="12px" fill="#333">用户提问</text>
+
+  <line x1="570" y1="117" x2="600" y2="117" class="arrow" stroke="#2e7d32"/>
+
+  <rect x="600" y="100" width="120" height="35" rx="5" fill="#c8e6c9" stroke="#2e7d32"/>
+  <text x="660" y="122" text-anchor="middle" class="label" font-size="12px" fill="#333">模型回答</text>
+
+  <text x="595" y="165" text-anchor="middle" class="desc">一次性完成，毫秒到秒级响应</text>
+
+  <!-- 底部对比表 -->
+  <rect x="30" y="240" width="740" height="240" class="box" fill="#f5f5f5" stroke="#9e9e9e"/>
+  <text x="400" y="265" text-anchor="middle" class="title" fill="#333">训练 vs 推理 对比</text>
+
+  <!-- 表头 -->
+  <rect x="50" y="280" width="200" height="30" fill="#e0e0e0" stroke="#9e9e9e"/>
+  <text x="150" y="300" text-anchor="middle" class="label" font-weight="bold" fill="#333">对比项</text>
+
+  <rect x="250" y="280" width="250" height="30" fill="#ffcdd2" stroke="#c62828"/>
+  <text x="375" y="300" text-anchor="middle" class="label" font-weight="bold" fill="#b71c1c">训练</text>
+
+  <rect x="500" y="280" width="250" height="30" fill="#c8e6c9" stroke="#2e7d32"/>
+  <text x="625" y="300" text-anchor="middle" class="label" font-weight="bold" fill="#1b5e20">推理</text>
+
+  <!-- 行1：目的 -->
+  <rect x="50" y="310" width="200" height="30" fill="#fff" stroke="#e0e0e0"/>
+  <text x="150" y="330" text-anchor="middle" class="label" fill="#333">目的</text>
+  <rect x="250" y="310" width="250" height="30" fill="#fff" stroke="#e0e0e0"/>
+  <text x="375" y="330" text-anchor="middle" class="label" fill="#333">让模型学会规律</text>
+  <rect x="500" y="310" width="250" height="30" fill="#fff" stroke="#e0e0e0"/>
+  <text x="625" y="330" text-anchor="middle" class="label" fill="#333">用学好的模型回答问题</text>
+
+  <!-- 行2：成本 -->
+  <rect x="50" y="340" width="200" height="30" fill="#fff" stroke="#e0e0e0"/>
+  <text x="150" y="360" text-anchor="middle" class="label" fill="#333">成本</text>
+  <rect x="250" y="340" width="250" height="30" fill="#fff" stroke="#e0e0e0"/>
+  <text x="375" y="360" text-anchor="middle" class="label" fill="#333">极高（百万美元级）</text>
+  <rect x="500" y="340" width="250" height="30" fill="#fff" stroke="#e0e0e0"/>
+  <text x="625" y="360" text-anchor="middle" class="label" fill="#333">低（按调用计费）</text>
+
+  <!-- 行3：时间 -->
+  <rect x="50" y="370" width="200" height="30" fill="#fff" stroke="#e0e0e0"/>
+  <text x="150" y="390" text-anchor="middle" class="label" fill="#333">时间</text>
+  <rect x="250" y="370" width="250" height="30" fill="#fff" stroke="#e0e0e0"/>
+  <text x="375" y="390" text-anchor="middle" class="label" fill="#333">数周到数月</text>
+  <rect x="500" y="370" width="250" height="30" fill="#fff" stroke="#e0e0e0"/>
+  <text x="625" y="390" text-anchor="middle" class="label" fill="#333">毫秒到秒级</text>
+
+  <!-- 行4：谁在做 -->
+  <rect x="50" y="400" width="200" height="30" fill="#fff" stroke="#e0e0e0"/>
+  <text x="150" y="420" text-anchor="middle" class="label" fill="#333">谁在做</text>
+  <rect x="250" y="400" width="250" height="30" fill="#fff" stroke="#e0e0e0"/>
+  <text x="375" y="420" text-anchor="middle" class="label" fill="#333">大厂、研究机构</text>
+  <rect x="500" y="400" width="250" height="30" fill="#fff" stroke="#e0e0e0"/>
+  <text x="625" y="420" text-anchor="middle" class="label" fill="#333">普通开发者、用户</text>
+
+  <!-- 底部提示 -->
+  <text x="400" y="460" text-anchor="middle" class="desc" font-size="13px">普通用户只接触推理。训练是大厂的事，API 服务本质就是买"推理调用权"。</text>
+</svg>
