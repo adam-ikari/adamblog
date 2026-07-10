@@ -6,7 +6,7 @@ import { RSSOptions, RssPlugin } from 'vitepress-plugin-rss'
 import { imageCompressPlugin } from './plugins/image-compress'
 import { relatedPostsPlugin } from './plugins/related-posts'
 import { readFileSync, readdirSync } from 'fs'
-import { resolve, basename, extname } from 'path'
+import { resolve, basename } from 'path'
 import matter from 'gray-matter'
 
 // 导入主题的配置
