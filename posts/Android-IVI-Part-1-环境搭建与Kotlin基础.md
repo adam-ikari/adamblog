@@ -17,7 +17,7 @@ series:
 
 ## 前言
 
-欢迎来到 Android IVI（车载信息娱乐系统）开发的世界！本系列教程将带你从零基础开始，逐步掌握使用 Kotlin 和 Jetpack Compose Automotive 开发车载应用的核心技能。
+本系列教程将带你从零基础开始，逐步掌握使用 Kotlin 和 Jetpack Compose Automotive 开发车载应用的核心技能。
 
 **什么是 IVI？**
 
