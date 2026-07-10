@@ -10,5 +10,3 @@ blog:
   inspiringTimeout: 4000
   pageSize: 10
 ---
-
-<!-- DEPLOY-VERIFY-2026-07-10 -->
