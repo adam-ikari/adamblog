@@ -35,7 +35,7 @@ const seriesList = computed(() => {
       <a
         v-for="series in seriesList"
         :key="series.id"
-        :href="`/series/series-${series.id}`"
+        :href="`/series/${series.id}`"
         class="series-item"
       >
         <div class="series-head">
