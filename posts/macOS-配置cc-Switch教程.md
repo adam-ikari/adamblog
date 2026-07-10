@@ -50,6 +50,8 @@ ls ~/.claude/settings.json
 
 ### 安装 @aravhawk/cc-switch（Profile 管理器）
 
+这一步把 Profile 管理器装成全局命令，装完才能用 `cc-switch` 建/切 Profile。`-g` 是装到全局 bin 目录（macOS 上一般在 `/usr/local/bin` 或 `~/.npm-global/bin`），这样终端任何位置都能直接敲 `cc-switch`；不加 `-g` 就只装到当前项目里，外面调不到。npm 和 pnpm 二选一，看你平时用哪个包管理器——没必要为这个单独装另一个。装完最后那条 `--version` 是验证用的，正常会打印出一个版本号出来，说明命令已经在 PATH 里了；要是报 `command not found`，多半是全局 bin 目录没进 PATH，去翻一下 `~/.zshrc` 的 `export PATH` 那行。
+
 ```bash
 # 使用 npm 全局安装
 npm install -g @aravhawk/cc-switch
@@ -62,6 +64,8 @@ cc-switch --version
 ```
 
 ### 安装 @adithya-13/cc-switch（提供商切换器）
+
+这一步装的是另一套实现，走 Provider 模式。装法给了两条路：npm 全局装和官方脚本装，**选一条就行**——脚本方式适合没装 Node 或不想污染全局包目录的人，它直接把可执行文件下到本地并接好 PATH；npm 方式则跟前一个包一致，已有 Node 环境就用这个最省事。注意两个包都抢 `cc-switch` 这个命令名，所以两个不能同时全局装，会互相覆盖，下面那句 Note 里也强调了。验证命令跟前一步略有不同（这里是 `cc-switch version`，没 `--`），照着敲能打印版本号就算装好。
 
 ```bash
 # 使用 npm 全局安装

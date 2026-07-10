@@ -23,6 +23,8 @@ series:
 
 ## 实战目标
 
+先把要做成的东西定死——四个子命令、数据落到本地 JSON。目标越窄，越能看出模型端到端把活干完的真实能力，也方便后面逐步判断有没有跑偏。下面这四行就是验收标准，做完照着敲一遍能通就算成功：
+
 ```
 todo add "写技术博客"      # 添加任务
 todo list                  # 列出所有任务
@@ -35,6 +37,8 @@ todo delete 1              # 删除第 1 个
 ![Claude Code + DeepSeek 实战流程](/posts/macOS-Claude-Code-实战案例/practice-workflow.svg)
 
 ## 第一步：确认环境
+
+动手前先摸清两件事在不在：Node.js 要 18 以上（待会模型写的 `fs` 读写、`process.argv` 解析都靠它，版本太低会踩语法兼容坑），以及 Claude Code 本体能正常起。两条命令各打一行版本号回来就说明齐了，报 command not found 就是前面哪篇没装到位。
 
 ```bash
 node --version    # 需要 18+
@@ -136,6 +140,8 @@ claude
 - `package.json` 的 `bin` 字段指向 `bin/todo.js`
 
 ## 第七步：本地安装并测试
+
+代码写完不等于能直接敲 `todo` 调用，得先让系统认得这个命令。`npm link` 会在全局 bin 目录下建一个软链，指向当前项目的 `bin/todo.js`，效果约等于 `npm install -g` 自己，但改了源码立刻生效、不用重装。链接完敲 `todo` 不再报 command not found 就算通了；接下来那串命令是从添加到删除的完整生命周期，`list` 的输出应该随每一步实时变化（加完两条、done 掉第一条、delete 掉第二条、最后剩空或只剩一条）。
 
 ```bash
 # 在项目目录下链接到全局

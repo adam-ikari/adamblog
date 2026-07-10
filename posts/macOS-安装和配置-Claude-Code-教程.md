@@ -63,11 +63,13 @@ Anthropic 官方 API 在国内不好用，下面这几家国产替代都是 Open
 
 ### 通过 npm 全局安装
 
+Claude Code 本质是个 npm 包，全局装一次就能在任何目录当命令用。`-g` 是全局安装，装完 `claude` 这个命令会落到 npm 的全局 bin 目录里，PATH 里能直接找到。
+
 ```bash
 npm install -g @anthropic-ai/claude-code
 ```
 
-macOS 通常不需要 `sudo`，Homebrew 安装的 Node.js 全局路径在用户目录下。如果遇到权限问题：
+macOS 通常不需要 `sudo`，Homebrew 安装的 Node.js 全局路径在用户目录下。如果遇到权限问题，把 npm 全局目录挪到用户目录下就能避免动用 sudo：
 
 ```bash
 mkdir -p ~/.npm-global
@@ -79,9 +81,13 @@ npm install -g @anthropic-ai/claude-code
 
 ### 验证安装
 
+装完先确认命令能调起来，顺便看一眼版本号对不对——后面遇到行为异常，版本是排查的第一个信息。
+
 ```bash
 claude --version
 ```
+
+正常会输出版本号一行，比如 `0.x.x`。如果提示 `command not found`，多半是 npm 全局 bin 目录没在 PATH 里，回上一步检查 `npm config get prefix` 指向的路径有没有进 PATH。
 
 ## 配置国产大模型 API
 
@@ -213,6 +219,8 @@ cc-switch use xunfei
 
 ### 启动 Claude Code
 
+Claude Code 启动时会自动读取当前目录下的 `CLAUDE.md` 和 `.claude/` 配置，所以得先 `cd` 到你的项目目录再启动，否则它拿不到项目上下文、权限也按别的目录走。
+
 ```bash
 # 进入你的项目目录
 cd ~/projects/my-project
@@ -220,6 +228,8 @@ cd ~/projects/my-project
 # 启动 Claude Code
 claude
 ```
+
+执行后进入交互式界面，光标停在输入提示符处等你的指令。如果第一次启动卡在登录或报 API Key 无效，说明配置还没生效——回到上一步确认环境变量或 `settings.json` 里的 `ANTHROPIC_BASE_URL`、`ANTHROPIC_AUTH_TOKEN` 已写入并 `source` 过。
 
 也可以带参数启动：
 

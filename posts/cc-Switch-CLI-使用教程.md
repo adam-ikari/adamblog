@@ -48,6 +48,8 @@ ls ~/.claude/settings.json
 
 ### 安装 @aravhawk/cc-switch（Profile 管理器）
 
+这一步把 Profile 管理器装成全局命令，装完才有 `cc-switch` 这个命令可调。`-g` 是全局安装，不加的话只在当前项目目录能用，你在任意路径下切配置就找不到命令了。npm 和 pnpm 二选一即可，看你平时用哪个包管理器。装完跑一下 `cc-switch --version`，能打印出版本号就说明 PATH 里已经能找到它；如果提示命令找不到，多半是全局 bin 目录没在 PATH 里，去 `npm config get prefix` 看一眼那个路径下的 `bin` 是否进了环境变量。
+
 ```bash
 # 使用 npm 全局安装
 npm install -g @aravhawk/cc-switch
@@ -60,6 +62,8 @@ cc-switch --version
 ```
 
 ### 安装 @adithya-13/cc-switch（提供商切换器）
+
+这一步装的是另一个实现，思路和上面不一样：它不存完整配置，而是管 API Key 和 base URL，切换时直接改写 `~/.claude/settings.json` 里的连接信息。两种安装方式效果一样，npm 走 Node 生态、适合已经在用 npm/pnpm 的人；curl 那条是项目自带的安装脚本，会自动把可执行文件放到合适的位置，适合没装 Node 或想一条命令搞定的场景。注意 `| bash` 这种管道执行会直接运行远程脚本，介意的话可以先 `curl -fsSL <url>` 拉下来看一眼再执行。验证命令和上面那条不一样，这里是 `cc-switch version`（子命令形式），能输出版本就说明装好了。
 
 ```bash
 # 使用 npm 全局安装

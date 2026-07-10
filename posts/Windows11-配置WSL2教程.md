@@ -72,15 +72,23 @@ wsl --install
 
 #### 步骤 1：启用 WSL 功能
 
+WSL 子系统是底层功能，Windows 默认没开，得先把它启用出来，后面才能装发行版。这条命令用 `dism` 把 `Microsoft-Windows-Subsystem-Linux` 这个可选功能在当前系统（`/online`）上打开，`/all` 表示连带依赖的子功能一起开，`/norestart` 是先别急着重启——因为下一步还要再开一个功能，攒一起重启省事。
+
 ```powershell
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 ```
 
+执行成功会看到"操作成功完成"字样。如果报错提示找不到该功能，多半是 Windows 版本太低（见前面"前提条件"），先升级系统再说。
+
 #### 步骤 2：启用虚拟机平台
+
+WSL2 跑的是真正的 Linux 内核，靠的是 Hyper-V 那套轻量虚拟机底座，`VirtualMachinePlatform` 就是提供这个底座的功能——不开它，WSL 只能退化成第一代兼容层，性能和兼容性都差一截。参数和步骤 1 一致，`/norestart` 同样是为了等会儿一起重启。
 
 ```powershell
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
+
+到这一步两个功能都开了，可以重启计算机。如果重启后启动 WSL 仍报 `WslRegisterDomain` 之类错误，进 BIOS 确认 CPU 虚拟化（Intel VT-x / AMD-V）是打开的——这是最常见的卡点。
 
 #### 步骤 3：下载并安装 Linux 内核更新包
 
@@ -96,9 +104,13 @@ Start-Process msiexec.exe -ArgumentList "/i wsl_update_x64.msi /quiet" -Wait
 
 #### 步骤 4：设置 WSL 2 为默认版本
 
+前面只是把功能开起来，但 Windows 仍可能默认走 WSL1。这条命令把默认版本钉在 2 上，往后装的发行版都按 WSL2 启动，省得每个都手动 `--set-version` 切一遍。
+
 ```powershell
 wsl --set-default-version 2
 ```
+
+执行后会输出一段说明文字，大意是"此更改将应用于未来安装的发行版"。注意这条只影响**之后新装的**发行版，已经装好的旧发行版默认版本不会自动变，需要单独用 `wsl --set-version <发行版> 2` 转。
 
 重启计算机使更改生效。
 
@@ -195,6 +207,8 @@ sudo apt update && sudo apt upgrade -y
 ```
 
 #### Ubuntu 阿里源
+
+这是清华源的备选。阿里源在国内不同地区的连通性有时比清华更稳，如果你发现清华源拉取速度不理想，换这套即可——改法和上面完全一样：备份后替换 `/etc/apt/sources.list` 内容，再 `apt update` 生效。注意阿里源这里用的是 `http`，清华源用的是 `https`，两者都能用，不必纠结。
 
 ```text
 deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse
@@ -312,6 +326,8 @@ wslpath -w /home/username
 
 ### 安装 Git
 
+Git 用 apt 直接装即可，关键是装完要落配置。`user.name` 和 `user.email` 会写进每次提交的作者信息，不设的话提交时 Git 会报错或留个"unknown"上去。`core.autocrlf input` 是处理换行符的：WSL 里换行是 LF，而 Windows 是 CRLF，设成 `input` 让 Git 在提交时把 CRLF 转成 LF、检出不转——避免跨系统协作时一堆莫名其妙的 diff。
+
 ```bash
 sudo apt install git -y
 
@@ -322,6 +338,8 @@ git config --global user.email "your.email@example.com"
 # 配置换行符
 git config --global core.autocrlf input
 ```
+
+配完用 `git config --list` 验证一下，能看到刚设的三条就说明落到位了。
 
 ### 安装 Node.js
 
@@ -376,6 +394,8 @@ source myenv/bin/activate
 
 #### 方式二：在 WSL2 内直接安装 Docker Engine
 
+不走 Docker Desktop，直接在 WSL2 里装原生 Docker Engine。好处是不占 Windows 那边的资源、没有图形层的开销，命令行用起来和真服务器一模一样；代价是没有 GUI，而且 WSL 默认没有 systemd（除非你开了），服务得用 `service` 命令手动起。整体思路是：装依赖 → 导入官方 GPG 密钥（验证下载来源可信）→ 加 Docker 自己的 apt 仓库 → 装包 → 起服务 → 把当前用户塞进 docker 组免 sudo。
+
 ```bash
 # 安装依赖
 sudo apt install ca-certificates curl gnupg -y
@@ -399,7 +419,11 @@ sudo service docker start
 sudo usermod -aG docker $USER
 ```
 
+装完用 `docker run hello-world` 验证，能看到一段"Hello from Docker!"的输出就通了。`usermod -aG` 把你加进 docker 组是为了免 sudo 跑 docker，但这条**当前 shell 不会立刻生效**——要么关掉 WSL 重开，要么 `newgrp docker` 切一下组，否则还会提示权限不足。另外每次重启 WSL 后 docker 服务不会自己起来，得重新 `sudo service docker start`，想开机自启就把 systemd 开了再 `systemctl enable docker`。
+
 ### 安装其他常用工具
+
+下面这套是补全基础环境的常用包，按需取用即可：`build-essential` 是 C/C++ 编译链（gcc、make 一类），很多从源码装的工具都依赖它；`net-tools`/`curl`/`wget` 是网络排障和下载的常备件；`vim`/`nano` 是命令行编辑器，nano 更新手友好；`zsh` 配 Oh My Zsh 则是把默认 shell 换成更好用的版本，自动补全和主题都比 bash 顺手。`chsh -s` 那条会提示输入密码确认切换默认 shell。
 
 ```bash
 # 安装编译工具

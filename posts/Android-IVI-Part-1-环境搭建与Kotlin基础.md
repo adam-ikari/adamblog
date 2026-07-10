@@ -100,6 +100,14 @@ MyFirstIVI/
 └── settings.gradle
 ```
 
+> 🤖 **AI 辅助开发 Tip**
+>
+> **传统方式**：手动下载 Android Studio，在 SDK Manager 中逐一勾选平台版本和工具，创建 AVD 时反复调整参数，容易遗漏配置。
+>
+> **AI 辅助方式**：在 Claude Code 或 Copilot 中输入 "帮我生成一个 Android Automotive 项目的完整开发环境配置脚本"，AI 会自动生成包含 SDK 安装、模拟器创建、Gradle 配置的脚本，一键执行即可完成环境搭建。遇到报错时，直接将错误信息粘贴给 AI，它能快速定位问题（如 SDK 版本冲突、模拟器硬件加速未开启等）。
+>
+> **进阶技巧**：让 AI 分析你的开发机器配置，推荐最适合的模拟器参数（内存、分辨率、API 级别），避免手动试错的低效过程。
+
 ## 2. Kotlin 基础语法
 
 Kotlin 是 Google 推荐的 Android 开发语言，简洁、安全、与 Java 完全互操作。
@@ -183,6 +191,14 @@ for (song in songs) {
 }
 ```
 
+> 🤖 **AI 辅助开发 Tip**
+>
+> **传统方式**：阅读官方文档学习 Kotlin 语法，手动编写示例代码，遇到编译错误时逐个排查（如类型不匹配、空指针异常等）。
+>
+> **AI 辅助方式**：在 IDE 中安装 AI 助手插件（如 GitHub Copilot、Claude Code），编写代码时 AI 会自动补全函数体。例如输入 `fun checkSpeed(speed: Int): String =` 后，AI 会智能补全 `if (speed > 120) "超速了！" else "速度正常"`。遇到不懂的语法点时，直接选中代码问 AI "这段代码的 when 表达式是什么含义"，AI 会结合上下文给出精准解释。
+>
+> **进阶技巧**：让 AI 将 Java 代码转换为 Kotlin 代码（IDEA 内置的转换功能有时不够智能），或者要求 AI "用 Kotlin 的函数式编程风格重写这段循环代码"，学习更地道的 Kotlin 写法。
+
 ## 3. Kotlin 进阶特性
 
 ### 3.1 空安全（Null Safety）
@@ -239,6 +255,14 @@ val even = numbers.filter { it % 2 == 0 }
 println(even) // 输出: [2, 4]
 ```
 
+> 🤖 **AI 辅助开发 Tip**
+>
+> **传统方式**：阅读 Kotlin 官方文档的空安全章节，手动编写 `?.`、`?:`、`!!` 的测试用例，通过反复试错理解三种运算符的区别。扩展函数和 Lambda 的学习曲线较陡，需要查阅大量示例才能掌握最佳实践。
+>
+> **AI 辅助方式**：在 Claude Code 中打开你的项目，输入 "帮我检查这段代码的空安全问题"，AI 会自动扫描并标注潜在的空指针风险，建议将 `!!` 替换为 `?.let` 或 `?:`。学习扩展函数时，让 AI "为 Android 的 View 类写一个实用的扩展函数示例"，AI 会生成如 `fun View.dpToPx(dp: Float): Float = dp * resources.displayMetrics.density` 这样的实战代码，比文档中的抽象示例更易理解。
+>
+> **进阶技巧**：遇到复杂的 Lambda 链式操作时（如 `list.filter { }.map { }.sortedBy { }`），让 AI 用注释解释每一步的数据变换过程，或者要求 AI 将其改写为更易读的命名函数形式，帮助你理解函数式编程的思维模式。
+
 ## 4. 第一个 Kotlin 程序
 
 在 `MainActivity.kt` 中编写：
@@ -273,6 +297,14 @@ class MainActivity : AppCompatActivity() {
 2. 选择 Automotive 模拟器
 3. 看到 "Welcome to Android IVI!" 即为成功
 
+> 🤖 **AI 辅助开发 Tip**
+>
+> **传统方式**：按照教程一步步复制粘贴代码，手动排查运行时错误（如 `NullPointerException`、`Resources$NotFoundException`），在 Stack Overflow 上搜索相似问题，耗时较长。
+>
+> **AI 辅助方式**：在 Claude Code 中直接描述需求 "创建一个显示欢迎文本的 Android Automotive Activity，文字要足够大以便在车载屏幕上阅读"，AI 会一次性生成完整的、符合车载规范的代码（包括合适的字体大小、颜色对比度、布局边距）。运行报错时，将完整的错误堆栈粘贴给 AI，它能立即指出问题根源（如忘记在 AndroidManifest.xml 中声明 Activity、主题继承错误等）。
+>
+> **进阶技巧**：让 AI "为这段代码编写单元测试"，AI 会自动生成 JUnit 测试用例，覆盖正常输入、边界条件（如空字符串）和异常情况。或者要求 AI "用 Jetpack Compose 重写这个传统的 View 实现"，提前接触下一章的内容，感受声明式 UI 的简洁性。
+
 ## 5. 本章小结
 
 本章我们完成了：
@@ -285,6 +317,16 @@ class MainActivity : AppCompatActivity() {
 **下章预告**
 
 Part 2 将深入 Android Automotive OS 架构，学习 IVI 核心概念和 Car API。
+
+> 🤖 **AI 辅助开发 Tip**
+>
+> **本课回顾**：本章我们学习了环境搭建和 Kotlin 基础。在继续下一章之前，不妨用 AI 来巩固所学：
+>
+> 1. **代码审查**：将你的 Kotlin 练习代码粘贴给 AI，让它以资深 Android 工程师的角度进行代码审查，指出可以优化的地方（如 `val` 和 `var` 的选择、函数命名规范、空安全处理等）。
+> 2. **生成练习题**：让 AI "生成 5 道 Kotlin 空安全的练习题，难度从简单到复杂"，通过实战加深理解。
+> 3. **项目规划**：向 AI 描述你想实现的车载应用功能，让它帮你规划项目结构、技术选型和开发步骤，为后续章节的学习建立整体认知。
+>
+> **推荐 AI 工具**：本章内容适合使用支持实时代码补全的 AI 工具（如 GitHub Copilot、Cursor），在编写 Kotlin 代码时能获得即时反馈。遇到概念性问题时，Claude Code 的深度解释能力更有优势。
 
 ## 延伸阅读
 
