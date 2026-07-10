@@ -5,6 +5,9 @@ import footnote from 'markdown-it-footnote'
 import { RSSOptions, RssPlugin } from 'vitepress-plugin-rss'
 import { imageCompressPlugin } from './plugins/image-compress'
 import { relatedPostsPlugin } from './plugins/related-posts'
+import { readFileSync, readdirSync } from 'fs'
+import { resolve, basename, extname } from 'path'
+import matter from 'gray-matter'
 
 // 导入主题的配置
 import { blogTheme } from './blog-theme'
@@ -22,6 +25,56 @@ const RSS: RSSOptions = {
 
 // 收集系列数据
 const seriesMap = new Map<string, { name: string; articles: { title: string; link: string; order: number }[] }>()
+
+/**
+ * 扫描 series/ 目录，自动生成系列列表数据
+ */
+function scanSeriesFiles(seriesDir: string) {
+  const seriesList: { id: string; name: string; description?: string; articles: { title: string; link: string; order: number }[] }[] = []
+
+  let files: string[]
+  try {
+    files = readdirSync(seriesDir)
+  } catch {
+    return seriesList
+  }
+
+  for (const file of files) {
+    if (!file.endsWith('.md') || file === 'index.md') continue
+
+    const filePath = resolve(seriesDir, file)
+    const content = readFileSync(filePath, 'utf-8')
+    const { data: frontmatter } = matter(content)
+
+    // 从文件名提取 id（去掉 .md 后缀）
+    const fileName = basename(file, '.md')
+    // 支持 series-{id}.md 或直接 {id}.md 的命名
+    const id = fileName.startsWith('series-') ? fileName.slice(7) : fileName
+
+    // 提取系列名称：优先使用 frontmatter.title，否则使用文件名
+    const name = frontmatter.title || id
+
+    // 提取描述
+    const description = frontmatter.description || ''
+
+    // 提取文章列表（从 frontmatter.seriesArticles）
+    let articles: { title: string; link: string; order: number }[] = []
+    if (frontmatter.seriesArticles && Array.isArray(frontmatter.seriesArticles)) {
+      articles = frontmatter.seriesArticles.map((a: any) => ({
+        title: a.title || '',
+        link: a.link || '',
+        order: a.order || 0,
+      }))
+    }
+
+    seriesList.push({ id, name, description, articles })
+  }
+
+  // 按名称排序
+  seriesList.sort((a, b) => a.name.localeCompare(b.name, 'zh-CN'))
+
+  return seriesList
+}
 
 export default defineConfig({
   // 继承博客主题(@sugarat/theme)
@@ -127,18 +180,36 @@ export default defineConfig({
     }
 
     // 为系列列表页面注入系列数据
-    // 注意：transformPageData 按文件处理顺序调用，处理到 series/index.md 时
-    // seriesMap 可能尚未收集到 posts 数据（顺序不可控）。因此仅当动态收集到
-    // 数据时才覆盖；否则保留 series/index.md frontmatter 里静态维护的 seriesList。
+    // 扫描 series/ 目录下的所有 .md 文件（除了 index.md），自动生成系列列表
     if (relativePath === 'series/index.md') {
+      const seriesDir = resolve(process.cwd(), 'series')
+      const seriesList = scanSeriesFiles(seriesDir)
+
+      // 合并自动扫描的数据和从文章 frontmatter 收集的数据
       if (seriesMap.size > 0) {
-        const seriesList = Array.from(seriesMap.entries()).map(([id, data]) => ({
-          id,
-          name: data.name,
-          articles: data.articles.sort((a, b) => a.order - b.order)
-        }))
-        pageData.frontmatter.seriesList = seriesList
+        for (const [id, data] of seriesMap.entries()) {
+          const existing = seriesList.find(s => s.id === id)
+          if (existing) {
+            // 合并文章列表
+            const existingLinks = new Set(existing.articles.map(a => a.link))
+            for (const article of data.articles) {
+              if (!existingLinks.has(article.link)) {
+                existing.articles.push(article)
+              }
+            }
+            existing.articles.sort((a, b) => a.order - b.order)
+          } else {
+            seriesList.push({
+              id,
+              name: data.name,
+              description: '',
+              articles: data.articles.sort((a, b) => a.order - b.order)
+            })
+          }
+        }
       }
+
+      pageData.frontmatter.seriesList = seriesList
     }
 
     // 生成规范 URL
@@ -254,15 +325,38 @@ export default defineConfig({
   },
 
   buildEnd(siteConfig) {
-    // 构建结束时，将系列数据注入到主题配置
-    const seriesList = Array.from(seriesMap.entries()).map(([id, data]) => ({
-      id,
-      name: data.name,
-      articles: data.articles.sort((a, b) => a.order - b.order)
-    }))
+    // 构建结束时，扫描 series/ 目录并注入系列数据到主题配置
+    const seriesDir = resolve(process.cwd(), 'series')
+    const seriesList = scanSeriesFiles(seriesDir)
+
+    // 合并从文章 frontmatter 收集的系列数据
+    if (seriesMap.size > 0) {
+      for (const [id, data] of seriesMap.entries()) {
+        const existing = seriesList.find(s => s.id === id)
+        if (existing) {
+          // 合并文章列表
+          const existingLinks = new Set(existing.articles.map(a => a.link))
+          for (const article of data.articles) {
+            if (!existingLinks.has(article.link)) {
+              existing.articles.push(article)
+            }
+          }
+          existing.articles.sort((a, b) => a.order - b.order)
+        } else {
+          seriesList.push({
+            id,
+            name: data.name,
+            description: '',
+            articles: data.articles.sort((a, b) => a.order - b.order)
+          })
+        }
+      }
+    }
 
     if (siteConfig.site?.themeConfig) {
       siteConfig.site.themeConfig.seriesList = seriesList
     }
+
+    console.log(`[series] 自动生成 ${seriesList.length} 个系列`)
   },
 })

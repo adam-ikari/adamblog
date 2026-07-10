@@ -5,6 +5,22 @@ date: 2026-07-01
 category: 文档翻译
 tags: [编写可测试代码, C++, 重构, 系列]
 recommend: false
+seriesArticles:
+  - title: 指南：编写可测试代码（总纲）
+    link: /posts/【文档翻译】指南：编写可测试代码（总纲）
+    order: 1
+  - title: 缺陷一：构造函数做实事
+    link: /posts/【文档翻译】编写可测试代码-缺陷一-构造函数做实事
+    order: 2
+  - title: 缺陷二：挖掘合作者
+    link: /posts/【文档翻译】编写可测试代码-缺陷二-挖掘合作者
+    order: 3
+  - title: 缺陷三：全局状态与单例
+    link: /posts/【文档翻译】编写可测试代码-缺陷三-全局状态与单例
+    order: 4
+  - title: 缺陷四：类做的太多
+    link: /posts/【文档翻译】编写可测试代码-缺陷四-类做的太多
+    order: 5
 ---
 
 # 编写可测试代码系列

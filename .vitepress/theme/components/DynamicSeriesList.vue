@@ -2,27 +2,38 @@
 import { computed } from 'vue'
 import { useData } from 'vitepress'
 
-interface SeriesArticle {
-  title: string
-  link: string
-  order: number
-}
-
 interface SeriesInfo {
   id: string
   name: string
   description?: string
-  articles: SeriesArticle[]
+  articleCount: number
 }
 
 const { theme, frontmatter } = useData()
 
-// 优先读 frontmatter.seriesList（series/index.md 静态维护，可靠），
-// themeConfig.seriesList 作兜底（buildEnd 注入，受构建时机影响可能为空）
-const seriesList = computed(() => {
-  return (frontmatter.value?.seriesList as SeriesInfo[] | undefined)
-    || (theme.value?.seriesList as SeriesInfo[] | undefined)
-    || []
+const seriesList = computed<SeriesInfo[]>(() => {
+  // 优先使用 frontmatter.seriesList（如果用户手动配置了）
+  if (frontmatter.value?.seriesList?.length > 0) {
+    return (frontmatter.value.seriesList as any[]).map(s => ({
+      id: s.id,
+      name: s.name,
+      description: s.description,
+      articleCount: s.articles?.length || 0,
+    }))
+  }
+
+  // 否则使用 themeConfig.seriesList（由 buildEnd 脚本自动生成）
+  const autoList = theme.value?.seriesList as any[] | undefined
+  if (autoList?.length > 0) {
+    return autoList.map(s => ({
+      id: s.id,
+      name: s.name,
+      description: s.description,
+      articleCount: s.articles?.length || 0,
+    }))
+  }
+
+  return []
 })
 </script>
 
@@ -40,7 +51,7 @@ const seriesList = computed(() => {
       >
         <div class="series-head">
           <span class="series-name">{{ series.name }}</span>
-          <span class="series-count">{{ series.articles.length }} 篇</span>
+          <span class="series-count">{{ series.articleCount }} 篇</span>
         </div>
         <p v-if="series.description" class="series-desc">{{ series.description }}</p>
       </a>
