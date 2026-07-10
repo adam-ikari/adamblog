@@ -122,8 +122,6 @@ fun PlayerLayout() {
 
 > 🤖 **AI 辅助开发 Tip**
 >
-> **传统方式**：阅读 Jetpack Compose 官方文档，从基础 Composable 开始逐步学习。`remember`、`mutableStateOf`、`collectAsState` 等概念容易混淆，需要通过大量练习才能掌握状态在 Compose 中的流转规律。手动编写布局代码时，需要反复调整 Modifier 链的参数顺序和组合方式。
->
 > **AI 辅助方式**：在 Claude Code 中描述你的 UI 需求（如 "创建一个带有计数器和按钮的 Compose 界面，点击按钮计数器加一"），AI 会生成包含正确状态管理方式的完整代码，并自动选择合适的 Composable（如 `Column`、`Button`、`Text`）和 Modifier 组合。遇到状态不更新的问题时，将代码片段粘贴给 AI 并描述现象，它能快速诊断出是 `remember` 还是 `mutableStateOf` 使用不当，或者是否遗漏了 `by` 委托关键字。
 >
 > **进阶技巧**：让 AI "将这段传统 Android View 的 XML 布局转换为 Jetpack Compose 代码"，AI 会自动识别 `LinearLayout` → `Column`/`Row`、`RecyclerView` → `LazyColumn`、`TextView` → `Text` 等对应关系，并生成符合 Compose 最佳实践的代码。你还可以要求 AI "为这段 Compose 代码添加预览函数"，AI 会自动生成 `@Preview` 注解和合适的预览参数，让你在 Android Studio 的 Preview 面板中实时查看 UI 效果，无需反复编译运行。
@@ -235,8 +233,6 @@ fun SongTitle(name: String) {
 ```
 
 > 🤖 **AI 辅助开发 Tip**
->
-> **传统方式**：手动定义车载主题颜色，逐一调整每个 Composable 的字体大小和对比度。驾驶模式的 UI 适配需要维护两套几乎相同的布局代码，容易因修改不同步导致显示不一致。手动编写大字体样式时，容易遗漏 Material Design 的 Typography Scale 规范。
 >
 > **AI 辅助方式**：在 Claude Code 中定义设计需求 "创建一个符合 Material Design 3 规范的车载深色主题，主色调为蓝色，确保所有文字在车载屏幕上的可读性"。AI 会生成完整的 `Color.kt`、`Type.kt`、`Theme.kt` 文件，包含符合规范的颜色定义、字体比例和主题配置。对于驾驶模式适配，让 AI "用 Compose 的状态管理实现驾驶模式检测，驾驶时隐藏复杂 UI，只显示简化的播放控制"，AI 会生成基于 `derivedStateOf` 或自定义 `CompositionLocal` 的优雅实现，避免重复代码。
 >
@@ -419,8 +415,6 @@ fun formatTime(ms: Long): String {
 ```
 
 > 🤖 **AI 辅助开发 Tip**
->
-> **传统方式**：手动编写列表、卡片、按钮等基础组件，反复调整 Modifier 参数以达到理想效果。`LazyColumn` 的 `items` 函数和 `Card` 的 `elevation` 参数容易记错。编写进度条和时间格式化函数时，需要手动处理毫秒到分钟的转换逻辑，容易在边界情况（如进度为 0、时长小于 1 分钟）出错。
 >
 > **AI 辅助方式**：在 Claude Code 中描述 "创建一个车载音乐播放器的歌曲列表，每首歌显示专辑封面、歌曲名和歌手，点击后播放"，AI 会生成包含 `LazyColumn`、`Card`、`Row`、`AsyncImage`（Coil）的完整代码，并自动处理图片加载失败、列表为空等边界情况。对于时间格式化，直接让 AI "写一个将毫秒转换为 mm:ss 格式的函数，要处理负数、超大值等异常输入"，AI 会生成健壮的 `formatTime` 实现，包含输入校验和默认值处理。
 >

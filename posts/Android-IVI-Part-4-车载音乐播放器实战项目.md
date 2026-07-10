@@ -48,8 +48,6 @@ series:
 
 > 🤖 **AI 辅助开发 Tip**
 >
-> **传统方式**：阅读 MVVM 架构文档，手动设计 Repository、ViewModel、UI 层的接口和数据流。在纸上或白板上绘制架构图，确保各层之间的依赖关系正确（UI → ViewModel → Repository → DataSource）。手动编写样板代码（如 Repository 的单例模式、ViewModel 的工厂方法）耗时且容易出错。
->
 > **AI 辅助方式**：在 Claude Code 中描述 "我要设计一个车载音乐播放器的 MVVM 架构，包含歌曲扫描、播放控制、播放列表管理功能"，AI 会生成完整的项目结构图和各层代码框架，包括 Repository 接口定义、ViewModel 基类、UI 状态封装等。遇到架构设计疑问（如 "这个业务逻辑应该放在 ViewModel 还是 Repository 中？"），AI 会结合 MVVM 的设计原则和车载场景的特殊性给出建议。对于数据流设计，让 AI "用 Kotlin Flow 实现从本地扫描到 UI 更新的完整数据流，包含错误处理和加载状态"，AI 会生成包含 `StateFlow`、`SharedFlow`、`catch`、`onStart` 等操作符的健壮实现。
 >
 > **进阶技巧**：让 AI "为这套架构生成 UML 类图"，AI 会输出 PlantUML 或 Mermaid 格式的图表代码，你可以在支持这些格式的工具中渲染查看。你还可以要求 AI "分析这个架构的优缺点，提出改进建议"，AI 会从可测试性、可维护性、性能等角度给出专业评估，帮助你不断优化设计。
@@ -215,8 +213,6 @@ class MediaRepository(private val context: Context) {
 
 > 🤖 **AI 辅助开发 Tip**
 >
-> **传统方式**：手动编写 MediaStore 查询代码，处理 Cursor 的列索引获取和空值检查。MediaPlayer 的状态管理较复杂（Idle → Initialized → Prepared → Started → Paused → Stopped → Completed → Release），容易在错误的状态下调用方法（如在未 prepare 时调用 start）。编写进度更新协程时，容易遗漏对 MediaPlayer 为 null 或已释放的检查，导致崩溃。
->
 > **AI 辅助方式**：在 Claude Code 中描述 "帮我写一个扫描本地音乐的 Repository，使用 MediaStore API，要处理权限申请、空列表、排序等场景"，AI 会生成包含权限检查、空值处理、异常捕获的完整 `SongRepository` 实现。对于 MediaPlayer 封装，让 AI "创建一个状态安全的 MediaPlayer 封装类，使用 StateFlow 暴露播放状态，自动处理进度更新和播放完成后的下一首切换"，AI 会生成基于状态机模式的 `MediaRepository`，确保所有 MediaPlayer 操作都在合法状态下执行。
 >
 > **进阶技巧**：遇到 MediaPlayer 相关的崩溃（如 `IllegalStateException`），将完整的错误堆栈和触发场景描述给 AI，它能快速定位是状态机转换错误还是线程安全问题。你还可以让 AI "将这段基于回调的 MediaPlayer 代码改为使用 Kotlin Flow 的响应式风格"，AI 会将 `OnCompletionListener`、`OnPreparedListener` 等回调转换为 `callbackFlow` 或 `channelFlow`，让播放状态的变化以更现代化的方式被 UI 层消费。这对于与 Compose 的 `collectAsState` 配合尤为重要。
@@ -326,8 +322,6 @@ class MediaPlaybackService : MediaBrowserServiceCompat() {
 ```
 
 > 🤖 **AI 辅助开发 Tip**
->
-> **传统方式**：阅读 MediaSession 官方文档，手动编写 `MediaBrowserServiceCompat` 的实现。MediaSession 的回调注册、状态更新、元数据设置等步骤容易遗漏。方向盘按键控制涉及 `BroadcastReceiver` 注册和 `AudioManager` 交互，需要处理 Android 版本差异（如 Android 5.0+ 的 MediaButton 处理变化）。驾驶模式检测需要处理 Car API 的异步初始化和异常场景。
 >
 > **AI 辅助方式**：在 Claude Code 中描述 "创建一个完整的 MediaSession 服务，支持播放、暂停、上一首、下一首、进度跳转，要处理前台服务通知和蓝牙控制"，AI 会生成包含 `MediaBrowserServiceCompat` 实现、`MediaSessionCompat` 初始化、回调处理、通知管理的完整代码。对于方向盘按键，让 AI "处理 MediaButton 事件，支持播放/暂停和切歌，兼容 Android 8.0 以下的设备"，AI 会生成包含版本判断和降级方案的代码。遇到 Car API 相关崩溃（如 `CarNotConnectedException`），直接粘贴异常信息，AI 会建议添加 try-catch 和重试机制。
 >
@@ -476,8 +470,6 @@ class PlayerViewModelTest {
 ```
 
 > 🤖 **AI 辅助开发 Tip**
->
-> **传统方式**：手动编写单元测试，创建模拟对象，设置预期行为，验证调用。Mockito 的语法（`mock()`、`when()`、`verify()`）容易混淆，特别是 Kotlin 的 lambda 语法和 Mockito 的交互有时会产生编译错误。测试协程代码时，需要手动管理 `TestDispatcher` 和 `runTest`，容易遗漏 `StandardTestDispatcher` 和 `UnconfinedTestDispatcher` 的选择。编写 UI 测试时，Espresso 的 `onView`、`perform`、`check` 链式 API 需要反复查阅文档。
 >
 > **AI 辅助方式**：在 Claude Code 中描述 "为 PlayerViewModel 编写单元测试，使用 Mockito 和 kotlinx-coroutines-test，覆盖播放、暂停、切歌场景"，AI 会生成包含正确 import、TestDispatcher 配置、Given-When-Then 结构的完整测试代码。遇到 Mockito 和 Kotlin 的兼容性问题（如 "Mockito cannot mock/spy final class"），AI 会建议使用 `mockk` 替代 Mockito，或添加 `mockito-inline` 依赖和 `org.mockito.mock.mock-maker` 配置文件。对于 UI 测试，让 AI "用 Jetpack Compose 的 ComposeTestRule 编写播放器界面的 UI 测试，验证按钮点击和状态显示"，AI 会生成使用 `createComposeRule`、`onNodeWithText`、`performClick`、`assertIsDisplayed` 等 API 的现代 UI 测试代码。
 >

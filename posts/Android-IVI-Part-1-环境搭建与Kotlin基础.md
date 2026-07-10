@@ -102,8 +102,6 @@ MyFirstIVI/
 
 > 🤖 **AI 辅助开发 Tip**
 >
-> **传统方式**：手动下载 Android Studio，在 SDK Manager 中逐一勾选平台版本和工具，创建 AVD 时反复调整参数，容易遗漏配置。
->
 > **AI 辅助方式**：在 Claude Code 或 Copilot 中输入 "帮我生成一个 Android Automotive 项目的完整开发环境配置脚本"，AI 会自动生成包含 SDK 安装、模拟器创建、Gradle 配置的脚本，一键执行即可完成环境搭建。遇到报错时，直接将错误信息粘贴给 AI，它能快速定位问题（如 SDK 版本冲突、模拟器硬件加速未开启等）。
 >
 > **进阶技巧**：让 AI 分析你的开发机器配置，推荐最适合的模拟器参数（内存、分辨率、API 级别），避免手动试错的低效过程。
@@ -193,8 +191,6 @@ for (song in songs) {
 
 > 🤖 **AI 辅助开发 Tip**
 >
-> **传统方式**：阅读官方文档学习 Kotlin 语法，手动编写示例代码，遇到编译错误时逐个排查（如类型不匹配、空指针异常等）。
->
 > **AI 辅助方式**：在 IDE 中安装 AI 助手插件（如 GitHub Copilot、Claude Code），编写代码时 AI 会自动补全函数体。例如输入 `fun checkSpeed(speed: Int): String =` 后，AI 会智能补全 `if (speed > 120) "超速了！" else "速度正常"`。遇到不懂的语法点时，直接选中代码问 AI "这段代码的 when 表达式是什么含义"，AI 会结合上下文给出精准解释。
 >
 > **进阶技巧**：让 AI 将 Java 代码转换为 Kotlin 代码（IDEA 内置的转换功能有时不够智能），或者要求 AI "用 Kotlin 的函数式编程风格重写这段循环代码"，学习更地道的 Kotlin 写法。
@@ -257,8 +253,6 @@ println(even) // 输出: [2, 4]
 
 > 🤖 **AI 辅助开发 Tip**
 >
-> **传统方式**：阅读 Kotlin 官方文档的空安全章节，手动编写 `?.`、`?:`、`!!` 的测试用例，通过反复试错理解三种运算符的区别。扩展函数和 Lambda 的学习曲线较陡，需要查阅大量示例才能掌握最佳实践。
->
 > **AI 辅助方式**：在 Claude Code 中打开你的项目，输入 "帮我检查这段代码的空安全问题"，AI 会自动扫描并标注潜在的空指针风险，建议将 `!!` 替换为 `?.let` 或 `?:`。学习扩展函数时，让 AI "为 Android 的 View 类写一个实用的扩展函数示例"，AI 会生成如 `fun View.dpToPx(dp: Float): Float = dp * resources.displayMetrics.density` 这样的实战代码，比文档中的抽象示例更易理解。
 >
 > **进阶技巧**：遇到复杂的 Lambda 链式操作时（如 `list.filter { }.map { }.sortedBy { }`），让 AI 用注释解释每一步的数据变换过程，或者要求 AI 将其改写为更易读的命名函数形式，帮助你理解函数式编程的思维模式。
@@ -298,8 +292,6 @@ class MainActivity : AppCompatActivity() {
 3. 看到 "Welcome to Android IVI!" 即为成功
 
 > 🤖 **AI 辅助开发 Tip**
->
-> **传统方式**：按照教程一步步复制粘贴代码，手动排查运行时错误（如 `NullPointerException`、`Resources$NotFoundException`），在 Stack Overflow 上搜索相似问题，耗时较长。
 >
 > **AI 辅助方式**：在 Claude Code 中直接描述需求 "创建一个显示欢迎文本的 Android Automotive Activity，文字要足够大以便在车载屏幕上阅读"，AI 会一次性生成完整的、符合车载规范的代码（包括合适的字体大小、颜色对比度、布局边距）。运行报错时，将完整的错误堆栈粘贴给 AI，它能立即指出问题根源（如忘记在 AndroidManifest.xml 中声明 Activity、主题继承错误等）。
 >
