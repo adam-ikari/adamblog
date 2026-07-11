@@ -40,7 +40,7 @@ function scanSeriesFiles(seriesDir: string) {
   }
 
   for (const file of files) {
-    if (!file.endsWith('.md') || file === 'index.md') continue
+    if (!file.endsWith('.md')) continue
 
     const filePath = resolve(seriesDir, file)
     const content = readFileSync(filePath, 'utf-8')
@@ -179,8 +179,8 @@ export default defineConfig({
     }
 
     // 为系列列表页面注入系列数据
-    // 扫描 series/ 目录下的所有 .md 文件（除了 index.md），自动生成系列列表
-    if (relativePath === 'series/index.md') {
+    // 扫描 series/ 目录下的所有 .md 文件，自动生成系列列表
+    if (isSeries && relativePath.endsWith('.md')) {
       const seriesDir = resolve(process.cwd(), 'series')
       const seriesList = scanSeriesFiles(seriesDir)
 
