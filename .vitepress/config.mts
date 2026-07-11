@@ -48,8 +48,7 @@ function scanSeriesFiles(seriesDir: string) {
 
     // 从文件名提取 id（去掉 .md 后缀）
     const fileName = basename(file, '.md')
-    // 支持 series-{id}.md 或直接 {id}.md 的命名
-    const id = fileName.startsWith('series-') ? fileName.slice(7) : fileName
+    const id = fileName
 
     // 提取系列名称：优先使用 frontmatter.title，否则使用文件名
     const name = frontmatter.title || id
@@ -291,7 +290,7 @@ export default defineConfig({
           '@type': 'ListItem',
           position: 2,
           name: firstSeries.name || '系列',
-          item: `${SITE_URL}/series/series-${firstSeries.id}`,
+          item: `${SITE_URL}/series/${firstSeries.id}`,
         })
         itemList.push({
           '@type': 'ListItem',

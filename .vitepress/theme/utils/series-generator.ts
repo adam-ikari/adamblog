@@ -48,8 +48,7 @@ export function generateSeriesList(seriesDir: string): SeriesInfo[] {
 
     // 从文件名提取 id（去掉 .md 后缀）
     const fileName = basename(file, '.md')
-    // 支持 series-{id}.md 或直接 {id}.md 的命名
-    const id = fileName.startsWith('series-') ? fileName.slice(7) : fileName
+    const id = fileName
 
     // 提取系列名称：优先使用 frontmatter.title，否则使用文件名
     const name = frontmatter.title || id
