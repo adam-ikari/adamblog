@@ -45,6 +45,15 @@ article table th {
   cursor: zoom-in;
 }
 
+/* 侧边栏卡片内的 SVG 图标：防止硬编码大尺寸的 SVG 导致移动端横向溢出 */
+.card .title.svg-icon svg,
+.card .svg-icon svg {
+  width: 1em !important;
+  height: 1em !important;
+  max-width: 1em !important;
+  max-height: 1em !important;
+}
+
 /* 全屏态：插图居中、黑底、留白，可滚动查看超大图 */
 .vp-doc img:fullscreen,
 article img:fullscreen {

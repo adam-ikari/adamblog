@@ -5,8 +5,8 @@ import footnote from 'markdown-it-footnote'
 import { RSSOptions, RssPlugin } from 'vitepress-plugin-rss'
 import { imageCompressPlugin } from './plugins/image-compress'
 import { relatedPostsPlugin } from './plugins/related-posts'
-import { readFileSync, readdirSync } from 'fs'
-import { resolve, basename } from 'path'
+import { readFileSync, readdirSync, writeFileSync, mkdirSync } from 'fs'
+import { resolve, basename, dirname } from 'path'
 import matter from 'gray-matter'
 
 // 导入主题的配置
@@ -23,16 +23,16 @@ const RSS: RSSOptions = {
   copyright: `Copyright © 2024-${new Date().getFullYear()} Adam`,
 }
 
-// 从 .vitepress/series/*.json 读取系列索引数据
+// 从 ./series/*.json 读取系列索引数据
 function loadSeriesData(): { id: string; name: string; description: string; articles: { title: string; link: string; order: number }[] }[] {
-  const seriesDir = resolve(process.cwd(), '.vitepress', 'series')
+  const seriesDir = resolve(process.cwd(), 'series')
   const result: { id: string; name: string; description: string; articles: { title: string; link: string; order: number }[] }[] = []
 
   let files: string[]
   try {
     files = readdirSync(seriesDir)
   } catch {
-    console.error('[series] 无法读取 .vitepress/series/ 目录')
+    console.error('[series] 无法读取 ./series/ 目录')
     return result
   }
 
@@ -58,6 +58,75 @@ function loadSeriesData(): { id: string; name: string; description: string; arti
 const precomputedSeriesList = loadSeriesData()
 
 console.log(`[series] 预计算 ${precomputedSeriesList.length} 个系列`)
+
+// 生成系列索引页面 HTML
+function generateSeriesHtml(series: any, allSeries: any[]): string {
+  const articlesHtml = series.articles.map((a: any) =>
+    `<a href="${a.link}" class="series-card">
+      <div class="series-card-order">${a.order}</div>
+      <div class="series-card-content">
+        <p class="series-card-title">${a.title}</p>
+      </div>
+      <span class="series-card-arrow">→</span>
+    </a>`
+  ).join('')
+
+  return `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${series.name} | ${SITE_NAME}</title>
+  <meta name="description" content="${series.description || ''}">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="app">
+    <div class="series-page">
+      <h1>${series.name}</h1>
+      <p class="series-desc">${series.description || ''}</p>
+      <div class="series-card-list">
+        ${articlesHtml}
+      </div>
+    </div>
+  </div>
+</body>
+</html>`
+}
+
+// 生成系列总索引页面 HTML
+function generateSeriesIndexHtml(allSeries: any[]): string {
+  const seriesHtml = allSeries.map((s: any) =>
+    `<a href="/series/${s.id}/" class="series-item">
+      <div class="series-head">
+        <span class="series-name">${s.name}</span>
+        <span class="series-count">${s.articles?.length || 0} 篇</span>
+      </div>
+      <p class="series-desc">${s.description || ''}</p>
+    </a>`
+  ).join('')
+
+  return `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>系列文章 | ${SITE_NAME}</title>
+  <meta name="description" content="Adam博客的所有系列文章索引">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="app">
+    <div class="series-index-page">
+      <h1>系列文章</h1>
+      <div class="series-items">
+        ${seriesHtml}
+      </div>
+    </div>
+  </div>
+</body>
+</html>`
+}
 
 export default defineConfig({
   // 继承博客主题(@sugarat/theme)
@@ -142,21 +211,6 @@ export default defineConfig({
     const relativePath = pageData.relativePath
     const isHome = relativePath === 'index.md'
     const isPost = relativePath.startsWith('posts/')
-    const isSeries = relativePath.startsWith('series/')
-
-    // 为系列索引页面注入系列数据
-    if (isSeries && relativePath.endsWith('.md')) {
-      const currentSeriesId = basename(relativePath, '.md')
-      const currentSeries = precomputedSeriesList.find(s => s.id === currentSeriesId)
-      if (currentSeries) {
-        pageData.frontmatter.seriesArticles = currentSeries.articles.map(a => ({
-          title: a.title,
-          link: a.link,
-          order: a.order,
-        }))
-        pageData.frontmatter.series = currentSeriesId
-      }
-    }
 
     // 为文章页面注入系列导航数据（prev/next）
     // 规则：根据 posts/xxx.md 的相对路径，去匹配 series/xxx.json 中 articles[].link
@@ -195,6 +249,9 @@ export default defineConfig({
         if (seriesNav.length > 0) {
           pageData.frontmatter.seriesNav = seriesNav
         }
+
+        // 系列文章不在首页文章列表中显示
+        pageData.frontmatter.hidden = true
       }
     }
 
@@ -324,6 +381,23 @@ export default defineConfig({
       siteConfig.site.themeConfig.seriesList = precomputedSeriesList
     }
 
-    console.log(`[series] 自动生成 ${precomputedSeriesList.length} 个系列`)
+    // 从 JSON 数据生成系列索引 HTML 页面
+    const distDir = resolve(process.cwd(), '.vitepress', 'dist')
+    for (const series of precomputedSeriesList) {
+      const seriesDir = resolve(distDir, 'series', series.id)
+      mkdirSync(seriesDir, { recursive: true })
+
+      // 生成系列索引页面 HTML
+      const html = generateSeriesHtml(series, precomputedSeriesList)
+      writeFileSync(resolve(seriesDir, 'index.html'), html, 'utf-8')
+    }
+
+    // 生成系列总索引页面
+    const seriesIndexDir = resolve(distDir, 'series')
+    mkdirSync(seriesIndexDir, { recursive: true })
+    const indexHtml = generateSeriesIndexHtml(precomputedSeriesList)
+    writeFileSync(resolve(seriesIndexDir, 'index.html'), indexHtml, 'utf-8')
+
+    console.log(`[series] 自动生成 ${precomputedSeriesList.length} 个系列页面 + 总索引`)
   },
 })

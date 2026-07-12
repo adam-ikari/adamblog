@@ -12,6 +12,11 @@
       "title": "AI 产业链分析：从算力到应用的全球与中国全景",
       "link": "/posts/AI产业链分析",
       "order": 2
+    },
+    {
+      "title": "AI Agent 开发实战：从零构建一个能动手干活的智能助手",
+      "link": "/posts/AI-Agent开发实战",
+      "order": 3
     }
   ]
 }
