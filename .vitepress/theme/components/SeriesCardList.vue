@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useData } from 'vitepress'
+
 interface Article {
   title: string
   desc: string
@@ -7,14 +10,48 @@ interface Article {
 }
 
 const props = defineProps<{
-  articles: Article[]
+  articles?: Article[]
 }>()
+
+const { frontmatter, theme } = useData()
+
+const displayArticles = computed(() => {
+  // 优先使用传入的 articles prop
+  if (props.articles && props.articles.length > 0) {
+    return props.articles
+  }
+  // 其次从 frontmatter.seriesArticles 获取（由 config.mts 自动注入）
+  const autoArticles = frontmatter.value?.seriesArticles
+  if (autoArticles && Array.isArray(autoArticles) && autoArticles.length > 0) {
+    return autoArticles.map((a: any) => ({
+      title: a.title || '',
+      desc: a.desc || '',
+      link: a.link || '',
+      order: a.order || 0,
+    }))
+  }
+  // 最后从 themeConfig.seriesList 获取（由 buildEnd 脚本生成，数据更完整）
+  const seriesList = theme.value?.seriesList as any[] | undefined
+  const currentSeriesId = frontmatter.value?.series
+  if (seriesList && currentSeriesId) {
+    const currentSeries = seriesList.find((s: any) => s.id === currentSeriesId)
+    if (currentSeries?.articles?.length > 0) {
+      return currentSeries.articles.map((a: any) => ({
+        title: a.title || '',
+        desc: a.desc || '',
+        link: a.link || '',
+        order: a.order || 0,
+      }))
+    }
+  }
+  return []
+})
 </script>
 
 <template>
   <div class="series-card-list">
     <a
-      v-for="article in articles"
+      v-for="article in displayArticles"
       :key="article.order"
       :href="article.link"
       class="series-card"

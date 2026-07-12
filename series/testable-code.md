@@ -13,12 +13,6 @@ description: 翻译 misko hevery 的 Guide to Testable Code，可测试代码四
 **前置要求**：熟悉 C++ 基础语法和面向对象概念
 **学习目标**：识别代码中的不可测试设计，掌握重构为可测试代码的方法
 
-<SeriesCardList :articles="[
-  { title: '指南：编写可测试代码（总纲）', desc: '四大缺陷的危险信号与要害总览', link: '/posts/【文档翻译】指南：编写可测试代码（总纲）', order: 1 },
-  { title: '缺陷一：构造函数做实事', desc: '构造函数为何只该赋值、new 与静态调用的危害、三种初始化方案', link: '/posts/【文档翻译】编写可测试代码-缺陷一-构造函数做实事', order: 2 },
-  { title: '缺陷二：挖掘合作者', desc: '迪米特定律、context 对象、只传入真正需要的合作者', link: '/posts/【文档翻译】编写可测试代码-缺陷二-挖掘合作者', order: 3 },
-  { title: '缺陷三：全局状态与单例', desc: '全局状态的传染性、单例即全局状态、用依赖注入替代', link: '/posts/【文档翻译】编写可测试代码-缺陷三-全局状态与单例', order: 4 },
-  { title: '缺陷四：类做的太多', desc: '单一职责、提取类、无家可归的静态方法', link: '/posts/【文档翻译】编写可测试代码-缺陷四-类做的太多', order: 5 },
-]" />
+<SeriesCardList />
 
 > 原文仓库：[mhevery/guide-to-testable-code](https://github.com/mhevery/guide-to-testable-code)

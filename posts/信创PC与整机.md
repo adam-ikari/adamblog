@@ -5,14 +5,8 @@ category: 信创
 tags: [信创, 信创PC, 整机, 中国长城, 联想, 清华同方, 浪潮, 政企采购]
 recommend: false
 date: 2026-07-02
-series:
-  - id: series-xinchuang
-    name: 信创专题系列
-    order: 3
-    prev: /posts/国产CPU-信创六家
-    next: /posts/KylinOS-调查报告
+series: series-xinchuang
 ---
-
 # 信创 PC 与整机
 
 ## 前言

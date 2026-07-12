@@ -5,14 +5,8 @@ category: AI工具
 tags: [Claude Code, WSL2, AI编程, CLI工具]
 recommend: false
 date: 2026-06-08
-series:
-  - id: series-windows-ai
-    name: Windows 11 AI 工具系列
-    order: 2
-    prev: /posts/Windows11-配置WSL2教程
-    next: /posts/cc-Switch-CLI-使用教程
+series: series-windows-ai
 ---
-
 # WSL2 安装和使用 Claude Code 教程
 ## 前言
 

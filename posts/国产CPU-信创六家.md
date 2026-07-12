@@ -5,14 +5,8 @@ category: 信创
 tags: [国产CPU, 信创, 龙芯, 鲲鹏, 飞腾, 兆芯, 海光, 申威, LoongArch, ARM, x86, SW64]
 recommend: false
 date: 2026-07-02
-series:
-  - id: series-xinchuang
-    name: 信创专题系列
-    order: 2
-    prev: /posts/信创总览-从去IOE到自主可控
-    next: /posts/信创PC与整机
+series: series-xinchuang
 ---
-
 # 国产 CPU 详解：信创六家
 
 ## 前言

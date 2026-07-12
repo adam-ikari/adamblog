@@ -6,18 +6,9 @@ tags: [macOS, cc-Switch, Claude Code, CLI工具]
 recommend: false
 date: 2026-06-09
 series:
-  - id: series-macOS-claude
-    name: macOS 配置 Claude Code 系列
-    order: 3
-    prev: /posts/macOS-安装和配置-Claude-Code-教程
-    next: /posts/macOS-国产模型提供商选型指南
-  - id: series-macOS-cc-switch
-    name: macOS 配置 cc-Switch 系列
-    order: 2
-    prev: /posts/macOS-环境准备教程
-    next:
+  - series-macOS-claude
+  - series-macOS-cc-switch
 ---
-
 # macOS 配置 cc-Switch 教程
 
 ## 前言

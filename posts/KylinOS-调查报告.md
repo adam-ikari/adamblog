@@ -5,14 +5,8 @@ category: 信创
 tags: [KylinOS, 银河麒麟, 国产操作系统, 信创, Linux, UKUI]
 recommend: true
 date: 2026-07-01
-series:
-  - id: series-xinchuang
-    name: 信创专题系列
-    order: 4
-    prev: /posts/信创PC与整机
-    next: /posts/国产数据库详解
+series: series-xinchuang
 ---
-
 # KylinOS 调查报告
 
 ## 前言

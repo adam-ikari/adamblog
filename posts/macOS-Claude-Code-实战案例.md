@@ -5,14 +5,8 @@ category: AI工具
 tags: [macOS, Claude Code, 实战, DeepSeek, AI编程]
 recommend: false
 date: 2026-06-30
-series:
-  - id: series-macOS-claude
-    name: macOS 配置国产大模型 API 系列
-    order: 7
-    prev: /posts/macOS-Claude-Code-报错排查
-    next:
+series: series-macOS-claude
 ---
-
 # macOS Claude Code 实战案例
 
 ## 前言

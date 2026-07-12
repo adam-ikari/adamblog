@@ -5,14 +5,8 @@ category: 信创
 tags: [信创, 国密, OFD, 标准, SM2, SM4, 测评认证]
 recommend: false
 date: 2026-07-02
-series:
-  - id: series-xinchuang
-    name: 信创专题系列
-    order: 10
-    prev: /posts/信创外设-打印机与其他
-    next: /posts/信创供应链安全-断供与可控
+series: series-xinchuang
 ---
-
 # 信创国有标准调查报告：国密、OFD 与测评认证
 
 ## 前言

@@ -5,14 +5,8 @@ category: Android
 tags: [Android, IVI, 车载, Kotlin, Jetpack Compose]
 recommend: true
 date: 2026-07-10
-series:
-  - id: series-android-ivi
-    name: Android IVI 开发从零基础到实战
-    order: 1
-    prev:
-    next: /posts/Android-IVI-Part-2-Android-Automotive-OS与IVI架构
+series: series-android-ivi
 ---
-
 # Android IVI 开发 Part 1：环境搭建与 Kotlin 基础
 
 ## 前言

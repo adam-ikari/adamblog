@@ -5,14 +5,8 @@ category: AI工具
 tags: [macOS, Claude Code, 配置, settings.json, 国产大模型]
 recommend: false
 date: 2026-06-30
-series:
-  - id: series-macOS-claude
-    name: macOS 配置国产大模型 API 系列
-    order: 5
-    prev: /posts/macOS-国产模型提供商选型指南
-    next: /posts/macOS-Claude-Code-报错排查
+series: series-macOS-claude
 ---
-
 # macOS Claude Code 配置详解
 
 ## 前言

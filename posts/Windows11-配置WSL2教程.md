@@ -5,14 +5,8 @@ category: 系统配置
 tags: [Windows 11, WSL2, Linux, 系统配置]
 recommend: true
 date: 2026-06-08
-series:
-  - id: series-windows-ai
-    name: Windows 11 AI 工具系列
-    order: 1
-    prev:
-    next: /posts/WSL2-安装和使用-Claude-Code-教程
+series: series-windows-ai
 ---
-
 # Windows 11 配置 WSL2 完整教程
 ## 前言
 

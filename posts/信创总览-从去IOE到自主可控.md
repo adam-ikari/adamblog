@@ -5,14 +5,8 @@ category: 信创
 tags: [信创, 自主可控, 去IOE, 国产化, 信创工委会]
 recommend: false
 date: 2026-07-02
-series:
-  - id: series-xinchuang
-    name: 信创专题系列
-    order: 1
-    prev:
-    next: /posts/国产CPU-信创六家
+series: series-xinchuang
 ---
-
 # 信创总览：从去 IOE 到自主可控
 
 ## 前言

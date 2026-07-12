@@ -6,18 +6,9 @@ tags: [macOS, Homebrew, Node.js, 开发环境]
 recommend: false
 date: 2026-06-09
 series:
-  - id: series-macOS-claude
-    name: macOS 配置 Claude Code 系列
-    order: 1
-    prev:
-    next: /posts/macOS-安装和配置-Claude-Code-教程
-  - id: series-macOS-cc-switch
-    name: macOS 配置 cc-Switch 系列
-    order: 1
-    prev:
-    next: /posts/macOS-配置cc-Switch教程
+  - series-macOS-claude
+  - series-macOS-cc-switch
 ---
-
 # macOS 开发环境准备教程
 
 ![macOS 开发环境准备流程](/posts/macOS-环境准备教程/macos-dev-env-flow.svg)

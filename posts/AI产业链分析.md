@@ -5,14 +5,8 @@ category: AI
 tags: [AI, 产业链, 大模型, 算力, DeepSeek, 国产替代]
 recommend: true
 date: 2026-07-03
-series:
-  - id: series-ai-concepts
-    name: AI 开发核心概念系列
-    order: 2
-    prev: /posts/AI开发核心概念科普
-    next:
+series: series-ai-concepts
 ---
-
 # AI 产业链分析：从算力到应用的全球与中国全景
 
 ## 前言

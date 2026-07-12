@@ -2,9 +2,7 @@
 import { computed } from 'vue'
 import { useData } from 'vitepress'
 
-const { frontmatter } = useData()
-
-interface SeriesInfo {
+interface SeriesNavInfo {
   id: string
   name: string
   order: number
@@ -12,10 +10,12 @@ interface SeriesInfo {
   next?: string
 }
 
+const { frontmatter } = useData()
+
 const seriesList = computed(() => {
-  const series = frontmatter.value.series
-  if (!series || !Array.isArray(series)) return []
-  return series as SeriesInfo[]
+  const nav = frontmatter.value.seriesNav
+  if (!nav || !Array.isArray(nav)) return []
+  return nav as SeriesNavInfo[]
 })
 
 const seriesData = computed(() => {

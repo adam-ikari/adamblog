@@ -5,14 +5,8 @@ category: 技术探索
 tags: [流体仿真, Claude Code, Python, AI编程]
 recommend: true
 date: 2026-06-09
-series:
-  - id: series-fluid-simulation
-    name: 流体仿真系列
-    order: 3
-    prev: /posts/流体仿真入门
-    next:
+series: series-fluid-simulation
 ---
-
 # 使用 AI 编写 Python 流体仿真代码
 
 ## 前言
