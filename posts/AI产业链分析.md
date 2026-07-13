@@ -5,6 +5,7 @@ category: AI
 tags: [AI, 产业链, 大模型, 算力, DeepSeek, 国产替代]
 recommend: true
 date: 2026-07-03
+top: true
 series: series-ai-concepts
 ---
 # AI 产业链分析：从算力到应用的全球与中国全景
