@@ -1,5 +1,6 @@
 ---
 layout: doc
+hidden: true
 id: testable-code
 name: "编写可测试代码系列"
 description: "翻译 misko hevery 的 Guide to Testable Code，可测试代码四大缺陷的完整论述"

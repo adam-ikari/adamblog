@@ -1,5 +1,6 @@
 ---
 layout: doc
+hidden: true
 id: macOS-cc-switch
 name: "macOS cc-Switch 系列"
 description: "macOS 上使用 cc-Switch 工具切换和管理多个 AI 模型提供商的教程"

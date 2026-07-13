@@ -1,5 +1,6 @@
 ---
 layout: doc
+hidden: true
 ---
 
 # 系列文章

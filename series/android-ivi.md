@@ -1,5 +1,6 @@
 ---
 layout: doc
+hidden: true
 id: android-ivi
 name: "Android IVI 开发系列"
 description: "从零开始学习 Android IVI（车载信息娱乐系统）开发的完整教程系列"
