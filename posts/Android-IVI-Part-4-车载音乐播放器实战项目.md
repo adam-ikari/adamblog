@@ -24,20 +24,11 @@ series: series-android-ivi
 
 ### 1.1 MVVM 架构
 
-```
-┌─────────────────────────────────────┐
-│              UI 层                   │
-│    Composable Screens & Components   │
-├─────────────────────────────────────┤
-│           ViewModel 层               │
-│    PlayerViewModel, SongViewModel    │
-├─────────────────────────────────────┤
-│          Repository 层               │
-│    SongRepository, MediaRepository   │
-├─────────────────────────────────────┤
-│           数据源层                   │
-│    LocalDatabase, MediaStore API     │
-└─────────────────────────────────────┘
+```mermaid
+flowchart TD
+    A["UI 层<br/>Composable Screens & Components"] --> B["ViewModel 层<br/>PlayerViewModel, SongViewModel"]
+    B --> C["Repository 层<br/>SongRepository, MediaRepository"]
+    C --> D["数据源层<br/>LocalDatabase, MediaStore API"]
 ```
 
 > 🤖 **AI 辅助开发 Tip**

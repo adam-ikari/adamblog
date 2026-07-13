@@ -5,9 +5,10 @@ import footnote from 'markdown-it-footnote'
 import { RSSOptions, RssPlugin } from 'vitepress-plugin-rss'
 import { imageCompressPlugin } from './plugins/image-compress'
 import { relatedPostsPlugin } from './plugins/related-posts'
-import { readFileSync, readdirSync, writeFileSync, mkdirSync } from 'fs'
-import { resolve, basename, dirname } from 'path'
+import { readFileSync, readdirSync } from 'fs'
+import { resolve } from 'path'
 import matter from 'gray-matter'
+import { MermaidMarkdown, MermaidPlugin } from 'vitepress-plugin-mermaid'
 
 // 导入主题的配置
 import { blogTheme } from './blog-theme'
@@ -131,7 +132,7 @@ export default defineConfig({
 
   vite: {
     assetsInclude: ['**/*.JPG', '**/*.jpg', '**/*.png', '**/*.gif', '**/**/*.svg', '**/*.webp'],
-    plugins: [RssPlugin(RSS), imageCompressPlugin(), relatedPostsPlugin()],
+    plugins: [RssPlugin(RSS), imageCompressPlugin(), relatedPostsPlugin(), MermaidPlugin()],
   },
 
   cleanUrls: true,
@@ -141,6 +142,7 @@ export default defineConfig({
       md.use(mathjax3)
       md.use(markdownItPangu)
       md.use(footnote)
+      md.use(MermaidMarkdown)
     },
   },
 

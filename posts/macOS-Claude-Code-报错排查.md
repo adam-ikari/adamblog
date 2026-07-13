@@ -216,19 +216,17 @@ ls -la ~/.claude/settings.json
 
 遇到报错别慌，按这个顺序走：
 
-```text
-1. curl 验证 Key/地址是否本身有效
-   ├─ curl 也报错 → 问题在 API 侧（Key/地址/网络/余额），去提供商控制台解决
-   └─ curl 正常  → 问题在 Claude Code 配置，往下走
+1. **curl 验证 Key/地址是否本身有效**
+   - curl 也报错 → 问题在 API 侧（Key/地址/网络/余额），去提供商控制台解决
+   - curl 正常 → 问题在 Claude Code 配置，往下走
 
-2. 检查三大配置：
-   ├─ ANTHROPIC_BASE_URL 对不对（含 /v1 后缀）
-   ├─ 用的是 ANTHROPIC_AUTH_TOKEN 不是 API_KEY
-   └─ ANTHROPIC_MODEL 的模型 ID 提供商认不认
+2. **检查三大配置**：
+   - ANTHROPIC_BASE_URL 对不对（含 /v1 后缀）
+   - 用的是 ANTHROPIC_AUTH_TOKEN 不是 API_KEY
+   - ANTHROPIC_MODEL 的模型 ID 提供商认不认
 
-3. 重启会话再试
-4. 还不行 → 开启调试看详细请求日志
-```
+3. **重启会话再试**
+4. **还不行 → 开启调试看详细请求日志**
 
 ## 开启调试日志
 
