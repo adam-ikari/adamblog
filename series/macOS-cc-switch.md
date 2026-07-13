@@ -1,10 +1,15 @@
 ---
 layout: doc
-seriesId: macOS-cc-switch
+id: macOS-cc-switch
+name: "macOS cc-Switch 系列"
+description: "macOS 上使用 cc-Switch 工具切换和管理多个 AI 模型提供商的教程"
+articles:
+  - title: "macOS 开发环境准备教程"
+    link: "/posts/macOS-环境准备教程"
+    order: 1
+  - title: "macOS 配置 cc-Switch 教程"
+    link: "/posts/macOS-配置cc-Switch教程"
+    order: 2
 ---
-
-# macOS cc-Switch 系列
-
-macOS 上使用 cc-Switch 工具切换和管理多个 AI 模型提供商的教程
 
 <SeriesDetail />

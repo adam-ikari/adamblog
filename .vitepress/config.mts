@@ -23,7 +23,7 @@ const RSS: RSSOptions = {
   copyright: `Copyright © 2024-${new Date().getFullYear()} Adam`,
 }
 
-// 从 ./series/*.json 读取系列索引数据
+// 从 ./series/*.md 读取系列索引数据（frontmatter）
 function loadSeriesData(): { id: string; name: string; description: string; articles: { title: string; link: string; order: number }[] }[] {
   const seriesDir = resolve(process.cwd(), 'series')
   const result: { id: string; name: string; description: string; articles: { title: string; link: string; order: number }[] }[] = []
@@ -37,14 +37,20 @@ function loadSeriesData(): { id: string; name: string; description: string; arti
   }
 
   for (const file of files) {
-    if (!file.endsWith('.json')) continue
+    if (!file.endsWith('.md') || file === 'index.md') continue
 
     try {
       const filePath = resolve(seriesDir, file)
       const content = readFileSync(filePath, 'utf-8')
-      const data = JSON.parse(content)
-      if (data.id && data.articles) {
-        result.push(data)
+      const { data: frontmatter } = matter(content)
+
+      if (frontmatter.id && frontmatter.articles) {
+        result.push({
+          id: frontmatter.id,
+          name: frontmatter.name || frontmatter.id,
+          description: frontmatter.description || '',
+          articles: frontmatter.articles,
+        })
       }
     } catch (error) {
       console.error(`[series] 无法加载 ${file}:`, error)
@@ -58,100 +64,6 @@ function loadSeriesData(): { id: string; name: string; description: string; arti
 const precomputedSeriesList = loadSeriesData()
 
 console.log(`[series] 预计算 ${precomputedSeriesList.length} 个系列`)
-
-// 系列页面共享的 CSS 样式
-const SERIES_CSS = `<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
-  .series-page, .series-index-page { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
-  h1 { font-size: 2rem; margin-bottom: 12px; color: #1a1a1a; }
-  .series-desc { color: #666; margin-bottom: 32px; font-size: 1rem; }
-  .series-card-list { display: flex; flex-direction: column; gap: 16px; }
-  .series-card { display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: #fff; border-radius: 12px; text-decoration: none; color: inherit; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s; }
-  .series-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
-  .series-card-order { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: #3eaf7c; color: #fff; border-radius: 50%; font-weight: 600; font-size: 0.9rem; flex-shrink: 0; }
-  .series-card-content { flex: 1; min-width: 0; }
-  .series-card-title { font-size: 1.05rem; font-weight: 500; color: #1a1a1a; }
-  .series-card-arrow { color: #999; font-size: 1.2rem; transition: color 0.2s; }
-  .series-card:hover .series-card-arrow { color: #3eaf7c; }
-  .series-items { display: flex; flex-direction: column; gap: 16px; }
-  .series-item { display: block; padding: 20px 24px; background: #fff; border-radius: 12px; text-decoration: none; color: inherit; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s; }
-  .series-item:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
-  .series-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-  .series-name { font-size: 1.1rem; font-weight: 600; color: #1a1a1a; }
-  .series-count { font-size: 0.85rem; color: #3eaf7c; background: rgba(62,175,124,0.1); padding: 2px 10px; border-radius: 12px; }
-  .series-item .series-desc { color: #666; font-size: 0.95rem; margin: 0; }
-  @media (max-width: 640px) { .series-page, .series-index-page { padding: 24px 16px; } h1 { font-size: 1.5rem; } }
-</style>`
-
-// 生成系列索引页面 HTML
-function generateSeriesHtml(series: any, allSeries: any[]): string {
-  const articlesHtml = series.articles.map((a: any) =>
-    `<a href="${a.link}" class="series-card">
-      <div class="series-card-order">${a.order}</div>
-      <div class="series-card-content">
-        <p class="series-card-title">${a.title}</p>
-      </div>
-      <span class="series-card-arrow">→</span>
-    </a>`
-  ).join('')
-
-  return `<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${series.name} | ${SITE_NAME}</title>
-  <meta name="description" content="${series.description || ''}">
-  ${SERIES_CSS}
-</head>
-<body>
-  <div id="app">
-    <div class="series-page">
-      <h1>${series.name}</h1>
-      <p class="series-desc">${series.description || ''}</p>
-      <div class="series-card-list">
-        ${articlesHtml}
-      </div>
-    </div>
-  </div>
-</body>
-</html>`
-}
-
-// 生成系列总索引页面 HTML
-function generateSeriesIndexHtml(allSeries: any[]): string {
-  const seriesHtml = allSeries.map((s: any) =>
-    `<a href="/series/${s.id}/" class="series-item">
-      <div class="series-head">
-        <span class="series-name">${s.name}</span>
-        <span class="series-count">${s.articles?.length || 0} 篇</span>
-      </div>
-      <p class="series-desc">${s.description || ''}</p>
-    </a>`
-  ).join('')
-
-  return `<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>系列文章 | ${SITE_NAME}</title>
-  <meta name="description" content="Adam博客的所有系列文章索引">
-  ${SERIES_CSS}
-</head>
-<body>
-  <div id="app">
-    <div class="series-index-page">
-      <h1>系列文章</h1>
-      <div class="series-items">
-        ${seriesHtml}
-      </div>
-    </div>
-  </div>
-</body>
-</html>`
-}
 
 export default defineConfig({
   // 继承博客主题(@sugarat/theme)
@@ -401,22 +313,11 @@ export default defineConfig({
   },
 
   buildEnd(siteConfig) {
-    // 构建结束时，注入系列数据到主题配置
+    // 注入系列数据到主题配置（供 DynamicSeriesList 等组件使用）
     if (siteConfig.site?.themeConfig) {
       siteConfig.site.themeConfig.seriesList = precomputedSeriesList
     }
 
-    // 从 JSON 数据生成系列详情 HTML 页面（系列总索引由 series/index.md 处理）
-    const distDir = resolve(process.cwd(), '.vitepress', 'dist')
-    for (const series of precomputedSeriesList) {
-      const seriesDir = resolve(distDir, 'series', series.id)
-      mkdirSync(seriesDir, { recursive: true })
-
-      // 生成系列索引页面 HTML
-      const html = generateSeriesHtml(series, precomputedSeriesList)
-      writeFileSync(resolve(seriesDir, 'index.html'), html, 'utf-8')
-    }
-
-    console.log(`[series] 自动生成 ${precomputedSeriesList.length} 个系列详情页面`)
+    console.log(`[series] 已加载 ${precomputedSeriesList.length} 个系列`)
   },
 })

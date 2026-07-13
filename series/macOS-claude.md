@@ -1,10 +1,24 @@
 ---
 layout: doc
-seriesId: macOS-claude
+id: macOS-claude
+name: "macOS 配置国产大模型 API 系列"
+description: "macOS 上配置 Claude Code 和讯飞、DeepSeek 等国产大模型 API 的完整教程"
+articles:
+  - title: "macOS 安装和配置 Claude Code 教程"
+    link: "/posts/macOS-安装和配置-Claude-Code-教程"
+    order: 1
+  - title: "macOS 国产大模型提供商对比与选型指南"
+    link: "/posts/macOS-国产模型提供商选型指南"
+    order: 2
+  - title: "macOS Claude Code 配置详解"
+    link: "/posts/macOS-Claude-Code-配置详解"
+    order: 3
+  - title: "macOS Claude Code 常见报错排查"
+    link: "/posts/macOS-Claude-Code-报错排查"
+    order: 4
+  - title: "macOS Claude Code 实战案例"
+    link: "/posts/macOS-Claude-Code-实战案例"
+    order: 5
 ---
-
-# macOS 配置国产大模型 API 系列
-
-macOS 上配置 Claude Code 和讯飞、DeepSeek 等国产大模型 API 的完整教程
 
 <SeriesDetail />

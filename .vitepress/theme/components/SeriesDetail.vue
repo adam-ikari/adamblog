@@ -15,20 +15,18 @@ interface SeriesData {
   articles: Article[]
 }
 
-const props = defineProps<{
-  seriesId?: string
-}>()
-
-const { theme, frontmatter } = useData()
+const { frontmatter } = useData()
 
 const seriesData = computed<SeriesData | null>(() => {
-  const id = props.seriesId || frontmatter.value?.seriesId
-  if (!id) return null
+  const fm = frontmatter.value
+  if (!fm?.id || !fm?.articles) return null
 
-  const seriesList = theme.value?.seriesList as SeriesData[] | undefined
-  if (!seriesList) return null
-
-  return seriesList.find((s: SeriesData) => s.id === id) || null
+  return {
+    id: fm.id as string,
+    name: (fm.name as string) || (fm.id as string),
+    description: (fm.description as string) || '',
+    articles: fm.articles as Article[],
+  }
 })
 
 const articles = computed(() => {
