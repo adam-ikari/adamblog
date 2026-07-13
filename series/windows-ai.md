@@ -14,8 +14,8 @@ articles:
   - title: "cc-Switch CLI 使用教程"
     link: "/posts/cc-Switch-CLI-使用教程"
     order: 3
-  - title: "WSL2 安装和使用 OpenAI Codex CLI 教程"
-    link: "/posts/WSL2-安装和使用-OpenAI-Codex-CLI-教程"
+  - title: "WSL2 安装和使用 OpenCode（Crush）教程"
+    link: "/posts/WSL2-安装和使用-OpenCode-教程"
     order: 4
 ---
 
