@@ -3,6 +3,7 @@ title: AI 开发核心概念科普：模型、API 与 Agent
 description: 零基础入门——用通俗类比讲清大模型、API、Agent、Token、上下文窗口等 AI 开发核心概念，建立完整认知框架
 category: AI
 tags: [AI, 大模型, API, Agent, 概念科普, 零基础]
+top: true
 recommend: true
 date: 2026-07-09
 series: series-ai-concepts
