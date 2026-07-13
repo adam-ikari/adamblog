@@ -52,11 +52,10 @@ function copyAddress() {
       <div class="method-body">
         <div class="waffo-info">
           <div class="waffo-payments">
-            <span class="payment-icon">💳</span>
-            <span class="payment-icon">Visa</span>
-            <span class="payment-icon">微信支付</span>
-            <span class="payment-icon">Apple Pay</span>
-            <span class="payment-icon">Google Pay</span>
+            <span class="payment-icon"><img src="/images/payment/wechat.svg" alt="微信支付" class="payment-logo" />微信支付</span>
+            <span class="payment-icon"><img src="/images/payment/applepay.svg" alt="Apple Pay" class="payment-logo" />Apple Pay</span>
+            <span class="payment-icon"><img src="/images/payment/googlepay.svg" alt="Google Pay" class="payment-logo" />Google Pay</span>
+            <span class="payment-icon"><img src="/images/payment/visa.svg" alt="Visa" class="payment-logo" />Visa</span>
           </div>
           <p class="waffo-desc">
             通过 <a href="https://www.waffo.ai/" target="_blank" rel="noopener">Waffo Pancake</a> 全球收款平台打赏，支持微信支付、Apple Pay、Google Pay、Visa 等多种支付方式。
@@ -223,6 +222,13 @@ function copyAddress() {
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
+}
+
+.payment-logo {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  margin-right: 4px;
 }
 
 .payment-icon {
