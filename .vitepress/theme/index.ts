@@ -2,6 +2,7 @@ import BlogTheme from '@sugarat/theme'
 import { h } from 'vue'
 import SeriesNav from './components/SeriesNav.vue'
 import SeriesCardList from './components/SeriesCardList.vue'
+import SeriesDetail from './components/SeriesDetail.vue'
 import DynamicSeriesList from './components/DynamicSeriesList.vue'
 import DonateBox from './components/DonateBox.vue'
 import ImageFullscreen from './components/ImageFullscreen.vue'
@@ -15,6 +16,7 @@ export default {
     })
   },
   enhanceApp({ app }) {
+    app.component('SeriesDetail', SeriesDetail)
     app.component('SeriesCardList', SeriesCardList)
     app.component('DynamicSeriesList', DynamicSeriesList)
   },
