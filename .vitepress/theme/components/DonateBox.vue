@@ -23,7 +23,7 @@ function copyAddress() {
       <span class="donate-icon">☕</span>
       <span class="donate-title">请我喝杯咖啡</span>
     </div>
-    <p class="donate-desc">如果你觉得文章有帮助，欢迎打赏支持，有多种支付方式可选。</p>
+    <p class="donate-desc">如果你觉得文章有帮助，欢迎打赏支持。支持微信支付、Apple Pay、Google Pay、Visa 等多种方式。</p>
 
     <!-- 支付方式 Tabs -->
     <div class="donate-tabs">
@@ -32,7 +32,7 @@ function copyAddress() {
         :class="{ active: activeMethod === 'waffo' }"
         @click="activeMethod = 'waffo'"
       >
-        💳 Visa 支付
+        💳 在线支付
       </button>
       <button
         class="donate-tab"
@@ -47,16 +47,19 @@ function copyAddress() {
     <div v-if="activeMethod === 'waffo'" class="donate-method">
       <div class="method-header">
         <span class="method-name">Waffo 全球收款</span>
-        <span class="method-tag">Visa</span>
+        <span class="method-tag">多币种</span>
       </div>
       <div class="method-body">
         <div class="waffo-info">
           <div class="waffo-payments">
             <span class="payment-icon">💳</span>
             <span class="payment-icon">Visa</span>
+            <span class="payment-icon">微信支付</span>
+            <span class="payment-icon">Apple Pay</span>
+            <span class="payment-icon">Google Pay</span>
           </div>
           <p class="waffo-desc">
-            通过 <a href="https://www.waffo.ai/" target="_blank" rel="noopener">Waffo Pancake</a> 全球收款平台打赏，支持 Visa 支付。
+            通过 <a href="https://www.waffo.ai/" target="_blank" rel="noopener">Waffo Pancake</a> 全球收款平台打赏，支持微信支付、Apple Pay、Google Pay、Visa 等多种支付方式。
           </p>
           <a
             href="https://pancake.waffo.ai/store/blog-int1ntnq/product/PROD_2rXR5U1U7iFecrVIQSOh6Z?type=onetime&currency=USD"
