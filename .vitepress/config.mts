@@ -406,7 +406,7 @@ export default defineConfig({
       siteConfig.site.themeConfig.seriesList = precomputedSeriesList
     }
 
-    // 从 JSON 数据生成系列索引 HTML 页面
+    // 从 JSON 数据生成系列详情 HTML 页面（系列总索引由 series/index.md 处理）
     const distDir = resolve(process.cwd(), '.vitepress', 'dist')
     for (const series of precomputedSeriesList) {
       const seriesDir = resolve(distDir, 'series', series.id)
@@ -417,12 +417,6 @@ export default defineConfig({
       writeFileSync(resolve(seriesDir, 'index.html'), html, 'utf-8')
     }
 
-    // 生成系列总索引页面
-    const seriesIndexDir = resolve(distDir, 'series')
-    mkdirSync(seriesIndexDir, { recursive: true })
-    const indexHtml = generateSeriesIndexHtml(precomputedSeriesList)
-    writeFileSync(resolve(seriesIndexDir, 'index.html'), indexHtml, 'utf-8')
-
-    console.log(`[series] 自动生成 ${precomputedSeriesList.length} 个系列页面 + 总索引`)
+    console.log(`[series] 自动生成 ${precomputedSeriesList.length} 个系列详情页面`)
   },
 })
