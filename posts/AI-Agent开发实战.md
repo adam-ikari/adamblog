@@ -5,7 +5,6 @@ category: AI
 tags: [AI, Agent, Python, 实战, LangChain, 教程]
 recommend: true
 date: 2026-07-12
-top: true
 series: ai-concepts
 ---
 
