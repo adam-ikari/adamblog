@@ -17,6 +17,9 @@ articles:
   - title: "WSL2 安装和使用 OpenCode（Crush）教程"
     link: "/posts/WSL2-安装和使用-OpenCode-教程"
     order: 4
+  - title: "WSL2 安装和使用 Pi Agent 教程"
+    link: "/posts/WSL2-安装和使用-Pi-Agent-教程"
+    order: 5
 ---
 
 <SeriesDetail />
