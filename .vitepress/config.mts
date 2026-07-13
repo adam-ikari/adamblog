@@ -59,6 +59,31 @@ const precomputedSeriesList = loadSeriesData()
 
 console.log(`[series] 预计算 ${precomputedSeriesList.length} 个系列`)
 
+// 系列页面共享的 CSS 样式
+const SERIES_CSS = `<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+  .series-page, .series-index-page { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+  h1 { font-size: 2rem; margin-bottom: 12px; color: #1a1a1a; }
+  .series-desc { color: #666; margin-bottom: 32px; font-size: 1rem; }
+  .series-card-list { display: flex; flex-direction: column; gap: 16px; }
+  .series-card { display: flex; align-items: center; gap: 16px; padding: 20px 24px; background: #fff; border-radius: 12px; text-decoration: none; color: inherit; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s; }
+  .series-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .series-card-order { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: #3eaf7c; color: #fff; border-radius: 50%; font-weight: 600; font-size: 0.9rem; flex-shrink: 0; }
+  .series-card-content { flex: 1; min-width: 0; }
+  .series-card-title { font-size: 1.05rem; font-weight: 500; color: #1a1a1a; }
+  .series-card-arrow { color: #999; font-size: 1.2rem; transition: color 0.2s; }
+  .series-card:hover .series-card-arrow { color: #3eaf7c; }
+  .series-items { display: flex; flex-direction: column; gap: 16px; }
+  .series-item { display: block; padding: 20px 24px; background: #fff; border-radius: 12px; text-decoration: none; color: inherit; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: transform 0.2s, box-shadow 0.2s; }
+  .series-item:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .series-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .series-name { font-size: 1.1rem; font-weight: 600; color: #1a1a1a; }
+  .series-count { font-size: 0.85rem; color: #3eaf7c; background: rgba(62,175,124,0.1); padding: 2px 10px; border-radius: 12px; }
+  .series-item .series-desc { color: #666; font-size: 0.95rem; margin: 0; }
+  @media (max-width: 640px) { .series-page, .series-index-page { padding: 24px 16px; } h1 { font-size: 1.5rem; } }
+</style>`
+
 // 生成系列索引页面 HTML
 function generateSeriesHtml(series: any, allSeries: any[]): string {
   const articlesHtml = series.articles.map((a: any) =>
@@ -78,7 +103,7 @@ function generateSeriesHtml(series: any, allSeries: any[]): string {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${series.name} | ${SITE_NAME}</title>
   <meta name="description" content="${series.description || ''}">
-  <link rel="stylesheet" href="/styles.css">
+  ${SERIES_CSS}
 </head>
 <body>
   <div id="app">
@@ -113,7 +138,7 @@ function generateSeriesIndexHtml(allSeries: any[]): string {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>系列文章 | ${SITE_NAME}</title>
   <meta name="description" content="Adam博客的所有系列文章索引">
-  <link rel="stylesheet" href="/styles.css">
+  ${SERIES_CSS}
 </head>
 <body>
   <div id="app">
