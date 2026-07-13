@@ -2,6 +2,19 @@
  * 站点全局样式覆盖
  */
 
+/* Mermaid 图表：居中显示 */
+.vp-doc .mermaid {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+/* Mermaid 图表内部 SVG：自适应宽度 */
+.vp-doc .mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
 /* CJK 字体：用系统字体栈，无网络加载，性能好 */
 :root {
   --vp-font-family-base: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
