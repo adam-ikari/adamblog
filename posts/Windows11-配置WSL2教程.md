@@ -1,18 +1,21 @@
 ---
-title: Windows 11 配置 WSL2 完整教程
-description: Windows 11 安装配置 WSL2，搭建 Linux 开发环境
+title: Windows 11 配置 WSL2 完整教程（Ubuntu 26.04）
+description: Windows 11 安装配置 WSL2，使用 Ubuntu 26.04 搭建 Linux 开发环境
 category: 系统配置
-tags: [Windows 11, WSL2, Linux, 系统配置]
+tags: [Windows 11, WSL2, Ubuntu 26.04, Linux, 系统配置]
 recommend: true
-date: 2026-06-08
+date: 2026-07-14
 series: series-windows-ai
 ---
-# Windows 11 配置 WSL2 完整教程
+# Windows 11 配置 WSL2 完整教程（Ubuntu 26.04）
+
 ## 前言
 
 在 Windows 上做开发，常会遇上一个矛盾：所需的工具链多数原生运行于 Linux，而工作环境却是 Windows。装虚拟机开销太大，双系统切换又繁琐，WSL2 正是为解决这个问题而来。它是微软的第二代 Linux 子系统，运行的是真正的 Linux 内核而非模拟，兼容性较第一代有明显提升。
 
 Docker、systemd 这些依赖内核特性的组件在 WSL2 中都能运行，文件系统 I/O 也比 WSL1 快得多。Windows 与 Linux 的文件还可互相访问，无需来回搬运。简言之，不必离开 Windows，就能获得一个基本完整的 Linux 开发环境。
+
+本教程将带你一步一步在 Windows 11 上安装 WSL2，并配置 **Ubuntu 26.04** 作为 Linux 发行版。
 
 ![Windows 11 配置 WSL2 全流程图](/posts/Windows11-配置WSL2教程/wsl2-setup-flow.svg)
 
@@ -117,7 +120,9 @@ wsl --set-default-version 2
 3. 选择需要的发行版并点击"获取"
 
 常用发行版：
-- Ubuntu 22.04 LTS / 24.04 LTS
+- Ubuntu 26.04 LTS
+- Ubuntu 24.04 LTS
+- Ubuntu 22.04 LTS
 - Debian
 - openSUSE Leap
 - SUSE Linux Enterprise Server
@@ -133,8 +138,11 @@ wsl --list --online
 安装指定发行版：
 
 ```powershell
-# 安装 Ubuntu 22.04
-wsl --install -d Ubuntu-22.04
+# 安装 Ubuntu 26.04
+wsl --install -d Ubuntu-26.04
+
+# 安装 Ubuntu 24.04
+wsl --install -d Ubuntu-24.04
 
 # 安装 Debian
 wsl --install -d Debian
@@ -142,7 +150,7 @@ wsl --install -d Debian
 
 ### 首次启动配置
 
-首次启动时会要求创建用户名和密码：
+首次启动 Ubuntu 26.04 时会要求创建用户名和密码：
 
 ```bash
 # 系统提示
@@ -150,6 +158,8 @@ Enter new UNIX username: your_username
 New password: ********
 Retype new password: ********
 ```
+
+> **注意**：Ubuntu 26.04 默认使用 **apt 3.0** 包管理器，命令与之前版本兼容，但部分软件包名称可能有所变化。
 
 ## 基础配置
 
@@ -171,7 +181,7 @@ sudo -i
 
 ### 配置镜像源
 
-#### Ubuntu 清华源
+#### Ubuntu 26.04 清华源
 
 备份原有源文件：
 
@@ -185,13 +195,13 @@ sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
 sudo nano /etc/apt/sources.list
 ```
 
-替换为清华源（Ubuntu 22.04）：
+替换为清华源（Ubuntu 26.04）：
 
 ```text
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ plucky main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ plucky-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ plucky-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ plucky-security main restricted universe multiverse
 ```
 
 更新软件包列表：
@@ -200,15 +210,15 @@ deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-security main restricted 
 sudo apt update && sudo apt upgrade -y
 ```
 
-#### Ubuntu 阿里源
+#### Ubuntu 26.04 阿里源
 
 这是清华源的备选。阿里源在国内不同地区的连通性有时比清华更稳，如果你发现清华源拉取速度不理想，换这套即可——改法和上面完全一样：备份后替换 `/etc/apt/sources.list` 内容，再 `apt update` 生效。注意阿里源这里用的是 `http`，清华源用的是 `https`，两者都能用，不必纠结。
 
 ```text
-deb http://mirrors.aliyun.com/ubuntu/ jammy main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ jammy-updates main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ jammy-backports main restricted universe multiverse
-deb http://mirrors.aliyun.com/ubuntu/ jammy-security main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ plucky main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ plucky-updates main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ plucky-backports main restricted universe multiverse
+deb http://mirrors.aliyun.com/ubuntu/ plucky-security main restricted universe multiverse
 ```
 
 ### 配置 WSL2 资源限制
@@ -299,7 +309,7 @@ cd /mnt/d/
 或直接访问特定发行版：
 
 ```text
-\\wsl$\Ubuntu-22.04\home\username
+\\wsl$\Ubuntu-26.04\home\username
 ```
 
 在 PowerShell 中访问：
@@ -454,8 +464,8 @@ Get-ComputerInfo -Property "HyperV*"
 2. 重置 WSL：
 
 ```powershell
-wsl --unregister Ubuntu-22.04
-wsl --install -d Ubuntu-22.04
+wsl --unregister Ubuntu-26.04
+wsl --install -d Ubuntu-26.04
 ```
 
 3. 检查 Hyper-V 功能：
@@ -529,7 +539,7 @@ wsl --manage Ubuntu-22.04 --set-sparse true
 
 ```powershell
 wsl --shutdown
-Optimize-VHD -Path "$env:USERPROFILE\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu22.04onWindows_79rhkp1fndgsc\LocalState\ext4.vhdx" -Mode Full
+Optimize-VHD -Path "$env:USERPROFILE\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu26.04onWindows_79rhkp1fndgsc\LocalState\ext4.vhdx" -Mode Full
 ```
 
 5. **项目放在 WSL 文件系统**：避免跨文件系统操作带来的性能损耗
@@ -537,7 +547,7 @@ Optimize-VHD -Path "$env:USERPROFILE\AppData\Local\Packages\CanonicalGroupLimite
 6. **关闭不用的发行版**：
 
 ```powershell
-wsl --terminate Ubuntu-22.04
+wsl --terminate Ubuntu-26.04
 ```
 
 ### 其他常见问题

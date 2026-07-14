@@ -10,3 +10,5 @@ blog:
   inspiringTimeout: 4000
   pageSize: 10
 ---
+
+<HomeRecommend />

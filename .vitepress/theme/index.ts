@@ -6,6 +6,7 @@ import SeriesDetail from './components/SeriesDetail.vue'
 import DynamicSeriesList from './components/DynamicSeriesList.vue'
 import DonateBox from './components/DonateBox.vue'
 import ImageFullscreen from './components/ImageFullscreen.vue'
+import ArticleRelated from './components/ArticleRelated.vue'
 import HomeRecommend from './components/HomeRecommend.vue'
 import './styles.css'
 
@@ -13,13 +14,13 @@ export default {
   extends: BlogTheme,
   Layout: () => {
     return h(BlogTheme.Layout, null, {
-      'doc-after': () => h('div', null, [h(ImageFullscreen), h(SeriesNav), h(DonateBox)]),
-      'home-hero-after': () => h(HomeRecommend),
+      'doc-after': () => h('div', null, [h(ImageFullscreen), h(SeriesNav), h(ArticleRelated), h(DonateBox)]),
     })
   },
   enhanceApp({ app }) {
     app.component('SeriesDetail', SeriesDetail)
     app.component('SeriesCardList', SeriesCardList)
     app.component('DynamicSeriesList', DynamicSeriesList)
+    app.component('HomeRecommend', HomeRecommend)
   },
 }

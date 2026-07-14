@@ -20,7 +20,7 @@ interface ArticlePage {
 const router = useRouter()
 const { theme } = useData()
 
-// 从 theme.blog.pagesData 获取文章列表
+// 从 theme.blog.pagesData 获取文章列表（构建时注入）
 const docs = computed<ArticlePage[]>(() => {
   const pagesData = theme.value?.blog?.pagesData || []
   return pagesData.map((page: any) => ({

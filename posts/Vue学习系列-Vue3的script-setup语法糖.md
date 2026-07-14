@@ -12,7 +12,7 @@ date: 2023-05-11
 
 ![传统 setup() 与 script setup 语法糖对比](/posts/Vue学习系列-Vue3的script-setup语法糖/script-setup-vs-traditional.svg)
 
-# 使用\<script setup\>编写Vue单文件组件
+## 使用\<script setup\>编写Vue单文件组件
 
 Vue 单文件组件（SFC）是一种特殊的文件格式，把一个组件的模板、逻辑和样式封装在同一个文件里。一个最简单的 SFC 长这样：
 
@@ -157,7 +157,7 @@ import Bar from './Bar.vue'
 
 注意组件可以作为变量用在三元表达式里。
 
-# 使用TypeScript和自定义类型
+## 使用TypeScript和自定义类型
 
 要在 `<script setup>` 里用 TypeScript，把标签属性改成 `lang="ts"`：
 

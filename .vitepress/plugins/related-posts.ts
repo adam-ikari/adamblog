@@ -128,7 +128,7 @@ export function relatedPostsPlugin(): Plugin {
         related[a.path] = scored.map((s) => ({ title: s.b.title, link: s.b.path, date: s.b.date }))
       }
 
-      const outDir = join(process.cwd(), '.vitepress/dist')
+      const outDir = join(process.cwd(), 'public')
       try { mkdirSync(outDir, { recursive: true }) } catch {}
       writeFileSync(join(outDir, 'related-posts.json'), JSON.stringify(related))
       console.log(`  相关文章(TF-IDF): 已生成 related-posts.json，覆盖 ${articles.length} 篇文章`)
