@@ -44,122 +44,65 @@ systeminfo | findstr /i "虚拟化"
 
 > 如果输出显示"虚拟化：已启用"，则可以继续。如果未启用，需要进入 BIOS 设置开启虚拟化。
 
-## 安装 WSL2
-
-### 方法一：一键安装（推荐）
+## 安装 WSL2 和 Ubuntu 26.04
 
 **步骤 1：以管理员身份打开 PowerShell，执行：**
 
 ```powershell
-wsl --install
+wsl --install -d Ubuntu-26.04
 ```
 
-> 该命令会自动完成以下操作：
-> 1. 启用 WSL 功能
-> 2. 启用虚拟机平台
-> 3. 下载并安装 Linux 内核更新包
-> 4. 安装 Ubuntu 作为默认 Linux 发行版
-> 5. 将 WSL 2 设置为默认版本
+> 该命令会自动启用 WSL 功能、虚拟机平台，下载 Linux 内核更新包，并安装 **Ubuntu 26.04**。如果不加 `-d Ubuntu-26.04` 参数，默认安装的 Ubuntu 版本不确定。
 
 **步骤 2：重启计算机**
 
 > 安装完成后，重启计算机使更改生效。
 
----
+**步骤 3：首次启动配置**
 
-### 方法二：手动启用功能
-
-> 如果一键安装失败，可以手动执行以下步骤。
-
-**步骤 1：启用 WSL 功能**
-
-```powershell
-dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
-```
-
-> 这条命令用 `dism` 把 `Microsoft-Windows-Subsystem-Linux` 这个可选功能在当前系统（`/online`）上打开，`/all` 表示连带依赖的子功能一起开，`/norestart` 是先别急着重启——因为下一步还要再开一个功能，攒一起重启省事。
-
-**步骤 2：启用虚拟机平台**
-
-```powershell
-dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-```
-
-> WSL2 跑的是真正的 Linux 内核，靠的是 Hyper-V 那套轻量虚拟机底座，`VirtualMachinePlatform` 就是提供这个底座的功能——不开它，WSL 只能退化成第一代兼容层，性能和兼容性都差一截。
-
-**步骤 3：重启计算机**
-
-> 到这一步两个功能都开了，可以重启计算机。如果重启后启动 WSL 仍报 `WslRegisterDomain` 之类错误，进 BIOS 确认 CPU 虚拟化（Intel VT-x / AMD-V）是打开的——这是最常见的卡点。
-
-**步骤 4：下载并安装 Linux 内核更新包**
-
-```powershell
-# 使用 PowerShell 下载
-Invoke-WebRequest -Uri "https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi" -OutFile "wsl_update_x64.msi"
-
-# 安装更新包
-Start-Process msiexec.exe -ArgumentList "/i wsl_update_x64.msi /quiet" -Wait
-```
-
-**步骤 5：设置 WSL 2 为默认版本**
-
-```powershell
-wsl --set-default-version 2
-```
-
-> 这条命令把默认版本钉在 2 上，往后装的发行版都按 WSL2 启动，省得每个都手动 `--set-version` 切一遍。注意这条只影响**之后新装的**发行版，已经装好的旧发行版默认版本不会自动变，需要单独用 `wsl --set-version <发行版> 2` 转。
-
-**步骤 6：重启计算机使更改生效**
-
-## 安装 Linux 发行版
-
-### 从 Microsoft Store 安装
-
-1. 打开 Microsoft Store
-2. 搜索 "WSL" 或具体发行版名称（如 "Ubuntu"）
-3. 选择需要的发行版并点击"获取"
-
-**常用发行版：**
-- Ubuntu 26.04 LTS
-- Ubuntu 24.04 LTS
-- Ubuntu 22.04 LTS
-- Debian
-- openSUSE Leap
-- SUSE Linux Enterprise Server
-
-### 使用命令行安装
-
-**查看可用的发行版列表：**
-
-```powershell
-wsl --list --online
-```
-
-**安装指定发行版：**
-
-```powershell
-# 安装 Ubuntu 26.04
-wsl --install -d Ubuntu-26.04
-
-# 安装 Ubuntu 24.04
-wsl --install -d Ubuntu-24.04
-
-# 安装 Debian
-wsl --install -d Debian
-```
-
-### 首次启动配置
-
-**首次启动 Ubuntu 26.04 时会要求创建用户名和密码：**
+重启后会自动进入 Ubuntu 26.04，首次启动时要求创建用户名和密码：
 
 ```bash
-# 系统提示
 Enter new UNIX username: your_username
 New password: ********
 Retype new password: ********
 ```
 
 > **注意**：Ubuntu 26.04 默认使用 **apt 3.0** 包管理器，命令与之前版本兼容，但部分软件包名称可能有所变化。
+
+---
+
+> **💡 如果一键安装失败，可以手动安装：**
+> 
+> **手动安装步骤：**
+> 
+> 1. 启用 WSL 功能：
+>    ```powershell
+>    dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+>    ```
+> 
+> 2. 启用虚拟机平台：
+>    ```powershell
+>    dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+>    ```
+> 
+> 3. 重启计算机
+> 
+> 4. 下载并安装 Linux 内核更新包：
+>    ```powershell
+>    Invoke-WebRequest -Uri "https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi" -OutFile "wsl_update_x64.msi"
+>    Start-Process msiexec.exe -ArgumentList "/i wsl_update_x64.msi /quiet" -Wait
+>    ```
+> 
+> 5. 设置 WSL 2 为默认版本：
+>    ```powershell
+>    wsl --set-default-version 2
+>    ```
+> 
+> 6. 安装 Ubuntu 26.04：
+>    ```powershell
+>    wsl --install -d Ubuntu-26.04
+>    ```
 
 ## 基础配置
 
