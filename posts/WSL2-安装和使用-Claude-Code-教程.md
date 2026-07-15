@@ -32,32 +32,6 @@ wsl --version
 wsl --status
 ```
 
-### Node.js 18+ 已安装
-
-Claude Code 依赖 Node.js 18 或更高版本。检查当前版本：
-
-```bash
-node --version
-```
-
-如果版本低于 18 或未安装，使用 nvm 安装：
-
-```bash
-# 安装 nvm（如已安装可跳过）
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-
-# 重新加载配置
-source ~/.bashrc
-
-# 安装 Node.js LTS 版本
-nvm install --lts
-nvm use --lts
-
-# 验证版本
-node --version   # 应输出 v18.x.x 或更高
-npm --version
-```
-
 ### 国内大模型 API
 
 由于 Anthropic 官方 API 在国内使用困难，本教程推荐以下国产替代方案：
@@ -73,27 +47,15 @@ npm --version
 
 ## 安装 Claude Code
 
-### 通过 npm 安装
+### 通过官方脚本安装
 
 在 WSL2 终端中执行：
 
 ```bash
-npm install -g @anthropic-ai/claude-code
+curl -fsSL https://claude.ai/install.sh | bash
 ```
 
-如果遇到权限问题，可以使用以下方式：
-
-```bash
-# 方式一：使用 sudo
-sudo npm install -g @anthropic-ai/claude-code
-
-# 方式二：修改 npm 全局安装路径（推荐）
-mkdir -p ~/.npm-global
-npm config set prefix '~/.npm-global'
-echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
-source ~/.bashrc
-npm install -g @anthropic-ai/claude-code
-```
+> 该脚本会自动检测系统环境，安装所需依赖和 Claude Code 原生二进制文件，无需手动安装 Node.js。如果脚本无法访问，可以用 npm 作为备选：`npm install -g @anthropic-ai/claude-code`。
 
 ### 验证安装
 

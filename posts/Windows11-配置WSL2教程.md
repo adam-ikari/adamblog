@@ -106,22 +106,6 @@ Retype new password: ********
 
 ## 基础配置
 
-### 设置默认用户
-
-**在 PowerShell 中执行：**
-
-```powershell
-# 设置 Ubuntu 的默认用户为 root
-ubuntu config --default-user root
-```
-
-**或在 WSL 内部使用：**
-
-```bash
-# 切换到 root 用户
-sudo -i
-```
-
 ### 配置镜像源
 
 **步骤 1：备份原有源文件**
