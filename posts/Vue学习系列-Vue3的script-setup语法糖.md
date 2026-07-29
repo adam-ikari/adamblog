@@ -8,7 +8,7 @@ date: 2023-05-11
 ---
 
 # Vue学习系列 -- 告别繁琐，从Vue3的script setup语法糖开始
-`<script setup>` 是一种编译时的语法糖，用来在单文件组件（SFC）中使用组合式 API。如果你同时用 SFC 和组合式 API，这是官方推荐的写法。它能少写不少样板代码，运行时性能也更好——模板会被编译成同作用域内的渲染函数，没有中间代理；IDE 的类型推断也更快，因为语言服务器从代码里提取类型的工作量少了。
+`<script setup>` 是一种编译时的语法糖，用来在单文件组件（SFC）中使用组合式 API。如果你同时用 SFC 和组合式 API，这是官方推荐的写法。它能少写不少样板代码，运行时性能也更好，模板会被编译成同作用域内的渲染函数，没有中间代理；IDE 的类型推断也更快，因为语言服务器从代码里提取类型的工作量少了。
 
 ![传统 setup() 与 script setup 语法糖对比](/posts/Vue学习系列-Vue3的script-setup语法糖/script-setup-vs-traditional.svg)
 
@@ -39,13 +39,13 @@ export default {
 </style>
 ```
 
-可以看出，Vue SFC 是 HTML、CSS、JavaScript 三件套的自然延伸——`<template>`、`<script>`、`<style>` 三个块分别放视图、逻辑和样式，全部收在一个文件里。
+可以看出，Vue SFC 是 HTML、CSS、JavaScript 三件套的自然延伸，`<template>`、`<script>`、`<style>` 三个块分别放视图、逻辑和样式，全部收在一个文件里。
 
 如果你用过 Vue 2.x，对这种写法应该不陌生。但 Vue 3.x 多了一个选择：`<script setup>`。
 
 ## 什么是\<script setup\>？
 
-`<script setup>` 是编译时的语法糖，用来在单文件组件里使用组合式 API。这是官方推荐的写法——前提是你同时用 SFC 和组合式 API。它的好处前面提过：样板代码更少、运行时性能更好、IDE 类型推断更快。
+`<script setup>` 是编译时的语法糖，用来在单文件组件里使用组合式 API。这是官方推荐的写法，前提是你同时用 SFC 和组合式 API。它的好处前面提过：样板代码更少、运行时性能更好、IDE 类型推断更快。
 
 要启用它，只要在 `<script>` 标签上加个 `setup` 属性：
 
@@ -236,7 +236,7 @@ onUnmounted(() => {
 </script>
 ```
 
-注意，`<script setup>` 里不能自己定义函数来当生命周期钩子——必须用从 `vue` 模块导入的函数。原因是 `<script setup>` 内部的代码会被编译成 `setup()` 函数的内容，而生命周期钩子必须在 `setup()` 函数里调用。
+注意，`<script setup>` 里不能自己定义函数来当生命周期钩子，必须用从 `vue` 模块导入的函数。原因是 `<script setup>` 内部的代码会被编译成 `setup()` 函数的内容，而生命周期钩子必须在 `setup()` 函数里调用。
 
 ## \<script setup\>的局限性
 `<script setup>` 用起来方便，但也有几条限制要注意：
