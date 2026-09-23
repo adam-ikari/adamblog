@@ -1,59 +1,71 @@
 ---
-title: perry 把 TypeScript 编译成了原生二进制，这对 JS 生态意味着什么
-description: TypeScript 此前不能编译成原生二进制，perry 补上了这块能力。本文记录一次把 TS 编译成 wasm、再把 perry 的 Rust 运行时也编译成 wasm 模块放进 WAMR 的完整实测过程。
+title: perry 把 TypeScript 编译成 wasm：跑通、定位 1757 倍差距、修复后快 31 倍
+description: 把 perry 的 Rust 运行时也编译成 wasm 模块放进 WAMR 之后，程序跑通了，但慢得离谱。本文记录完整的性能归因与两条修复路线：总倍数如何拆成因子、为什么根因不在引擎、以及上游 patch 如何把 122ms 压到 3.9ms。
 category: WebAssembly
-tags: [perry, TypeScript, WebAssembly, WAMR, Rust, 编译器]
+tags: [perry, TypeScript, WebAssembly, WAMR, Rust, 编译器, 性能]
 recommend: false
-date: 2026-09-18
+date: 2026-09-21
 ---
 
-# perry 把 TypeScript 编译成了原生二进制，这对 JS 生态意味着什么
+# perry 把 TypeScript 编译成 wasm：跑通、定位 1757 倍差距、修复后快 31 倍
 
 ## 前言
 
 写服务端或嵌入式程序，选语言基本是两条路。
 
-一条走 C、C++、Rust，编出机器码，性能好，产物小。麻烦在并发上：这些语言不带异步和事件驱动，写个网络服务得自己搭事件循环（libevent、libuv）或者手写状态机；用多线程就得自己管锁、防数据竞争。并发代码对不对，全靠程序员自己保证。
+一条走 C、C++、Rust，编出机器码，性能好，产物小。麻烦在并发上：这些语言不带异步和事件驱动，写个网络服务得自己搭事件循环，或者手写状态机；用多线程就得自己管锁、防数据竞争。
 
 另一条走 JS/TS。语言自带事件循环，`async/await` 是语法的一部分，单线程模型碰不到数据竞争，写并发比 C 省心得多。代价是性能：代码跑在解释器或 JIT 里，V8 动辄几十 MB，嵌入式设备放不下。
 
-这里有个值得掰开的事实：JS 写并发省事，原因不在解释器，在语言语义。事件循环、Promise、`async/await` 都是语言定义的一部分，跟代码怎么执行没有关系。以前这两件事绑在一起，是因为 JS 只有一种跑法——解释器。`deno compile`、`bun build --compile`、Node 的 SEA 都没有改变这一点，它们是把解释器和代码打成一个文件，产物几十 MB，跑起来还是解释执行。AssemblyScript 能把 TS 编成 wasm，但它只支持 TS 的一个子集，完整工程用不了。
+不过还有第三层问题，跟性能和并发都无关，却是很多项目选型时绕不开的：**TypeScript 程序的交付，长期等同于交付源码**。编译成 JS 之后仍是可读文本，打包、压缩只影响读起来的难易程度，不改变语义的暴露程度。对业务逻辑即核心资产的场景来说，产物即源码。
 
-[perry](https://github.com/PerryTS/perry) 把这件事做成了：Rust 写的 TS/JS 编译器，SWC 解析、自研 HIR、LLVM 后端，产出原生可执行文件；GC、字符串、内置对象这些运行时语义由它自带的 `perry-runtime`（Rust）实现，编译时链进产物。说人话：你写的 TS 代码，编译出来就是一个普通的可执行程序，不用装 Node，不用带解释器。
+编译成原生二进制能解决源码外流，代价是把"一次编写、到处运行"换成"一次编写、到处编译"，交叉编译矩阵随平台数量线性膨胀。WebAssembly 是第三条路：产物是平台无关的字节码，只分发一次；运行只需要一个 wasm 运行时，"到处运行"由运行时侧提供，不必让编译器侧穷举。
 
-工具有了，值得追问的是后面那半句：既然 JS 的并发优势来自语言语义而不是解释器，那 TS 编译成机器码之后，这些优势是不是也跟着过去了？如果能，就等于用 JS 的写法拿到了 C 的性能，还绕开了 C 里异步、多线程那套麻烦。
+[perry](https://github.com/PerryTS/perry) 让这条路从设想变成可摸的东西。它是 Rust 写的 TS/JS 编译器，SWC 解析、自研 HIR，native 后端基于 LLVM 产出原生可执行文件；它的 wasm 后端单独抽出来发成 npm 包 [`@typerry/node`](https://github.com/fn-a/typerry)，链路是 SWC → HIR → wasm codegen。两条后端对"运行时"的处理截然不同：
 
-这篇记录一次完整实测：把 TS 编译成 wasm 业务模块，再把 perry 的 Rust 运行时也编成 wasm 模块，放进 WAMR（一个为嵌入式设计的微型 wasm 运行时）里跑。wasm 是最苛刻的形态，连宿主操作系统都没有 JS 运行时，看一份 wasm 产物能不能撑起 TS 程序。
+- **native 后端**：`perry-runtime`（Rust 写的 GC、JSValue、内置对象）被静态链进可执行文件，运行时本身就是产物的一部分。
+- **wasm 后端**：运行时操作声明为对宿主的导入。perry 这么设计是为了产出"自包含 HTML + base64 wasm"（把运行时委托给 JS 宿主层），于是每个宿主都得实现一遍运行时。
 
-结论先说：语言核心跑得通，性能来自编译产物这件事成立；异步、对象这些语言能力在 wasm 目标下还是空白，离"用 JS 写法替代 C"还差不少工程量。至于中间踩过的坑——装包就翻车、CLI 静默失败、一个没有文档的 ABI 怎么逆向、为什么 C 宿主路线走到一半放弃——都记录在下面。
+这篇文章记录一次完整探索，分三段：**先解决能不能跑**，把 perry 的 Rust 运行时也编译成 wasm 模块，跑在没有任何 JS 引擎的宿主上；**再解决慢在哪**，跑通之后性能异常把我引到一处完全没想到的地方；**最后解决能不能修**，两条修复路线分别改到什么程度。每段都带测量口径，凡标注为推断的结论，我都原样标着。
 
-## perry 的 wasm 输出长什么样
+结论先放前面：**跑通了，六步全过，输出与 perry 自带 JS 宿主层逐字节一致**；**性能差距的根因不在引擎，在 perry wasm codegen 的类型擦除**——把可内联的算术改成了跨边界的桥接调用；改上游 codegen 的发射点后，AOT 耗时从 122.112 ms 降到 3.891 ms，**快 31.4 倍**。
 
-perry 的 wasm 后端单独发了 npm 包 [`@typerry/node`](https://github.com/fn-a/typerry)，内部链路是 SWC → HIR → wasm codegen，用 napi-rs 暴露给 JS，零运行时依赖。它产出的 wasm 是一个完整的程序：导出 `_start` 和 `memory`，程序入口在启动时把整个业务逻辑跑完。
+## perry 的 wasm 产物形态：211 个导入
+
+perry 的 wasm 后端产出的不是一个"纯算法模块"，而是一个完整程序：导出 `_start` 和 `memory`，程序入口在启动时把全部业务逻辑执行完毕。它同时声明了 **211 个 `rt.*` 导入**，覆盖字符串、console、Math、JSON、Date、Map/Set、Buffer、crypto 等运行时能力；**无论程序用不用，实例化时都要求全部可解析**。
 
 拿到手先看结构：
 
 ```text
 Export:  _start / memory / __indirect_function_table / ...
 Import[211]:
- - func[0] sig=1 <rt.string_new> <- rt.string_new
- - func[1] sig=2 <rt.console_log> <- rt.console_log
- ...
+func[0] sig=1 <rt.string_new> <- rt.string_new
+func[1] sig=2 <rt.console_log> <- rt.console_log
+...
 ```
 
-211 个导入全挂在 `rt` 模块上：字符串、console、Math、JSON、Date、Map/Set、Buffer、crypto、fetch……perry 把整个运行时接口一次性声明进去，不管你的程序用不用。wasm 运行时实例化时要求全部导入可解析，少一个都不行，宿主必须把这 211 个函数全都提供出来，哪怕只有三个真的会被调用。
+这 211 个不是按程序需要声明的，而是 perry 一次铺开的固定接口面，任何 perry 编译的 wasm 都带这套导入。按导入名前缀分布（计数来自从导入段生成的符号表）：
 
-这里就是 perry 的 wasm 后端和 native 后端的根本分歧。native 后端把 `perry-runtime` 打成 `libperry_runtime.a`，由 `perry compile` 静态链接进可执行文件，运行时是产物的一部分。wasm 后端不是这样，codegen 的模块注释写得很直白：*Runtime operations (strings, console, objects) are imported from JavaScript*——运行时语义整个甩给了宿主。211 个导入贯穿了整个实测。运行时语义跟着谁走，程序就能跑到哪里，这篇文章的所有问题都从它出发。
+| 前缀 | 桩 | 前缀 | 桩 |
+|---|---:|---|---:|
+| `array_*` | 28 | `date_*` | 12 |
+| `string_*` | 17 | `url_*` | 10 |
+| `buffer_*` | 13 | `set_*` | 10 |
+| `object_*` | 12 | `map_*` | 10 |
+| `math_*` | 12 | `class_*` | 9 |
+| `closure_*` | 7 | `crypto_*` | 4 |
 
-## 先让它跑起来：装包就撞了两个坑
+其余分散在 `searchparams_*`/`response_*`/`path_*`（各 6）、`uint8array_*`（5）、`promise_*`（3）以及 `json_*`/`fetch_*`/`regexp_*`/`process_*` 等更小的族。13 个真实现分属 `string_*`/`console_*`/`js_*`/`is_*`/`mem_*`。
 
-实测前先解决环境问题。`@typerry/node` 装到的是 0.0.3，跑不起来，报 `Cannot find module '@typerry/node-linux-x64-gnu'`。
+这里先回答第一个问题：源码保护成立吗？**一部分成立**。查 `app.wasm` 的段表，没有 name 自定义段（只有 type / import / func / table / memory / global / export / element / datacount / code / data 共十一段），函数名与局部变量名都不在产物里；能提取出的标识符全是程序自己的字符串字面量。泄漏的是字面量和导入名，其中导入名这一项并不轻：198 个桩的名字（`array_new`、`json_parse`、`fetch_url` 等）直接来自导入段，等于标明了程序会触及哪些运行时能力。所以源码保护成立，但门槛只是从"打开源码"抬到"反编译一遍再读"。
 
-napi-rs 的包分主包和平台包，0.0.3 的 `optionalDependencies` 点名了六个平台包（linux-x64-gnu、linux-arm64-gnu、darwin-x64、darwin-arm64、win32-x64-msvc、win32-arm64-msvc），registry 上却只有 0.0.2。主包自己是个不带 `.node` 文件的空壳。降到 0.0.2 才装上，平台包还得从 `registry.npmjs.org` 手动取 tarball（npm 镜像没同步这一层）。
+## 让它跑起来：装包、ABI 逆向、三条路线
 
-判断这类问题很直接：`npm view` 主包看 `optionalDependencies`，再逐个查平台包。平台包只有 0.0.2 这件事，写这篇文章时我重新核了一遍，现在依然如此——0.0.3 的主包仍在依赖不存在的 0.0.3 平台包。
+### 装包就撞了两个坑
 
-包解决之后，README 里的 CLI 用法又行不通。`typerry input.ts --bare` 执行完什么都没有：没有报错，没有文件，退出码 0。翻了 `main.js` 才发现它靠 `process.argv[1]` 和 `import.meta.url` 比对来判断自己是不是被直接执行，而 `node_modules/.bin/typerry` 是个软链，路径对不上，CLI 主体根本不会执行。绕开的办法是用库 API：
+`@typerry/node` 装到的是 0.0.3，跑不起来，报 `Cannot find module '@typerry/node-linux-x64-gnu'`。napi-rs 的包分主包和平台包，0.0.3 的 `optionalDependencies` 点名了六个平台包，registry 上却只有 0.0.2。主包自己是个不带 `.node` 文件的空壳。降到 0.0.2 才装上，平台包还得从 `registry.npmjs.org` 手动取 tarball。
+
+包解决之后，README 里的 CLI 用法又行不通。`typerry input.ts --bare` 执行完什么都没有：没有报错，没有文件，退出码 0。翻了 `main.js` 才发现它靠 `process.argv[1]` 和 `import.meta.url` 比对来判断自己是不是被直接执行，而 `node_modules/.bin/typerry` 是个软链，路径对不上。绕开的办法是用库 API：
 
 ```js
 import { wasmBare, wasmBoot } from '@typerry/node';
@@ -61,47 +73,11 @@ const wasm = wasmBare(source);              // 裸 wasm
 const ref  = wasmBoot(source, '', true);    // wasm + perry 自带的 JS 宿主层
 ```
 
-`wasmBare` 产裸 wasm 模块，`wasmBoot` 额外产一份 JS 宿主层。这份 112 KB 的宿主层，后来成了整个实测里最有价值的东西——后面会反复用到。
+`wasmBare` 产裸 wasm 模块，`wasmBoot` 额外产一份 JS 宿主层。这份 112 KB 的宿主层，后来成了整个探索里最有价值的东西。
 
-实测用的 TS 源码长这样，覆盖递归、循环、数字运算、字符串拼接、模板字符串、`.length`、字符串比较、`console.log`：
+### 摸清 211 个导入的调用约定：把参考实现当 oracle
 
-```ts
-function fib(n: number): number {
-  if (n < 2) return n;
-  return fib(n - 1) + fib(n - 2);
-}
-
-function sumFib(limit: number): number {
-  let total = 0;
-  for (let i = 0; i < limit; i++) {
-    total += fib(i);
-  }
-  return total;
-}
-
-function greet(name: string): string {
-  return "Hello, " + name + "!";
-}
-
-const total: number = sumFib(20);
-console.log("fib(0..19) sum = " + total);
-
-const msg: string = greet("WAMR");
-console.log(msg);
-console.log("msg.length = " + msg.length);
-
-if (msg === "Hello, WAMR!") {
-  console.log("string compare ok");
-}
-
-console.log(`template: ${msg} (sum=${total})`);
-```
-
-这个程序刻意避开对象和数组，先把"纯原始值"这条线打通。数组留给后面的负向测试。
-
-## 摸清 211 个导入的调用约定
-
-真正的难点在这份宿主层要回答的问题上：211 个 `rt.*` 导入的实现约定。调用约定是 perry 内部的，没有文档，值怎么编码、字符串怎么传、返回值写在哪，靠猜不知要试多久。好在宿主层本身就是一份现成的参考实现，`buildImports()` 里那段 JS 就是这 211 个函数的精确定义。我没有去读源码反推，而是给它的 `mem_call` 插了一行打印：
+真正的难点在 211 个 `rt.*` 导入的实现约定。调用约定是 perry 内部的，没有文档。好在 perry 自带的宿主层本身就是一份现成的参考实现，那 211 个函数的定义都在里面。我没有去读源码猜，而是给它的 `mem_call` 插了一行打印：
 
 ```js
 process.stderr.write(`MEMCALL ${name} args=${JSON.stringify(args)}\n`);
@@ -118,61 +94,36 @@ MEMCALL console_log args=["fib(0..19) sum = 10945"]
 一个 20 行的程序，真正用到的导入只有 `string_new`、`mem_call`、`mem_call_i32` 三个，所有动态调用（字符串相加、console 输出、`.length`）都收敛到 `mem_call` 这一个入口。其余 200 多个导入在实例化时被解析，之后不会被调用。
 
 ::: tip 提示
-没有规范、但有能跑的参考实现时，插桩打印比读源码快得多。我一开始想靠读 wat 反推参数含义，盯了半小时 `i64.const 9223090561878065386` 也不知道那是什么；插一行 print 两分钟就全清楚了。
+没有规范、但有能跑的参考实现时，插桩取证比读源码推测快得多。我一开始想靠读 wat 反推参数含义，盯了半小时 `i64.const 9223090561878065386` 也不知道那是什么；插一行 print 两分钟就全清楚了。
 :::
 
-读出来的约定是这样的。值编码是 NaN-boxing，f64 位模式，跨宿主边界按 i64 传：
+由此得到的 ABI 事实。值编码是 NaN-boxing，i64 里装 f64 位模式，高 16 位是标签：
 
 | 值 | 位模式 |
 | --- | --- |
 | `undefined` / `null` / `false` / `true` | `0x7FFC…0001` ~ `0x7FFC…0004` |
-| 字符串 | 高 16 位 `0x7FFF`，低 32 位是字符串表下标 |
 | 对象/数组/闭包（handle） | 高 16 位 `0x7FFD`，低 32 位是 handle id |
 | int32 快路径 | 高 16 位 `0x7FFE` |
+| 字符串 | 高 16 位 `0x7FFF`，低 32 位是字符串表下标 |
 | 其他 | 就是普通 double |
 
-字符串表是隐式契约：wasm 启动时按固定顺序逐个调用 `rt.string_new(offset, len)` 注册字面量，宿主必须按同样顺序 append，下标即 id，两边计数错一位所有字符串就全乱了。动态调用协议是 `mem_call(nameId, argc, base)`：参数以 u64 槽位写在 wasm 线性内存 `base` 处，返回值也写回 `base`。为什么不直接按 f64 传参？源码没解释，我的判断是 f64 过 FFI 边界时 NaN 位模式有被规范化的风险，两边都按 u64 读写原始位模式最稳。
+字符串表是隐式契约：wasm 启动时按固定顺序逐个调用 `rt.string_new(offset, len)` 注册字面量，宿主必须按同样顺序 append，下标即 id，两边计数错一位所有字符串就全乱了。动态调用协议是 `mem_call(nameId, argc, base)`：参数以 u64 槽位写在 wasm 线性内存 `base` 处，返回值也写回 `base`。为什么不直接按 f64 传参？源码没解释，我的判断是 f64 过 FFI 边界时 NaN 位模式有被规范化的风险，两边都按 u64 读写原始位模式最稳。这条判断属于推断。
 
-## 先试了 C 宿主：能跑，但成本随特性线性涨
+`rt.*` 为什么不做成 WASI，让任何 wasm 运行时都能跑？因为两者不在同一层。WASI（preview1）是系统调用级接口，形态统一成"(指针, 长度, …) → errno"，操作对象是字节缓冲和资源句柄；`rt.*` 是语言运行时——字符串表、NaN-boxed 值的编解码、对象/数组的 handle store，外加一个按名字动态分派的 `mem_call` 入口。WASI 里没有"字符串"这个概念，也没有堆对象、属性与原型链。准确说法不是"不能 WASI 兼容"，而是 **WASI 在 `rt` 的下面一层**：`rt` 是语言运行时，WASI 是系统调用。
 
-ABI 清楚了，最直接的做法是宿主把 `rt.*` 实现一遍。我用 C 写了 13 个函数（字符串注册、拼接、比较、console、加法、真值判断、动态分派），值编码用一套宏直接照抄 perry 的 `perry-runtime/src/value.rs`：
+### 三条路线：为什么最后选了"运行时也编成 wasm"
 
-```c
-/* perry_abi.h — NaN-boxing 值编码 */
-#define PERRY_TAG_UNDEFINED 0x7FFC000000000001ULL
-#define PERRY_TAG_NULL      0x7FFC000000000002ULL
-#define PERRY_TAG_FALSE     0x7FFC000000000003ULL
-#define PERRY_TAG_TRUE      0x7FFC000000000004ULL
+放置运行时有三条路，按改动量排序：
 
-/* 高 16 位为 tag, 低 32 位为编号 */
-#define PERRY_BOX_POINTER 0x7FFDULL   /* 对象/数组/闭包 handle */
-#define PERRY_BOX_INT32   0x7FFEULL   /* int32 快路径 */
-#define PERRY_BOX_STRING  0x7FFFULL   /* 字符串表下标 */
-```
+| 路线 | 做法 | 状态 |
+|---|---|---|
+| 一·C 桥接 | 宿主里用 C 手写 `rt.*`，编成 `libperry_rt.so`，`iwasm --native-lib` 动态载入 | 已实施为探针，后废弃 |
+| 二·AOT 内联 | `wasm-ld` 把运行时静态库与 codegen 输出链成单模块 | 未实施 |
+| 三·运行时 wasm 模块 | 运行时编成独立 wasm 模块，业务模块 import 它，WAMR 多模块链接 | **当前实现，已实测** |
 
-字符串表是核心状态。宿主侧维护一张表，每项记 UTF-8 字节指针、字节数和 UTF-16 码元数，因为 JS 的 `String.prototype.length` 数的是 UTF-16 码元，不是字节：
+路线一是探针，不是终点。ABI 清楚了，最直接的做法是宿主把 `rt.*` 实现一遍。我用 C 写了 13 个函数，值编码用一套宏直接照抄 perry 的 `perry-runtime/src/value.rs`，编成共享库 dlopen 进 WAMR，纯计算程序能跑。问题出在成本上：换成用数组的程序立刻报错。要把对象、原型链、闭包、GC、异步补齐，等于把 `perry-runtime` 在 C 里重写一遍，成千上万行，还得跟着上游 ABI 走。**成本随程序用到的语言特性线性增长，这条路到头来是每个平台各写一遍运行时。**
 
-```c
-typedef struct {
-    char *bytes;        /* UTF-8, 以 NUL 结尾 */
-    uint32_t len;       /* UTF-8 字节数 */
-    uint32_t utf16_len; /* JS string.length: UTF-16 码元数 */
-} PerryString;
-```
-
-编成共享库 `libperry_rt.so`，导出 `get_native_lib()` 返回模块名 `"rt"` 和符号表，WAMR 的 iwasm 用 `--native-lib=…` 在启动时 dlopen 进去，`NativeSymbol[]` 里的函数带上 `wasm_exec_env_t` 首参就能被 wasm 导入调用。纯计算程序能跑。
-
-问题出在成本上。换成用数组的程序立刻报错。要把对象、原型链、闭包、GC、异步补齐，等于把 `perry-runtime` 在 C 里重写一遍，成千上万行，还得跟着上游 ABI 走。成本随程序用到的语言特性线性增长，这条路到头来是每个平台各写一遍运行时。C 宿主路线到此为止，它的产出是摸清了 `rt.*` 的完整约定：值编码、字符串表契约、动态分派，全是从官方宿主层插桩读出来的。
-
-`rt.*` 为什么不做成 WASI，让任何 wasm 运行时都能跑？因为两者不在同一层。WASI（preview1）是系统调用级接口，`fd_write`、`clock_time_get`，形态统一成"(指针, 长度, …) → errno"，操作对象是字节缓冲和资源句柄；`rt.*` 是语言运行时的接口，字符串表、NaN-boxed 值、对象 handle store，WASI 里没有"字符串"概念，也没有堆对象和原型链。211 个导入只用到 16 种类型，绝大多数长成 `string_len: (i64) -> i64` 这样，i64 里装的是 f64 位模式，wasm 类型系统只看得到位宽看不到语义。perry 还把所有动态操作收敛进 `mem_call` 按名字查表分派，WASI 的导入是编译期定死的符号，没有"名字 → 实现"这一层。
-
-所以分层是这样的：`rt` 是语言运行时，WASI 是系统调用，WASI 在 `rt` 的下面一层。要让产物跑到任何 WASI 运行时上，得把 `rt` 的实现也变成 wasm 的一部分。
-
-## 把 perry 的 Rust 运行时编成 wasm 模块
-
-想清楚这一层，方向就出来了：native 后端既然能把运行时静态链进产物，那 wasm 后端为什么不能把同一份运行时按 wasm 目标编译，跟业务模块一起分发？`perry-runtime` 本来就是 Rust 源码，代码结构里已经写明了这条路。
-
-我照这个思路搭了 `runtime-wasm/`，一个 `#![no_std]` 的 Rust crate，620 行，编译出 `rt.wasm`。业务模块 import 它的 memory 和 211 个 `rt.*`，WAMR 的多模块机制把两个模块链接执行，宿主只剩 WASI 的 `fd_write` 写 stdout/stderr。
+路线三的思路来自 native 后端：既然 native 后端能把运行时静态链进产物，wasm 后端为什么不能把同一份运行时按 wasm 目标编译，跟业务模块一起分发？`perry-runtime` 本来就是 Rust 源码。我照这个思路搭了 `runtime-wasm/`，一个 `#![no_std]` 的 Rust crate，620 行，release 用 `opt-level="s"` + `lto` + `panic="abort"`，编译出 `rt.wasm`。业务模块 import 它的 memory 和 211 个 `rt.*`，WAMR 的多模块机制把两个模块链接执行，宿主只剩 WASI 的 `fd_write` 写 stdout/stderr。
 
 ```mermaid
 graph LR
@@ -182,97 +133,19 @@ graph LR
   D -->|"WASI fd_write"| E["stdout / stderr"]
 ```
 
-### 内存：同一块线性内存只能有一个定义者
+这条路为什么可行：211 个 `rt.*` 签名只用到 i32/i64/f32/f64，指针就是业务线性内存里的偏移，跨模块不存在"类型不匹配"这一层；运行时模块 import 业务那块内存之后，`mem_call`/`string_new` 直接读写同一块内存，零拷贝约定原样成立。
 
-第一个问题是谁的内存算数。wasm 多模块链接里，线性内存只能有一个定义者。业务模块原本自带 memory 段，`patch-app-memory.mjs` 把这段删掉，改成向运行时模块 import `rt.memory`：
+几个构造上的关键点：
 
-```js
-// 关键点: memory/table 的 import 不占函数索引空间
-// 所以业务模块 code 段里的函数索引、隐式的 memory 0 引用全部不用动
-```
+- **同一块线性内存只能有一个定义者**。业务模块原本自带 memory 段，patch 脚本把它删掉，改成向运行时模块 import `rt.memory`。memory/table 的 import 不占函数索引空间，所以业务模块 code 段一个字节不用动。
+- **地址布局**。运行时的数据要避开业务模块的低地址区，`.cargo/config.toml` 里用 `--global-base=2097152` 把 data/bss/stack 放到 2 MiB 以上。
+- **198 个桩在编译期生成**。`gen-rt-symbols.mjs` 从业务模块导入段读出全部 `rt.*` 名字和签名，源文件里已实现（`rt_<名字>(`）的只登记符号，其余生成"调用即报错"的桩。wasm 链接检查的是声明，211 个导入必须全部有主，哪怕一个都不会被调用。桩被调用时写 stderr 实名报错后 trap，**绝不静默返回假数据**——否则程序会在不知道哪里悄悄算错。
 
-这个"不占函数索引空间"是能这么干的前提。perry 产出的 wasm 里函数索引是编译期写死的，如果加一条 import 会让后面所有函数索引错位，整个模块就废了。memory 和 table 的 import 有自己的命名空间，不动 code 段。业务模块的 code 段一个字节不用改，只改了两处：import 段追加一条 `rt.memory`，memory 段整个删掉。
+13 个真实实现覆盖 string（new/len/eq/concat/to_string）、number 与 bool 的 NaN-box 值、plus、console（log/warn/error），以及动态分派（`mem_call`/`mem_call_i32`）。宿主 runner `perry_link.c` 的 main 只做四件事：load rt 模块、注册为 `"rt"`、给 rt 配 WASI 参数、load 业务模块并实例化执行，**整个文件没有一行 `rt.*` 的实现**，这是它与路线一最本质的区别。
 
-地址布局上，运行时的数据要避开业务模块的低地址区。`.cargo/config.toml` 里用 `--global-base=2097152` 把自己的 data/bss/stack 放到 2 MiB 以上，业务模块在低地址跑，两边不撞。
+### 六步全过
 
-### 13 个真实实现 + 198 个桩
-
-211 个导入当然不能都手写。两个生成工具分工：`gen-rt-symbols.mjs` 从业务模块的导入段读出全部 `rt.*` 名字和签名，源文件里已经实现（`rt_<名字>(`）的只登记符号，其余生成"调用即报错"的桩函数；`patch-app-memory.mjs` 处理内存。生成的桩长这样：
-
-```rust
-#[export_name = "array_new"]
-pub extern "C" fn stub_array_new() -> i64 {
-    not_implemented!("array_new")
-}
-```
-
-桩为什么在编译期生成？wasm 链接检查的是声明，211 个导入必须全部有主，哪怕一个都不会被调用。这是我第一次实例化被 WAMR 拒绝时才弄清楚的。桩被调用时写 stderr 实名报错后 trap，绝不静默返回假数据——这是整个设计里最不能妥协的一条，否则程序会在不知道哪里悄悄算错。
-
-13 个真实实现覆盖纯原始值这一线。名字从导出段一眼能看全：`string_new`、`console_log`、`console_warn`、`console_error`、`string_concat`、`js_add`、`string_eq`、`js_strict_eq`、`is_truthy`、`string_len`、`jsvalue_to_string`，加上动态分派入口 `mem_call`、`mem_call_i32`。每个实现都在做同一件事：把 i64 位模式解成 `V` 枚举，干活，再编码回 i64。比如 `js_add`：
-
-```rust
-#[export_name = "js_add"]
-pub extern "C" fn rt_js_add(lhs: i64, rhs: i64) -> i64 {
-    encode(add(decode(lhs as u64), decode(rhs as u64))) as i64
-}
-```
-
-```rust
-#[export_name = "mem_call"]
-pub extern "C" fn rt_mem_call(name_id: f64, arg_count: f64, base: u32) -> f64 {
-    let out = invoke(name_id, arg_count, base);
-    unsafe {
-        core::ptr::write_unaligned(mem_ptr::<u64>(base), encode(out));
-    }
-    0.0
-}
-```
-
-`invoke` 里名字查不到就写 stderr 报错再 trap，跟桩的行为一致。
-
-### 宿主 runner：四件事，没有一行 rt.* 实现
-
-宿主 `perry_link.c` 的 main 只做四件事：load rt 模块、注册为 `"rt"`、给 rt 配 WASI 参数、load 业务模块并实例化执行。没有任何一行 `rt.*` 的实现：
-
-```c
-/* 1. 运行时模块先加载并注册成 "rt" —— 业务模块的 212 个导入
- *    (211 个函数 + memory) 都在加载时按这个名字解析。 */
-rt = wasm_runtime_load(rt_buf, rt_size, error_buf, sizeof error_buf);
-wasm_runtime_register_module("rt", rt, error_buf, sizeof error_buf);
-
-/* 2. 运行时用 WASI 的 fd_write 打日志 (默认 stdio)。 */
-wasm_runtime_set_wasi_args(rt, NULL, 0, NULL, 0, NULL, 0, NULL, 0);
-
-app = wasm_runtime_load(app_buf, app_size, error_buf, sizeof error_buf);
-
-/* 3. 实例化业务模块 —— WAMR 会一并实例化它依赖的 "rt" 模块
- *    并完成符号/内存链接。 */
-app_inst = wasm_runtime_instantiate(app, 64 * 1024, 0, error_buf, sizeof error_buf);
-
-/* 4. 跑入口。 */
-wasm_application_execute_main(app_inst, 0, NULL);
-```
-
-WAMR 需要开 `WAMR_BUILD_MULTI_MODULE` 编译，iwasm 2.4.3 默认不开这个开关，CMake 配置里要显式打开。
-
-### 两个链接阶段的坑
-
-记忆最深的坑是 memory import 的 min 页数。业务模块 import 的 memory `min` 一旦超过 WAMR 对运行时模块记录的可用初始页数，实例化直接报 `failed to link import memory (rt, memory)`。实测 min=2 到 100 全部失败，patch 脚本固定 `min=1`。这个限制不来自 perry，来自 WAMR 的多模块链接实现——运行时模块导出的 memory 初始页数是链接时的硬约束。
-
-第二个坑在 Rust 侧。Rust 1.70 起 cdylib 只导出 `pub` 的 `#[no_mangle]` 符号，`perry_rt_unimplemented` 当初没写 `pub`，从产物里消失，桩调用链接失败。补上 `pub` 就好。这类符号可见性问题在 `#![no_std]` + wasm 目标上尤其隐蔽，编译器不会给你任何警告。
-
-## 实测：六步全过
-
-`demo.sh` 把整个流程串成六步，每步都有明确产物和检查：
-
-1. **依赖**：`@typerry/node`（napi 绑定）、`wasm32-unknown-unknown` target、WAMR iwasm（开 MULTI_MODULE）
-2. **编译**：TypeScript → `build/app.wasm`；同一份源码走 perry 自带 JS 宿主层 → 参照输出
-3. **运行时**：从业务模块导入段生成 198 个桩 → cargo build 出 `build/rt.wasm`
-4. **链接**：业务模块改成 import `rt.memory`，编出宿主 runner `build/perry_link`
-5. **正向**：跑，与 JS 宿主层的输出逐字节比对
-6. **负向**：用数组的 TS 程序应当报"not implemented"且退出码非 0
-
-正向结果，perry 官方 JS 宿主层（参照）和本次的 Rust 运行时模块（被测）各跑一遍，输出逐字节一致：
+`demo.sh` 把整个流程串成六步：依赖 → 编译（TS → `app.wasm` + JS 宿主层参照）→ 运行时（生成 198 个桩 → cargo build 出 `rt.wasm`）→ 链接（patch memory + 编 runner）→ 正向跑（与 JS 宿主层逐字节比对）→ 负向（用数组的 TS 程序应当报未实现且退出码非 0）。**6/6 步 PASS**，正向输出与 perry 官方 JS 宿主层逐字节一致：
 
 ```text
 fib(0..19) sum = 10945
@@ -282,40 +155,271 @@ string compare ok
 template: Hello, WAMR! (sum=10945)
 ```
 
-左边是 JS 宿主层的结果，右边是 Rust wasm 运行时模块在 WAMR 里的结果，`diff` 零差异。负向用一段碰数组的程序：
-
-```ts
-// 负向验证用: 这段代码会调用 `array_new` 等运行时函数,
-// 而 runtime-wasm 只实现了原始值。
-const xs: number[] = [1, 2, 3];
-console.log(xs.length);
-```
-
-立刻报错，退出码 1，实名点出没实现的是哪个函数：
+负向用一段碰数组的程序 `const xs: number[] = [1, 2, 3]; console.log(xs.length);`，立刻报错，退出码 1，实名点出没实现的是哪个函数：
 
 ```text
 Exception: bridge function 'array_new' is not implemented
 execute _start: Exception: unreachable
 ```
 
-产物尺寸：`app.wasm` 10650 B，patch 后 `app_link.wasm` 10658 B，`rt.wasm` 16798 B。三个文件加起来 38 KB，装下了一个能跑 fib、字符串拼接、模板字符串的 TS 程序外加它的运行时。
+产物尺寸：`app.wasm` 10650 B、patch 后 `app_link.wasm` 10658 B、`rt.wasm` 16798 B。能跑、输出正确、产物自包含。第一部分到此收工。
 
-## 这改变了什么
+## 性能异常：一个 1757 倍的怪数字
 
-回到开头那两条路。实测走完，对 perry 能改变什么，可以给出几条具体判断。
+架构验证通过之后，跑出来的数字立刻显出异常。同一份 `src/bench.ts`（递归 `fib(29)` 加一次 10⁶ 次求和循环），在 WAMR 解释器里跑是 **2470.678 ms**，手写 C 原生是 **1.406 ms**。**1757 倍**。
 
-性能这一半是成立的。实测里 fib、字符串、模板字符串编译成 wasm 后在 WAMR 里跑，结果与 JS 宿主层逐字节一致，执行的是编译期生成的指令，解释器不参与。TS 代码从此多了一种执行方式：同样的语法，产物是机器码级别的 wasm。嵌入式这种以前放不下 JS 引擎的环境，现在能直接跑 TS 编译产物。
+这个数字本身没有信息量：引擎代差、编译器产出的指令形态、桥接实现效率全部混杂在一起。若据此说"wasm 比原生慢 1757 倍"，读者自然读成"wasm 不行"，真实情况却可能是"某个编译器的某个后端没做特化"。要做的就是把这句话拆开，拆到每一步都能被独立证据约束。
 
-并发模型这一半，方向对但还没到。JS 的 `async/await` 写起来省事，前面说了，靠的是语言语义不是解释器；perry 编译遵循 JS 语义，写法不需要变。但本次实测只覆盖同步子集，事件循环和异步调度要在 wasm 运行时里重新实现，`perry-runtime` 的这部分移植工作还没人做。也就是说"用 JS 写法绕开 C 的异步麻烦"这个目标，逻辑上成立，工程上欠账。
+### 六路对照
 
-分发方式变了一个样。运行时编进 wasm 之后，交付物是自包含的：`rt.wasm` 才 16 KB，跟业务模块放一起，放进任何有 WASI 的运行时就能跑。以前 JS 程序到哪都得先装一个几十 MB 的引擎，现在运行时语义就在产物里。
+共享同一份源码与同一组常量的六条执行路径：
 
-限制也摆在这：语言子集上，对象、数组、闭包、类、异步都在 198 个桩里；生态上，`fs`、`net`、`child_process` 这些 OS 耦合模块，wasm 目标要么等 WASI 的 socket 提案落地，要么编不进去；perry 自身还在 0.0.x，主包发了平台包没发、CLI 不报错、`rt` ABI 没文档，生产使用前这些得先解决。
+| 路 | 宿主 / 引擎 | 说明 |
+|---|---|---|
+| A | WAMR FAST_INTERP | perry wasm 模块 + rt.wasm 双模块，解释执行 |
+| B | Node V8 | perry wasm 模块 + perry 自带 JS 宿主层 |
+| C | 手写原生 | `gcc -O2`，i64 实现 |
+| D | perry 原生 | TS → LLVM → 可执行文件 |
+| E | WAMR AOT | `wamrc` O3，合并单模块（rt 代码也进机器码） |
+| F | QuickJS | 纯解释器跑同一算法的 JS 版本 |
 
-总结一下：perry 把"TS 语法、机器码性能"从设想做成了可实测的工程路线，实测证明性能这一半是真的；"用 JS 的并发模型替代 C 的手工并发管理"是这件事更大的价值所在，前提是把异步语义在 wasm 目标下补齐。
+各路的意图有层次：C 给出"这块硬件能有多快"的地板，D 回答"perry 自己的两条后端差多少"，E 回答"换成 AOT 引擎后还剩多少差距"，B 与 F 提供独立引擎的参照系。F 尤其重要，它刻意避开 wasm 和桥接调用，只回答一个问题：纯解释器跑同样的算法要多久。
 
-## 复盘
+稳态 P50（同一台机器，AMD Ryzen 7 5800H）：
 
-实测里最有用的决策是拿 perry 自带的宿主层当参照：ABI 有了权威定义，行为有了可比对的基准，demo 最后那个 `diff` 也就顺理成章。逆向一个没文档的 ABI，找到一个能跑的同族实现插桩打印，比读源码快得多。
+| 目标 | P50 | ÷C 原生 |
+|---|---:|---:|
+| E. WAMR AOT（perry wasm，合并单模块） | 146.829 ms | 104.4× |
+| E′. WAMR AOT（干净 wasm 对照） | 1.362 ms | 0.97× |
+| A. WAMR 解释器 | 2470.678 ms | 1757.2× |
+| B. Node V8（扣除启动 24 ms） | 1280.000 ms | 910.4× |
+| C. 原生 gcc -O2 | 1.406 ms | 1× |
+| D. perry 原生（进程级，含启动） | 6.286 ms | 4.5× |
+| F. QuickJS（进程级） | 85.532 ms | 61× |
 
-另一个收获是认识了 wasm 链接的规则：它检查声明而不是调用，211 个导入必须全部有主，198 个桩的生成器就是照这个规则写的。以及一个工程判断：同一份运行时源码，native 后端静态链、wasm 后端可以编成模块分发，两条路共享 `perry-runtime`，这意味着 wasm 目标的运行时能力天然不会落后 native 目标太多——缺的只是有人去移植。
+### 先审计自己的基线：1.471 ms 物理上不可能
+
+结果得出后有一条质疑：原生基线 1.471 ms 在物理上可疑。按 1,664,079 次逻辑调用均摊，每层递归只摊到 0.6–0.9 ns，这在物理上不可能。这条质疑指向的正是基准方法本身。
+
+我用了三条独立证据核查。
+
+**证据一：多编译器交叉验证。** 同一份 `bench_native.c` 在 gcc -O1/-O2/-O3/-Ofast/-Os 与 clang -O2 下，五种独立编译管线聚在 1.2–3.6 ms 同一数量级；若有病态折叠，应出现离群值。
+
+**证据二：指令计数闭合检验**（callgrind 实测）。gcc -O2 单次执行 16.71 M 条指令，IPC ~3.8，对简单整数短依赖链合理。若 gcc 跨 `printf` 合并了两次 fib 调用，每轮指令增量会减半，而实测每轮增量恒为 16.71 M。
+
+**证据三：拆分计时。** fib 部分 P50 0.84 ms + 循环部分 0.30 ms ≈ 1.13 ms，与整体 1.47 ms 吻合。
+
+结论：计时数字成立，物理矛盾来自 `gcc -O2` 对 fib 的深度自内联。1,664,079 次"逻辑调用"只发生 **91,759 次真实 call**，由两个独立实测互相印证：gdb 断点在 warmup+1 个 RUN 上命中 183,519，除以 2 次顶层执行得 91,759；callgrind 调用图上 fib 与内联克隆体 fib'2 的入口合计同为 183,519。按真实 call 折算：fib 部分 0.84 ms / 91,759 ≈ **9.2 ns/真实 call**。
+
+这条修正的意义超出这条基线本身：原生基线执行的动态指令量远少于 wasm 路径在同语义下的指令量，"1757×"里有一部分是代码形态差异，不是全部都由解释器与桥接调用的运行时代价构成。下面的乘积分解已把这一点计入引擎因子的分母一侧，无需改数，但在呈现上必须按因子乘积来读。
+
+### 乘积分解：把总倍数拆成两个因子
+
+方法分三层。
+
+**第一层：把总倍数写成两个因子的乘积。** 取一份与基准完全同算法的**干净对照 wasm**（纯 i64 指令、无 NaN-box、零 `rt.*` 导入，手工书写），把它运行在同一台 WAMR 上（A′）和 node V8 上（B′）。于是：
+
+$$\text{总倍数} = \underbrace{\frac{\text{干净 wasm} \times \text{引擎}}{\text{原生}}}_{\text{引擎因子}} \times \underbrace{\frac{\text{perry wasm} \times \text{引擎}}{\text{干净 wasm} \times \text{引擎}}}_{\text{codegen 因子}}$$
+
+**第二层：闭合校验。** 两个因子相乘必须能还原实测总倍数，否则说明还有第三个未被识别的成分。这是这套方法的硬约束。
+
+**第三层：独立引擎交叉验证。** 引擎因子与 codegen 因子都应该在换一个引擎后保持可解释。
+
+**A 路（解释器）分解**，全部实测：
+
+| 成分 | 倍数 | 证据 |
+|---|---:|---|
+| WAMR FAST_INTERP vs 原生（干净代码下） | ~35× | A′ 干净 wasm 50.8 ms ÷ 原生同形 1.47 ms |
+| perry codegen 差 + rt 桥接实现 vs 干净 wasm | ~49× | A 2470.678 ms ÷ A′ 50.8 ms |
+| **乘积闭合校验** | 34.6×48.6 ≈ **1682** vs 实测 1757（误差 4.3%） | 闭合 ✓ |
+
+**E 路（AOT）分解**，全部实测：
+
+| 成分 | 倍数 | 证据 |
+|---|---:|---|
+| WAMR AOT vs 原生（干净代码下） | **~0.97×**（与原生同速） | E′ 干净 wasm 1.362 ms ÷ 原生 1.406 ms |
+| perry codegen 差 + rt 桥接实现 | **~108×** | E 146.829 ms ÷ E′ 1.362 ms |
+| **乘积闭合校验** | 0.97×108 ≈ **105** vs 实测 104.4（误差 <1%） | 闭合 ✓ |
+
+两个矩阵并排看，能读出几点：
+
+1. **引擎因子归零。** 干净 wasm 在 WAMR AOT 下与 `gcc -O2` 原生同速（0.97×）。解释器那 35× 是纯引擎开销，与 perry 无关。
+2. **B 路被反超。** E 146.8 ms 比 B（V8 + JS 宿主层）1280 ms 快 8.7×。同一份 perry wasm，WAMR AOT + wasm rt 桥接比 V8 + JS 宿主桥接快一个数量级。
+3. **对 perry 的定位。** 换到 AOT 后，perry wasm 路与 perry 原生路差 ~23×（解释器下 393×），且这 23× 几乎全是 codegen 桥接调用形态，引擎已归零。
+
+根因不是引擎。那 23× 到底是什么，需要一个更细的隔离实验。
+
+### 隔离实验：25.4 ns/次的桥接调用
+
+乘积分解给出了因子，但"codegen 因子 108×"仍是个黑箱。于是做了一组第一性原理隔离实验：
+
+| 变体 | 构造 | P50 |
+|---|---|---:|
+| `nohost` 直接调用版 | 与 perry fib 完全相同的调用图（每层 2 次跨模块调用），被调方是平凡 wasm 函数 | **1.371 ms** |
+| `nohost_box` 版 | 同上，但用 `call_indirect` 防内联，被调方做最小的 NaN-box i64↔f64 往返 | **5.913 ms** |
+| rt 侧 `mem_call` 函数体 | 余项 | 135.5 ms |
+| **合计** | | **141.4 ms**，闭合 ✓ |
+
+三条读数：
+
+1. **调用图形态本身不是瓶颈。** 与 perry 完全相同的调用图加上平凡被调方，AOT 编译器把被调方全部内联吸收，1.371 ms 与 fib 纯机器码 1.309 ms 基本相等。
+2. **即使强制"不可内联的间接调用 + NaN-box 往返"，也只到 5.9 ms。**
+3. **E 的 141.4 ms 减去 5.9 ms 得 135.5 ms，全部是 rt 侧 `mem_call` 函数体的执行成本**："NaN-box 解码 + nameId 直查 + tag 分派 + f64 算术 + 编码"。折算每次桥接调用 ≈ **25.4 ns/次**，NaN-box 往返开销 ≈ **1.4 ns/次**。rt 侧代码在合并后也进机器码，占 E 的 **95.8%**。
+
+### QuickJS 反超：独立引擎交叉验证
+
+分析结论必须能在别的引擎上复现，否则无法排除"WAMR 特有现象"。三处独立旁证指向同一结论：
+
+- **V8 侧**：`node --no-liftoff` 强制 TurboFan 全优，稳态 3.400 ms，引擎因子修正为 2.5×；纯 Liftoff baseline 是 9.482 ms。
+- **QuickJS 侧是最强旁证**：一个纯解释器（QuickJS 解释 JS，fib 每层 37 ns）比 WAMR AOT 执行 perry 包装的字节码（每层 2 次桥接调用 × 26.8 ns + fib 本体 ≈ 55 ns）还快。QuickJS 是"没有桥接调用的慢解释器"，E 是"带桥接调用的机器码"，桥接开销 25.4 ns/次已经超过 QuickJS 解释一层 fib 除调用外的全部开销。
+- **引擎无过**：干净 wasm 在 AOT 下与手写 C 同速。
+
+三个引擎、三种实现路径指向同一结论：**根因在 perry wasm codegen 的类型擦除**——`+` 与条件判定被改写为跨边界的桥接调用，而不是内联成算术指令。
+
+## 修：两种改法，从 7.3× 到 31.4×
+
+### 先划清边界：哪些是缺陷，哪些本来就必须走桥接
+
+不是所有桥接调用都是缺陷。用反汇编加上游 codegen 源码双重证实：
+
+| 操作 | 路径 |
+|---|---|
+| `+`（js_add） | **走桥接路径**（`mem_call`），注释 "handles string+number etc." |
+| `-` `*` `/` | **内联** f64.sub/mul/div |
+| `<` `<=` `>` `>=` | **内联** f64.lt/le/gt/ge |
+| if/while/for 条件 | **走桥接路径**（`mem_call_i32`，is_truthy） |
+| `===` / `==` | 走桥接路径（js_strict_eq） |
+| 字符串操作、console | 走桥接路径（**本来就必须**） |
+
+bench 热路径的 2 次/层桥接调用就是 `js_add`（加法）加 `is_truthy`（条件判定），不是全部算术。判断这是"值模型的必然"还是"可修复的缺陷"，有三条证据：
+
+1. **类型信息存在，wasm 后端完全未用。** wasm codegen 的 `Cargo.toml` 只依赖 perry-hir / perry-codegen-js / perry-dispatch，**不依赖类型化的 LLVM codegen**。类型化 ABI、i32 快路径、`Type::Int32` 消费全在原生后端。
+2. **HIR 有完整类型基础设施。** `perry-hir/src/types.rs` 定义 `Int32`（注释为 "optimization for known integers"），有完整值类型推断。TS 是静态类型语言，`let sum = 0; sum += i` 的类型可静态获知。
+3. **int32 快路径编码三处都有解码路径，wasm 后端从不发射。** `PERRY_BOX_INT32`（`0x7FFE`）在 ABI、runtime、JS 宿主三处都有解码路径，但 wasm emit 全目录 grep `0x7FFE` 零命中。
+
+裁决是：**codegen 没做类型特化与内联，属于缺陷**；同一编译器家族的原生后端已经实现同等特化，wasm 后端这块是功能缺口。真正属于"统一设计"的只有"所有用户值一律 NaN-box f64 位模式"这一保守值模型。
+
+先做一个 rt 侧的最小优化。正式 rt 的 `invoke()` 原本对 10 项 `BRIDGES` 逐项 memcmp，而 nameId 本来就是稳定整数索引。加一个 `NAME_CACHE` 缓存直查 fast path 后，A 路从 4009.746 ms 降到 2470.678 ms（−38%），codegen 因子从 79× 降到 ~49×，产物 16798 → 16928 B。这是桥接实现本身的低效，与 codegen 缺陷是两码事。
+
+### 实验 A：wasm-opt 能内联，不能折叠分派
+
+先试现成工具。对合并产物跑 binaryen `wasm-opt`，最优组合（`--inlining-optimizing --always-inline-max-function-size=5000 --precompute-propagate --dce`）把 E 从 122.112 ms 降到 93.497 ms（−23%）。`wasm-dis` 确认整条 `mem_call` + `invoke` 被强制内联进 fib/loop，字面 nameId/argCount 的常量传播成功。但内联体里仍残留 11 路 `br_table`，其索引来自 `NAME_CACHE` 的**运行时内存 load**；binaryen 没有内存常量传播，内存内容运行时才确定，所以 switch 无法消除。**纯后处理能把 E 降到约 93 ms，但内联下来的是整段被搬进来的大 switch 分派代码，到不了特化的量级。**
+
+### 实验 B：先测定天花板
+
+不真改上游，对 perry 原样字节码做**等价手工特化**，替换的正是 codegen 类型特化会发射的指令：
+
+| 变体 | 改动 | P50 |
+|---|---|---:|
+| E（perry 原样） | — | 122.112 ms |
+| **B1** | 热路径 `+` 内联 `f64.add`，`is_truthy` 仍走桥接 | 71.612 ms |
+| **B2** | B1 + `is_truthy` 内联为 `i64.ne` 与包装的假值的比较 | **17.185 ms**（快 7.1×） |
+| V3 | 纯 f64：无包装的表示、无影子栈、全内联 | 3.325 ms |
+| E′ | clean_bench（纯 i64，同批） | 1.216 ms |
+
+B2 的乘积分解：E − B2 ≈ 105 ms 是桥接调用本体（4.16 M 次 × 25.4 ns/次 ≈ 106 ms），类型特化把这部分全部消除；B2 − E′ ≈ 16 ms 是 perry 的影子栈**内存访问纪律**（每个值经 global sp 存/取内存，fib 每层约 20 条辅助指令）。这不是 NaN-box 的开销——reinterpret 对在机器码层面是空操作，box 本身近零成本；16 ms 是"值经内存而非寄存器存取"的调用纪律成本。
+
+但 B2 的成功依赖"人读过 `src/bench.ts` 才知道那里是 number"，这份类型知识在 perry 产物里已被 codegen 擦除，因此 B2 只是**上界估计器**，不是可用修复。
+
+### 实验 C：一个能自己恢复类型的 wat 后处理 pass
+
+于是实现了一个通用后处理 pass（约 800 行 JS，wat→wat），让它自己从模块里恢复类型信息。pass 的值域有三格：`NUM`（原始 f64 位模式 = JS number）/ `BOOLBOX`（`TAG_TRUE`/`TAG_FALSE` 二值包装的布尔）/ `OTHER`。抽象解释在每个函数内按语句序进行，控制流合并取保守并。两处改写都与 rt 侧实现逐位等价：
+
+```wat
+;; js_add（nameId 8, argc 2）
+(drop (call $mem_call (f64.const 8) (f64.const 2) BASE))
+→ (i64.store BASE (i64.reinterpret_f64 (f64.add
+     (f64.reinterpret_i64 (i64.load BASE))
+     (f64.reinterpret_i64 (i64.load (BASE+8))))))
+
+;; is_truthy（nameId 12, argc 1）
+(call $mem_call_i32 (f64.const 12) (f64.const 1) BASE)
+→ (i64.ne (i64.load BASE) (i64.const TAG_FALSE))
+```
+
+**number 条件保守回退**：JS truthiness 里 `0`/`-0`/`NaN` 均 falsy，非二值，不内联，仍经由桥接调用。其余桥接调用（`console_log`、`string_concat`、`string_len`、`js_strict_eq` 等）一律不动。
+
+泛化验证用 4 个程序 × 7 个变体：bench（纯 number 热循环）、probe_str（字符串密集）、probe_mixed（混合类型）、probe_nested（跨函数）。**正确性 28/28 逐字节一致，误判清单为空**。性能：
+
+| 程序 | base | pass | pass+wasmopt |
+|---|---:|---:|---:|
+| bench | 123.098 | **16.958**（快 7.3×） | 16.034 |
+| probe_str | 30.297 | **14.942**（快 2.0×） | 10.213 |
+| probe_mixed | 21.261 | **5.918**（快 3.6×） | 4.421 |
+| probe_nested | 0.521 | **0.280**（快 1.9×） | 0.236 |
+
+probe_nested 的保守与 `--closed-world` 差 6.4×（0.280 vs 0.044 ms），差距全部来自"导出函数参数是否可当 number"。这揭示了这套方法的**天花板**：perry 把每个用户函数都导出（`__wasm_func_N`），保守模式无法排除"宿主用字符串调它"，于是 `dbl(n) { return n + n }` 的参数不可证；合并后的 AOT 模块实际是封闭世界（只有 `_start` 一个入口），显式声明后跨函数推断全部贯通。**类型知识在模块里不可恢复时，pass 只能保守拒绝**——防护规则保证了误判不会静默发生。
+
+### 上游 patch：从源头改发射点
+
+后处理 pass 解决了"不能改上游时怎么办"，但它带一个永久性缺陷：依赖 perry 产物的指令形态，perry 一升级 codegen 就可能失配。真正的修复在源头。
+
+patch 的对象是 vendored perry，目标是 `crates/perry-codegen-wasm`（无 LLVM 依赖），diff 规模 6 文件 / +487 −20。新增一份保守类型事实（419 行），收集声明类型加轻量数据流，提供 `expr_is_number` / `expr_is_boolean`；然后改两个发射点：
+
+```rust
+// 1. 加法（BinaryOp::Add）
+if self.expr_is_number(left) && self.expr_is_number(right) {
+    self.emit_expr(func, left);   F64ReinterpretI64;
+    self.emit_expr(func, right);  F64ReinterpretI64;
+    F64Add; I64ReinterpretF64;
+} else { /* 原 emit_frame_begin(2) + store_arg×2 + emit_memcall("js_add", 2) */ }
+
+// 2. 条件（if / while / do-while / for 4 处）
+if self.expr_is_boolean(condition) {
+    self.emit_expr(func, condition);          // 栈上盒布尔 i64
+    I64Const(TAG_FALSE); I64Ne;               // → i32
+} else { /* 原 emit_frame_begin(1) + store_arg + emit_memcall_i32("is_truthy", 1) */ }
+```
+
+等价性可以逐位论证：perry 的 number 表示就是裸 f64 位模式，若运行时两侧确为 number，`js_add(Num(a), Num(b))` 返回 `Num(a+b)`，与内联的 `i64.reinterpret_f64(f64.add(...))` **逐位相同**（含 NaN/±0/Inf 传播）；影子栈方面，原路径 sp 净增减为 0，特化路径完全不触及 sp，净效果一致。字符串分支只有两侧都可证 number 才内联，`string + anything` 恒经原桥接调用，JS `+` 的字符串拼接语义保留。不可证的地方一律回退：字符串 `+`、number 条件、`Mod`/`Pow`、`Eq`/`Ne`、闭包捕获。
+
+结果（同口径，12 轮弃第 1 轮取 11 样本中位数）：
+
+| 变体 | P50 | 相对 E |
+|---|---:|---:|
+| E（perry 原样） | 122.112 ms | 1× |
+| **patch 后（codegen 特化）** | **3.891 ms**（min 3.673 / max 4.009） | **0.0319×（快 31.4×）** |
+| B2（等价手工特化） | 17.185 ms | 0.141× |
+| V3（无包装的表示） | 3.325 ms | 0.027× |
+| E′（clean i64） | 1.216 ms | 0.010× |
+
+正确性：`fib(29) = 514229`、`sum = 499999500000`，`./demo.sh` 6/6 PASS，3 个泛化探针经完整 E 路输出与参照逐字节一致。反汇编证据：`call $mem_call` 8 → 6，`call $mem_call_i32` 2 → 0，`f64.add` 0 → 3，`i64.ne` 0 → 2。剩余 6 处 `mem_call` 全是字符串拼接（`"fib(" + … + ") = " + f` 这类），正符合"可证 number 才内联"的设计边界。
+
+为什么上游 patch 比手工特化还快 4.4×？B2 的手工替换仅修改 `mem_call` 调用本身，其外围的**帧建立**与**影子栈内存槽往返**指令原样保留；而 codegen 发射点特化让整条帧建立与内存槽往返**都不再发射**，产物更紧凑，AOT 后端因此能更好优化。patch 产物因此跨过 B2 天花板 17.185 ms，逼近 V3 的 3.325 ms。这条因果解释属推断。
+
+### 两条路的取舍
+
+| 手段 | 实测 P50 | vs E | 零上游依赖 | 风险 |
+|---|---:|---:|---|---|
+| E：perry 原样 | 123.098 | 1× | 是 | — |
+| wasm-opt 强内联 | 93.497 | 0.76× | 是 | 低（体积 74 KB → 1.35 MB aot） |
+| **通用桥内联 pass** | **16.958** | **0.138×（快 7.3×）** | 是 | 中：依赖产物指令形态，perry 升级即失配 |
+| B2：等价手工特化 | 17.185 | 0.141× | 是（不可复用） | 上界估计器 |
+| **上游 patch** | **3.891** | **0.0319×（快 31.4×）** | 否 | 见下文缺口 |
+
+不改上游，能把 122 ms 降至 ≤20 ms 量级（16.0–17.0 ms，即 B2 上界水平），最小手段是单个 wat→wat 后处理 pass，构建链只多一行命令；代价是约 10 小时的一次性投入，外加随 perry 版本回归的风险。改了上游，直接到 3.891 ms，此时后处理 pass 可以整体退役：codegen 发射点特化是"源头修"，产物更紧。
+
+## 结论与边界
+
+回到开头。**这条路可行不可行、慢不慢，可以分开测量；代价拆成引擎与 codegen 两部分，换到 AOT 后引擎那部分归零，剩下的几乎全在 codegen 产出的指令形态上——不在 WebAssembly、也不在引擎，而在编译器发射指令的那一步。**
+
+三条主干结论：
+
+1. **能跑**。perry 的 Rust 运行时编成 wasm 模块，与业务模块经 WAMR 多模块链接，宿主只剩 WASI 的一个调用（`fd_write`）。`rt.*` 的调用约定、业务代码、codegen 均未改动。6/6 步通过，输出与 perry 官方 JS 宿主层逐字节一致。源码保护大体成立：产物无 name 段，泄漏的是字符串字面量与导入名，门槛从"打开源码"抬到"反编译一遍再读"。
+2. **慢在哪**。总倍数必须读作两个因子的乘积：解释器下 1757× = 引擎因子 34.6× × codegen 因子 48.6×（闭合误差 4.3%）；换 AOT 引擎后 104× = 0.97× × 108×（闭合误差 <1%）。引擎因子在 AOT 下归零。根因是 perry wasm codegen 的类型擦除：可内联的 `+` 与条件判定被改写为跨边界桥接调用，桥接函数体占 AOT 方法耗时的 95.8%，每次 25.4 ns。三处独立证据支持：隔离实验、V8 TurboFan、QuickJS 反超。
+3. **能修**。零上游依赖的 wat 后处理 pass 把 bench 从 123.1 ms 降到 16.9 ms（快 7.3×），4 程序 × 7 变体共 28 次逐字节一致、零误判；上游 patch 改两个发射点并加一份保守类型事实，把 122.112 ms 降到 3.891 ms（快 31.4×），跨过手工特化上界，逼近无包装的表示的 3.325 ms。
+
+边界要交代清楚：
+
+- **性能结论建立在单个基准上**（`fib(29)` + 10⁶ 次求和循环），是调用密集的最坏情形，把所有"倍数"都放到最大。所有倍数都该读作这一形态下的倍数，而不是 wasm 路线的普遍性能。
+- **运行时只覆盖语言的一个子集**。13 个实现覆盖字符串、number/bool、console 与动态分派；对象、数组、闭包、类一概没有。补齐的量级不是"再加几十个函数"，而是等于重写 `perry-runtime`。适合这套方案的是宿主可控、语言子集可裁剪的场景（嵌入式规则脚本、计算密集的插件、既不想源码外流又不想放弃 TS 写法的内部交付）。
+- **perry 上游在快速迭代**，行号与内部结构都在变动。patch 目标锚定在 commit `87ecb02b`；移植到上游 main 有冲突但可手工解决，且确认上游没有自己做同样的特化，需要主动提 PR。自写类型推断（419 行）应该换成消费 `perry-hir` 现成的 `HirTypeEnv`/`infer_expr_type`，那是长期形态；patch 的价值在于快速验证收益。
+
+方法学上改动最小、却影响最大的一步是**审计自己的基线**。质疑"1.471 ms 物理上不可能"时，正确的响应不是复测一遍，而是查清 1,664,079 次逻辑调用里只有 91,759 次真实 call（gdb 断点与 callgrind 双证）。这条修正没有改变任何数字，只改变了 1757× 的解释方式：基准里的"调用次数"未必是硬件看到的调用次数。
+
+## 上游项目
+
+- [PerryTS/perry](https://github.com/PerryTS/perry) — perry 编译器（Rust，SWC + LLVM），patch 目标 commit `87ecb02b`
+- [fn-a/typerry](https://github.com/fn-a/typerry) — perry wasm 后端的 npm 包 `@typerry/node`
+- [bytecodealliance/wasm-micro-runtime](https://github.com/bytecodealliance/wasm-micro-runtime) — WAMR 2.4.3，多模块链接、AOT（`wamrc`）与 `fd_write` 支持
+- Bellard QuickJS、binaryen（`wasm-opt`/`wasm-merge`/`wasm-dis`）、WABT（`wasm2wat`/`wat2wasm`/`wasm-as`）
