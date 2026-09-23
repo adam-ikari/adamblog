@@ -10,3 +10,5 @@ waffo-private.pem
 package-lock.json
 yarn.lock
 .claude/scheduled_tasks.lock
+# agent 工具的本地流程状态，不入库
+.pi/
