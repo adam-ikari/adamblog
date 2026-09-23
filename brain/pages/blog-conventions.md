@@ -5,7 +5,7 @@ category: project
 status: active
 tags: [blog, writing-style, publishing, markdown]
 created: "2026-08-24T00:58:37"
-updated: "2026-09-23T07:57:05"
+updated: "2026-09-23T08:13:21"
 ---
 
 <!-- compiled_truth -->
@@ -116,6 +116,11 @@ updated: "2026-09-23T07:57:05"
 - 覆盖范围：作者明确只给 perry 一篇加，不批量回填其余文章。字段缺省即不渲染任何东西。
 - 摘要文案要求：80–180 汉字、一段、陈述事实与结论、无元话语（不写「本文介绍」）、遵守博客写作规范的禁用词表。
 
+## 构建排除范围
+- `srcExclude` 必须包含 `'brain/**'`：brain 目录下的 md 会被 VitePress 当普通页面渲染成 `/brain/*` 并混进首页列表、sitemap、RSS 与 pagefind 索引。
+- 站点只发布 `posts/`、`series/` 与少数根级页面（index/about/terms/privacy）。
+- 排除后 `brain/` 文件仍在仓库里，只是不进构建产物。
+
 
 ## Timeline
 
@@ -165,4 +170,16 @@ updated: "2026-09-23T07:57:05"
   kind: decision
   summary: "新增文章全文摘要块：frontmatter 可选 summary 字段，由构建期插件 article-summary 插到 H1 之后；只给 perry 一篇加，不批量回填"
   source: "用户要求在文章开头加全文摘要块"
+  affects: [blog-conventions]
+
+- time: 2026-09-23T08:13:17
+  kind: decision
+  summary: Rewrote compiled_truth to the new best understanding
+  source: "brain 目录被误渲染进博客，已在 srcExclude 排除"
+  affects: [blog-conventions]
+
+- time: 2026-09-23T08:13:21
+  kind: decision
+  summary: "srcExclude 加入 brain/**：brain 目录的 md 之前被渲染成 /brain/* 页面并出现在首页、sitemap、RSS、搜索索引里；站点只发布 posts/ 与 series/"
+  source: "用户反馈 brain 内容出现在博客上"
   affects: [blog-conventions]
