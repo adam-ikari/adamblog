@@ -1,13 +1,13 @@
 ---
-title: perry 把 TypeScript 编译成 wasm：跑通、定位 1757 倍差距、修复后快 31 倍
-description: 把 perry 的 Rust 运行时也编译成 wasm 模块放进 WAMR 之后，程序跑通了，但慢得离谱。本文记录完整的性能归因与两条修复路线：总倍数如何拆成因子、为什么根因不在引擎、以及上游 patch 如何把 122ms 压到 3.9ms。
+title: perry 把 TypeScript 编译成 wasm：从慢 1757 倍，修到只慢原生 2.8 倍
+description: 把 perry 的 Rust 运行时编译成 wasm 模块跑在 WAMR 上，程序跑通了，但解释器下慢原生 1757 倍。拆因子后发现引擎无辜、根因在 codegen 类型擦除；改上游发射点后，AOT 下从 122ms 压到 3.9ms，相对原生只慢 2.8 倍。
 category: WebAssembly
 tags: [perry, TypeScript, WebAssembly, WAMR, Rust, 编译器, 性能]
 recommend: false
 date: 2026-09-21
 ---
 
-# perry 把 TypeScript 编译成 wasm：跑通、定位 1757 倍差距、修复后快 31 倍
+# perry 把 TypeScript 编译成 wasm：从慢 1757 倍，修到只慢原生 2.8 倍
 
 ## 前言
 
@@ -386,6 +386,21 @@ if self.expr_is_boolean(condition) {
 正确性：`fib(29) = 514229`、`sum = 499999500000`，`./demo.sh` 6/6 PASS，3 个泛化探针经完整 E 路输出与参照逐字节一致。反汇编证据：`call $mem_call` 8 → 6，`call $mem_call_i32` 2 → 0，`f64.add` 0 → 3，`i64.ne` 0 → 2。剩余 6 处 `mem_call` 全是字符串拼接（`"fib(" + … + ") = " + f` 这类），正符合"可证 number 才内联"的设计边界。
 
 为什么上游 patch 比手工特化还快 4.4×？B2 的手工替换仅修改 `mem_call` 调用本身，其外围的**帧建立**与**影子栈内存槽往返**指令原样保留；而 codegen 发射点特化让整条帧建立与内存槽往返**都不再发射**，产物更紧凑，AOT 后端因此能更好优化。patch 产物因此跨过 B2 天花板 17.185 ms，逼近 V3 的 3.325 ms。这条因果解释属推断。
+
+### 修复后到底慢多少：把两个数放回同一根线
+
+标题里有两个数：1757 倍和 31.4 倍。**它们不在同一根线上，不能相除。** 1757× 是解释器（A 路）下 perry wasm 相对手写 C 原生的总倍数；31.4× 是 AOT（E 路）下 patch 后相对 perry 原样 codegen 的提速。前者混了引擎开销与 codegen 缺陷，后者只发生在引擎开销已归零的 AOT 上，消的是 codegen 缺陷那一半。`1757 ÷ 31.4 ≈ 56` 是错的算法。
+
+修复后 3.891 ms 到底什么水平，放回坐标里看：
+
+| 对照 | 时间 | 慢多少 |
+|---|---:|---:|
+| 手写 C 原生 | 1.406 ms | 慢 2.8× |
+| 干净 i64 wasm（同批） | 1.216 ms | 慢 3.2× |
+| perry 原生（纯执行） | 1.6–2.6 ms | **基本同速**，慢 1.5–2.4× |
+| 无包装的表示上界 V3 | 3.325 ms | 只差 1.17× |
+
+patch 之后，perry wasm 已经和 perry 原生基本同速，相对手写 C 只慢 2.8 倍。剩余差距全是影子栈内存访问纪律——每个值经 global sp 存/取内存，fib 每层约 20 条辅助指令，不是 NaN-box 本身（reinterpret 对在机器码层面是空操作，box 近零成本）。这是 paper 第 7.3 章 typed ABI 化"阶段 4 去影子栈"的目标，预计 3.3–5.0 ms。换句话说：剩下的这 2.8 倍有明确的去处，不是黑箱。
 
 ### 两条路的取舍
 
