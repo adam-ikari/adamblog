@@ -165,6 +165,7 @@ AI 写的文章有种识别度很高的"工整感"——面面俱到、四平八
 ---
 title: 文章标题
 description: 一句话描述，会出现在列表和 SEO
+summary: 全文摘要，80–180 汉字，陈述事实与结论，不经元话语（不写"本文介绍"），构建期自动渲染成 H1 之后的摘要块；多数文章可省略，长篇技术文可选填
 category: 分类名（如 AI工具、前端、信创、系统配置）
 tags: [标签1, 标签2, 标签3]
 recommend: false   # 一般写 false
@@ -182,6 +183,7 @@ series:             # 仅系列文章才写，单篇省略
 - `tags` 是数组，用方括号。
 - `category` 是自由文本，可新建（如本次「信创」是该分类首篇）。
 - 系列文章用 `series` 块串 prev/next，并在 `series/` 目录维护系列索引页（含 `<SeriesCardList>` 组件）。
+- `summary` 可选。写了就由 `.vitepress/plugins/article-summary.ts` 在构建期插到 H1 之后，渲染成静态摘要卡片，SEO 与 RSS 一并带上；不写则不显示任何东西。
 
 ### 正文结构骨架
 

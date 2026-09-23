@@ -5,7 +5,7 @@ category: project
 status: active
 tags: [blog, writing-style, publishing, markdown]
 created: "2026-08-24T00:58:37"
-updated: "2026-09-23T06:20:03"
+updated: "2026-09-23T07:57:05"
 ---
 
 <!-- compiled_truth -->
@@ -109,6 +109,13 @@ updated: "2026-09-23T06:20:03"
 | 实际文章 posts/*.md | frontmatter 使用 | category 和 series 均为自定义字段 |
 | vercel.json | 部署配置 | Vercel pnpm build |
 
+## 文章全文摘要块（2026-09-23）
+- 机制：frontmatter 可选字段 `summary` + 构建期 markdown-it 插件 `.vitepress/plugins/article-summary.ts`（在 `config.mts` 的 `markdown.config` 里 `md.use`），把摘要作为 html_block 插到 H1 之后。
+- 样式类 `.article-summary` / `.article-summary-label` 定义在 `.vitepress/theme/styles.css`，用 `--vp-c-brand-1` 与 `--vp-c-bg-soft`，亮暗色自适应。
+- 不用客户端组件的原因：摘要要进静态 HTML，搜索引擎与 RSS 才能拿到，页面也不增加 JS。主题的 doc-before 插槽在 `<main>` 之外、H1 之前，不符合「文章开头」的语义。
+- 覆盖范围：作者明确只给 perry 一篇加，不批量回填其余文章。字段缺省即不渲染任何东西。
+- 摘要文案要求：80–180 汉字、一段、陈述事实与结论、无元话语（不写「本文介绍」）、遵守博客写作规范的禁用词表。
+
 
 ## Timeline
 
@@ -146,4 +153,16 @@ updated: "2026-09-23T06:20:03"
   kind: decision
   summary: "禁用清单补入 归因"
   source: "perry wasm 文修订：用户追加禁用 归因"
+  affects: [blog-conventions]
+
+- time: 2026-09-23T07:57:05
+  kind: decision
+  summary: Rewrote compiled_truth to the new best understanding
+  source: "新增文章摘要块机制（frontmatter.summary + article-summary 插件）"
+  affects: [blog-conventions]
+
+- time: 2026-09-23T07:57:05
+  kind: decision
+  summary: "新增文章全文摘要块：frontmatter 可选 summary 字段，由构建期插件 article-summary 插到 H1 之后；只给 perry 一篇加，不批量回填"
+  source: "用户要求在文章开头加全文摘要块"
   affects: [blog-conventions]

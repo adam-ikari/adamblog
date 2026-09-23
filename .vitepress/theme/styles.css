@@ -2,6 +2,30 @@
  * 站点全局样式覆盖
  */
 
+/* 全文摘要块：frontmatter.summary 经 article-summary 插件插到 h1 之后 */
+.vp-doc .article-summary {
+  margin: 1.25rem 0 2rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--vp-c-brand-1);
+  border-radius: 0 8px 8px 0;
+  background-color: var(--vp-c-bg-soft);
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc .article-summary-label {
+  margin-bottom: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--vp-c-brand-1);
+}
+
+.vp-doc .article-summary p {
+  margin: 0;
+}
+
 /* Mermaid 图表：居中显示 */
 .vp-doc .mermaid {
   display: flex;

@@ -5,6 +5,7 @@ import footnote from 'markdown-it-footnote'
 import { RSSOptions, RssPlugin } from 'vitepress-plugin-rss'
 import { imageCompressPlugin } from './plugins/image-compress'
 import { relatedPostsPlugin } from './plugins/related-posts'
+import { articleSummaryPlugin } from './plugins/article-summary'
 import { readFileSync, readdirSync } from 'fs'
 import { resolve } from 'path'
 import matter from 'gray-matter'
@@ -143,6 +144,7 @@ export default defineConfig({
       md.use(markdownItPangu)
       md.use(footnote)
       md.use(MermaidMarkdown)
+      md.use(articleSummaryPlugin)
     },
   },
 
