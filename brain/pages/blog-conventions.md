@@ -5,7 +5,7 @@ category: project
 status: active
 tags: [blog, writing-style, publishing, markdown]
 created: "2026-08-24T00:58:37"
-updated: "2026-09-23T08:13:21"
+updated: "2026-09-28T15:14:37"
 ---
 
 <!-- compiled_truth -->
@@ -182,4 +182,14 @@ updated: "2026-09-23T08:13:21"
   kind: decision
   summary: "srcExclude 加入 brain/**：brain 目录的 md 之前被渲染成 /brain/* 页面并出现在首页、sitemap、RSS、搜索索引里；站点只发布 posts/ 与 series/"
   source: "用户反馈 brain 内容出现在博客上"
+  affects: [blog-conventions]
+
+- time: 2026-09-28T15:06:30
+  kind: decision
+  summary: "去AI感补充（2026-09-28，perry文前言逐句打回）：禁止'先抛标签句、再回头解释'的说话一半结构，如'问题出在并发上。标准库里没有…''代价换了形态。模块体积…'。中文陈述句没有这个习惯；判断必须和事实连成一句完整说完（'跑得快、产物也小，可标准库里没有事件循环'）。同样禁止冒号后三项名词排比（'机器码，产物小，跑得快'）和宣告对称再复制对称的写法（'省心的那半/不省心的那半'）。"
+  affects: [blog-conventions]
+
+- time: 2026-09-28T15:14:37
+  kind: decision
+  summary: "去AI感补充二（2026-09-28，同一轮打回）：禁止'抽象名词+方位动词'句式——'缺口开在成本上''代价挪到了体积上''意义不在X，在于Y'。人话是直接说发生了什么：'换用数组的程序立刻报错。要让它支持数组，就得…''模块从 16.9 KB 涨到 7.3 MB'。成本/代价/缺口/意义这类词不做句子主语去'落在/开在/挪到'某处；事实先行，判断若需要就附在事实后作完整谓语句。"
   affects: [blog-conventions]
