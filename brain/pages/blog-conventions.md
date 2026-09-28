@@ -5,7 +5,7 @@ category: project
 status: active
 tags: [blog, writing-style, publishing, markdown]
 created: "2026-08-24T00:58:37"
-updated: "2026-09-28T15:14:37"
+updated: "2026-09-28T15:48:13"
 ---
 
 <!-- compiled_truth -->
@@ -192,4 +192,9 @@ updated: "2026-09-28T15:14:37"
 - time: 2026-09-28T15:14:37
   kind: decision
   summary: "去AI感补充二（2026-09-28，同一轮打回）：禁止'抽象名词+方位动词'句式——'缺口开在成本上''代价挪到了体积上''意义不在X，在于Y'。人话是直接说发生了什么：'换用数组的程序立刻报错。要让它支持数组，就得…''模块从 16.9 KB 涨到 7.3 MB'。成本/代价/缺口/意义这类词不做句子主语去'落在/开在/挪到'某处；事实先行，判断若需要就附在事实后作完整谓语句。"
+  affects: [blog-conventions]
+
+- time: 2026-09-28T15:48:13
+  kind: decision
+  summary: "作者点名禁用词扩充（2026-09-28）：'绕不开'一律改'不能避免'（全仓 16 处已替换）；'账面是亏的'改'账面上看是亏损的'——判断句要带限定视角，不用裸'是X的'收尾。已同步进 blog-writing skill 禁用词表。"
   affects: [blog-conventions]
