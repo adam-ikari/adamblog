@@ -5,7 +5,7 @@ category: project
 status: active
 tags: [blog, writing-style, publishing, markdown]
 created: "2026-08-24T00:58:37"
-updated: "2026-09-28T15:48:13"
+updated: "2026-09-28T16:03:04"
 ---
 
 <!-- compiled_truth -->
@@ -197,4 +197,14 @@ updated: "2026-09-28T15:48:13"
 - time: 2026-09-28T15:48:13
   kind: decision
   summary: "作者点名禁用词扩充（2026-09-28）：'绕不开'一律改'不能避免'（全仓 16 处已替换）；'账面是亏的'改'账面上看是亏损的'——判断句要带限定视角，不用裸'是X的'收尾。已同步进 blog-writing skill 禁用词表。"
+  affects: [blog-conventions]
+
+- time: 2026-09-28T15:54:51
+  kind: decision
+  summary: "文风规则升层（2026-09-28 总结）：perry 文四轮打回证明病在句法骨架不在词——换口语、换俏皮话都是换皮。已在 blog-writing skill 新增'中文陈述句五条通则'（句式层，先于词表）：①主语须是行动者/事物，概念名词（成本/代价/意义/缺口）做主语配方位动词即伪解释；②一句说完一句事，事实先行，禁标签句与'不在于A而在于B'；③对称只存于内容不存于句式，禁宣告对称后复制；④判断带限定视角（'账面上看是亏损的'）；⑤用通用口语不用流行套话。"
+  affects: [blog-conventions]
+
+- time: 2026-09-28T16:03:04
+  kind: decision
+  summary: "句式通则增补第六条（2026-09-28，perry 文前言 L21 打回）：禁止'先肯定、中间插否定、再转折'的三段式（'还有一层问题，跟性能和并发都无关，却在选型时不能避免'）。中文主干顺序展开，限定前置一次说完：'选型时还有一层不能避免的问题：'。已入 skill 六条通则。全仓排查仅此一处；顺手修总览'喂饱'→'覆盖全'（喂熟同类）。"
   affects: [blog-conventions]
