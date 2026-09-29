@@ -173,7 +173,7 @@ cat ~/.todo.json   # 看持久化数据
 | DeepSeek（按量） | 几分 ~ 几毛 |
 | 国际模型（如 Claude/GPT 经 OpenRouter） | 数倍于此 |
 
-这就是 [选型指南](/posts/macOS-国产模型提供商选型指南) 里推荐预算敏感场景用 DeepSeek 的实际写照。
+这也是 [选型指南](/posts/macOS-国产模型提供商选型指南) 里预算敏感场景推荐 DeepSeek 的原因。
 
 ## 踩坑复盘
 
