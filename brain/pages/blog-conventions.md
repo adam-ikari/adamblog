@@ -5,7 +5,7 @@ category: project
 status: active
 tags: [blog, writing-style, publishing, markdown]
 created: "2026-08-24T00:58:37"
-updated: "2026-09-28T16:03:04"
+updated: "2026-09-28T18:40:44"
 ---
 
 <!-- compiled_truth -->
@@ -207,4 +207,19 @@ updated: "2026-09-28T16:03:04"
 - time: 2026-09-28T16:03:04
   kind: decision
   summary: "句式通则增补第六条（2026-09-28，perry 文前言 L21 打回）：禁止'先肯定、中间插否定、再转折'的三段式（'还有一层问题，跟性能和并发都无关，却在选型时不能避免'）。中文主干顺序展开，限定前置一次说完：'选型时还有一层不能避免的问题：'。已入 skill 六条通则。全仓排查仅此一处；顺手修总览'喂饱'→'覆盖全'（喂熟同类）。"
+  affects: [blog-conventions]
+
+- time: 2026-09-28T18:23:51
+  kind: decision
+  summary: "意象词黑名单落地：底色/缩影/写照/答卷/试金石/双刃剑/抓手全库清除（护城河为商业术语保留）；通则①'X的意义在于/好处在于'概念主语句改事实先行（供应链、等保、六家CPU、流体、chai、AI产业链）；'最X的一环'空泛概括两处改写；SKILL.md 词表新增'AI 式意象词'条目"
+  affects: [blog-conventions]
+
+- time: 2026-09-28T18:34:52
+  kind: decision
+  summary: "新增两类句式黑名单：宣布判断标准句（'自主率高低，就看X''能不能撑住，关键看X'）与元评论收尾句（'说法也就站住了''坐实了底色''立住的人设'）——均属'句子停在宣布、不交付事实'同族病。打印机62/74、供应链58、KylinOS70 四处按此删除或改为事实陈述"
+  affects: [blog-conventions]
+
+- time: 2026-09-28T18:40:44
+  kind: decision
+  summary: "'是要X的'通则收束句与'打折'比喻列入黑名单：打印机三处、供应链一处删除或改事实陈述（'国产的其实只有外壳和品牌'）；此前同族已清'就看/关键看'宣布标准句与'说法站住了'元评论收尾句"
   affects: [blog-conventions]
